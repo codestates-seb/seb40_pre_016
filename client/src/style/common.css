@@ -9,10 +9,13 @@
 :root {
   --font-black-color: #101010;
   --light-gray-color: #f6f6f6;
-  --dark-gray-color: #d6d6d6;
-  --point-green-color: #00ba7c;
-  --twitter-blue-color: #00acee;
-  --background-color: white;
+  --dark-gray-color: rgb(186, 191, 196);
+  --blue-100: hsl(206, 96%, 90%);
+  --blue-300: hsl(206, 90%, 69.5%);
+  --blue-400: hsl(206, 85%, 57.5%);
+  --blue-600: hsl(206, 100%, 40%);
+  --warning-color: rgb(208, 57, 62);
+  --background-color: hsl(210, 8%, 95%);
 }
 
 /* reset css */
@@ -140,8 +143,10 @@ table {
   color: var(--font-black-color);
   text-decoration: none;
   outline: none;
+  cursor: pointer;
 }
  a:hover,
 a:active {
   text-decoration: none;
+  cursor: pointer;
 }
