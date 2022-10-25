@@ -12,8 +12,10 @@ const Login = () => {
                 <S.Div>
                     <OAthLogin />
                     <LoginBox />
+                    <S.P> Don't have an account?<S.Link>Sign up</S.Link> </S.P>
                 </S.Div>
             </S.LoginWarp>
+
         </S.Container>
     );
 };

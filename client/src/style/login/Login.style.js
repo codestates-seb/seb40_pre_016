@@ -19,3 +19,20 @@ align-items: center;
 export const Div = styled.div`
 width : 100%;
 `
+
+
+export const P = styled.p`
+font-size: 13px;
+display: block;
+text-align: center;
+margin: 0 auto;
+
+`
+export const Link = styled.a`
+    color: rgb(0, 116, 204);
+    margin-left: 8px;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+`
