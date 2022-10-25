@@ -1,9 +1,10 @@
+import Main from './pages/Main';
 import './style/common.css';
+
 
 function App() {
   return (
-    <div>
-    </div>
+    <Main></Main>
   );
 }
 
