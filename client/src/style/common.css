@@ -10,9 +10,13 @@
   --font-black-color: #101010;
   --light-gray-color: #f6f6f6;
   --dark-gray-color: rgb(186, 191, 196);
+  --dark-font-color: rgb(106, 115, 124);
+  --black-200: hsl(210, 8%, 75%);
+  --blue-050: hsl(206, 100%, 97%);
   --blue-100: hsl(206, 96%, 90%);
   --blue-300: hsl(206, 90%, 69.5%);
   --blue-400: hsl(206, 85%, 57.5%);
+  --blue-500: hsl(206, 100%, 52%);
   --blue-600: hsl(206, 100%, 40%);
   --warning-color: rgb(208, 57, 62);
   --background-color: hsl(210, 8%, 95%);
