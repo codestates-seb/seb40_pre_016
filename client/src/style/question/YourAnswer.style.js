@@ -2,15 +2,17 @@ import styled from 'styled-components';
 
 // 답변 추가
 export const QYourAnswer = styled.section`
+  margin-top: 30px;
   margin-left: 8px;
 
   > form > h3 {
     font-size: 18px;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 
   > form > button {
+    margin: 30px 0px;
     width: 150px;
     height: 37px;
     background-color: #0a95ff;
