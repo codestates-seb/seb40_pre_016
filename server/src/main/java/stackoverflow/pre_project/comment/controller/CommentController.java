@@ -26,7 +26,7 @@ public class CommentController {
                                                    @Valid @RequestBody CommentDto.Request commentDto) {
         Comment comment = commentService.createComment(
                 CommentType.QUESTION, questionId, commentDto.getContent());
-        return commentMapper.of(comment);
+        return commentMapper.commentToResponse(comment);
     }
 
     @PostMapping("/answers/{answer-id}/comments")
@@ -35,14 +35,14 @@ public class CommentController {
                                                  @RequestBody CommentDto.Request commentDto) {
         Comment comment = commentService.createComment(
                 CommentType.ANSWER, answerId, commentDto.getContent());
-        return commentMapper.of(comment);
+        return commentMapper.commentToResponse(comment);
     }
 
     @PatchMapping("/comments/{comment-id}")
     public CommentDto.Response patchAnswerComment(@PathVariable("comment-id") Long commentId,
                                                   @RequestBody CommentDto.Request commentDto) {
         Comment comment = commentService.updateComment(commentId, commentDto.getContent());
-        return commentMapper.of(comment);
+        return commentMapper.commentToResponse(comment);
     }
 
     @DeleteMapping("/comments/{comment-id}")

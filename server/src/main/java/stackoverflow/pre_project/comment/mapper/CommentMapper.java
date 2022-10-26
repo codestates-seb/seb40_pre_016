@@ -8,5 +8,5 @@ import stackoverflow.pre_project.comment.entity.Comment;
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
     @Mapping(source = "id", target = "commentId")
-    CommentDto.Response of(Comment comment);
+    CommentDto.Response commentToResponse(Comment comment);
 }

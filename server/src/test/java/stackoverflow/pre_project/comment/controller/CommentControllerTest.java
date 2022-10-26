@@ -62,7 +62,7 @@ class CommentControllerTest implements Reflection {
 
         given(commentService.createComment(CommentType.QUESTION, questionId, content))
                 .willReturn(comment);
-        given(commentMapper.of(comment))
+        given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
 
         // when
@@ -111,7 +111,7 @@ class CommentControllerTest implements Reflection {
 
         given(commentService.createComment(CommentType.ANSWER, answerId, content))
                 .willReturn(comment);
-        given(commentMapper.of(comment))
+        given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
 
         // when
@@ -160,7 +160,7 @@ class CommentControllerTest implements Reflection {
 
         given(commentService.updateComment(commentId, content))
                 .willReturn(comment);
-        given(commentMapper.of(comment))
+        given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
 
         // when
