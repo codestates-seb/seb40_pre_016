@@ -1,11 +1,8 @@
 package stackoverflow.pre_project.answer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import stackoverflow.pre_project.audit.Auditable;
-import stackoverflow.pre_project.comment.AnswerComment;
+import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.question.Question;
 import stackoverflow.pre_project.user.User;
 
@@ -14,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Entity
 public class Answer extends Auditable {
 
@@ -35,7 +32,7 @@ public class Answer extends Auditable {
     private User user;
 
     @OneToMany(mappedBy = "answer")
-    private final List<AnswerComment> answerComments = new ArrayList<>();
+    private final List<Comment> comments = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")

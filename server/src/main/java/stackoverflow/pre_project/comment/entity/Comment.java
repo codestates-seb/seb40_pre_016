@@ -1,27 +1,25 @@
-package stackoverflow.pre_project.comment;
+package stackoverflow.pre_project.comment.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import stackoverflow.pre_project.audit.Auditable;
+import lombok.*;
+import stackoverflow.pre_project.answer.Answer;
 import stackoverflow.pre_project.question.Question;
 import stackoverflow.pre_project.user.User;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Entity
-public class QuestionComment extends Auditable {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "question_comment_id")
+    @Column(name = "comment_id")
     private Long id;
 
+    @Setter
     @Column(nullable = false)
     private String content;
 
@@ -32,4 +30,9 @@ public class QuestionComment extends Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "answer_id")
+    private Answer answer;
+
 }
