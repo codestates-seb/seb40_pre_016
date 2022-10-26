@@ -1,4 +1,4 @@
-package stackoverflow.pre_project.question;
+package stackoverflow.pre_project.question.entity;
 
 import lombok.*;
 import stackoverflow.pre_project.answer.Answer;
