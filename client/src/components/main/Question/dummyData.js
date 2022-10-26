@@ -2,7 +2,7 @@ const DUMMYDATA = [
   {
     title: 'Elastic Search - Mysql and Delta changes',
     content: 'I have done some analysis and have decided to provide the search for DB search for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
-    tags: ['tag1', 'tag2', 'tag3'],
+    tags: ['태그태그태그태그태그태그', '태그태그태그태그태그태그', '태그태그태그태그태그태그'],
     userName: 'MiguelMunoz',
     askCount: '4329',
     userTime: '1 min ago',

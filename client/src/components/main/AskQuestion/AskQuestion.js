@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-
+import AskButton from "../Button/AskButton";
 
 
 const AskQuestionContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-
+  margin-bottom: 12px;
 
   h1{
     font-size: 27px;
@@ -27,16 +27,13 @@ const AskQuestionContainer = styled.div`
     margin-left: auto;
     margin-bottom: 12px;
   }
-  >div{
-    margin: ;
-  }
 `;
 
 const AskQuestion = () => {
   return (
     <AskQuestionContainer>
       <h1>All Questions</h1>
-      <div>Ask Question</div>
+      <AskButton>Ask Question</AskButton>
     </AskQuestionContainer>
   );
 };

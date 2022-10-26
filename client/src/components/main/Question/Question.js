@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import img from '../../../assets/img/userAvatar.jpeg';
+import TagButton from '../Button/TagButtion';
 
 const QuestionContainer = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border: 1px gray solid;
   padding: 16px;
+  flex-basis: 100px;
   display: flex;
-  height: 127px;
+
 `;
 
 
@@ -17,6 +19,9 @@ const StatContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  flex-basis: 108px;
+  flex-shrink: 0;
+
 `;
 const Votes = styled.div`
   color: #0C0D0E;
@@ -53,17 +58,8 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: flex-start;
 
+  flex-wrap: wrap;
 
-  > ul{
-    display: flex;
-  }
-`;
-
-const FooterTags = styled.li`
-  background-color: #D0E3F1;
-  margin: 4px;
-  color : #39739D;
-  padding: 4.6px, 6px;
 `;
 
 
@@ -96,14 +92,9 @@ const UserInfoContainer = styled.div`
 
 
 
-// const title = 'Elastic Search - Mysql and Delta changes'
-// const content = 'I have done some analysis and have decided to provide the search for DB search for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -';
-// const tags = ['tag1', 'tag2', 'tag3'];
-// const userName = 'MiguelMunoz';
-// const askCount = '4329';
-// const userTime = '1 min ago'
+
+
 const Question = ({ question }) => {
-  console.log(question)
   return (
     <QuestionContainer>
 
@@ -117,9 +108,7 @@ const Question = ({ question }) => {
         <Title>{question.title}</Title>
         <Content>{question.content}</Content>
         <FooterContainer>
-          <ul>
-            {question.tags.map(el => (<FooterTags>{el}</FooterTags>))}
-          </ul>
+          {question.tags.map((el, idx) => (<TagButton key={idx}>{el}</TagButton>))}
           <UserInfoContainer>
             <img src={img} alt='userImg' />
             <div className='userName'>{question.userName}</div>
