@@ -5,13 +5,17 @@ import AskQuestion from "../components/main/AskQuestion/AskQuestion";
 import styled from 'styled-components';
 import Filter from "../components/main/Filter/Filter";
 import PageList from "../components/main/PageList/PageList";
+import { useRecoilState } from "recoil";
+import { questionList } from '../atoms/atom';
 
 const MainStyeld = styled.div`
   padding: 24px;
 `;
 
+
+
 const Main = () => {
-  const [questions, setQuestions] = useState(DUMMYDATA);
+  const [questions, setQuestions] = useRecoilState(questionList);
   const filteredQuestions = questions.slice()
 
   const sortHandler = (idx) => {
