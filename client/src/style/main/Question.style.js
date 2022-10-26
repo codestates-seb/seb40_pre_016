@@ -26,7 +26,7 @@ flex-shrink: 0;
 
 @media screen and (max-width: 640px) {
   flex-direction: row;
-  flex-basis: 0px;
+  flex-basis: 0;
 }
 
 
