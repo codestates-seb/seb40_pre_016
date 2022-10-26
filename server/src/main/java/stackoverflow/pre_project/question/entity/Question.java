@@ -1,6 +1,8 @@
 package stackoverflow.pre_project.question.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import stackoverflow.pre_project.answer.Answer;
 import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;

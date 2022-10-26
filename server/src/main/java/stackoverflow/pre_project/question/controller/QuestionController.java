@@ -9,6 +9,9 @@ import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.mapper.QuestionMapper;
 import stackoverflow.pre_project.question.service.QuestionService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/questions")
 @Slf4j
@@ -30,5 +33,12 @@ public class QuestionController {
         QuestionDto.Response response = mapper.questionToQuestionResponse(createdQuestion);
 
         return new ResponseEntity(response, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{question-id}")
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId, HttpServletResponse response) throws IOException {
+        questionService.deleteQuestion(questionId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

@@ -23,7 +23,25 @@ public class QuestionService {
 
     public Question createQuestion(Question question) {
         Question savedQuestion = questionRepository.save(question);
+        System.out.println(savedQuestion.getModifiedAt());
 
         return savedQuestion;
+    }
+
+    public void deleteQuestion(Long questionId) {
+        Question question = findVerifiedQuestion(questionId);
+
+        if (question.getAnswers().size() > 0) {
+            throw new RuntimeException();
+        }
+
+        questionRepository.delete(question);
+    }
+
+    private Question findVerifiedQuestion(Long questionId) {
+        Optional<Question> question = questionRepository.findById(questionId);
+        Question findQuestion = question.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
+
+        return findQuestion;
     }
 }
