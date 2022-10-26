@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Main from './pages/Main';
 import './style/common.css';
 import { createGlobalStyle } from 'styled-components'
 import * as S from './style/App.style'
@@ -12,6 +13,7 @@ import Gnb from './components/Common/Gnb';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 `
+
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
           <Routes>
 
 
-            <Route path='/login' element={<Login />}>
+            <Route path='/login' element={<Main />}>
               {' '}
             </Route>
             <Route path='/signup' element={<SignUp />}>
@@ -47,6 +49,7 @@ function App() {
 
       </BrowserRouter>
     </>
+
 
   );
 }
