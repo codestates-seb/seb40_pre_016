@@ -3,13 +3,11 @@ import * as S from '../../../style/main/QuestionList.style'
 import Question from "./Question";
 
 
-const QuestionListContainer = styled.div`
 
-`;
 
 const QuestionList = ({ questionList }) => {
   return (
-    <QuestionListContainer>
+    <S.QuestionListContainer>
       <ul>
         {questionList.map((el, idx) => {
           return (
@@ -19,7 +17,7 @@ const QuestionList = ({ questionList }) => {
           );
         })}
       </ul>
-    </QuestionListContainer>
+    </S.QuestionListContainer>
   );
 };
 

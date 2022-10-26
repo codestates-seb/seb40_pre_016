@@ -1,6 +1,6 @@
 import React from 'react';
 import img from '../../../assets/img/userAvatar.jpeg';
-import * as S from '../../../style/main/Question.style'
+import * as S from '../../../style/main/Question.style';
 import TagButton from '../Button/TagButtion';
 
 

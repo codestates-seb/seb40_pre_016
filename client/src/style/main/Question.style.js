@@ -7,6 +7,10 @@ padding: 16px;
 flex-basis: 100px;
 display: flex;
 
+@media screen and (max-width: 640px) {
+  flex-direction: column;
+}
+
 `;
 
 
@@ -20,20 +24,28 @@ align-items: flex-end;
 flex-basis: 108px;
 flex-shrink: 0;
 
+@media screen and (max-width: 640px) {
+  flex-direction: row;
+  flex-basis: 0px;
+}
+
+
 `;
 export const Votes = styled.div`
 color: #0C0D0E;
 `;
 
+
 export const Answers = styled.div`
 color: #6A737C;
 `;
+
 
 export const Views = styled.div`
 
 `;
 
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   flex-shrink: 1;
 `;
 
