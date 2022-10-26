@@ -5,10 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CommentDto {
 
     @Getter
     public static class Request {
+        @NotEmpty
         private String content;
     }
 
