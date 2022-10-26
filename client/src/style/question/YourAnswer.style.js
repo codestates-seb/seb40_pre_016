@@ -3,10 +3,10 @@ import styled from 'styled-components';
 // 답변 추가
 export const QYourAnswer = styled.section`
   margin-top: 30px;
-  margin-left: 8px;
+  margin-left: 20px;
 
   > form > h3 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     margin-bottom: 30px;
   }

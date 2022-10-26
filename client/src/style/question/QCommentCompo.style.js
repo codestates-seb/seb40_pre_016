@@ -3,7 +3,9 @@ import styled from "styled-components";
 // 답변
 export const QComment = styled.section`
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-left: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
 `;
 
 export const QCHeader = styled.section`
