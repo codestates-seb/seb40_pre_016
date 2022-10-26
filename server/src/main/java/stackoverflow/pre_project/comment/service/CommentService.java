@@ -1,6 +1,7 @@
 package stackoverflow.pre_project.comment.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import stackoverflow.pre_project.answer.Answer;
 import stackoverflow.pre_project.answer.repository.AnswerRepository;
@@ -46,7 +47,7 @@ public class CommentService {
     public void deleteComment(Long commentId) {
         try {
             commentRepository.deleteById(commentId);
-        } catch (IllegalArgumentException exception) {
+        } catch (EmptyResultDataAccessException exception) {
             throw new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND);
         }
     }
