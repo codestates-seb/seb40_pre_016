@@ -14,7 +14,9 @@ const Filter = ({ sortHandler }) => {
 
   return (
     <S.FilterContainer>
-      <h1>23,143,715 questions</h1>
+      <h1>
+        <p>23,143,715 questions</p>
+      </h1>
       <div>
         {buttonNameList.map((el, idx) => (
           <SelectButton key={idx}

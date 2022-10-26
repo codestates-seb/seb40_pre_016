@@ -32,11 +32,6 @@ const Main = () => {
     setQuestions(filteredQuestions)
   }
 
-
-
-
-
-
   return (
     <>
       <MainStyeld>
