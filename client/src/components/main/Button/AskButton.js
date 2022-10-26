@@ -1,18 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-
-const AskButtonStyled = styled.div`
-  margin-left: auto;
-
-  &:hover{
-    cursor: pointer;
-    background-color: rgb(57,113,199);
-  }
-`;
+import * as S from '../../../style/main/AskButton.style';
 
 const AskButton = (props) => {
   return (
-    <AskButtonStyled>{props.children}</AskButtonStyled>
+    <S.AskButtonStyled>{props.children}</S.AskButtonStyled>
   );
 }
 

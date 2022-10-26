@@ -1,22 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import * as S from '../../../style/main/PageList.style'
 import PageButton from "../Button/PageButton";
-
-
-const PageListContainerStyled = styled.div`
-  display: flex;
-  padding-bottom: 100px;
-  height: 300px;
-  
-`;
-
-const PageListStyled = styled.div`
-  display: flex;
-  gap: 5px;
-  margin-left: auto;
-  margin-top: 50px;
-`;
-
 
 
 const PageList = () => {
@@ -32,12 +16,9 @@ const PageList = () => {
     listCountArr.push(i);
   }
 
-
-
-
   return (
-    <PageListContainerStyled>
-      <PageListStyled>
+    <S.PageListContainerStyled>
+      <S.PageListStyled>
         <PageButton width='50px'>Prev</PageButton>
         {listCountArr.map((el, idx) => {
           return (<PageButton
@@ -48,8 +29,8 @@ const PageList = () => {
           >{el}</PageButton>)
         })}
         <PageButton width='50px'>Next</PageButton>
-      </PageListStyled >
-    </PageListContainerStyled>
+      </S.PageListStyled >
+    </S.PageListContainerStyled>
   );
 };
 
