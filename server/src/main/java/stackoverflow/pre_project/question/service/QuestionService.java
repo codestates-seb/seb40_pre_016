@@ -28,6 +28,17 @@ public class QuestionService {
         return savedQuestion;
     }
 
+    public Question updateQuestion(Long questionId, Question question) {
+        Question findQuestion = findVerifiedQuestion(questionId);
+
+        findQuestion.setTitle(question.getTitle());
+        findQuestion.setContent(question.getContent());
+
+        System.out.println(findQuestion.getModifiedAt());
+
+        return findQuestion;
+    }
+
     public void deleteQuestion(Long questionId) {
         Question question = findVerifiedQuestion(questionId);
 

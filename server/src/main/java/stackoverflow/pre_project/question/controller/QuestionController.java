@@ -35,6 +35,17 @@ public class QuestionController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
+    @PatchMapping("/{question-id}")
+    public ResponseEntity patchQuestion(@PathVariable("question-id") Long questionId,
+                                        @RequestBody QuestionDto.Patch patch) {
+        Question question = mapper.questionPatchToQuestion(patch);
+
+        Question updateQuestion = questionService.updateQuestion(questionId, question);
+        QuestionDto.Response response = mapper.questionToQuestionResponse(updateQuestion);
+
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId, HttpServletResponse response) throws IOException {
         questionService.deleteQuestion(questionId);

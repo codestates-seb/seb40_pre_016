@@ -9,5 +9,7 @@ public interface QuestionMapper {
 
     Question questionPostToQuestion(QuestionDto.Post requestBody);
 
+    Question questionPatchToQuestion(QuestionDto.Patch requestBody);
+
     QuestionDto.Response questionToQuestionResponse(Question question);
 }
