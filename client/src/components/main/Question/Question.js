@@ -23,7 +23,7 @@ const Question = ({ question }) => {
             <img src={img} alt='userImg' />
             <div className='userName'>{question.userName}</div>
             <div className='askCount'>{question.askCount}</div>
-            <div className='userTime'>{question.userTime}</div>
+            <div className='userTime'>{question.userTime}  min ago</div>
           </S.UserInfoContainer>
         </S.FooterContainer>
       </S.ContentContainer>

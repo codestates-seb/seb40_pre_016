@@ -4,12 +4,13 @@ import SelectButton from "../Button/SelectButton";
 
 
 
-const Filter = () => {
+const Filter = ({ sortHandler }) => {
   const [currentButton, setCurrentButton] = useState(0);
   const btnCheckHandler = (idx) => {
     setCurrentButton(idx);
+    sortHandler(idx);
   };
-  const buttonNameList = ['Active', 'Bountied', 'Unanswered', 'More'];
+  const buttonNameList = ['Newest', 'Active', 'Bountied', 'Unanswered', 'Votes'];
 
   return (
     <S.FilterContainer>
