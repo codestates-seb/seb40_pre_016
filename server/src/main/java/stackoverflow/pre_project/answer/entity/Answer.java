@@ -27,6 +27,14 @@ public class Answer extends Auditable {
 
     private int voteCount = 0;
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,4 +45,12 @@ public class Answer extends Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
+
+    public void addQuestion(Question question) {
+        this.question = question;
+        if (!this.question.getAnswers().contains(this)) {
+            this.question.addAnswer(this);
+        }
+    }
+    
 }
