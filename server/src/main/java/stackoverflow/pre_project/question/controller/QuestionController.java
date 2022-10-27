@@ -23,32 +23,23 @@ public class QuestionController {
     private final QuestionMapper mapper;
 
     @PostMapping
-    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post post) {
+    public void postQuestion(@RequestBody QuestionDto.Post post,
+                             HttpServletResponse response) throws IOException {
         Question question = mapper.questionPostToQuestion(post);
-
         Question createdQuestion = questionService.createQuestion(question);
-        QuestionDto.Response response = mapper.questionToQuestionResponse(createdQuestion);
 
-        return new ResponseEntity(response, HttpStatus.CREATED);
+        Long questionId = createdQuestion.getId();
+        response.sendRedirect("/questions/" + questionId);
     }
 
     @PatchMapping("/{question-id}")
-    public ResponseEntity patchQuestion(@PathVariable("question-id") Long questionId,
-                                        @RequestBody QuestionDto.Patch patch) {
+    public void patchQuestion(@PathVariable("question-id") Long questionId,
+                              @RequestBody QuestionDto.Patch patch,
+                              HttpServletResponse response) throws IOException {
         Question question = mapper.questionPatchToQuestion(patch);
-
         Question updateQuestion = questionService.updateQuestion(questionId, question);
-        QuestionDto.Response response = mapper.questionToQuestionResponse(updateQuestion);
 
-        return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") Long questionId) {
-        Question question = questionService.findQuestion(questionId);
-        QuestionDto.Response response = mapper.questionToQuestionResponse(question);
-
-        return new ResponseEntity(response, HttpStatus.OK);
+        response.sendRedirect("/questions/" + questionId);
     }
 
     @DeleteMapping("/{question-id}")
