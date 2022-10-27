@@ -46,6 +46,9 @@ public class QuestionService {
 
         questionRepository.delete(question);
     }
+    public Question findQuestion(Long questionId) {
+        return findVerifiedQuestion(questionId);
+    }
 
     public Question findVerifiedQuestion(Long questionId) {
         Optional<Question> question = questionRepository.findById(questionId);

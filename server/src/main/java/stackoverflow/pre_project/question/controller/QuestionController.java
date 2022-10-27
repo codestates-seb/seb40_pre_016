@@ -42,8 +42,16 @@ public class QuestionController {
         response.sendRedirect("/questions/" + questionId);
     }
 
+    @GetMapping("/{question-id}")
+    public ResponseEntity getQuestion(@PathVariable("question-id") Long questionId) {
+        Question question = questionService.findQuestion(questionId);
+        QuestionDto.Response response = mapper.questionToQuestionResponse(question);
+
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId, HttpServletResponse response) throws IOException {
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId) {
         questionService.deleteQuestion(questionId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
