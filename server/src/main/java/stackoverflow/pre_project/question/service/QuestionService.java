@@ -2,6 +2,9 @@ package stackoverflow.pre_project.question.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stackoverflow.pre_project.exception.BusinessLogicException;
@@ -37,6 +40,14 @@ public class QuestionService {
         return findQuestion;
     }
 
+    public Question findQuestion(Long questionId) {
+        return findVerifiedQuestion(questionId);
+    }
+
+    public Page<Question> findQuestions(int page, String sortBy) {
+        return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy)));
+    }
+
     public void deleteQuestion(Long questionId) {
         Question question = findVerifiedQuestion(questionId);
 
@@ -45,9 +56,6 @@ public class QuestionService {
         }
 
         questionRepository.delete(question);
-    }
-    public Question findQuestion(Long questionId) {
-        return findVerifiedQuestion(questionId);
     }
 
     public Question findVerifiedQuestion(Long questionId) {
