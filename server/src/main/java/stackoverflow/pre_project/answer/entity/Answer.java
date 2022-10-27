@@ -1,9 +1,9 @@
-package stackoverflow.pre_project.answer;
+package stackoverflow.pre_project.answer.entity;
 
 import lombok.*;
 import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;
-import stackoverflow.pre_project.question.Question;
+import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.user.User;
 
 import javax.persistence.*;
@@ -37,4 +37,11 @@ public class Answer extends Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
+
+    public void addQuestion(Question question) {
+        this.question = question;
+        if (!this.question.getAnswers().contains(this)) {
+            this.question.addAnswer(this);
+        }
+    }
 }
