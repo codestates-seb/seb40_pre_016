@@ -5,7 +5,14 @@ export const QYourAnswer = styled.section`
   margin-top: 30px;
   margin-left: 20px;
   margin-bottom: 70px;
-
+  
+  > form > div {
+    width: 99%;
+    border: ${props => props.check ? 'var(--blue-300) solid 1px' : 'none'}; 
+    outline: ${(props) => (props.check ? 'var(--blue-100) solid 4px' : 'none')};
+    
+  }
+  
   > form > h3 {
     font-size: 20px;
     font-weight: 500;

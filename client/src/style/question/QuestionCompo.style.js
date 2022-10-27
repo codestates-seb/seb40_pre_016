@@ -4,6 +4,8 @@ import styled from 'styled-components'
 export const QContent = styled.section`
   margin-top: 15px;
   margin-left: 20px;
+  padding-bottom: 10px;
+
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -25,7 +27,7 @@ export const QContentLeft = styled.section`
   > img {
     margin-top: 10px;
     width: 30px;
-    height: 30px;
+    height: 15px;
     :last-child {
       rotate: 180deg;
     }

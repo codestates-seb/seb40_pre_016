@@ -24,17 +24,17 @@ const QContentContainer = styled.section`
 
 function Question() {
   return (
-        <Qcontainer>
-          <QuestionHeader />
-          <QContents>
-            <QContentContainer>
-              <QuestionCompo />
-              <QCommentCompo />
-              <YourAnswer />
-            </QContentContainer>
-            <QuestionRightSidebar />
-          </QContents>
-        </Qcontainer>
+    <Qcontainer>
+      <QuestionHeader />
+      <QContents>
+        <QContentContainer>
+          <QuestionCompo />
+          <QCommentCompo />
+          <YourAnswer />
+        </QContentContainer>
+        <QuestionRightSidebar />
+      </QContents>
+    </Qcontainer>
   );
 }
 

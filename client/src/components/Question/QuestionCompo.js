@@ -11,33 +11,32 @@ function QuestionCompo() {
         <img alt='Polygon' src={polygon} />
       </S.QContentLeft>
       <S.QContentRight>
-        <div>221026 오늘도 화이팅 !!</div>
+        <div>221027 오늘도 화이팅 !!</div>
         <br />
         <div>TO DO</div>
         <br />
-        <div>1 기능 without API</div>
+        <div>after merge</div>
         <br />
-        <div>1-1 Header</div>
-        <div>1-1-1 버튼 onClick = ask question 컴포넌트 완성되면 하자</div>
-        <div>1-1-2 AMV - ago / hover</div>
+        <div>ask question 이동</div>
+        <div>answer filter 정리</div>
         <br />
-        <br />
-        <div>2 기능 with API</div>
+        <div>기능 without API</div>
         <br />
         <br />
-        <div>2-1 READ</div>
-        <div>2-3 CREATE</div>
-        <div>2-3 DELETE</div>
-        <div>2-4 UPDATE</div>
+        <div>유효성검사</div>
+        <br />
+        <div>answer 제출시 30자 이상</div>
+        <div>유효성검사</div>
+        <br />
+        <div>기능 with API</div>
         <br />
         <br />
-        <div>DONE</div>
+        <div>READ</div>
+        <div>CREATE</div>
+        <div>DELETE</div>
+        <div>UPDATE</div>
         <br />
-        <div>✅ Q 상세 페이지 마크업 완료하기</div>
-        <div>✅ Question</div>
-        <div>✅ Comment</div>
-        <div>✅ Your Answer</div>
-        <div>✅ Q 상세 페이지 컴포넌트 refactoring</div>
+        <br />
         <S.QCRTag>
           <span>JavaScript</span>
         </S.QCRTag>

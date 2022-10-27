@@ -7,6 +7,7 @@ import Filter from "../components/main/Filter/Filter";
 import PageList from "../components/main/PageList/PageList";
 import { useRecoilState } from "recoil";
 import { questionList } from '../atoms/atom';
+import QuestionRightSidebar from "../components/Question/RightSideBar";
 
 const MainStyeld = styled.div`
   padding: 24px;
@@ -44,6 +45,7 @@ const Main = () => {
         <QuestionList questionList={filteredQuestions} />
         <PageList></PageList>
       </MainStyeld>
+      <QuestionRightSidebar />
     </>
   );
 };

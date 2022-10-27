@@ -10,3 +10,9 @@ export const questionList = atom({
   default: DUMMYDATA,
 }
 );
+
+
+export const answerFocus = atom({
+  key: 'answerFocus',
+  default: false
+})
