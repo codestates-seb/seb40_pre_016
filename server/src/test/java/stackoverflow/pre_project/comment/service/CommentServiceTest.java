@@ -6,13 +6,13 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import stackoverflow.pre_project.answer.Answer;
+import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.answer.repository.AnswerRepository;
 import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.comment.entity.CommentType;
 import stackoverflow.pre_project.comment.repository.CommentRepository;
 import stackoverflow.pre_project.exception.BusinessLogicException;
-import stackoverflow.pre_project.question.Question;
+import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.repository.QuestionRepository;
 
 import java.util.Optional;

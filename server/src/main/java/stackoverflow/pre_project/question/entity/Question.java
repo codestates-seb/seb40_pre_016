@@ -1,10 +1,11 @@
-package stackoverflow.pre_project.answer;
+package stackoverflow.pre_project.question.entity;
 
 import lombok.*;
+import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;
-import stackoverflow.pre_project.question.Question;
-import stackoverflow.pre_project.user.User;
+import stackoverflow.pre_project.tag.entity.QuestionTag;
+import stackoverflow.pre_project.user.entity.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,12 +16,15 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Entity
-public class Answer extends Auditable {
+public class Question extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "answer_id")
+    @Column(name = "question_id")
     private Long id;
+
+    @Column(nullable = false)
+    private String title;
 
     @Column(nullable = false)
     private String content;
@@ -31,10 +35,12 @@ public class Answer extends Auditable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "answer")
+    @OneToMany(mappedBy = "question")
     private final List<Comment> comments = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id")
-    private Question question;
+    @OneToMany(mappedBy = "question")
+    private final List<Answer> answers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question")
+    private final List<QuestionTag> questionTags = new ArrayList<>();
 }
