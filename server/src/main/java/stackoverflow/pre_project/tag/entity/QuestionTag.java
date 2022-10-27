@@ -1,7 +1,7 @@
-package stackoverflow.pre_project.tag;
+package stackoverflow.pre_project.tag.entity;
 
 import lombok.*;
-import stackoverflow.pre_project.question.Question;
+import stackoverflow.pre_project.question.entity.Question;
 
 import javax.persistence.*;
 
