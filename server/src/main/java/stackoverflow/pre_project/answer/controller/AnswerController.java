@@ -9,7 +9,6 @@ import stackoverflow.pre_project.answer.mapper.AnswerMapper;
 import stackoverflow.pre_project.answer.service.AnswerService;
 
 @RestController
-@RequestMapping("/answers")
 public class AnswerController {
 
     private final AnswerService answerService;
@@ -20,7 +19,7 @@ public class AnswerController {
         this.mapper = mapper;
     }
 
-    @PostMapping("/questions/{question-id}")
+    @PostMapping("/questions/{question-id}/answers")
     public ResponseEntity postAnswer(@PathVariable("question-id") Long questionId,
                                      @RequestBody AnswerDto.Post post) {
 
