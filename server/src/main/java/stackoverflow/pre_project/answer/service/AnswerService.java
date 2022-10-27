@@ -1,6 +1,8 @@
 package stackoverflow.pre_project.answer.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.answer.repository.AnswerRepository;
 import stackoverflow.pre_project.exception.BusinessLogicException;
@@ -11,6 +13,8 @@ import stackoverflow.pre_project.question.service.QuestionService;
 import java.util.Optional;
 
 @Service
+@Slf4j
+@Transactional
 public class AnswerService {
 
     private final AnswerRepository answerRepository;
@@ -28,6 +32,13 @@ public class AnswerService {
         Answer savedAnswer = answerRepository.save(answer);
 
         return savedAnswer;
+    }
+
+    public Answer updateAnswer(Long answerId, Answer answer) {
+        Answer findAnswer = findVerifiedAnswer(answerId);
+        findAnswer.setContent(answer.getContent());
+
+        return findAnswer;
     }
 
     public void delete(Long answerId) {

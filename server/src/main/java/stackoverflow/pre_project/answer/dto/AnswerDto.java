@@ -14,6 +14,14 @@ public class AnswerDto {
         private String content;
     }
 
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Patch {
+        private String content;
+    }
+
     @AllArgsConstructor
     @Getter
     @Builder

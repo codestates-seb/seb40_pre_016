@@ -9,5 +9,7 @@ public interface AnswerMapper {
 
     public Answer answerPostToAnswer(AnswerDto.Post post);
 
+    public Answer answerPatchToAnswer(AnswerDto.Patch patch);
+
     public AnswerDto.Response answerToAnswerResponse(Answer answer);
 }

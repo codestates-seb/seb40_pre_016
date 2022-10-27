@@ -31,6 +31,17 @@ public class AnswerController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
+    @PatchMapping("answers/{answer-id}")
+    public ResponseEntity patchAnswer(@PathVariable("answer-id") Long answerId,
+                                      @RequestBody AnswerDto.Patch patch) {
+        Answer answer = mapper.answerPatchToAnswer(patch);
+
+        Answer updateAnswer = answerService.updateAnswer(answerId, answer);
+        AnswerDto.Response response = mapper.answerToAnswerResponse(updateAnswer);
+
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("answers/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("answer-id") Long answerId) {
         answerService.delete(answerId);
