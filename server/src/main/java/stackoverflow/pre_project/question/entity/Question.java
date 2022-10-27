@@ -1,9 +1,7 @@
 package stackoverflow.pre_project.question.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import stackoverflow.pre_project.answer.Answer;
+import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.tag.QuestionTag;
@@ -57,4 +55,11 @@ public class Question extends Auditable {
 
     @OneToMany(mappedBy = "question")
     private final List<QuestionTag> questionTags = new ArrayList<>();
+
+    public void addAnswer(Answer answer) {
+        this.answers.add(answer);
+        if (answer.getQuestion() != this) {
+            answer.addQuestion(this);
+        }
+    }
 }
