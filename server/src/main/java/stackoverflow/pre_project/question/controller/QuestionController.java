@@ -1,5 +1,6 @@
 package stackoverflow.pre_project.question.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +16,11 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/questions")
 @Slf4j
+@RequiredArgsConstructor
 public class QuestionController {
 
     private final QuestionService questionService;
     private final QuestionMapper mapper;
-
-    public QuestionController(QuestionService questionService, QuestionMapper mapper) {
-        this.questionService = questionService;
-        this.mapper = mapper;
-    }
 
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionDto.Post post) {
@@ -42,6 +39,14 @@ public class QuestionController {
 
         Question updateQuestion = questionService.updateQuestion(questionId, question);
         QuestionDto.Response response = mapper.questionToQuestionResponse(updateQuestion);
+
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/{question-id}")
+    public ResponseEntity getQuestion(@PathVariable("question-id") Long questionId) {
+        Question question = questionService.findQuestion(questionId);
+        QuestionDto.Response response = mapper.questionToQuestionResponse(question);
 
         return new ResponseEntity(response, HttpStatus.OK);
     }

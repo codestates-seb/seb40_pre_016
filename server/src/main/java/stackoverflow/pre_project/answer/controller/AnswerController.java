@@ -1,5 +1,6 @@
 package stackoverflow.pre_project.answer.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,15 +10,11 @@ import stackoverflow.pre_project.answer.mapper.AnswerMapper;
 import stackoverflow.pre_project.answer.service.AnswerService;
 
 @RestController
+@RequiredArgsConstructor
 public class AnswerController {
 
     private final AnswerService answerService;
     private final AnswerMapper mapper;
-
-    public AnswerController(AnswerService answerService, AnswerMapper mapper) {
-        this.answerService = answerService;
-        this.mapper = mapper;
-    }
 
     @PostMapping("/questions/{question-id}/answers")
     public ResponseEntity postAnswer(@PathVariable("question-id") Long questionId,
