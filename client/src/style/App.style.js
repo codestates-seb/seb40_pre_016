@@ -9,8 +9,15 @@ overflow: hidden;
 `
 export const Container = styled.div`
 width: 100%;
-padding:50px 80px 0 ;
+padding:50px 0px 0 ;
 display: flex;
 justify-content: center;
 background-color: white;
+&.auth_on{
+    background-color: var(--black-050)
+}
+`
+
+export const RightContainer = styled.div`
+max-width: 1300px;
 `

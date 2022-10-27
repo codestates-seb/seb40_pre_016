@@ -1,12 +1,16 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { loadAuthPage } from './../../atoms/atom';
 import * as S from './../../style/common/Gnb.style'
 
 const Gnb = () => {
     let [isTabOn, setIsTabOn] = useState('Questions')
+    let isPageAuth = useRecoilValue(loadAuthPage)
+
     return (
-        <S.GnbContainer>
+        <S.GnbContainer className={isPageAuth ? 'none' : null}>
             <S.GnbTag>PUBLIC</S.GnbTag>
             <S.TabList>
                 <S.List>

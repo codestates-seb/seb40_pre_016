@@ -1,12 +1,21 @@
 import React from 'react';
 import * as S from '../../style/login/LoginBox.style'
 
-const InputBox = ({ isSubmit, inputName, CheckAlert }) => {
+const InputBox = ({ isSubmit, inputName, CheckAlert, inputType, onChangeLoginForm, onChangeSignupForm }) => {
+    const inputOnChange = (e) => {
+        if (onChangeLoginForm) {
+            onChangeLoginForm(e)
+        }
+        if (onChangeSignupForm) {
+            onChangeSignupForm(e)
+        }
+
+    }
     return (
         <S.InputWrap>
             <S.Label >{inputName}</S.Label>
             <S.InputPosition>
-                <S.Input type='text' className={isSubmit ? null : `rejectInput`} />
+                <S.Input onChange={inputOnChange} type={inputType} name={inputName} className={isSubmit ? null : `rejectInput`} />
                 {
                     isSubmit ?
                         null :
