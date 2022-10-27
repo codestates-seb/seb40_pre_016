@@ -1,9 +1,14 @@
+import { useRecoilState } from 'recoil';
+import { isLoginState, loginsubmitList } from './../atoms/atom'
 import LoginBox from '../components/login/LoginBox';
 import OAthLogin from '../components/login/OAthLogin';
 import * as S from '../style/login/Login.style'
 
 
 const Login = () => {
+    let [isLogin, setIsLogin] = useRecoilState(isLoginState)
+
+
     return (
         <S.Container>
             <S.LoginWarp>
