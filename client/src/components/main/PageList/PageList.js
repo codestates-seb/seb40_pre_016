@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as S from '../../../style/main/PageList.style'
 import PageButton from "../Button/PageButton";
 import { useRecoilState } from "recoil";

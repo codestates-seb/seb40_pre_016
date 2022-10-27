@@ -48,6 +48,7 @@ export const Views = styled.div`
 
 export const ContentContainer = styled.div`
   flex-shrink: 1;
+  flex-grow: 1;
 `;
 
 export const Title = styled.div`

@@ -21,3 +21,10 @@ export const pageBtnIdx = atom(
     default: 0,
   }
 );
+
+export const modalState = atom(
+  {
+    key: 'modalState',
+    default: true,
+  }
+);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from '../../../style/main/Filter.style'
 import SelectButton from "../Button/SelectButton";
 import { useRecoilState } from "recoil";
