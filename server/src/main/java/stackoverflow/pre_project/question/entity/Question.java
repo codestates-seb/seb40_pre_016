@@ -4,8 +4,8 @@ import lombok.*;
 import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;
-import stackoverflow.pre_project.tag.QuestionTag;
-import stackoverflow.pre_project.user.User;
+import stackoverflow.pre_project.tag.entity.QuestionTag;
+import stackoverflow.pre_project.user.entity.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -62,4 +62,5 @@ public class Question extends Auditable {
             answer.addQuestion(this);
         }
     }
+    
 }

@@ -1,10 +1,10 @@
-package stackoverflow.pre_project.answer;
+package stackoverflow.pre_project.answer.entity;
 
 import lombok.*;
 import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;
-import stackoverflow.pre_project.question.Question;
-import stackoverflow.pre_project.user.User;
+import stackoverflow.pre_project.question.entity.Question;
+import stackoverflow.pre_project.user.entity.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;

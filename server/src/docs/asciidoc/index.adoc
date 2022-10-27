@@ -1,0 +1,71 @@
+= pre-project
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+***
+== 댓글
+=== 질문 댓글 등록
+.curl-request
+include::{snippets}/comment/post/QuestionComment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/comment/post/QuestionComment/http-request.adoc[]
+
+.http-response
+include::{snippets}/comment/post/QuestionComment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/comment/post/QuestionComment/response-fields.adoc[]
+
+=== 답변 댓글 등록
+.curl-request
+include::{snippets}/comment/post/AnswerComment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/comment/post/AnswerComment/http-request.adoc[]
+
+.http-response
+include::{snippets}/comment/post/AnswerComment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/comment/post/AnswerComment/response-fields.adoc[]
+
+=== 댓글 수정
+.curl-request
+include::{snippets}/comment/patch/curl-request.adoc[]
+
+.http-request
+include::{snippets}/comment/patch/http-request.adoc[]
+
+.http-response
+include::{snippets}/comment/patch/http-response.adoc[]
+
+.response-fields
+include::{snippets}/comment/patch/response-fields.adoc[]
+
+=== 댓글 삭제
+.curl-request
+include::{snippets}/comment/delete/curl-request.adoc[]
+
+.http-request
+include::{snippets}/comment/delete/http-request.adoc[]
+
+.http-response
+include::{snippets}/comment/delete/http-response.adoc[]
+
+== 태그
+=== 태그 전체 조회
+.curl-request
+include::{snippets}/tag/getTags/curl-request.adoc[]
+
+.http-request
+include::{snippets}/tag/getTags/http-request.adoc[]
+
+.http-response
+include::{snippets}/tag/getTags/http-response.adoc[]
+
+.response-fields
+include::{snippets}/tag/getTags/response-fields.adoc[]

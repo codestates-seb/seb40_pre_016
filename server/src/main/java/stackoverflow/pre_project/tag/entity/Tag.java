@@ -1,4 +1,4 @@
-package stackoverflow.pre_project.tag;
+package stackoverflow.pre_project.tag.entity;
 
 import lombok.*;
 
