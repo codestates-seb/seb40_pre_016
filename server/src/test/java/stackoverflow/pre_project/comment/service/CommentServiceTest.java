@@ -6,6 +6,7 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.EmptyResultDataAccessException;
 import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.answer.repository.AnswerRepository;
 import stackoverflow.pre_project.comment.entity.Comment;
@@ -100,7 +101,7 @@ class CommentServiceTest {
         Long commentId = 1L;
         Long nonExistId = 2L;
         doNothing().when(commentRepository).deleteById(commentId);
-        doThrow(IllegalArgumentException.class).when(commentRepository).deleteById(nonExistId);
+        doThrow(EmptyResultDataAccessException.class).when(commentRepository).deleteById(nonExistId);
 
         // when
         commentService.deleteComment(commentId);
