@@ -24,6 +24,9 @@ width: 100%;
 export const LabelWarp = styled.label`
 cursor: pointer;
 font-size: 12px;
+&.red{
+    color:red
+ }
 `
 export const SubmitBtn = styled.button`
 border-radius: 3px;
@@ -42,4 +45,14 @@ border-radius: 3px;
     &:hover {
     background-color: var(--blue-600);
     }
+`
+export const RecapchaBox = styled.div`
+position: relative;
+margin: 10px 0;
+& iframe {
+    position: absolute;
+    top: 0;
+    left: -25px;
+
+}
 `
