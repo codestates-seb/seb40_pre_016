@@ -23,15 +23,18 @@ public class User extends Auditable {
     @Column(name = "user_id")
     private Long id;
 
+    @Setter
     @Column(nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Setter
     @Column(nullable = false)
     private String password;
 
+    @Setter
     private String message;
 
     @OneToMany(mappedBy = "user")
