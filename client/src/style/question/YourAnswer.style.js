@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const QYourAnswer = styled.section`
   margin-top: 30px;
   margin-left: 20px;
+  margin-bottom: 70px;
 
   > form > h3 {
     font-size: 20px;

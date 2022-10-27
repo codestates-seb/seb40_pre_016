@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // 콘텐츠 헤더
 export const QHeader = styled.section`

@@ -18,6 +18,8 @@ export const QContentLeft = styled.section`
 
   > div {
     margin-top: 10px;
+    font-size: 25px;
+    margin-bottom: 2px;
   }
 
   > img {

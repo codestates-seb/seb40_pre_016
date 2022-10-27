@@ -1,7 +1,7 @@
-import * as S from "../../style/question/YourAnswer.style";
-import { Editor } from "@toast-ui/react-editor";
+import * as S from '../../style/question/YourAnswer.style';
+import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { useRef } from "react";
+import { useRef } from 'react';
 
 function YourAnswer() {
   const editorRef = useRef();
@@ -15,11 +15,11 @@ function YourAnswer() {
       <form>
         <h3>Your Answer</h3>
         <Editor
-          initialValue="Write Your Answers"
-          placeholder="Write Your Answers"
-          previewStyle="tab" // 미리보기 스타일 지정
-          height="300px" // 에디터 창 높이
-          initialEditType="markdown"
+          initialValue='Write Your Answers'
+          placeholder='Write Your Answers'
+          previewStyle='tab' // 미리보기 스타일 지정
+          height='300px' // 에디터 창 높이
+          initialEditType='markdown'
           ref={editorRef}
           onChange={onChange}
         />
