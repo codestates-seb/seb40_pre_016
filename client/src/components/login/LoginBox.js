@@ -31,43 +31,47 @@ const LoginBox = () => {
     }
     console.log(loginList)
     const handleLoginSubmit = () => {
+        let isPasswordCheck, isEmailCheck, login, submit
         //이메일 유효성
         const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
         if (exptext.test(loginList.email) === true) {
             //성공
-            setIsEmailOk(true)
+            isEmailCheck = true
             console.log('email 성공')
         }
         else {
             //살패
-            setIsEmailOk(false)
+            isEmailCheck = false
             console.log('email 실패')
         }
-
+        setIsEmailOk(isEmailCheck)
 
         if (loginList.password.length > 3) {//성공
-            setIsPasswordOk(true)
+            isPasswordCheck = true
             console.log('password 성공')
         }
         else {
             //실패
-            setIsPasswordOk(false)
+            isPasswordCheck = false
             console.log('password 실패')
         }
-        if (isEmailOk && isPasswordOk) {
-            setIsSubmit(true)
-            setIsLogin(true)
+        setIsPasswordOk(isPasswordCheck)
+        if (isPasswordCheck && isPasswordCheck) {
+            submit = true
+            login = true
+
             setloginList({ email: '', password: '' })
         } else {
-            setIsSubmit(false)
+            submit = false
+            login = false
         }
-
-        console.log('islogin' + isLogin)
+        setIsSubmit(submit)
+        setIsLogin(login)
         //navigate
         // Cookies.set("id", "id");
 
         //state 를 저장해두고 로그인 시 이전에 선택한 path state로 이동
-        if (isLogin) {
+        if (login) {
             if (state) {
                 navigate(state);
             } else {

@@ -29,5 +29,5 @@ export const loginsubmitList = atom({
 
 export const signupSubmitList = atom({
   key: 'signupSubmitList',
-  default: { displayName: '', email: '', password: '', checked: false }
+  default: { displayName: '', email: '', password: '', captcha: '', checked: false }
 })
