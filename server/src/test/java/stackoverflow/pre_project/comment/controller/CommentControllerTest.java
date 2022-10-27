@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
@@ -16,6 +19,8 @@ import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.comment.entity.CommentType;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
 import stackoverflow.pre_project.comment.service.CommentService;
+import stackoverflow.pre_project.config.SecurityConfig;
+import stackoverflow.pre_project.config.SecurityTestConfig;
 import stackoverflow.pre_project.util.Reflection;
 
 import static org.mockito.BDDMockito.given;
@@ -29,7 +34,14 @@ import static org.springframework.restdocs.request.RequestDocumentation.pathPara
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = CommentController.class)
+@WebMvcTest(controllers = CommentController.class,
+        excludeFilters = {
+                @ComponentScan.Filter(
+                        type = FilterType.ASSIGNABLE_TYPE,
+                        classes = {SecurityConfig.class}
+                )
+        })
+@Import(SecurityTestConfig.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class CommentControllerTest implements Reflection {

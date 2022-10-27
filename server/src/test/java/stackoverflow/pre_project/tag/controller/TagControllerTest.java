@@ -6,6 +6,9 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
@@ -14,6 +17,8 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import stackoverflow.pre_project.comment.controller.CommentController;
+import stackoverflow.pre_project.config.SecurityConfig;
+import stackoverflow.pre_project.config.SecurityTestConfig;
 import stackoverflow.pre_project.tag.dto.TagDto;
 import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.mapper.TagMapper;
@@ -32,7 +37,14 @@ import static org.springframework.restdocs.request.RequestDocumentation.paramete
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = {TagController.class, TagMapper.class})
+@WebMvcTest(controllers = {TagController.class, TagMapper.class},
+        excludeFilters = {
+                @ComponentScan.Filter(
+                        type = FilterType.ASSIGNABLE_TYPE,
+                        classes = {SecurityConfig.class}
+                )
+        })
+@Import(SecurityTestConfig.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class TagControllerTest {
