@@ -53,7 +53,7 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question")
     private final List<Answer> answers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private final List<QuestionTag> questionTags = new ArrayList<>();
 
     public void addAnswer(Answer answer) {
@@ -62,5 +62,11 @@ public class Question extends Auditable {
             answer.addQuestion(this);
         }
     }
-    
+
+    public void addQuestionTag (QuestionTag questionTag) {
+        this.questionTags.add(questionTag);
+        if (questionTag.getQuestion() != this) {
+            questionTag.addQuestion(this);
+        }
+    }
 }

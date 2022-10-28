@@ -16,9 +16,18 @@ public class TagService {
 
     private final TagRepository tagRepository;
 
+    public Tag createTag(String tagName) {
+        return Tag.builder()
+                .name(tagName)
+                .build();
+    }
+
+    public Tag findTag(String tagName) {
+        return tagRepository.findByName(tagName).orElse(createTag(tagName));
+    }
+
     public Page<Tag> findTags(int page, int size) {
         return tagRepository.findAll(
                 PageRequest.of(page - 1, size, Sort.by("questionCount").descending()));
     }
-
 }
