@@ -71,6 +71,7 @@ padding : 0 10px;
 position: relative;
 height: 32px;
 width: calc(100% - 470px);
+
 & input {
     width: 100%;
 height: 32px;
@@ -87,6 +88,9 @@ padding-left: 27px;
 }
 @media screen and (max-width: 980px) {
     width: calc(100% - 350px); 
+    & .inputsize{
+    width: calc(100% - 200px);
+}
     }
     @media screen and (max-width: 640px) {
    display : none;
@@ -103,6 +107,9 @@ border-radius: 3px;
         display: block;
         color: var(--powder-700);
         text-decoration: none;
+    }
+    &.none{
+        display: none;
     }
     color: var(--powder-700);
     background-color: var(--powder-200);
@@ -124,6 +131,9 @@ border-radius: 3px;
         display: block;
         color: white;
         text-decoration: none;
+    }
+    &.none{
+        display: none;
     }
     `
 
@@ -178,3 +188,38 @@ export const SearchBtn = styled.button`
         align-items: center;
     
       `
+
+export const IsLoginWarp = styled.div`
+ display: flex;
+ align-items: center;
+height: 47px;
+
+&.none{
+    display: none;
+}
+`
+export const UserProfile = styled.button`
+margin: 0 7px;
+display: flex;
+width: 20px;
+cursor: pointer;
+    height: 20px;
+    border-radius:5px;
+    border: none;
+    overflow: hidden;
+    background-color: transparent;
+
+& img {
+    width: 20px;
+    height: 20px;
+}
+`
+
+export const IconListWarp = styled.ul`
+display: flex;
+`
+export const Icon = styled.li`
+list-style: none;
+padding : 0 7px;
+cursor: pointer;
+`
