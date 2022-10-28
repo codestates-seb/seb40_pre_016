@@ -78,6 +78,10 @@ height: 32px;
 padding-left: 27px;
     border: 1px solid var( --black-200);
     border-radius: 3px;
+    :focus{
+        border-color: var(--blue-300);
+    outline: var(--blue-100) solid 4px;
+    }
 }
 & svg{
     position: relative;
@@ -168,6 +172,7 @@ export const SpanLine = styled.span`
       `
 export const SearchBtnWarp = styled.div`
  display: none;
+ position: relative;
  width: calc(100% - 250px);
  height: 50px;
  @media screen and (max-width: 640px) {
