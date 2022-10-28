@@ -3,7 +3,12 @@ import styled from 'styled-components'
 // QuestionCompo
 export const QContent = styled.section`
   margin-top: 15px;
+  margin-left: 20px;
+  padding-bottom: 10px;
+
   display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
 `;
 
 export const QContentLeft = styled.section`
@@ -15,12 +20,14 @@ export const QContentLeft = styled.section`
 
   > div {
     margin-top: 10px;
+    font-size: 25px;
+    margin-bottom: 2px;
   }
 
   > img {
     margin-top: 10px;
     width: 30px;
-    height: 30px;
+    height: 15px;
     :last-child {
       rotate: 180deg;
     }
@@ -37,20 +44,20 @@ export const QContentRight = styled.section`
 `;
 
 export const QCRTag = styled.section`
-  // Tag ex
-  margin: 24px 2px;
+  margin: 20px 2px;
   padding: 5px 6px;
   border-radius: 10px;
 
   > span {
-    background-color: #d3ebf8;
-    color: #39739d;
+    border-radius: 3px;
+    background-color: #D0E3F1;
+    color: #39739D;
     font-size: 12px;
+    padding: 4.8px 6px;
   }
 `;
 
 export const QCREdit = styled.section`
-  margin-top: 10px;
   margin-left: 8px;
   display: flex;
   justify-content: space-between;

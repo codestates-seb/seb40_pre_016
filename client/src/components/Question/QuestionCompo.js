@@ -1,31 +1,44 @@
-import * as S from "../../style/question/QuestionCompo.style";
-import polygon from "../../assets/img/polygon.png";
-import user from "../../assets/img/user.png";
+import * as S from '../../style/question/QuestionCompo.style';
+import polygon from '../../assets/img/polygon.png';
+import user from '../../assets/img/user.png';
 
 function QuestionCompo() {
   return (
     <S.QContent>
       <S.QContentLeft>
-        <img alt="Polygon" src={polygon} />
+        <img alt='Polygon' src={polygon} />
         <div>0</div>
-        <img alt="Polygon" src={polygon} />
+        <img alt='Polygon' src={polygon} />
       </S.QContentLeft>
       <S.QContentRight>
-        <div>221026 오늘도 화이팅 !!</div>
+        <div>221027 오늘도 화이팅 !!</div>
         <br />
-        <div>오늘 할일</div>
+        <div>TO DO</div>
         <br />
-        <div>1 Q 상세 페이지 마크업 완료하기</div>
+        <div>after merge</div>
         <br />
-        <div>✅ Question </div>
-        <div>✅ Comment</div>
-        <div>1-3 Your Answer</div>
-        <div>1-3-1 toastUI</div>
+        <div>ask question 이동</div>
+        <div>answer filter 정리</div>
+        <br />
+        <div>기능 without API</div>
         <br />
         <br />
-        <div>✅ Q 상세 페이지 컴포넌트 refactoring</div>
+        <div>유효성검사</div>
+        <br />
+        <div>answer 제출시 30자 이상</div>
+        <div>유효성검사</div>
+        <br />
+        <div>기능 with API</div>
+        <br />
+        <br />
+        <div>READ</div>
+        <div>CREATE</div>
+        <div>DELETE</div>
+        <div>UPDATE</div>
+        <br />
+        <br />
         <S.QCRTag>
-          <span>java</span>
+          <span>JavaScript</span>
         </S.QCRTag>
         <S.QCREdit>
           <S.QCRELeft>
@@ -37,7 +50,7 @@ function QuestionCompo() {
           <S.QCRERight>
             <span>21 years ago</span>
             <div>
-              <img src={user} alt="얼굴"></img>
+              <img src={user} alt='얼굴'></img>
               <span>ID</span>
             </div>
           </S.QCRERight>

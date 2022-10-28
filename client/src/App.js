@@ -11,6 +11,10 @@ import AuthPage from './components/auth/AuthPage';
 import Layout from './pages/Layout';
 import AuthContainer from './pages/AuthContainer';
 
+import Gnb from './components/Common/Gnb';
+import QuestionWrite from './pages/QuestionWrite';
+import Footer from './components/Common/Footer';
+
 
 
 
@@ -18,10 +22,10 @@ function App() {
 
   return (
     <>
+
       <BrowserRouter>
 
         <Header />
-
 
         <Routes>
           <Route path='/' element={<Layout />} >
@@ -42,9 +46,8 @@ function App() {
         </Routes>
 
 
-
-
       </BrowserRouter>
+
     </>
 
 

@@ -1,16 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from '../../../style/main/Filter.style'
 import SelectButton from "../Button/SelectButton";
+import { useRecoilState } from "recoil";
+import { questionList } from '../../../atoms/atom';
+import { filterBtnIdx } from "../../../atoms/atom";
 
 
+const Filter = () => {
+  const [currentBtn, setCurrentButton] = useRecoilState(filterBtnIdx);
+  const [questions, setQuestions] = useRecoilState(questionList);
+  const filteredQuestions = questions.slice()
+  const buttonNameList = ['Newest', 'Active', 'Bountied', 'Unanswered', 'Votes'];
 
-const Filter = ({ sortHandler }) => {
-  const [currentButton, setCurrentButton] = useState(0);
   const btnCheckHandler = (idx) => {
     setCurrentButton(idx);
     sortHandler(idx);
   };
-  const buttonNameList = ['Newest', 'Active', 'Bountied', 'Unanswered', 'Votes'];
+
+  const sortHandler = (idx) => {
+    if (idx === 0) {
+      filteredQuestions.sort((a, b) => {
+        if (+a.userTime > +b.userTime) return -1;
+        if (+a.userTime < +b.userTime) return 1;
+        if (+a.userTime === +b.userTime) return 0;
+      });
+    } else if (idx === 4) {
+      filteredQuestions.sort((a, b) => {
+        if (+a.votes > +b.votes) return -1;
+        if (+a.votes < +b.votes) return 1;
+        if (+a.votes === +b.votes) return 0;
+      });
+    }
+    setQuestions(filteredQuestions);
+  }
 
   return (
     <S.FilterContainer>
@@ -21,7 +43,7 @@ const Filter = ({ sortHandler }) => {
         {buttonNameList.map((el, idx) => (
           <SelectButton key={idx}
             onClick={() => btnCheckHandler(idx)}
-            className={`default${currentButton === idx ? ' clicked' : ''}`}
+            className={`default${currentBtn === idx ? ' clicked' : ''}`}
           >{el}</SelectButton>))}
       </div>
     </S.FilterContainer>

@@ -1,19 +1,21 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // 답변
 export const QComment = styled.section`
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-left: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
 `;
 
 export const QCHeader = styled.section`
   height: 71px;
   display: flex;
   justify-content: space-between;
-  padding: 20px 0px 20px 10px;
+  padding: 20px 0px 10px 10px;
   > h2 {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
   }
   > div {
     font-size: 12px;
@@ -40,12 +42,15 @@ export const QContentLeft = styled.section`
 
   > div {
     margin-top: 10px;
+    font-size: 25px;
+    margin-bottom: 2px;
   }
 
   > img {
     margin-top: 10px;
     width: 30px;
-    height: 30px;
+    height: 15px;
+
     :last-child {
       rotate: 180deg;
     }

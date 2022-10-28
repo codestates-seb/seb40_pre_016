@@ -11,7 +11,7 @@ export const AskQuestionContainer = styled.div`
     flex-grow: 1;
   }
 
-  div{
+  /* div{
     width: 103px;
     height: 38px;
     background-color: #0A95FF;
@@ -23,5 +23,5 @@ export const AskQuestionContainer = styled.div`
     font-size: 13px;
     margin-left: auto;
     margin-bottom: 12px;
-  }
+  } */
 `;
