@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AuthPage = () => {
+const UserPage = () => {
     return (
         <div>
             인증된페이지
@@ -8,4 +8,4 @@ const AuthPage = () => {
     );
 };
 
-export default AuthPage;
+export default UserPage;

@@ -7,11 +7,11 @@ import './style/common.css';
 import Logout from './pages/Logout';
 import Header from './components/Common/Header';
 import AuthLayout from './components/auth/AuthLayout';
-import AuthPage from './components/auth/AuthPage';
 import Layout from './pages/Layout';
 import AuthContainer from './pages/AuthContainer';
 import QuestionWrite from './pages/QuestionWrite';
 import Footer from './components/Common/Footer';
+import UserPage from './components/auth/UserPage';
 
 function App() {
 
@@ -36,10 +36,10 @@ function App() {
           </Route>
 
           <Route element={<AuthLayout />}>
-            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/auth" element={<UserPage />} />
           </Route>
         </Routes>
-      <Footer />
+        <Footer />
 
       </BrowserRouter>
 

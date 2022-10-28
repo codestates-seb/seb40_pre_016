@@ -71,7 +71,9 @@ padding : 0 10px;
 position: relative;
 height: 32px;
 width: calc(100% - 470px);
-
+&.inputsize{
+    width: calc(100% - 400px);
+}
 & input {
     width: 100%;
 height: 32px;
