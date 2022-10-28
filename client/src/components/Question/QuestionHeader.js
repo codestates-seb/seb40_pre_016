@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import * as S from "../../style/question/QuestionHeader.style";
 
 function QuestionHeader() {
@@ -5,7 +6,9 @@ function QuestionHeader() {
     <>
       <S.QHeader>
         <h1>안녕하세요 제목이에오</h1>
-        <button>Ask Question</button>
+        <Link to={'/askquestion'}>
+          <button>Ask Question</button>
+        </Link>
       </S.QHeader>
       <S.QHeaderr>
         <div>

@@ -19,5 +19,6 @@ background-color: white;
 `
 
 export const RightContainer = styled.div`
+display: flex;
 max-width: 1300px;
 `

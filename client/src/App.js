@@ -10,13 +10,8 @@ import AuthLayout from './components/auth/AuthLayout';
 import AuthPage from './components/auth/AuthPage';
 import Layout from './pages/Layout';
 import AuthContainer from './pages/AuthContainer';
-
-import Gnb from './components/Common/Gnb';
 import QuestionWrite from './pages/QuestionWrite';
 import Footer from './components/Common/Footer';
-
-
-
 
 function App() {
 
@@ -30,10 +25,10 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />} >
             <Route path='/' element={<Main />} />
+            <Route path='/question' element={<Question />} />
           </Route>
 
-          <Route path='/question' element={<Question />} />
-
+          <Route path='/askquestion' element={<QuestionWrite />} />
           <Route path='/' element={<AuthContainer />}>
             <Route path='/login' element={<Login />} />
             <Route path='/logout' element={<Logout />} />
@@ -44,7 +39,7 @@ function App() {
             <Route path="/auth" element={<AuthPage />} />
           </Route>
         </Routes>
-
+      <Footer />
 
       </BrowserRouter>
 

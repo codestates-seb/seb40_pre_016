@@ -14,7 +14,7 @@ export const QHeader = styled.section`
     font-size: 27px;
   }
 
-  > button {
+  > a > button {
     margin-left: 50px;
     width: 120px;
     font-size: 15px;
