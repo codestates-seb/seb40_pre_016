@@ -3,7 +3,7 @@ import * as S from '../../style/login/SignUpBox.style';
 import InputBox from './InputBox';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRecoilState } from 'recoil';
-import { signupSubmitList, loadAuthPage } from '../../atoms/atom';
+import { signupSubmitList } from '../../atoms/atom';
 import { useNavigate } from 'react-router-dom';
 
 const SignUpBox = () => {
@@ -13,7 +13,6 @@ const SignUpBox = () => {
     const [isEmailOk, setIsEmailOk] = useState(true);
     const [isPasswordOk, setIsPasswordOk] = useState(true);
     const [ischeckedOK, setIsCheckedOK] = useState(true)
-    const [isAuthPage, setIsAuthPage] = useRecoilState(loadAuthPage)
 
     const navigate = useNavigate();
 
@@ -108,7 +107,6 @@ const SignUpBox = () => {
         if (submit) {
             console.log('실행')
             navigate("/");
-            setIsAuthPage(false)
         }
     }
 

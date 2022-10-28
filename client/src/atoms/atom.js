@@ -10,12 +10,6 @@ export const questionList = atom({
 }
 );
 
-export const loadAuthPage = atom({
-  key: 'loadAuthPage',
-  default: false,
-  effects_UNSTABLE: [persistAtom],
-})
-
 export const isLoginState = atom({
   key: 'isLoginState',
   default: false,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { loginsubmitList, isLoginState, loadAuthPage } from '../../atoms/atom';
+import { loginsubmitList, isLoginState } from '../../atoms/atom';
 import { useRecoilState } from 'recoil';
 import * as S from '../../style/login/LoginBox.style'
 import InputBox from './InputBox';
@@ -12,7 +12,6 @@ const LoginBox = () => {
     const [isEmailOk, setIsEmailOk] = useState(true);
     const [isPasswordOk, setIsPasswordOk] = useState(true);
     const [loginList, setloginList] = useRecoilState(loginsubmitList);
-    const [isAuthPage, setIsAuthPage] = useRecoilState(loadAuthPage)
 
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -76,7 +75,6 @@ const LoginBox = () => {
                 navigate(state);
             } else {
                 navigate("/");
-                setIsAuthPage(false)
             }
         }
     }

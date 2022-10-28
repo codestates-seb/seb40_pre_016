@@ -7,10 +7,9 @@ import * as S from './../../style/common/Gnb.style'
 
 const Gnb = () => {
     let [isTabOn, setIsTabOn] = useState('Questions')
-    let isPageAuth = useRecoilValue(loadAuthPage)
 
     return (
-        <S.GnbContainer className={isPageAuth ? 'none' : null}>
+        <S.GnbContainer>
             <S.GnbTag>PUBLIC</S.GnbTag>
             <S.TabList>
                 <S.List>
