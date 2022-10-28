@@ -4,14 +4,16 @@ export const AskQuestionContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-bottom: 12px;
-
+  a{
+    text-decoration: none;
+  }
   h1{
     font-size: 27px;
     margin: 0 12px 12px 0;
     flex-grow: 1;
   }
 
-  /* div{
+  div{
     width: 103px;
     height: 38px;
     background-color: #0A95FF;
@@ -23,5 +25,5 @@ export const AskQuestionContainer = styled.div`
     font-size: 13px;
     margin-left: auto;
     margin-bottom: 12px;
-  } */
+  }
 `;
