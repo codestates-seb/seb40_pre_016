@@ -14,5 +14,10 @@ export const questionList = atom({
 
 export const answerFocus = atom({
   key: 'answerFocus',
-  default: false
+  default: false,
+})
+
+export const answer = atom({
+  key: 'content',
+  default: "",
 })

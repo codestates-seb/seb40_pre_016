@@ -1,18 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // 답변 추가
 export const QYourAnswer = styled.section`
   margin-top: 30px;
   margin-left: 20px;
   margin-bottom: 70px;
-  
-  > form > div {
-    width: 99%;
-    border: ${props => props.check ? 'var(--blue-300) solid 1px' : 'none'}; 
-    outline: ${(props) => (props.check ? 'var(--blue-100) solid 4px' : 'none')};
-    
-  }
-  
+
+
+
   > form > h3 {
     font-size: 20px;
     font-weight: 500;
@@ -34,3 +29,15 @@ export const QYourAnswer = styled.section`
     }
   }
 `;
+
+export const EditorBox = styled.div`
+    margin-right: 10px;
+    width: 810px;
+    border: ${(props) => (props.check ? "var(--blue-300) solid 1px" : "none")};
+    outline: ${(props) => (props.check ? "var(--blue-100) solid 4px" : "none")};
+    .toastui-editor-tooltip {
+      > span {
+        color: white;
+      }
+    }
+`
