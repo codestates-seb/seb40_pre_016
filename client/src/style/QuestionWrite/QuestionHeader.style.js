@@ -15,6 +15,7 @@ export const QuestionWriteHeaderContainer = styled.div`
     & h1{
       font-size: 32px;
       font-family: sans-serif;
+      white-space: nowrap;
     }
 
 `;

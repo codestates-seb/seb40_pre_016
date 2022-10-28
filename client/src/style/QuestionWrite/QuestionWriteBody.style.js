@@ -10,7 +10,7 @@ border-radius: 3px;
 padding: 20px;
 flex-basis: 800px;
 background-color: white;
-
+max-width: 800px;
 & h1{
   font-size: 15px;
   margin-bottom: 6px;

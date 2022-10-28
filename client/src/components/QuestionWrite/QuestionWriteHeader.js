@@ -8,7 +8,7 @@ const QuestionWriteHeader = () => {
       <div className="title-header-container">
         <h1>Ask a public question</h1>
       </div>
-      <TitleImage height='130px' width='600px' />
+      {/* <TitleImage height='100px' width='70%' /> */}
     </QuestionWriteHeaderContainer>
   );
 };
