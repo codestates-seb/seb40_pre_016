@@ -11,6 +11,7 @@ import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.mapper.TagMapper;
 import stackoverflow.pre_project.tag.service.TagService;
 
+import javax.validation.constraints.Positive;
 import javax.websocket.server.PathParam;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,8 @@ public class TagController {
     private final TagService tagService;
 
     @GetMapping
-    public MultiResponseDto<TagDto.Response> getTags(@PathParam("page") int page,
-                                                     @PathParam("size") int size) {
+    public MultiResponseDto<TagDto.Response> getTags(@Positive @PathParam("page") int page,
+                                                     @Positive @PathParam("size") int size) {
         Page<Tag> tags = tagService.findTags(page, size);
         return MultiResponseDto.of(tags.stream()
                 .map(tagMapper::tagToResponse)

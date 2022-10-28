@@ -31,8 +31,8 @@ public class CommentController {
 
     @PostMapping("/answers/{answer-id}/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto.Response postAnswerComment(@PathVariable("answer-id") Long answerId,
-                                                 @RequestBody CommentDto.Request commentDto) {
+    public CommentDto.Response postAnswerComment(@Positive @PathVariable("answer-id") Long answerId,
+                                                 @Valid @RequestBody CommentDto.Request commentDto) {
         Comment comment = commentService.createComment(
                 CommentType.ANSWER, answerId, commentDto.getContent());
         return commentMapper.commentToResponse(comment);
