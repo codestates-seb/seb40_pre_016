@@ -9,6 +9,8 @@ import Logout from './pages/Logout';
 import Header from './components/Common/Header';
 import Gnb from './components/Common/Gnb';
 import QuestionWrite from './pages/QuestionWrite';
+import Footer from './components/Common/Footer';
+
 
 
 
@@ -16,8 +18,41 @@ import QuestionWrite from './pages/QuestionWrite';
 function App() {
   return (
     <>
-      {/* <QuestionWrite></QuestionWrite> */}
-      {/* <Main></Main> */}
+
+      <BrowserRouter>
+
+        <Header />
+
+        <S.Container>
+          <Gnb />
+          <Routes>
+            <Route path='/login' element={<Main />}>
+              {' '}
+            </Route>
+            <Route path='/question' element={<Question />}>
+              {' '}
+            </Route>
+
+            <Route path='/signup' element={<SignUp />}>
+              {' '}
+            </Route>
+          </Routes>
+
+        </S.Container>
+        <Footer />
+
+        <S.BackGround>
+          {/* <Route path='/login' element={<Login />}>
+            {' '}
+          </Route> */}
+          {/* <Logout /> */}
+          {/* <SignUp /> */}
+          {/* <Login /> */}
+        </S.BackGround>
+
+
+      </BrowserRouter>
+
     </>
 
 

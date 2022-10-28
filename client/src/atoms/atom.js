@@ -29,6 +29,7 @@ export const modalState = atom(
   }
 );
 
+
 export const newQuestionState = atom(
   {
     key: 'newQuestionState',
@@ -44,3 +45,15 @@ export const newQuestionState = atom(
 //   key: 'answerFocus',
 //   default: false
 // })
+
+
+export const answerFocus = atom({
+  key: 'answerFocus',
+  default: false,
+})
+
+export const answer = atom({
+  key: 'content',
+  default: "",
+})
+

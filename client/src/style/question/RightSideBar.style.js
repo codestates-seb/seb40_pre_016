@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 // 콘텐츠 사이드바
 export const RightSidebar = styled.section`
-    margin-top: 10px;
+    margin-top: 24px;
     width: 300px;
     background-color: white;
-
 `;
 
 export const YBox = styled.ul`
@@ -18,23 +17,24 @@ export const YBox = styled.ul`
     
     > li{
         padding-left: 10px;
+        padding-top: 3px;
+        padding-bottom: 7px;
         font-size: 13px;
-        margin-top: 5px;
-        margin-bottom: 12px;
 
         :first-child {
-            list-style-type: none;
             height: 30px;
+            padding-top: 10px;
+            padding-left: 10px;
+            margin-bottom: 5px;
+            background-color: #FBF3D5;
+            color: #525960;
             font-size: 12px;
             font-weight: 600;
-            background-color: #FBF3D5;
-            color: 525960;
-            padding-top: 10px;
-            padding-left: 20px;
+            list-style-type: none;
         }
 
         :last-child{
-            padding-bottom: 20px;
+            padding-bottom: 15px;
         }
     }
 `

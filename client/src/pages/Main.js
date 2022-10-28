@@ -27,6 +27,7 @@ const Main = () => {
         <QuestionList />
         <PageList></PageList>
       </MainStyeld>
+      <QuestionRightSidebar />
     </>
   );
 };
