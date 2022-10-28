@@ -8,6 +8,7 @@ import * as S from './style/App.style'
 import Logout from './pages/Logout';
 import Header from './components/Common/Header';
 import Gnb from './components/Common/Gnb';
+import Footer from './components/Common/Footer';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           </Routes>
 
         </S.Container>
+        <Footer />
 
         <S.BackGround>
           {/* <Route path='/login' element={<Login />}>

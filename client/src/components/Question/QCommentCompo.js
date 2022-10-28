@@ -1,6 +1,6 @@
-import * as S from "../../style/question/QCommentCompo.style";
-import polygon from "../../assets/img/polygon.png";
-import user from "../../assets/img/user.png";
+import * as S from '../../style/question/QCommentCompo.style';
+import polygon from '../../assets/img/polygon.png';
+import user from '../../assets/img/user.png';
 
 function QCommentCompo() {
   return (
@@ -17,9 +17,9 @@ function QCommentCompo() {
       </S.QCHeader>
       <S.QContent>
         <S.QContentLeft>
-          <img alt="Polygon" src={polygon} />
+          <img alt='Polygon' src={polygon} />
           <div>0</div>
-          <img alt="Polygon" src={polygon} />
+          <img alt='Polygon' src={polygon} />
         </S.QContentLeft>
         <S.QContentRight>
           <div>여기는 답변입니다</div>
@@ -32,7 +32,7 @@ function QCommentCompo() {
             <S.QCRERight>
               <span>21 years ago</span>
               <div>
-                <img src={user} alt="얼굴"></img>
+                <img src={user} alt='얼굴'></img>
                 <span>ID</span>
               </div>
             </S.QCRERight>
