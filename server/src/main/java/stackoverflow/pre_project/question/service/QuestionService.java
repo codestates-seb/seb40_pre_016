@@ -2,13 +2,21 @@ package stackoverflow.pre_project.question.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stackoverflow.pre_project.exception.BusinessLogicException;
 import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.repository.QuestionRepository;
+import stackoverflow.pre_project.tag.entity.QuestionTag;
+import stackoverflow.pre_project.tag.entity.Tag;
+import stackoverflow.pre_project.tag.service.TagService;
 
+import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,23 +26,55 @@ import java.util.Optional;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final TagService tagService;
+    private final EntityManager em;
 
     public Question createQuestion(Question question) {
+
+        question.getQuestionTags().stream()
+                .forEach(questionTag -> {
+                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+                    tag.setQuestionCount(tag.getQuestionCount() + 1);
+                    questionTag.setTag(tag);
+                });
+
         Question savedQuestion = questionRepository.save(question);
-        System.out.println(savedQuestion.getModifiedAt());
 
         return savedQuestion;
     }
 
     public Question updateQuestion(Long questionId, Question question) {
         Question findQuestion = findVerifiedQuestion(questionId);
-
-        findQuestion.setTitle(question.getTitle());
-        findQuestion.setContent(question.getContent());
-
-        System.out.println(findQuestion.getModifiedAt());
+//
+//        findQuestion.getQuestionTags().stream()
+//                .forEach(questionTag -> {
+//                    Tag tag = questionTag.getTag();
+//                    tag.setQuestionCount(tag.getQuestionCount() - 1);
+//                    questionRepository.deleteQuestionTag(questionTag.getId());
+//                });
+//
+//        findQuestion.getQuestionTags().clear();
+//
+//        question.getQuestionTags().stream()
+//                .forEach(questionTag -> {
+//                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+//                    tag.setQuestionCount(tag.getQuestionCount() + 1);
+//                    questionTag.setTag(tag);
+//                    findQuestion.getQuestionTags().add(questionTag);
+//                });
+//
+//        findQuestion.setTitle(question.getTitle());
+//        findQuestion.setContent(question.getContent());
 
         return findQuestion;
+    }
+
+    public Question findQuestion(Long questionId) {
+        return findVerifiedQuestion(questionId);
+    }
+
+    public Page<Question> findQuestions(int page, String sortBy) {
+        return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy)));
     }
 
     public void deleteQuestion(Long questionId) {
