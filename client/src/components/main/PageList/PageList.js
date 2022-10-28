@@ -1,13 +1,14 @@
-import React, { useState } from "react";
 import * as S from '../../../style/main/PageList.style'
 import PageButton from "../Button/PageButton";
-
+import { useRecoilState } from "recoil";
+import { pageBtnIdx } from '../../../atoms/atom';
 
 const PageList = () => {
-  const [currentButton, setCurrentButton] = useState(0);
+  const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
 
   const btnCheckHandler = (idx) => {
     setCurrentButton(idx);
+    console.log(currentButton)
   };
 
   const listCount = 5;

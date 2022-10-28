@@ -8,7 +8,9 @@ import * as S from './style/App.style'
 import Logout from './pages/Logout';
 import Header from './components/Common/Header';
 import Gnb from './components/Common/Gnb';
+import QuestionWrite from './pages/QuestionWrite';
 import Footer from './components/Common/Footer';
+
 
 
 
@@ -16,6 +18,7 @@ import Footer from './components/Common/Footer';
 function App() {
   return (
     <>
+
       <BrowserRouter>
 
         <Header />
@@ -49,6 +52,7 @@ function App() {
 
 
       </BrowserRouter>
+
     </>
 
 
