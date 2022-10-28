@@ -6,6 +6,7 @@ export const ModalBack = styled.div`
   position: fixed;
   height: 100vh;
   width: 100%;
+  z-index: 100;
 `;
 
 export const ModalSelect = styled.div`

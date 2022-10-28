@@ -28,3 +28,19 @@ export const modalState = atom(
     default: true,
   }
 );
+
+export const newQuestionState = atom(
+  {
+    key: 'newQuestionState',
+    default: {
+      title: '',
+      content: ' ',
+      tags: [],
+    },
+  }
+)
+
+// export const answerFocus = atom({
+//   key: 'answerFocus',
+//   default: false
+// })

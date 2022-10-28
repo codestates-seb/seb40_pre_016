@@ -4,9 +4,9 @@ import { useRecoilState } from 'recoil';
 import { modalState } from "../../../atoms/atom";
 
 
-const Modal = ({ className }) => {
+const Modal = () => {
   const [isOpen, setIsopen] = useRecoilState(modalState);
-  setIsopen(true);
+  // setIsopen(true); 
   const modalHandler = () => {
     setIsopen(false);
   };

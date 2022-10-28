@@ -24,7 +24,7 @@ const QuestionWrite = () => {
 
   return (
     <>
-      {/* {isOpen ? <Modal /> : null} */}
+      {isOpen ? <Modal /> : ''}
 
       <QuestionWriteContainer>
 
