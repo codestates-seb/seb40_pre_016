@@ -1,23 +1,22 @@
 import styled from 'styled-components';
 export const Container = styled.div`
 width: 100%;
-height: 100vh;
-max-width: 1264px;
+height: calc(100vh - 50px);
     margin: 0 auto;
-    padding: 24px;
+    overflow: hidden;
 `
 
 export const LoginWarp = styled.div`
-
+width: 300px;
 max-width: 300px;
 height: 100vh;
 margin: 0 auto;
 display: flex;
 justify-content: center;
-align-items: center;
 `
 export const Div = styled.div`
 width : 100%;
+margin-top: 150px;
 `
 
 

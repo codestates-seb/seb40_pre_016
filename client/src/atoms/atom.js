@@ -1,12 +1,32 @@
 import { atom } from 'recoil'
 import DUMMYDATA from '../components/main/Question/dummyData';
 
-export const questionList = atom(
-  {
-    key: 'questinList',
-    default: DUMMYDATA,
-  }
+
+import { recoilPersist } from 'recoil-persist'
+const { persistAtom } = recoilPersist()
+
+export const questionList = atom({
+  key: 'questinList',
+  default: DUMMYDATA,
+}
 );
+
+export const isLoginState = atom({
+  key: 'isLoginState',
+  default: false,
+
+})
+
+export const loginsubmitList = atom({
+  key: 'loginsubmitList',
+  default: { email: '', password: '' }
+})
+
+export const signupSubmitList = atom({
+  key: 'signupSubmitList',
+  default: { displayName: '', email: '', password: '', captcha: '', checked: false }
+})
+
 
 export const filterBtnIdx = atom(
   {
@@ -56,4 +76,3 @@ export const answer = atom({
   key: 'content',
   default: "",
 })
-

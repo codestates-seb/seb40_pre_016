@@ -3,9 +3,16 @@ import styled from 'styled-components';
 export const GnbContainer = styled.aside`
 position: sticky;
 top: 50px;
-width: 170px;
+min-width: 170px;
 padding-top: 40px;
 border-right: 1px solid var(    --black-100);
+&.none{
+    display: none;
+}
+
+@media screen and (max-width:  640px) {
+        display: none;    
+    }
 `
 export const GnbTag = styled.p`
 font-size: 11px;
