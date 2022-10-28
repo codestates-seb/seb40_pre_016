@@ -67,9 +67,10 @@ public class QuestionController {
     }
 
     @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId) {
+    public void deleteQuestion(@PathVariable("question-id") Long questionId,
+                               HttpServletResponse response) throws IOException {
         questionService.deleteQuestion(questionId);
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        response.sendRedirect("/api/questions?page=1&sorBy=id");
     }
 }

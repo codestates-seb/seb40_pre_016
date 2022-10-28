@@ -45,26 +45,9 @@ public class QuestionService {
 
     public Question updateQuestion(Long questionId, Question question) {
         Question findQuestion = findVerifiedQuestion(questionId);
-//
-//        findQuestion.getQuestionTags().stream()
-//                .forEach(questionTag -> {
-//                    Tag tag = questionTag.getTag();
-//                    tag.setQuestionCount(tag.getQuestionCount() - 1);
-//                    questionRepository.deleteQuestionTag(questionTag.getId());
-//                });
-//
-//        findQuestion.getQuestionTags().clear();
-//
-//        question.getQuestionTags().stream()
-//                .forEach(questionTag -> {
-//                    Tag tag = tagService.findTag(questionTag.getTag().getName());
-//                    tag.setQuestionCount(tag.getQuestionCount() + 1);
-//                    questionTag.setTag(tag);
-//                    findQuestion.getQuestionTags().add(questionTag);
-//                });
-//
-//        findQuestion.setTitle(question.getTitle());
-//        findQuestion.setContent(question.getContent());
+
+        findQuestion.setTitle(question.getTitle());
+        findQuestion.setContent(question.getContent());
 
         return findQuestion;
     }

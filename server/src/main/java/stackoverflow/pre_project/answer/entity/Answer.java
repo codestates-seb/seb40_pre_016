@@ -52,5 +52,4 @@ public class Answer extends Auditable {
             this.question.addAnswer(this);
         }
     }
-    
 }

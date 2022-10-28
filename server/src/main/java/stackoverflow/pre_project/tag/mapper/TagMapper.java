@@ -9,4 +9,6 @@ import stackoverflow.pre_project.tag.entity.Tag;
 public interface TagMapper {
     @Mapping(source = "id", target = "tagId")
     TagDto.Response tagToResponse(Tag tag);
+
+
 }

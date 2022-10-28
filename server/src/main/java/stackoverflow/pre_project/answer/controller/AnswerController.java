@@ -11,6 +11,7 @@ import stackoverflow.pre_project.answer.service.AnswerService;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class AnswerController {
 
     private final AnswerService answerService;
