@@ -4,20 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 public class QuestionDto {
 
     @Getter
     @Builder
-    public static class Post {
+    public static class Request {
         private String title;
         private String content;
-    }
-
-    @Getter
-    @Builder
-    public static class Patch {
-        private String title;
-        private String content;
+        private List<String> tagNames;
     }
 
     @AllArgsConstructor
@@ -26,5 +22,6 @@ public class QuestionDto {
     public static class Response {
         private String title;
         private String content;
+        private List<String> tagNames;
     }
 }

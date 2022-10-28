@@ -19,6 +19,7 @@ public class Tag {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Setter
     private int questionCount = 0;
 
 }

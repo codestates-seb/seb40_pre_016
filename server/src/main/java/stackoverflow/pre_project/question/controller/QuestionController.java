@@ -27,9 +27,9 @@ public class QuestionController {
     private final QuestionMapper mapper;
 
     @PostMapping
-    public void postQuestion(@RequestBody QuestionDto.Post post,
+    public void postQuestion(@RequestBody QuestionDto.Request request,
                              HttpServletResponse response) throws IOException {
-        Question question = mapper.questionPostToQuestion(post);
+        Question question = mapper.questionRequestToQuestion(request);
         Question createdQuestion = questionService.createQuestion(question);
 
         Long questionId = createdQuestion.getId();
@@ -38,9 +38,9 @@ public class QuestionController {
 
     @PatchMapping("/{question-id}")
     public void patchQuestion(@PathVariable("question-id") Long questionId,
-                              @RequestBody QuestionDto.Patch patch,
+                              @RequestBody QuestionDto.Request request,
                               HttpServletResponse response) throws IOException {
-        Question question = mapper.questionPatchToQuestion(patch);
+        Question question = mapper.questionRequestToQuestion(request);
         Question updateQuestion = questionService.updateQuestion(questionId, question);
 
         response.sendRedirect("/api/questions/" + questionId);
@@ -48,7 +48,7 @@ public class QuestionController {
 
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") Long questionId) {
-        Question question = questionService.findVerifiedQuestion(questionId);
+        Question question = questionService.findQuestion(questionId);
         QuestionDto.Response response = mapper.questionToQuestionResponse(question);
 
         return new ResponseEntity(response, HttpStatus.OK);
