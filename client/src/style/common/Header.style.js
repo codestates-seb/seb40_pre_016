@@ -54,7 +54,7 @@ height: 40px;
         & svg {    left: 18%;}
     }
 `
-export const Product = styled.a`
+export const Product = styled.div`
 display: block;
 padding: 0 10px;
 font-size: 13px;
