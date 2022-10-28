@@ -16,7 +16,7 @@ import QuestionWrite from './pages/QuestionWrite';
 function App() {
   return (
     <>
-      <QuestionWrite></QuestionWrite>
+      {/* <QuestionWrite></QuestionWrite> */}
       {/* <Main></Main> */}
     </>
 
