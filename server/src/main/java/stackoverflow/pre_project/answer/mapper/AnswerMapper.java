@@ -20,7 +20,6 @@ public interface AnswerMapper {
     CommentMapper commentMapper = Mappers.getMapper(CommentMapper.class);
     UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
-
     public Answer answerPostToAnswer(AnswerDto.Post post);
 
     public Answer answerPatchToAnswer(AnswerDto.Patch patch);
@@ -28,7 +27,6 @@ public interface AnswerMapper {
     public List<AnswerDto.Response> answersToAnswerResponses(List<Answer> answers);
 
     default public AnswerDto.Response answerToAnswerResponse(Answer answer) {
-
 
         return AnswerDto.Response.builder()
                 .content(answer.getContent())
@@ -39,5 +37,4 @@ public interface AnswerMapper {
                 .user(userMapper.userToUserResponse(answer.getUser())).build();
 
     }
-
 }

@@ -56,9 +56,10 @@ public class QuestionController {
 
     @GetMapping
     public ResponseEntity getQuestions(@RequestParam @Positive int page,
-                                       @RequestParam String sortBy) {
+                                       @RequestParam String sortBy,
+                                       @RequestParam(required = false, defaultValue = "false") boolean desc) {
 
-        Page<Question> pageQuestions = questionService.findQuestions(--page, sortBy);
+        Page<Question> pageQuestions = questionService.findQuestions(--page, sortBy, desc);
         List<Question> questions = pageQuestions.getContent();
         List<QuestionDto.Response> responses = mapper.questionsToQuestionResponseDtos(questions);
         System.out.println(responses.size());

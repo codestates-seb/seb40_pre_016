@@ -56,7 +56,8 @@ public class QuestionService {
         return findVerifiedQuestion(questionId);
     }
 
-    public Page<Question> findQuestions(int page, String sortBy) {
+    public Page<Question> findQuestions(int page, String sortBy, boolean desc) {
+        if (desc) return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy).descending()));
         return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy)));
     }
 
