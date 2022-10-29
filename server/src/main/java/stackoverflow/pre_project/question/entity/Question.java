@@ -51,13 +51,13 @@ public class Question extends Auditable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "question")
     private final List<Answer> answers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<QuestionTag> questionTags = new ArrayList<>();
 
     public void addAnswer(Answer answer) {

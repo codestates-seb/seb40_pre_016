@@ -19,6 +19,7 @@ public class QuestionTag {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "question_id")
+    @Setter
     private Question question;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

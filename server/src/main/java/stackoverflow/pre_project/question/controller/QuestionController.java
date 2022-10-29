@@ -72,6 +72,6 @@ public class QuestionController {
                                HttpServletResponse response) throws IOException {
         questionService.deleteQuestion(questionId);
 
-        response.sendRedirect("/api/questions?page=1&sorBy=id");
+        response.sendRedirect("/api/questions?page=1&sortBy=createdAt&desc=true");
     }
 }

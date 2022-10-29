@@ -16,8 +16,10 @@ import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.service.TagService;
 
 import javax.persistence.EntityManager;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -27,7 +29,6 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
     private final TagService tagService;
-    private final EntityManager em;
 
     public Question createQuestion(Question question) {
 
@@ -45,9 +46,34 @@ public class QuestionService {
 
     public Question updateQuestion(Long questionId, Question question) {
         Question findQuestion = findVerifiedQuestion(questionId);
+        List<QuestionTag> questionTags = findQuestion.getQuestionTags();
+        List<Tag> tags = questionTags.stream().map(questionTag -> questionTag.getTag()).collect(Collectors.toList());
+
+        questionTags.stream().filter(questionTag -> !question.getQuestionTags().contains(questionTag))
+                .forEach(questionTag -> {
+                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+                    tag.setQuestionCount(tag.getQuestionCount() - 1);
+                });
+
+        questionTags.removeIf(questionTag -> !question.getQuestionTags().contains(questionTag));
+
+        tags.stream()
+                .filter(tag -> tag.getQuestionCount()==0)
+                .forEach(tag -> tagService.deleteTag(tag.getId()));
+
+        question.getQuestionTags().stream()
+                .filter(questionTag -> !questionTags.contains(questionTag))
+                .forEach(questionTag -> {
+                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+                    tag.setQuestionCount(tag.getQuestionCount() + 1);
+                    questionTag.setTag(tag);
+                    findQuestion.addQuestionTag(questionTag);
+                });
 
         findQuestion.setTitle(question.getTitle());
         findQuestion.setContent(question.getContent());
+
+        questionRepository.save(findQuestion);
 
         return findQuestion;
     }
@@ -65,6 +91,18 @@ public class QuestionService {
 
     public void deleteQuestion(Long questionId) {
         Question question = findVerifiedQuestion(questionId);
+        List<QuestionTag> questionTags = question.getQuestionTags();
+        List<Tag> tags = questionTags.stream().map(questionTag -> questionTag.getTag()).collect(Collectors.toList());
+
+        questionTags.stream()
+                .forEach(questionTag -> {
+                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+                    tag.setQuestionCount(tag.getQuestionCount() - 1);
+                });
+
+        tags.stream()
+                .filter(tag -> tag.getQuestionCount()==0)
+                .forEach(tag -> tagService.deleteTag(tag.getId()));
 
         if (question.getAnswers().size() > 0) {
             throw new RuntimeException();
