@@ -2,6 +2,7 @@ package stackoverflow.pre_project.question.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import stackoverflow.pre_project.answer.dto.AnswerDto;
 import stackoverflow.pre_project.answer.mapper.AnswerMapper;
@@ -19,13 +20,12 @@ import stackoverflow.pre_project.user.mapper.UserMapperImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mapper(componentModel = "spring")
-
+@Mapper(componentModel = "spring", uses = {AnswerMapper.class, CommentMapper.class, UserMapper.class})
 public interface QuestionMapper {
 
-    AnswerMapper answerMapper = new AnswerMapperImpl();
-    CommentMapper commentMapper = new CommentMapperImpl();
-    UserMapper userMapper = new UserMapperImpl();
+    AnswerMapper answerMapper = Mappers.getMapper(AnswerMapper.class);
+    CommentMapper commentMapper = Mappers.getMapper(CommentMapper.class);
+    UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
     List<QuestionDto.Response> questionsToQuestionResponseDtos(List<Question> questions);
 
