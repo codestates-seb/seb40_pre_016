@@ -55,6 +55,7 @@ public interface QuestionMapper {
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
                 .voteCount(question.getVoteCount())
+                .viewCount(question.getViewCount())
                 .tagNames(tagNames)
                 .user(userMapper.userToUserResponse(question.getUser()))
                 .answers(answerMapper.answersToAnswerResponses(question.getAnswers()))

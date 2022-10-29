@@ -31,6 +31,7 @@ public class QuestionDto {
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         private int voteCount;
+        private int viewCount;
         private UserDto.Response user;
         private List<String> tagNames;
         private List<AnswerDto.Response> answers;

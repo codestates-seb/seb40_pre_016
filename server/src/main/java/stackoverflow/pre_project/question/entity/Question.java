@@ -29,7 +29,11 @@ public class Question extends Auditable {
     @Column(nullable = false)
     private String content;
 
+    @Setter
     private int voteCount = 0;
+
+    @Setter
+    private int viewCount = 0;
 
     public void setTitle(String title) {
         this.title = title;

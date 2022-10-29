@@ -53,7 +53,9 @@ public class QuestionService {
     }
 
     public Question findQuestion(Long questionId) {
-        return findVerifiedQuestion(questionId);
+        Question findQuestion = findVerifiedQuestion(questionId);
+        findQuestion.setViewCount(findQuestion.getViewCount() + 1);
+        return findQuestion;
     }
 
     public Page<Question> findQuestions(int page, String sortBy, boolean desc) {
