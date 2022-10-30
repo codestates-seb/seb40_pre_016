@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const TagsContainer = styled.section`
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    margin-top: 10px;
-    gap: 10px;
-`
-
 export const TagBox = styled.div`
     width: 166px;
     height: 84px;

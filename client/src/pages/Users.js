@@ -1,7 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
-import Filter from "../components/Tags/TagsFilter";
+import Filter from "../components/Users/UsersFilter";
 import PageList from "../components/main/PageList/PageList";
+import UserComponents from "../components/Users/UserComponent";
 
 
 const UsersContainer = styled.section`
@@ -13,7 +14,12 @@ const UsersContainer = styled.section`
   }
 `;
 
-
+const UserContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+`
 
 const Users = () => {
 
@@ -22,6 +28,20 @@ const Users = () => {
     <UsersContainer>
         <h1>Users</h1>
         <Filter />
+        <UserContainer>
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+          <UserComponents />
+        </UserContainer>
         <PageList></PageList>
     </UsersContainer>
   );

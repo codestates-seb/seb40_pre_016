@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import Filter from "../components/Tags/TagsFilter";
 import PageList from "../components/main/PageList/PageList";
-import TagsComponent from "../components/Tags/TagsComponent";
+import TagComponent from "../components/Tags/TagComponent";
 
 
 const TagContainer = styled.section`
@@ -23,6 +23,12 @@ const TagContainer = styled.section`
   }
 `;
 
+const TagsContainer = styled.section`
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: 10px;
+    gap: 10px;
+`
 
 
 const Tags = () => {
@@ -34,7 +40,24 @@ const Tags = () => {
         <div className='tagText'>A tag is a keyword or label that categorizes your question with other, similar questions.</div>
         <div className='tagText2'>Using the right tags makes it easier for others to find and answer your question.</div>
         <Filter />
-        <TagsComponent />
+        <TagsContainer>
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+          <TagComponent />
+        </TagsContainer>
         <PageList></PageList>
     </TagContainer>
   );
