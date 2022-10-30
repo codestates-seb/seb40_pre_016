@@ -37,6 +37,10 @@ function QCommentCompo() {
               </div>
             </S.QCRERight>
           </S.QCREdit>
+          <S.CommentSection>
+            <div>댓글을 쓰지마소 <div>- <a href='none'>이름</a></div><span>날짜</span></div>
+            <div>댓글을 쓰지마소 <div>- <a href='none'>이름</a></div><span>날짜</span></div>
+          </S.CommentSection>
           <S.QCRComment>Add a Comment</S.QCRComment>
         </S.QContentRight>
       </S.QContent>

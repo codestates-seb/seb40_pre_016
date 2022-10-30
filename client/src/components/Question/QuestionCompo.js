@@ -1,8 +1,15 @@
 import * as S from '../../style/question/QuestionCompo.style';
 import polygon from '../../assets/img/polygon.png';
 import user from '../../assets/img/user.png';
+import { useRecoilState } from 'recoil';
+import { followQ } from '../../atoms/atom';
 
 function QuestionCompo() {
+  const [follow, isFollow] = useRecoilState(followQ)
+  const onClick = () => {
+    isFollow(!follow)
+  }
+
   return (
     <S.QContent>
       <S.QContentLeft>
@@ -11,22 +18,10 @@ function QuestionCompo() {
         <img alt='Polygon' src={polygon} />
       </S.QContentLeft>
       <S.QContentRight>
-        <div>221027 오늘도 화이팅 !!</div>
+        <div>221030 오늘도 화이팅 !!</div>
         <br />
         <div>TO DO</div>
         <br />
-        <div>after merge</div>
-        <br />
-        <div>ask question 이동</div>
-        <div>answer filter 정리</div>
-        <br />
-        <div>기능 without API</div>
-        <br />
-        <br />
-        <div>유효성검사</div>
-        <br />
-        <div>answer 제출시 30자 이상</div>
-        <div>유효성검사</div>
         <br />
         <div>기능 with API</div>
         <br />
@@ -45,7 +40,7 @@ function QuestionCompo() {
             <button>Share</button>
             <button>Edit</button>
             <button>Delete</button>
-            <button>Following</button>
+            {follow ? <button onClick={onClick}>Following</button> : <button onClick={onClick}>Follow</button>}
           </S.QCRELeft>
           <S.QCRERight>
             <span>21 years ago</span>
@@ -55,6 +50,11 @@ function QuestionCompo() {
             </div>
           </S.QCRERight>
         </S.QCREdit>
+        <S.CommentSection>
+          <div>댓글을 쓰지마소 <div>- <a href='none'>이름</a></div><span>날짜</span></div>
+          <div>댓글을 쓰지마소 <div>- <a href='none'>이름</a></div><span>날짜</span></div>
+          
+        </S.CommentSection>
         <S.QCRComment>Add a Comment</S.QCRComment>
       </S.QContentRight>
     </S.QContent>
