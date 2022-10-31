@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import stackoverflow.pre_project.comment.dto.CommentDto;
@@ -19,7 +20,6 @@ import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.comment.entity.CommentType;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
 import stackoverflow.pre_project.comment.service.CommentService;
-import stackoverflow.pre_project.config.SecurityConfig;
 import stackoverflow.pre_project.config.SecurityTestConfig;
 import stackoverflow.pre_project.util.Reflection;
 
@@ -34,14 +34,8 @@ import static org.springframework.restdocs.request.RequestDocumentation.pathPara
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = CommentController.class,
-        excludeFilters = {
-                @ComponentScan.Filter(
-                        type = FilterType.ASSIGNABLE_TYPE,
-                        classes = {SecurityConfig.class}
-                )
-        })
-@Import(SecurityTestConfig.class)
+@WebMvcTest(controllers = CommentController.class)
+@WithMockUser
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class CommentControllerTest implements Reflection {
@@ -72,7 +66,7 @@ class CommentControllerTest implements Reflection {
                 .content(content)
                 .build();
 
-        given(commentService.createComment(CommentType.QUESTION, questionId, content))
+        given(commentService.createComment(CommentType.QUESTION, questionId, content, null))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -121,7 +115,7 @@ class CommentControllerTest implements Reflection {
                 .content(content)
                 .build();
 
-        given(commentService.createComment(CommentType.ANSWER, answerId, content))
+        given(commentService.createComment(CommentType.ANSWER, answerId, content, null))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -170,7 +164,7 @@ class CommentControllerTest implements Reflection {
                 .content(content)
                 .build();
 
-        given(commentService.updateComment(commentId, content))
+        given(commentService.updateComment(commentId, content, null))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
