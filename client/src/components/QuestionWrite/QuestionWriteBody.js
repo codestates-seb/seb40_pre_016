@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 import { QuestionBodyContainer } from '../../style/QuestionWrite/QuestionWriteBody.style';
-import QuestionWriteEditor from './QuestionWriteEditor'
+import QuestionWriteEditor from './QuestionWriteEditor';
 import { useRecoilState } from 'recoil';
 import { newQuestionState } from '../../atoms/atom';
-import { keyNames } from '../../../node_modules/codemirror/src/input/keynames';
 
 const QuestionWriteBody = () => {
   const [newQuestion, setNewQuestion] = useRecoilState(newQuestionState);
@@ -11,9 +10,8 @@ const QuestionWriteBody = () => {
   const tagInputContent = useRef();
   let tagId = useRef(0);
 
-
   const titleHandler = (e) => {
-    setNewQuestion({ ...newQuestion, title: e.target.value })
+    setNewQuestion({ ...newQuestion, title: e.target.value });
   };
 
   // const tagsHandler = (e) => {
@@ -28,8 +26,8 @@ const QuestionWriteBody = () => {
         content: e.target.value,
       };
       tagId.current++;
-      tempArr.push(tempTag)
-      setNewQuestion({ ...newQuestion, tags: tempArr })
+      tempArr.push(tempTag);
+      setNewQuestion({ ...newQuestion, tags: tempArr });
       // setTagInput('');
       tagInputContent.current.value = '';
     }
@@ -39,60 +37,63 @@ const QuestionWriteBody = () => {
     const tempArr = newQuestion.tags.slice().filter((tag) => {
       return tag.id !== idx;
     });
-    setNewQuestion({ ...newQuestion, tags: tempArr })
+    setNewQuestion({ ...newQuestion, tags: tempArr });
   };
-
-
 
   return (
     <QuestionBodyContainer>
-
-      <div className="title">
+      <div className='title'>
         <h1>Title</h1>
-        <p>Be specific and imagine you’re asking a question to another person</p>
+        <p>
+          Be specific and imagine you’re asking a question to another person
+        </p>
         <input
-          placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+          placeholder='e.g. Is there an R function for finding the index of an element in a vector?'
           value={newQuestion.title}
           onChange={titleHandler}
-        >
-        </input>
+        ></input>
       </div>
 
-      <div className="body">
+      <div className='body'>
         <h1>Body</h1>
-        <p>Include all the information someone would need to answer your question</p>
+        <p>
+          Include all the information someone would need to answer your question
+        </p>
         <QuestionWriteEditor></QuestionWriteEditor>
       </div>
 
-      <div className="tags">
+      <div className='tags'>
         <h1>Tag</h1>
         <p>Add up to 5 tags to describe what your question is about</p>
-        <div className="tagInput-container">
+        <div className='tagInput-container'>
           <ol>
             {newQuestion.tags.map((tag) => {
               return (
                 <li key={tag.id}>
-                  <div className="tag-container">
-                    <div className="tag-name">{tag.content}</div>
-                    <button className="tagInput-button" onClick={() => tagsDelHandler(tag.id)}>X</button>
+                  <div className='tag-container'>
+                    <div className='tag-name'>{tag.content}</div>
+                    <button
+                      className='tagInput-button'
+                      onClick={() => tagsDelHandler(tag.id)}
+                    >
+                      X
+                    </button>
                   </div>
                 </li>
-              )
+              );
             })}
           </ol>
-          <input className="tag-input"
+          <input
+            className='tag-input'
             // value={tagInput}
             onKeyPress={tagsAddHandler}
             // onChange={tagsHandler}
-            placeholder="e.g. (angular sql-server string)"
+            placeholder='e.g. (angular sql-server string)'
             ref={tagInputContent}
-          >
-          </input>
+          ></input>
         </div>
       </div>
-
-    </QuestionBodyContainer >
-
+    </QuestionBodyContainer>
   );
 };
 

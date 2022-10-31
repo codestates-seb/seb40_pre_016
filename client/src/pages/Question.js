@@ -1,9 +1,9 @@
-import styled from "styled-components"; //만들고 이동
-import QuestionHeader from "../components/Question/QuestionHeader";
-import QuestionRightSidebar from "../components/Question/RightSideBar";
-import YourAnswer from "../components/Question/YourAnswer";
-import QuestionCompo from "../components/Question/QuestionCompo";
-import QCommentCompo from "../components/Question/QCommentCompo";
+import styled from 'styled-components'; //만들고 이동
+import QuestionHeader from '../components/Question/QuestionHeader';
+import QuestionRightSidebar from '../components/Question/RightSideBar';
+import YourAnswer from '../components/Question/YourAnswer';
+import QuestionCompo from '../components/Question/QuestionCompo';
+import QCommentCompo from '../components/Question/QCommentCompo';
 
 const Qcontainer = styled.section`
 `;

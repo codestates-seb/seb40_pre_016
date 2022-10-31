@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PageButtonStyled = styled.button`
   height: 30px;
-  width: ${props =>
-    props.width ? props.width : props.width};
+  width: ${(props) => (props.width ? props.width : props.width)};
 
   border: 1px solid rgb(211, 211, 211);
   border-radius: 3px;
@@ -18,7 +17,7 @@ export const PageButtonStyled = styled.button`
     color: white;
   }
 
-  &:hover{
-    background-color: rgba(205,205,205);
+  &:hover {
+    background-color: rgba(205, 205, 205);
   }
 `;

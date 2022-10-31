@@ -1,7 +1,8 @@
 const DUMMYDATA = [
   {
     title: '제목1',
-    content: 'I have done some analysis and have decided to provide the search for DB search for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
+    content:
+      'I have done some analysis and have decided to provide the search for DB search for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
     tags: ['태그', '태그태그', '태그태그태그'],
     userName: '유저1',
     askCount: '234',
@@ -12,7 +13,8 @@ const DUMMYDATA = [
   },
   {
     title: '제목2',
-    content: 'the search for DB search for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
+    content:
+      'the search for DB search for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
     tags: ['태그태그태그', '태그태그', '태그'],
     userName: '유저2',
     askCount: '876',
@@ -23,7 +25,8 @@ const DUMMYDATA = [
   },
   {
     title: '제목3',
-    content: 'me analysis and have decidrch for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
+    content:
+      'me analysis and have decidrch for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
     tags: ['태그', '태그태그태그', '태그태그'],
     userName: '유저3',
     askCount: '23',
@@ -34,7 +37,8 @@ const DUMMYDATA = [
   },
   {
     title: '제목4',
-    content: 'haveome analysis and have decided to provide the search for DB search for fuysql db How to integrate elastic search and handle the delta happens in mysql -',
+    content:
+      'haveome analysis and have decided to provide the search for DB search for fuysql db How to integrate elastic search and handle the delta happens in mysql -',
     tags: ['태그', '태그태그태그태그', '태그태그태그태그'],
     userName: '유저4',
     askCount: '785',
@@ -45,7 +49,8 @@ const DUMMYDATA = [
   },
   {
     title: '제목5',
-    content: 'for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
+    content:
+      'for full text for mysql db How to integrate elastic search and handle the delta happens in mysql -',
     tags: ['태그태그태그태그', '태그태그', '태그태그태그태그태그태그태그'],
     userName: '유저5',
     askCount: '42',
@@ -54,7 +59,6 @@ const DUMMYDATA = [
     answers: '32',
     views: '88',
   },
-
 ];
 
 export default DUMMYDATA;

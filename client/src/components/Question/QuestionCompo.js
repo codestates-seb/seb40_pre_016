@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { followQ } from '../../atoms/atom';
 import Comment from './Comment';
 
+
 function QuestionCompo() {
   const [follow, isFollow] = useRecoilState(followQ)
   const onClick = () => {
@@ -14,9 +15,9 @@ function QuestionCompo() {
   return (
     <S.QContent>
       <S.QContentLeft>
-        <img alt='Polygon' src={polygon} />
+        <img alt="Polygon" src={polygon} />
         <div>0</div>
-        <img alt='Polygon' src={polygon} />
+        <img alt="Polygon" src={polygon} />
       </S.QContentLeft>
       <S.QContentRight>
         <div>221030 오늘도 화이팅 !!</div>
@@ -46,7 +47,7 @@ function QuestionCompo() {
           <S.QCRERight>
             <span>21 years ago</span>
             <div>
-              <img src={user} alt='얼굴'></img>
+              <img src={user} alt="얼굴"></img>
               <span>ID</span>
             </div>
           </S.QCRERight>
