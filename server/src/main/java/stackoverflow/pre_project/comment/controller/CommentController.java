@@ -2,12 +2,14 @@ package stackoverflow.pre_project.comment.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import stackoverflow.pre_project.comment.dto.CommentDto;
 import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.comment.entity.CommentType;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
 import stackoverflow.pre_project.comment.service.CommentService;
+import stackoverflow.pre_project.config.auth.CustomUserDetails;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -23,32 +25,36 @@ public class CommentController {
     @PostMapping("/questions/{question-id}/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentDto.Response postQuestionComment(@Positive @PathVariable("question-id") Long questionId,
-                                                   @Valid @RequestBody CommentDto.Request commentDto) {
+                                                   @Valid @RequestBody CommentDto.Request commentDto,
+                                                   @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         Comment comment = commentService.createComment(
-                CommentType.QUESTION, questionId, commentDto.getContent());
+                CommentType.QUESTION, questionId, commentDto.getContent(), customUserDetails.getUser());
         return commentMapper.commentToResponse(comment);
     }
 
     @PostMapping("/answers/{answer-id}/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentDto.Response postAnswerComment(@Positive @PathVariable("answer-id") Long answerId,
-                                                 @Valid @RequestBody CommentDto.Request commentDto) {
+                                                 @Valid @RequestBody CommentDto.Request commentDto,
+                                                 @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         Comment comment = commentService.createComment(
-                CommentType.ANSWER, answerId, commentDto.getContent());
+                CommentType.ANSWER, answerId, commentDto.getContent(), customUserDetails.getUser());
         return commentMapper.commentToResponse(comment);
     }
 
     @PatchMapping("/comments/{comment-id}")
     public CommentDto.Response patchAnswerComment(@PathVariable("comment-id") Long commentId,
-                                                  @RequestBody CommentDto.Request commentDto) {
-        Comment comment = commentService.updateComment(commentId, commentDto.getContent());
+                                                  @RequestBody CommentDto.Request commentDto,
+                                                  @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        Comment comment = commentService.updateComment(commentId, commentDto.getContent(), customUserDetails.getUser());
         return commentMapper.commentToResponse(comment);
     }
 
     @DeleteMapping("/comments/{comment-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnswerComment(@PathVariable("comment-id") Long commentId) {
-        commentService.deleteComment(commentId);
+    public void deleteAnswerComment(@PathVariable("comment-id") Long commentId,
+                                    @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        commentService.deleteComment(commentId, customUserDetails.getUser());
     }
 
 }
