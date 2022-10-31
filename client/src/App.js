@@ -13,18 +13,20 @@ import AuthContainer from "./pages/AuthContainer";
 import QuestionWrite from "./pages/QuestionWrite";
 import Footer from "./components/Common/Footer";
 import QuestionEdit from "./pages/QuestionEdit";
+import AnswerEdit from "./pages/AnswerEdit";
 
 function App() {
   return (
     <>
-      <QuestionEdit />
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Header />
 
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Main />} />
             <Route path="/question" element={<Question />} />
+            <Route path="/quesitonedit" element={<QuestionEdit />} />
+            <Route path="/answeredit" element={<AnswerEdit />} />
           </Route>
 
           <Route path="/askquestion" element={<QuestionWrite />} />
@@ -39,7 +41,7 @@ function App() {
           </Route>
         </Routes>
         <Footer />
-      </BrowserRouter> */}
+      </BrowserRouter>
     </>
   );
 }

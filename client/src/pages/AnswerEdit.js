@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import QuestionEditSidebar from "../components/QuestionEdit/QuestionEditSidebar";
 import QuestionEditBody from "../components/QuestionEdit/QuestionEditBody";
+import QuestionEditSidebar from "../components/QuestionEdit/QuestionEditSidebar";
+import AnswerEditBody from "../components/AnswerEdit/AnswerEditBody";
 
-const QuestionEditStyled = styled.div`
+const AnswerEditStyled = styled.div`
   /* background-color: #f1f2f3; */
   width: 100%;
   height: 100%;
@@ -36,30 +37,30 @@ const QuestionEditStyled = styled.div`
   }
 `;
 
-const QuestionEdit = () => {
+const AnswerEdit = () => {
   return (
-    <QuestionEditStyled>
+    <AnswerEditStyled>
       <div className="body-sidebar-container">
         <div className="header-body-container">
           {/* <div className="footer-container">
-            <p>
-              Your edit will be placed in a queue until it is peer reviewed.
-            </p>
-            <p>
-              We welcome edits that make the post easier to understand and more
-              valuable for readers. Because community members review edits,
-              please try to make the post substantially better than how you
-              found it, for example, by fixing grammar or adding additional
-              resources and hyperlinks.
-            </p>
-          </div>
-          <QuestionWriteBody /> */}
-          <QuestionEditBody />
+              <p>
+                Your edit will be placed in a queue until it is peer reviewed.
+              </p>
+              <p>
+                We welcome edits that make the post easier to understand and more
+                valuable for readers. Because community members review edits,
+                please try to make the post substantially better than how you
+                found it, for example, by fixing grammar or adding additional
+                resources and hyperlinks.
+              </p>
+            </div>
+            <QuestionWriteBody /> */}
+          <AnswerEditBody />
         </div>
         <QuestionEditSidebar />
       </div>
-    </QuestionEditStyled>
+    </AnswerEditStyled>
   );
 };
 
-export default QuestionEdit;
+export default AnswerEdit;

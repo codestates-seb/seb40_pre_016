@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
 
 import { useRecoilState } from "recoil";
+import { newQuestionState } from "../../atoms/atom";
 import styled from "styled-components";
 import QuestionWriteEditor from "../QuestionWrite/QuestionWriteEditor";
-import QuestionEditFooter from "./QuestionEditFooter";
-import { editQuestionState } from "../../atoms/atom";
+import QuestionEditFooter from "../QuestionEdit/QuestionEditFooter";
+import AnswerEditFooter from "./AnswerEditFooter";
 
-const QuestionEditBodyContainer = styled.div`
+const AnswerEditBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -79,14 +80,14 @@ const QuestionEditBodyContainer = styled.div`
   }
 `;
 
-const QuestionEditBody = () => {
-  const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
+const AnswerEditBody = () => {
+  const [newQuestion, setNewQuestion] = useRecoilState(newQuestionState);
   // const [tagInput, setTagInput] = useState('');
   const tagInputContent = useRef();
   let tagId = useRef(0);
 
   const titleHandler = (e) => {
-    setEditQuestion({ ...editQuestion, title: e.target.value });
+    setNewQuestion({ ...newQuestion, title: e.target.value });
   };
 
   // const tagsHandler = (e) => {
@@ -95,28 +96,28 @@ const QuestionEditBody = () => {
 
   const tagsAddHandler = (e) => {
     if (e.key === "Enter") {
-      const tempArr = editQuestion.tags.slice();
+      const tempArr = newQuestion.tags.slice();
       const tempTag = {
         id: tagId.current,
         content: e.target.value,
       };
       tagId.current++;
       tempArr.push(tempTag);
-      setEditQuestion({ ...editQuestion, tags: tempArr });
+      setNewQuestion({ ...newQuestion, tags: tempArr });
       // setTagInput('');
       tagInputContent.current.value = "";
     }
   };
 
   const tagsDelHandler = (idx) => {
-    const tempArr = editQuestion.tags.slice().filter((tag) => {
+    const tempArr = newQuestion.tags.slice().filter((tag) => {
       return tag.id !== idx;
     });
-    setEditQuestion({ ...editQuestion, tags: tempArr });
+    setNewQuestion({ ...newQuestion, tags: tempArr });
   };
 
   return (
-    <QuestionEditBodyContainer>
+    <AnswerEditBodyContainer>
       <div className="footer-container">
         <p>Your edit will be placed in a queue until it is peer reviewed.</p>
         <p>
@@ -127,19 +128,6 @@ const QuestionEditBody = () => {
           hyperlinks.
         </p>
       </div>
-
-      <div className="title">
-        <h1>Title</h1>
-        <p>
-          Be specific and imagine you’re asking a question to another person
-        </p>
-        <input
-          placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-          value={editQuestion.title}
-          onChange={titleHandler}
-        ></input>
-      </div>
-
       <div className="body">
         <h1>Body</h1>
         <p>
@@ -147,44 +135,12 @@ const QuestionEditBody = () => {
         </p>
         <QuestionWriteEditor></QuestionWriteEditor>
       </div>
-
-      <div className="tags">
-        <h1>Tag</h1>
-        <p>Add up to 5 tags to describe what your question is about</p>
-        <div className="tagInput-container">
-          <ol>
-            {editQuestion.tags.map((tag) => {
-              return (
-                <li key={tag.id}>
-                  <div className="tag-container">
-                    <div className="tag-name">{tag.content}</div>
-                    <button
-                      className="tagInput-button"
-                      onClick={() => tagsDelHandler(tag.id)}
-                    >
-                      X
-                    </button>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-          <input
-            className="tag-input"
-            // value={tagInput}
-            onKeyPress={tagsAddHandler}
-            // onChange={tagsHandler}
-            placeholder="e.g. (angular sql-server string)"
-            ref={tagInputContent}
-          ></input>
-        </div>
-      </div>
-      <QuestionEditFooter />
-    </QuestionEditBodyContainer>
+      <AnswerEditFooter />
+    </AnswerEditBodyContainer>
   );
 };
 
-export default QuestionEditBody;
+export default AnswerEditBody;
 
 //태그 입력창
 //태그 내용 입력  -> 엔터 입력 -> 태그 버튼 생성 후 input 안에 들어가서 표시 -> 반복 ->
