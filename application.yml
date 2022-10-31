@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  security:
+    user:
+      name: test
+      password: 1234
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 859689396575-b7sgo7bovmu3a38054irdrtv1l1es9po.apps.googleusercontent.com
+            client-secret: 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
+
