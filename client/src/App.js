@@ -7,13 +7,13 @@ import './style/common.css';
 import Logout from './pages/Logout';
 import Header from './components/Common/Header';
 import AuthLayout from './components/auth/AuthLayout';
-import AuthPage from './components/auth/AuthPage';
 import Layout from './pages/Layout';
 import AuthContainer from './pages/AuthContainer';
 import QuestionWrite from './pages/QuestionWrite';
 import Footer from './components/Common/Footer';
+import UserPage from './components/auth/UserPage'
 import Tags from './pages/Tags';
-import Users from './pages/Users';
+import Users from './pages/Users'
 
 function App() {
 
@@ -28,6 +28,9 @@ function App() {
           <Route path='/' element={<Layout />} >
             <Route path='/' element={<Main />} />
             <Route path='/question' element={<Question />} />
+            <Route element={<AuthLayout />}>
+              <Route path="/user" element={<UserPage />} />
+            </Route>
             <Route path='/tags' element={<Tags />} />
             <Route path='/users' element={<Users />} />
           </Route>
@@ -38,11 +41,9 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
           </Route>
 
-          <Route element={<AuthLayout />}>
-            <Route path="/auth" element={<AuthPage />} />
-          </Route>
+
         </Routes>
-      <Footer />
+        <Footer />
 
       </BrowserRouter>
 

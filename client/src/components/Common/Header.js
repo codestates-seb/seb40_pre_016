@@ -46,7 +46,7 @@ const Header = () => {
                 <S.Product className='mList'>About</S.Product>
                 <S.Product>products</S.Product>
                 <S.Product className='mList'>ForTeam</S.Product>
-                <S.SearchCopo ref={myHintRef} onClick={onHint} className={isLogin ? null : 'inputsize'}><input placeholder='Search' type='text' />
+                <S.SearchCopo ref={myHintRef} onClick={onHint} className={isLogin ? 'inputsize' : null}><input placeholder='Search' type='text' />
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="sc-fIavCj bZJnjy" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>
                     {
                         isSearchClicked ? <SearchHint /> : null
@@ -57,7 +57,7 @@ const Header = () => {
 
                 </S.SearchBtnWarp>
                 <S.IsLoginWarp className={isLogin ? null : 'none'}>
-                    <Link to='/auth'><S.UserProfile ><img src={userImage} alt='uerimg' /> </S.UserProfile></Link>
+                    <Link to='/user'><S.UserProfile ><img src={userImage} alt='uerimg' /> </S.UserProfile></Link>
                     <S.IconListWarp>
                         <S.Icon>
                             <svg aria-hidden="true" className="sc-afnQL iWgnXm" width="20" height="18" viewBox="0 0 20 18"><path d="M4.63 1h10.56a2 2 0 0 1 1.94 1.35L20 10.79V15a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-4.21l2.78-8.44c.25-.8 1-1.36 1.85-1.35Zm8.28 12 2-2h2.95l-2.44-7.32a1 1 0 0 0-.95-.68H5.35a1 1 0 0 0-.95.68L1.96 11h2.95l2 2h6Z"></path></svg>
