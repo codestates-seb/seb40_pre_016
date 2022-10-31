@@ -15,9 +15,7 @@ public interface AnswerMapper {
     CommentMapper commentMapper = Mappers.getMapper(CommentMapper.class);
     UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
-    public Answer answerPostToAnswer(AnswerDto.Post post);
-
-    public Answer answerPatchToAnswer(AnswerDto.Patch patch);
+    public Answer answerRequestToAnswer(AnswerDto.Request request);
 
     public List<AnswerDto.Response> answersToAnswerResponses(List<Answer> answers);
 

@@ -16,15 +16,7 @@ public class AnswerDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Post {
-        private String content;
-    }
-
-    @Getter
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Patch {
+    public static class Request {
         private String content;
     }
 
