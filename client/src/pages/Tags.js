@@ -6,7 +6,7 @@ import TagComponent from "../components/Tags/TagComponent";
 
 
 const TagContainer = styled.section`
-  width: 1100px;
+  width:calc(1400px - 170px);
   padding: 24px;
   > h1{
     font-size: 27px;
@@ -36,29 +36,29 @@ const Tags = () => {
 
   return (
     <TagContainer>
-        <h1>Tags</h1>
-        <div className='tagText'>A tag is a keyword or label that categorizes your question with other, similar questions.</div>
-        <div className='tagText2'>Using the right tags makes it easier for others to find and answer your question.</div>
-        <Filter />
-        <TagsContainer>
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-          <TagComponent />
-        </TagsContainer>
-        <PageList></PageList>
+      <h1>Tags</h1>
+      <div className='tagText'>A tag is a keyword or label that categorizes your question with other, similar questions.</div>
+      <div className='tagText2'>Using the right tags makes it easier for others to find and answer your question.</div>
+      <Filter />
+      <TagsContainer>
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+        <TagComponent />
+      </TagsContainer>
+      <PageList></PageList>
     </TagContainer>
   );
 };

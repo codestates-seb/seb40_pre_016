@@ -22,14 +22,14 @@ const Gnb = () => {
                         </Link>
                     </S.AList>
                     <S.AList >
-                        <Link to='/' onClick={() => setIsTabOn('Tags')} className={isTabOn === 'Tags' ? 'select' : null}>
+                        <Link to='/tags' onClick={() => setIsTabOn('Tags')} className={isTabOn === 'Tags' ? 'select' : null}>
                             <span>
                                 Tags
                             </span>
                         </Link>
                     </S.AList>
                     <S.AList >
-                        <Link to='/' onClick={() => setIsTabOn('Users')} className={isTabOn === 'Users' ? 'select' : null}>
+                        <Link to='/users' onClick={() => setIsTabOn('Users')} className={isTabOn === 'Users' ? 'select' : null}>
                             <span>
                                 Users
                             </span>

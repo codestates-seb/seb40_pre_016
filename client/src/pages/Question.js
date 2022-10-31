@@ -6,12 +6,12 @@ import QuestionCompo from '../components/Question/QuestionCompo';
 import QCommentCompo from '../components/Question/QCommentCompo';
 
 const Qcontainer = styled.section`
+width: 100%;
 `;
 
 // 콘텐츠 바디
 const QContents = styled.section`
-  max-width: 1000px;
-  width: 1000px;
+ 
   height: auto;
   display: flex;
 `;

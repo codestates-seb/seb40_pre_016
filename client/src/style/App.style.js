@@ -19,5 +19,5 @@ export const Container = styled.div`
 
 export const RightContainer = styled.div`
   display: flex;
-  max-width: 1300px;
+  max-width: calc(1400px - 170px);
 `;
