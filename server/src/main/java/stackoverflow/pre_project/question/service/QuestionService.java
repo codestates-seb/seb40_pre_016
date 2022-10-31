@@ -16,6 +16,7 @@ import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.service.TagService;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,9 @@ public class QuestionService {
     private final TagService tagService;
 
     public Question createQuestion(Question question) {
+
+        question.setCreatedAt(LocalDateTime.now());
+        question.setModifiedAt(question.getCreatedAt());
 
         question.getQuestionTags().stream()
                 .forEach(questionTag -> {
@@ -72,6 +76,7 @@ public class QuestionService {
 
         findQuestion.setTitle(question.getTitle());
         findQuestion.setContent(question.getContent());
+        findQuestion.setModifiedAt(LocalDateTime.now());
 
         questionRepository.save(findQuestion);
 
