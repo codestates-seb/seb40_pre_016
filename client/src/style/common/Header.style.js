@@ -72,7 +72,7 @@ position: relative;
 height: 32px;
 width: calc(100% - 470px);
 &.inputsize{
-    width: calc(100% - 400px);
+    width: calc(100% - 510px);
 }
 & input {
     width: 100%;
