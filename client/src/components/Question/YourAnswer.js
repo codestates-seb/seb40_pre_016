@@ -8,7 +8,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const ErrorBox = styled.div`
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 13px;
   color: red;
   border: none;
@@ -29,6 +29,7 @@ function YourAnswer() {
   const onSubmit = (event) => {
     event.preventDefault();
     if(answerContent.length < 30){
+      isCheck(2)
       return setSubError('Body must be at least 30 characters.')
     }
     console.log(`제출값은` + answerContent)
@@ -36,11 +37,13 @@ function YourAnswer() {
   }
 
   const onFocus = () => {
-    isCheck(true)
+    isCheck(1)
+    // isCheck(true)
   }
 
   const onBlur = () => {
-    isCheck(false)
+    isCheck(0)
+    // isCheck(false)
   }
 
   return (

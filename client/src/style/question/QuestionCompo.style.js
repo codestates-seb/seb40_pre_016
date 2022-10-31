@@ -103,9 +103,34 @@ export const QCRERight = styled.section`
   }
 `;
 
-export const QCRComment = styled.section`
-  margin-left: 8px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
-`;
+
+export const CommentSection = styled.div`
+  border-top: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  
+  > div {
+    padding: 15px 0px 15px 10px;
+    font-size: 13px;
+    > div{
+      display: inline;
+      > a{
+        text-decoration: none;
+        color: #0c62ed;
+      }
+    }
+    
+    > span {
+      margin-left: 5px;
+      font-size: 13px;
+      color: rgba(0,0,0,0.45);;
+    }
+  }
+  `
+  
+  export const QCRComment = styled.section`
+    margin-top: 20px;
+    margin-left: 8px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+  `;
