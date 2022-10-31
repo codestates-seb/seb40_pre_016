@@ -1,14 +1,17 @@
+import * as S from '../../style/question/YourAnswer.style';
+
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { newQuestionState } from '../../atoms/atom';
+import { editorFocus, newQuestionState } from '../../atoms/atom';
 
 
 function YourAnswer() {
   const editorRef = useRef();
   const [newQuestion, setNewQuestion] = useRecoilState(newQuestionState);
+  const [check, isCheck] = useRecoilState(editorFocus);
 
 
   const contentHandler = () => {
@@ -20,17 +23,17 @@ function YourAnswer() {
     setNewQuestion({ ...newQuestion, content: data })
   }
 
-  // const onFocus = () => {
-  //   isCheck(true)
-  // }
+  const onFocus = () => {
+    isCheck(1)
+  }
 
-  // const onBlur = () => {
-  //   isCheck(false)
-  // }
+  const onBlur = () => {
+    isCheck(0)
+  }
 
   return (
     <>
-      <div>
+      <S.EditorBox check={check}>
         <Editor
           initialValue={newQuestion.content}
           initialEditType='markdown'
@@ -39,9 +42,11 @@ function YourAnswer() {
           height='500px' // 에디터 창 높이
           ref={editorRef}
           onChange={contentHandler}
+          onFocus={onFocus}
+          onBlur={onBlur}
           autofocus={false}
         />
-      </div>
+      </S.EditorBox>
     </>
   );
 }
