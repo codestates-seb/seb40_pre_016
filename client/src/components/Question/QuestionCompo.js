@@ -3,6 +3,7 @@ import polygon from '../../assets/img/polygon.png';
 import user from '../../assets/img/user.png';
 import { useRecoilState } from 'recoil';
 import { followQ } from '../../atoms/atom';
+import Comment from './Comment';
 
 function QuestionCompo() {
   const [follow, isFollow] = useRecoilState(followQ)
@@ -50,11 +51,7 @@ function QuestionCompo() {
             </div>
           </S.QCRERight>
         </S.QCREdit>
-        <S.CommentSection>
-          <div>댓글을 쓰지마소 <div>- <a href='none'>이름</a></div><span>날짜</span></div>
-          <div>댓글을 쓰지마소 <div>- <a href='none'>이름</a></div><span>날짜</span></div>
-          
-        </S.CommentSection>
+        <Comment />
         <S.QCRComment>Add a Comment</S.QCRComment>
       </S.QContentRight>
     </S.QContent>
