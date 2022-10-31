@@ -1,10 +1,6 @@
-import React, { useState, useRef } from "react";
-
-import { useRecoilState } from "recoil";
-import { newQuestionState } from "../../atoms/atom";
+import React from "react";
 import styled from "styled-components";
-import QuestionWriteEditor from "../QuestionWrite/QuestionWriteEditor";
-import QuestionEditFooter from "../QuestionEdit/QuestionEditFooter";
+import AnswerEditEditor from "./AnswerEditEditor";
 import AnswerEditFooter from "./AnswerEditFooter";
 
 const AnswerEditBodyContainer = styled.div`
@@ -81,41 +77,6 @@ const AnswerEditBodyContainer = styled.div`
 `;
 
 const AnswerEditBody = () => {
-  const [newQuestion, setNewQuestion] = useRecoilState(newQuestionState);
-  // const [tagInput, setTagInput] = useState('');
-  const tagInputContent = useRef();
-  let tagId = useRef(0);
-
-  const titleHandler = (e) => {
-    setNewQuestion({ ...newQuestion, title: e.target.value });
-  };
-
-  // const tagsHandler = (e) => {
-  //   setTagInput(e.target.value)
-  // };
-
-  const tagsAddHandler = (e) => {
-    if (e.key === "Enter") {
-      const tempArr = newQuestion.tags.slice();
-      const tempTag = {
-        id: tagId.current,
-        content: e.target.value,
-      };
-      tagId.current++;
-      tempArr.push(tempTag);
-      setNewQuestion({ ...newQuestion, tags: tempArr });
-      // setTagInput('');
-      tagInputContent.current.value = "";
-    }
-  };
-
-  const tagsDelHandler = (idx) => {
-    const tempArr = newQuestion.tags.slice().filter((tag) => {
-      return tag.id !== idx;
-    });
-    setNewQuestion({ ...newQuestion, tags: tempArr });
-  };
-
   return (
     <AnswerEditBodyContainer>
       <div className="footer-container">
@@ -133,7 +94,7 @@ const AnswerEditBody = () => {
         <p>
           Include all the information someone would need to answer your question
         </p>
-        <QuestionWriteEditor></QuestionWriteEditor>
+        <AnswerEditEditor></AnswerEditEditor>
       </div>
       <AnswerEditFooter />
     </AnswerEditBodyContainer>

@@ -18,6 +18,7 @@ import AnswerEdit from "./pages/AnswerEdit";
 function App() {
   return (
     <>
+      {/* <QuestionEdit /> */}
       <BrowserRouter>
         <Header />
 
@@ -25,7 +26,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Main />} />
             <Route path="/question" element={<Question />} />
-            <Route path="/quesitonedit" element={<QuestionEdit />} />
+            <Route path="/questionedit" element={<QuestionEdit />} />
             <Route path="/answeredit" element={<AnswerEdit />} />
           </Route>
 

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import QuestionWriteEditor from "../QuestionWrite/QuestionWriteEditor";
 import QuestionEditFooter from "./QuestionEditFooter";
 import { editQuestionState } from "../../atoms/atom";
+import QuestionEditEditor from "./QuestionEditEditor";
 
 const QuestionEditBodyContainer = styled.div`
   display: flex;
@@ -145,7 +146,7 @@ const QuestionEditBody = () => {
         <p>
           Include all the information someone would need to answer your question
         </p>
-        <QuestionWriteEditor></QuestionWriteEditor>
+        <QuestionEditEditor></QuestionEditEditor>
       </div>
 
       <div className="tags">
