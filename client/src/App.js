@@ -26,6 +26,9 @@ function App() {
           <Route path='/' element={<Layout />} >
             <Route path='/' element={<Main />} />
             <Route path='/question' element={<Question />} />
+            <Route element={<AuthLayout />}>
+              <Route path="/user" element={<UserPage />} />
+            </Route>
           </Route>
 
           <Route path='/askquestion' element={<QuestionWrite />} />
@@ -35,9 +38,7 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
           </Route>
 
-          <Route element={<AuthLayout />}>
-            <Route path="/auth" element={<UserPage />} />
-          </Route>
+
         </Routes>
         <Footer />
 
