@@ -4,13 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import stackoverflow.pre_project.answer.dto.AnswerDto;
 import stackoverflow.pre_project.answer.entity.Answer;
-import stackoverflow.pre_project.comment.dto.CommentDto;
-import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
-import stackoverflow.pre_project.comment.mapper.CommentMapperImpl;
-import stackoverflow.pre_project.user.dto.UserDto;
 import stackoverflow.pre_project.user.mapper.UserMapper;
-import stackoverflow.pre_project.user.mapper.UserMapperImpl;
 
 import java.util.List;
 
