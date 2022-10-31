@@ -12,6 +12,8 @@ import Layout from './pages/Layout';
 import AuthContainer from './pages/AuthContainer';
 import QuestionWrite from './pages/QuestionWrite';
 import Footer from './components/Common/Footer';
+import Tags from './pages/Tags';
+import Users from './pages/Users';
 
 function App() {
 
@@ -26,8 +28,9 @@ function App() {
           <Route path='/' element={<Layout />} >
             <Route path='/' element={<Main />} />
             <Route path='/question' element={<Question />} />
+            <Route path='/tags' element={<Tags />} />
+            <Route path='/users' element={<Users />} />
           </Route>
-
           <Route path='/askquestion' element={<QuestionWrite />} />
           <Route path='/' element={<AuthContainer />}>
             <Route path='/login' element={<Login />} />
