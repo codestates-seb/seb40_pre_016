@@ -1,21 +1,14 @@
 package stackoverflow.pre_project.question.mapper;
 
-import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import stackoverflow.pre_project.answer.dto.AnswerDto;
 import stackoverflow.pre_project.answer.mapper.AnswerMapper;
-import stackoverflow.pre_project.answer.mapper.AnswerMapperImpl;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
-import stackoverflow.pre_project.comment.mapper.CommentMapperImpl;
 import stackoverflow.pre_project.question.dto.QuestionDto;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.tag.entity.QuestionTag;
 import stackoverflow.pre_project.tag.entity.Tag;
-import stackoverflow.pre_project.user.dto.UserDto;
 import stackoverflow.pre_project.user.mapper.UserMapper;
-import stackoverflow.pre_project.user.mapper.UserMapperImpl;
 
 import java.util.ArrayList;
 import java.util.List;

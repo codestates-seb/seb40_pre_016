@@ -15,9 +15,7 @@ import stackoverflow.pre_project.tag.entity.QuestionTag;
 import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.service.TagService;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -77,8 +75,6 @@ public class QuestionService {
         findQuestion.setTitle(question.getTitle());
         findQuestion.setContent(question.getContent());
         findQuestion.setModifiedAt(LocalDateTime.now());
-
-        questionRepository.save(findQuestion);
 
         return findQuestion;
     }
