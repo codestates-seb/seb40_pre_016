@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const QuestionWriteFooterContainer = styled.div`
   padding-top: 20px;

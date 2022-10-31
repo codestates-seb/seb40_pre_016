@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { editQuestionState } from "../../atoms/atom";
+import React from 'react';
+import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { editQuestionState } from '../../atoms/atom';
 
 const AnswerEditFooterContainer = styled.div`
   margin-top: 20px;
@@ -46,15 +46,15 @@ const AnswerEditFooter = () => {
   const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
   const saveEditHandler = () => {
     //수정된 질문 fetch 요청
-    console.log("수정 요청 완료");
+    console.log('수정 요청 완료');
   };
 
   return (
     <AnswerEditFooterContainer>
-      <button onClick={saveEditHandler} className="saveEdit">
+      <button onClick={saveEditHandler} className='saveEdit'>
         Save Edits
       </button>
-      <button className="cancel">Cancel</button>
+      <button className='cancel'>Cancel</button>
     </AnswerEditFooterContainer>
   );
 };

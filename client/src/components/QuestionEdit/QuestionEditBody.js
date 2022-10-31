@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 
-import { useRecoilState } from "recoil";
-import styled from "styled-components";
-import QuestionWriteEditor from "../QuestionWrite/QuestionWriteEditor";
-import QuestionEditFooter from "./QuestionEditFooter";
-import { editQuestionState } from "../../atoms/atom";
-import QuestionEditEditor from "./QuestionEditEditor";
+import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
+import QuestionWriteEditor from '../QuestionWrite/QuestionWriteEditor';
+import QuestionEditFooter from './QuestionEditFooter';
+import { editQuestionState } from '../../atoms/atom';
+import QuestionEditEditor from './QuestionEditEditor';
 
 const QuestionEditBodyContainer = styled.div`
   display: flex;
@@ -95,7 +95,7 @@ const QuestionEditBody = () => {
   // };
 
   const tagsAddHandler = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       const tempArr = editQuestion.tags.slice();
       const tempTag = {
         id: tagId.current,
@@ -105,7 +105,7 @@ const QuestionEditBody = () => {
       tempArr.push(tempTag);
       setEditQuestion({ ...editQuestion, tags: tempArr });
       // setTagInput('');
-      tagInputContent.current.value = "";
+      tagInputContent.current.value = '';
     }
   };
 
@@ -118,7 +118,7 @@ const QuestionEditBody = () => {
 
   return (
     <QuestionEditBodyContainer>
-      <div className="footer-container">
+      <div className='footer-container'>
         <p>Your edit will be placed in a queue until it is peer reviewed.</p>
         <p>
           We welcome edits that make the post easier to understand and more
@@ -129,19 +129,19 @@ const QuestionEditBody = () => {
         </p>
       </div>
 
-      <div className="title">
+      <div className='title'>
         <h1>Title</h1>
         <p>
           Be specific and imagine you’re asking a question to another person
         </p>
         <input
-          placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+          placeholder='e.g. Is there an R function for finding the index of an element in a vector?'
           value={editQuestion.title}
           onChange={titleHandler}
         ></input>
       </div>
 
-      <div className="body">
+      <div className='body'>
         <h1>Body</h1>
         <p>
           Include all the information someone would need to answer your question
@@ -149,18 +149,18 @@ const QuestionEditBody = () => {
         <QuestionEditEditor></QuestionEditEditor>
       </div>
 
-      <div className="tags">
+      <div className='tags'>
         <h1>Tag</h1>
         <p>Add up to 5 tags to describe what your question is about</p>
-        <div className="tagInput-container">
+        <div className='tagInput-container'>
           <ol>
             {editQuestion.tags.map((tag) => {
               return (
                 <li key={tag.id}>
-                  <div className="tag-container">
-                    <div className="tag-name">{tag.content}</div>
+                  <div className='tag-container'>
+                    <div className='tag-name'>{tag.content}</div>
                     <button
-                      className="tagInput-button"
+                      className='tagInput-button'
                       onClick={() => tagsDelHandler(tag.id)}
                     >
                       X
@@ -171,11 +171,11 @@ const QuestionEditBody = () => {
             })}
           </ol>
           <input
-            className="tag-input"
+            className='tag-input'
             // value={tagInput}
             onKeyPress={tagsAddHandler}
             // onChange={tagsHandler}
-            placeholder="e.g. (angular sql-server string)"
+            placeholder='e.g. (angular sql-server string)'
             ref={tagInputContent}
           ></input>
         </div>

@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import AnswerEditEditor from "./AnswerEditEditor";
-import AnswerEditFooter from "./AnswerEditFooter";
+import React from 'react';
+import styled from 'styled-components';
+import AnswerEditEditor from './AnswerEditEditor';
+import AnswerEditFooter from './AnswerEditFooter';
 
 const AnswerEditBodyContainer = styled.div`
   display: flex;
@@ -79,7 +79,7 @@ const AnswerEditBodyContainer = styled.div`
 const AnswerEditBody = () => {
   return (
     <AnswerEditBodyContainer>
-      <div className="footer-container">
+      <div className='footer-container'>
         <p>Your edit will be placed in a queue until it is peer reviewed.</p>
         <p>
           We welcome edits that make the post easier to understand and more
@@ -89,7 +89,7 @@ const AnswerEditBody = () => {
           hyperlinks.
         </p>
       </div>
-      <div className="body">
+      <div className='body'>
         <h1>Body</h1>
         <p>
           Include all the information someone would need to answer your question

@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const QuestionEditSidebarContainer = styled.aside`
   width: 360px;
@@ -31,8 +31,8 @@ const QuestionEditSidebarContainer = styled.aside`
 const QuestionEditSidebar = () => {
   return (
     <QuestionEditSidebarContainer>
-      <div className="sidebar-header">How to Edit</div>
-      <ol className="sidebar-body">
+      <div className='sidebar-header'>How to Edit</div>
+      <ol className='sidebar-body'>
         <li>Correct minor typos or mistakes</li>
         <li>Clarify meaning without changing it</li>
         <li>Add related resources or links</li>

@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import QuestionEditSidebar from "../components/QuestionEdit/QuestionEditSidebar";
-import QuestionEditBody from "../components/QuestionEdit/QuestionEditBody";
+import React from 'react';
+import styled from 'styled-components';
+import QuestionEditSidebar from '../components/QuestionEdit/QuestionEditSidebar';
+import QuestionEditBody from '../components/QuestionEdit/QuestionEditBody';
 
 const QuestionEditStyled = styled.div`
   /* background-color: #f1f2f3; */
@@ -39,8 +39,8 @@ const QuestionEditStyled = styled.div`
 const QuestionEdit = () => {
   return (
     <QuestionEditStyled>
-      <div className="body-sidebar-container">
-        <div className="header-body-container">
+      <div className='body-sidebar-container'>
+        <div className='header-body-container'>
           {/* <div className="footer-container">
             <p>
               Your edit will be placed in a queue until it is peer reviewed.

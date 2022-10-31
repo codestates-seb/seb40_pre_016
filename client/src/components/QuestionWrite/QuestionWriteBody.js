@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
-import { QuestionBodyContainer } from "../../style/QuestionWrite/QuestionWriteBody.style";
-import QuestionWriteEditor from "./QuestionWriteEditor";
-import { useRecoilState } from "recoil";
-import { newQuestionState } from "../../atoms/atom";
+import React, { useState, useRef } from 'react';
+import { QuestionBodyContainer } from '../../style/QuestionWrite/QuestionWriteBody.style';
+import QuestionWriteEditor from './QuestionWriteEditor';
+import { useRecoilState } from 'recoil';
+import { newQuestionState } from '../../atoms/atom';
 
 const QuestionWriteBody = () => {
   const [newQuestion, setNewQuestion] = useRecoilState(newQuestionState);
@@ -19,7 +19,7 @@ const QuestionWriteBody = () => {
   // };
 
   const tagsAddHandler = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       const tempArr = newQuestion.tags.slice();
       const tempTag = {
         id: tagId.current,
@@ -29,7 +29,7 @@ const QuestionWriteBody = () => {
       tempArr.push(tempTag);
       setNewQuestion({ ...newQuestion, tags: tempArr });
       // setTagInput('');
-      tagInputContent.current.value = "";
+      tagInputContent.current.value = '';
     }
   };
 
@@ -42,19 +42,19 @@ const QuestionWriteBody = () => {
 
   return (
     <QuestionBodyContainer>
-      <div className="title">
+      <div className='title'>
         <h1>Title</h1>
         <p>
           Be specific and imagine you’re asking a question to another person
         </p>
         <input
-          placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+          placeholder='e.g. Is there an R function for finding the index of an element in a vector?'
           value={newQuestion.title}
           onChange={titleHandler}
         ></input>
       </div>
 
-      <div className="body">
+      <div className='body'>
         <h1>Body</h1>
         <p>
           Include all the information someone would need to answer your question
@@ -62,18 +62,18 @@ const QuestionWriteBody = () => {
         <QuestionWriteEditor></QuestionWriteEditor>
       </div>
 
-      <div className="tags">
+      <div className='tags'>
         <h1>Tag</h1>
         <p>Add up to 5 tags to describe what your question is about</p>
-        <div className="tagInput-container">
+        <div className='tagInput-container'>
           <ol>
             {newQuestion.tags.map((tag) => {
               return (
                 <li key={tag.id}>
-                  <div className="tag-container">
-                    <div className="tag-name">{tag.content}</div>
+                  <div className='tag-container'>
+                    <div className='tag-name'>{tag.content}</div>
                     <button
-                      className="tagInput-button"
+                      className='tagInput-button'
                       onClick={() => tagsDelHandler(tag.id)}
                     >
                       X
@@ -84,11 +84,11 @@ const QuestionWriteBody = () => {
             })}
           </ol>
           <input
-            className="tag-input"
+            className='tag-input'
             // value={tagInput}
             onKeyPress={tagsAddHandler}
             // onChange={tagsHandler}
-            placeholder="e.g. (angular sql-server string)"
+            placeholder='e.g. (angular sql-server string)'
             ref={tagInputContent}
           ></input>
         </div>

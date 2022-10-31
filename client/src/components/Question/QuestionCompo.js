@@ -1,14 +1,14 @@
-import * as S from '../../style/question/QuestionCompo.style';
-import polygon from '../../assets/img/polygon.png';
-import user from '../../assets/img/user.png';
+import * as S from "../../style/question/QuestionCompo.style";
+import polygon from "../../assets/img/polygon.png";
+import user from "../../assets/img/user.png";
 
 function QuestionCompo() {
   return (
     <S.QContent>
       <S.QContentLeft>
-        <img alt='Polygon' src={polygon} />
+        <img alt="Polygon" src={polygon} />
         <div>0</div>
-        <img alt='Polygon' src={polygon} />
+        <img alt="Polygon" src={polygon} />
       </S.QContentLeft>
       <S.QContentRight>
         <div>221027 오늘도 화이팅 !!</div>
@@ -50,7 +50,7 @@ function QuestionCompo() {
           <S.QCRERight>
             <span>21 years ago</span>
             <div>
-              <img src={user} alt='얼굴'></img>
+              <img src={user} alt="얼굴"></img>
               <span>ID</span>
             </div>
           </S.QCRERight>

@@ -1,8 +1,8 @@
-import React from "react";
-import img from "../../../assets/img/userAvatar.jpeg";
-import * as S from "../../../style/main/Question.style";
-import TagButton from "../Button/TagButtion";
-import { Link } from "react-router-dom";
+import React from 'react';
+import img from '../../../assets/img/userAvatar.jpeg';
+import * as S from '../../../style/main/Question.style';
+import TagButton from '../Button/TagButtion';
+import { Link } from 'react-router-dom';
 
 const Question = ({ question }) => {
   return (
@@ -15,7 +15,7 @@ const Question = ({ question }) => {
 
       <S.ContentContainer>
         <S.Title>
-          <Link to="/question">{question.title}</Link>
+          <Link to='/question'>{question.title}</Link>
         </S.Title>
 
         <S.Content>{question.content}</S.Content>
@@ -24,10 +24,10 @@ const Question = ({ question }) => {
             <TagButton key={idx}>{el}</TagButton>
           ))}
           <S.UserInfoContainer>
-            <img src={img} alt="userImg" />
-            <div className="userName">{question.userName}</div>
-            <div className="askCount">{question.askCount}</div>
-            <div className="userTime">{question.userTime} min ago</div>
+            <img src={img} alt='userImg' />
+            <div className='userName'>{question.userName}</div>
+            <div className='askCount'>{question.askCount}</div>
+            <div className='userTime'>{question.userTime} min ago</div>
           </S.UserInfoContainer>
         </S.FooterContainer>
       </S.ContentContainer>

@@ -1,8 +1,7 @@
-import React from "react";
-import AskButton from "../Button/AskButton";
+import React from 'react';
+import AskButton from '../Button/AskButton';
 import * as S from '../../../style/main/AskQuestion.style';
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 const AskQuestion = () => {
   return (
