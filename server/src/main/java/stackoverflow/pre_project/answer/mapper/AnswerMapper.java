@@ -24,6 +24,7 @@ public interface AnswerMapper {
     default public AnswerDto.Response answerToAnswerResponse(Answer answer) {
 
         return AnswerDto.Response.builder()
+                .answerId(answer.getId())
                 .content(answer.getContent())
                 .createdAt(answer.getCreatedAt())
                 .modifiedAt(answer.getModifiedAt())

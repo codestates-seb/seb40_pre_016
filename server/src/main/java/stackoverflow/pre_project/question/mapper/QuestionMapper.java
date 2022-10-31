@@ -43,6 +43,7 @@ public interface QuestionMapper {
                 .forEach(questionTag -> tagNames.add(questionTag.getTag().getName()));
 
         return QuestionDto.Response.builder()
+                .questionId(question.getId())
                 .title(question.getTitle())
                 .content(question.getContent())
                 .createdAt(question.getCreatedAt())

@@ -24,6 +24,7 @@ public class QuestionDto {
     @Getter
     @Builder
     public static class Response {
+        private Long questionId;
         private String title;
         private String content;
         private LocalDateTime createdAt;

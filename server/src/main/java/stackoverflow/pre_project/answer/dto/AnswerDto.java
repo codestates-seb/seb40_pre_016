@@ -32,6 +32,7 @@ public class AnswerDto {
     @Getter
     @Builder
     public static class Response {
+        private Long answerId;
         private String content;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
