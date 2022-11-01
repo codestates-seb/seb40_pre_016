@@ -56,9 +56,10 @@ public class QuestionController {
 
     @GetMapping
     public ResponseEntity getQuestions(@RequestParam @Positive int page,
-                                       @RequestParam String sortBy) {
+                                       @RequestParam String sortBy,
+                                       @RequestParam(required = false, defaultValue = "false") boolean desc) {
 
-        Page<Question> pageQuestions = questionService.findQuestions(--page, sortBy);
+        Page<Question> pageQuestions = questionService.findQuestions(--page, sortBy, desc);
         List<Question> questions = pageQuestions.getContent();
         List<QuestionDto.Response> responses = mapper.questionsToQuestionResponseDtos(questions);
         System.out.println(responses.size());
@@ -75,9 +76,10 @@ public class QuestionController {
     }
 
     @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId) {
+    public void deleteQuestion(@PathVariable("question-id") Long questionId,
+                               HttpServletResponse response) throws IOException {
         questionService.deleteQuestion(questionId);
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        response.sendRedirect("/api/questions?page=1&sortBy=createdAt&desc=true");
     }
 }

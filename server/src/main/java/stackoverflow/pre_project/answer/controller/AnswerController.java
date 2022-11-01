@@ -11,6 +11,7 @@ import stackoverflow.pre_project.answer.service.AnswerService;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class AnswerController {
 
     private final AnswerService answerService;
@@ -18,9 +19,8 @@ public class AnswerController {
 
     @PostMapping("/questions/{question-id}/answers")
     public ResponseEntity postAnswer(@PathVariable("question-id") Long questionId,
-                                     @RequestBody AnswerDto.Post post) {
-
-        Answer answer = mapper.answerPostToAnswer(post);
+                                     @RequestBody AnswerDto.Request request) {
+        Answer answer = mapper.answerRequestToAnswer(request);
 
         Answer createdAnswer = answerService.createAnswer(questionId, answer);
         AnswerDto.Response response = mapper.answerToAnswerResponse(createdAnswer);
@@ -30,8 +30,8 @@ public class AnswerController {
 
     @PatchMapping("answers/{answer-id}")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") Long answerId,
-                                      @RequestBody AnswerDto.Patch patch) {
-        Answer answer = mapper.answerPatchToAnswer(patch);
+                                      @RequestBody AnswerDto.Request request) {
+        Answer answer = mapper.answerRequestToAnswer(request);
 
         Answer updateAnswer = answerService.updateAnswer(answerId, answer);
         AnswerDto.Response response = mapper.answerToAnswerResponse(updateAnswer);
