@@ -25,3 +25,28 @@ export const QCRTag = styled.section`
     color: rgba(0, 0, 0, 0.5);
   }
 `;
+
+export const TagSection = styled.section`
+  width: 1300px;
+  padding: 24px;
+  > h1{
+    font-size: 27px;
+    margin: 0 0 20px 0;
+  }
+  > .tagText{
+    font-size: 15px;
+    width: 632px;
+  }
+  > .tagText2{
+    margin-top: 5px;
+    font-size: 15px;
+    width: 632px;
+  }
+`;
+
+export const TagsContainer = styled.section`
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: 10px;
+    gap: 10px;
+`

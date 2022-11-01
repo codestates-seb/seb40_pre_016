@@ -6,8 +6,6 @@ export const QYourAnswer = styled.section`
   margin-left: 20px;
   margin-bottom: 70px;
 
-
-
   > form > h3 {
     font-size: 20px;
     font-weight: 500;
@@ -32,7 +30,6 @@ export const QYourAnswer = styled.section`
 
 export const EditorBox = styled.div`
     margin-right: 10px;
-    width: 810px;
     
     .toastui-editor-main {
       

@@ -6,19 +6,19 @@ import QuestionCompo from '../components/Question/QuestionCompo';
 import QCommentCompo from '../components/Question/QCommentCompo';
 
 const Qcontainer = styled.section`
-width: 100%;
+  width: 1300px;
+  padding-left: 20px;
 `;
 
 // 콘텐츠 바디
 const QContents = styled.section`
- 
   height: auto;
   display: flex;
-`;
+  justify-content: space-between;
+  `;
 
 // 콘텐츠
 const QContentContainer = styled.section`
-  width: 100%;
 `;
 
 function Question() {
