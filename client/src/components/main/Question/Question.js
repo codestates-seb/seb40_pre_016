@@ -5,6 +5,10 @@ import TagButton from '../Button/TagButtion';
 import { Link } from 'react-router-dom';
 
 const Question = ({ question }) => {
+
+  //axios 로 받아온 id
+
+  let questionId = 1
   return (
     <S.QuestionContainer>
       <S.StatContainer>
@@ -15,7 +19,7 @@ const Question = ({ question }) => {
 
       <S.ContentContainer>
         <S.Title>
-          <Link to='/question'>{question.title}</Link>
+          <Link to={`question/${questionId}`}>{question.title}</Link>
         </S.Title>
 
         <S.Content>{question.content}</S.Content>

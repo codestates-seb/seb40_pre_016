@@ -28,10 +28,10 @@ const QuestionList = ({ questionLists }) => {
 
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: '/api/questions/1',
-    // headers: {
-    //   // "ngrok-skip-browser-warning": "111",
-    // },
+    url: 'api/questions',
+    headers: {
+      "ngrok-skip-browser-warning": "69420",
+    },
   })
   console.log(loading)
   console.log(error)
