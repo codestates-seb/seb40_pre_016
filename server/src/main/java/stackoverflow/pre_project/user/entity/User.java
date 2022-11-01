@@ -23,19 +23,18 @@ public class User extends Auditable {
     @Column(name = "user_id")
     private Long id;
 
-    @Setter
     @Column(nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Setter
     @Column(nullable = false)
     private String password;
 
-    @Setter
     private String message;
+
+    private String role;
 
     @OneToMany(mappedBy = "user")
     private final List<Answer> answers = new ArrayList<>();
@@ -46,4 +45,15 @@ public class User extends Auditable {
     @OneToMany(mappedBy = "user")
     private final List<Comment> comments = new ArrayList<>();
 
+    public void setPassword(String encPassword) {
+        this.password = encPassword;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

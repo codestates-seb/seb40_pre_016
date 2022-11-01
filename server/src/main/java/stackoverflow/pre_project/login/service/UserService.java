@@ -1,6 +1,10 @@
 package stackoverflow.pre_project.login.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,5 +44,10 @@ public class UserService {
         userEntity.setPassword(encPassword);
         userEntity.setMessage(user.getMessage());
         return userEntity;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<User> userList(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }
