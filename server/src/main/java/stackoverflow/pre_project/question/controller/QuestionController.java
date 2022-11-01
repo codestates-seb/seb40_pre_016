@@ -3,6 +3,9 @@ package stackoverflow.pre_project.question.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,14 +58,11 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity getQuestions(@RequestParam @Positive int page,
-                                       @RequestParam String sortBy,
-                                       @RequestParam(required = false, defaultValue = "false") boolean desc) {
+    public ResponseEntity getQuestions(@PageableDefault(page = 0, size = 30, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable) {
 
-        Page<Question> pageQuestions = questionService.findQuestions(--page, sortBy, desc);
+        Page<Question> pageQuestions = questionService.findQuestions(pageable);
         List<Question> questions = pageQuestions.getContent();
         List<QuestionDto.Response> responses = mapper.questionsToQuestionResponseDtos(questions);
-        System.out.println(responses.size());
 
         return new ResponseEntity(MultiResponseDto.of(responses, pageQuestions), HttpStatus.OK);
     }
