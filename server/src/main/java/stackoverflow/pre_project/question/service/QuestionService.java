@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,9 +89,8 @@ public class QuestionService {
         return findQuestion;
     }
 
-    public Page<Question> findQuestions(int page, String sortBy, boolean desc) {
-        if (desc) return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy).descending()));
-        return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy)));
+    public Page<Question> findQuestions(Pageable pageable) {
+        return questionRepository.findAll(pageable);
     }
 
     public Page<Question> findQuestionsByUser(int page, User user) {
