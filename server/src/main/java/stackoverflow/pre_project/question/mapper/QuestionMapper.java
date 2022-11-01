@@ -2,6 +2,7 @@ package stackoverflow.pre_project.question.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import stackoverflow.pre_project.answer.dto.AnswerDto;
 import stackoverflow.pre_project.answer.mapper.AnswerMapper;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
 import stackoverflow.pre_project.question.dto.QuestionDto;
@@ -11,7 +12,9 @@ import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.user.mapper.UserMapper;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", uses = {AnswerMapper.class, CommentMapper.class, UserMapper.class})
 public interface QuestionMapper {
@@ -52,7 +55,11 @@ public interface QuestionMapper {
                 .viewCount(question.getViewCount())
                 .tagNames(tagNames)
                 .user(userMapper.userToUserResponse(question.getUser()))
-                .answers(answerMapper.answersToAnswerResponses(question.getAnswers()))
+                .answers(
+                        answerMapper.answersToAnswerResponses(question.getAnswers()).stream()
+                                .sorted(Comparator.comparing(AnswerDto.Response::getVoteCount).reversed())
+                                .collect(Collectors.toList())
+                )
                 .comments(commentMapper.commentsToResponses(question.getComments()))
                 .build();
     }
