@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import stackoverflow.pre_project.answer.repository.AnswerRepository;
 import stackoverflow.pre_project.exception.BusinessLogicException;
 import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.question.entity.Question;
@@ -14,6 +15,7 @@ import stackoverflow.pre_project.question.repository.QuestionRepository;
 import stackoverflow.pre_project.tag.entity.QuestionTag;
 import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.service.TagService;
+import stackoverflow.pre_project.user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final AnswerRepository answerRepository;
     private final TagService tagService;
 
     public Question createQuestion(Question question) {
@@ -88,6 +91,10 @@ public class QuestionService {
     public Page<Question> findQuestions(int page, String sortBy, boolean desc) {
         if (desc) return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy).descending()));
         return questionRepository.findAll(PageRequest.of(page, 10, Sort.by(sortBy)));
+    }
+
+    public Page<Question> findQuestionsByUser(int page, User user) {
+        return questionRepository.findAllByUser(user, PageRequest.of(page, 10, Sort.by("createdAt").descending()));
     }
 
     public void deleteQuestion(Long questionId) {
