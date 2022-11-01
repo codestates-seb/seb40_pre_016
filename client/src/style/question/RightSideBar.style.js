@@ -3,7 +3,6 @@ import styled from "styled-components";
 // 콘텐츠 사이드바
 export const RightSidebar = styled.section`
     margin-top: 24px;
-    width: 300px;
     background-color: white;
 `;
 

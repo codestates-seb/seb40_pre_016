@@ -6,7 +6,7 @@ import UserComponents from "../components/Users/UserComponent";
 
 
 const UsersContainer = styled.section`
-  width: 1300px;
+  width: calc(1400px - 170px);
   padding: 24px;
   > h1{
     font-size: 27px;
@@ -26,23 +26,23 @@ const Users = () => {
 
   return (
     <UsersContainer>
-        <h1>Users</h1>
-        <Filter />
-        <UserContainer>
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-          <UserComponents />
-        </UserContainer>
-        <PageList></PageList>
+      <h1>Users</h1>
+      <Filter />
+      <UserContainer>
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+        <UserComponents />
+      </UserContainer>
+      <PageList></PageList>
     </UsersContainer>
   );
 };

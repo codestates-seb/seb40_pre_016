@@ -6,6 +6,7 @@ import { questionList } from "../../../atoms/atom";
 import axios from "axios";
 
 const QuestionList = ({ questionLists }) => {
+
   const [questions, setQuestions] = useRecoilState(questionList);
 
   const fetchQuestions = useCallback(async () => {
@@ -22,7 +23,6 @@ const QuestionList = ({ questionLists }) => {
   useEffect(() => {
     fetchQuestions();
   }, [fetchQuestions]);
-  
 
   return (
     <S.QuestionListContainer>

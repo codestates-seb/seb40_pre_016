@@ -12,6 +12,7 @@ const Qcontainer = styled.section`
 
 // 콘텐츠 바디
 const QContents = styled.section`
+  height: auto;
   display: flex;
   justify-content: space-between;
   `;
