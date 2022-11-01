@@ -30,7 +30,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route path='/' element={<Main />} />
-            <Route path='/question' element={<Question />} />
+            <Route path='question/:questionId' element={<Question />} />
 
             <Route path='/questionedit' element={<QuestionEdit />} />
             <Route path='/answeredit' element={<AnswerEdit />} />

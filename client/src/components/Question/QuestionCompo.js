@@ -4,6 +4,8 @@ import user from '../../assets/img/user.png';
 import { useRecoilState } from 'recoil';
 import { followQ } from '../../atoms/atom';
 import Comment from './Comment';
+import { useParams } from 'react-router-dom';
+import { useAxios } from '../../util/useAxios';
 
 
 function QuestionCompo() {
@@ -12,6 +14,18 @@ function QuestionCompo() {
     isFollow(!follow)
   }
 
+  //axios 로 해당하는 id 에 값만 상세페이지 노출
+
+  const params = useParams()
+
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/questions/${params.questionId}`,
+    headers: {
+      "ngrok-skip-browser-warning": "69420",
+    },
+  })
+  console.log(response)
   return (
     <S.QContent>
       <S.QContentLeft>
