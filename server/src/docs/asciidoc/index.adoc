@@ -69,3 +69,30 @@ include::{snippets}/tag/getTags/http-response.adoc[]
 
 .response-fields
 include::{snippets}/tag/getTags/response-fields.adoc[]
+
+== 투표
+=== 질문 투표
+.curl-request
+include::{snippets}/vote/postQuestionVote/curl-request.adoc[]
+
+.http-request
+include::{snippets}/vote/postQuestionVote/http-request.adoc[]
+
+.http-response
+include::{snippets}/vote/postQuestionVote/http-response.adoc[]
+
+.response-fields
+include::{snippets}/vote/postQuestionVote/response-body.adoc[]
+
+=== 답변 투표
+.curl-request
+include::{snippets}/vote/postAnswerVote/curl-request.adoc[]
+
+.http-request
+include::{snippets}/vote/postAnswerVote/http-request.adoc[]
+
+.http-response
+include::{snippets}/vote/postAnswerVote/http-response.adoc[]
+
+.response-body
+include::{snippets}/vote/postAnswerVote/response-body.adoc[]
