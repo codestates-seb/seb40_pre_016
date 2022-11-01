@@ -9,6 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import stackoverflow.pre_project.config.oauth.Oauth2DetailsService;
 
 @Configuration
@@ -27,18 +30,19 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity.httpBasic().disable()
                 .csrf()
                 .disable()
-                .cors()
+                .cors().configurationSource(corsConfiguration())
                 .and()
                 .headers().frameOptions()
                 .disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/user/**", "/api/**", "/question/**", "/comment/**", "/answer/**", "/users/**").authenticated()
+//                .antMatchers("/", "/user/**", "/api/**", "/question/**", "/comment/**", "/answer/**", "/users/**").authenticated()
                 .anyRequest()
                 .permitAll()
                 .and()
@@ -52,6 +56,17 @@ public class SecurityConfig {
                 .userService(oauth2DetailsService)
                 .and()
                 .and().build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfiguration() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedHeader(CorsConfiguration.ALL);
+        configuration.addAllowedMethod(CorsConfiguration.ALL);
+        configuration.addAllowedOrigin(CorsConfiguration.ALL);
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
 
