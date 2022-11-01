@@ -53,19 +53,20 @@ class TagControllerTest {
     @Test
     public void getTags() throws Exception {
         // given
-        int page = 1;
+        int page = 0;
         int size = 5;
         Tag java = Tag.builder().id(1L).name("java").questionCount(123).build();
         Tag javascript = Tag.builder().id(4L).name("javascript").questionCount(234).build();
         Tag python = Tag.builder().id(2L).name("python").questionCount(345).build();
         Tag spring = Tag.builder().id(5L).name("spring").questionCount(456).build();
         Tag react = Tag.builder().id(3L).name("react").questionCount(789).build();
+        PageRequest pageRequest = PageRequest.of(page, size);
         PageImpl<Tag> tags = new PageImpl<>(
                 List.of(react, spring, python, javascript, java),
-                PageRequest.of(page - 1, size),
+                pageRequest,
                 123);
 
-        given(tagService.findTags(page, size))
+        given(tagService.findTags(pageRequest))
                 .willReturn(tags);
 
         // when
