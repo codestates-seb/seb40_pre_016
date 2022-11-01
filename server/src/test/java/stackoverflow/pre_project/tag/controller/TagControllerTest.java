@@ -10,6 +10,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
@@ -60,7 +61,7 @@ class TagControllerTest {
         Tag python = Tag.builder().id(2L).name("python").questionCount(345).build();
         Tag spring = Tag.builder().id(5L).name("spring").questionCount(456).build();
         Tag react = Tag.builder().id(3L).name("react").questionCount(789).build();
-        PageRequest pageRequest = PageRequest.of(page, size);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by("questionCount").descending());
         PageImpl<Tag> tags = new PageImpl<>(
                 List.of(react, spring, python, javascript, java),
                 pageRequest,
@@ -75,6 +76,7 @@ class TagControllerTest {
                         get("/api/tags")
                                 .param("page", String.valueOf(page))
                                 .param("size", String.valueOf(size))
+                                .param("sort", "questionCount,DESC")
                                 .contentType(MediaType.APPLICATION_JSON)
                 );
 
