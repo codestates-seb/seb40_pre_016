@@ -3,26 +3,42 @@ import * as S from "../../../style/main/QuestionList.style";
 import Question from "./Question";
 import { useRecoilState } from "recoil";
 import { questionList } from "../../../atoms/atom";
+import { useAxios } from "../../../util/useAxios";
 import axios from "axios";
 
 const QuestionList = ({ questionLists }) => {
 
+
+  // import { useAxios } from 'axioshook';
+
+  // const App = () => {
+  //     const { response, loading, error } = useAxios({
+  //         method: 'POST',
+  //         url: '/posts',
+  //         headers: { // no need to stringify
+  //           accept: '*/*'
+  //         },
+  //         data: {  // no need to stringify
+  //             userId: 1,
+  //             id: 19392,
+  //             title: 'title',
+  //             body: 'Sample text',
+  //         },
+  //     });
+
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: '/api/questions/1',
+    // headers: {
+    //   // "ngrok-skip-browser-warning": "111",
+    // },
+  })
+  console.log(loading)
+  console.log(error)
+  console.log(response)
+
   const [questions, setQuestions] = useRecoilState(questionList);
 
-  const fetchQuestions = useCallback(async () => {
-    await axios({
-      url: `https://702b-218-147-182-45.jp.ngrok.io/api/questions/1`,
-      headers: {
-        "ngrok-skip-browser-warning": "111",
-      },
-      method: 'GET',
-    }).then(res => console.log(res.data))
-
-  }, []);
-
-  useEffect(() => {
-    fetchQuestions();
-  }, [fetchQuestions]);
 
   return (
     <S.QuestionListContainer>
