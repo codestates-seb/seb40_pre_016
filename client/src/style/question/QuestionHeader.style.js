@@ -3,19 +3,15 @@ import styled from 'styled-components';
 // 콘텐츠 헤더
 export const QHeader = styled.section`
   margin-top: 20px;
-  margin-left: 35px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   > h1 {
-    display: block;
-    width: 890px;
     font-size: 27px;
   }
 
   > a > button {
-    margin-left: 50px;
     width: 120px;
     font-size: 15px;
     height: 37px;
@@ -32,19 +28,18 @@ export const QHeader = styled.section`
 `;
 
 export const QHeaderr = styled.section`
-  margin: 10px 40px;
+  margin: 10px 0;
   height: 34px;
   font-size: 13px;
-  width: 97%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
 
   > div {
-    margin-right: 8px;
+    padding-right: 8px;
   }
 
   > div > span {
     color: #6a737c;
-    margin-right: 5px;
+    padding-right: 5px;
   }
 `;

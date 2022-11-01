@@ -3,12 +3,10 @@ import styled from 'styled-components'
 // QuestionCompo
 export const QContent = styled.section`
   margin-top: 15px;
-  margin-left: 20px;
   padding-bottom: 10px;
 
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
 `;
 
 export const QContentLeft = styled.section`
@@ -39,7 +37,7 @@ export const QContentRight = styled.section`
 
   > div {
     margin-top: 10px;
-    margin-left: 8px;
+    padding-left: 8px;
   }
 `;
 
@@ -128,8 +126,7 @@ export const CommentSection = styled.div`
   `
   
   export const QCRComment = styled.section`
-    margin-top: 20px;
-    margin-left: 8px;
+    margin-top: 10px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;

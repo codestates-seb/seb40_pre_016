@@ -12,7 +12,7 @@ export const YBox = styled.ul`
     min-height: 120px;
     list-style: inside;
     background-color: #FAF5E6;
-    margin-left: 10px;
+    margin-left: 35px;
     box-shadow: rgba(0,0,0,0.3) 0px 1px 1px 1px;
     
     > li{

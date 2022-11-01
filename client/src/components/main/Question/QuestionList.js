@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import * as S from "../../../style/main/QuestionList.style";
 import Question from "./Question";
 import { useRecoilState } from "recoil";
 import { questionList } from "../../../atoms/atom";
+import axios from "axios";
 
 const QuestionList = ({ questionLists }) => {
   const [questions, setQuestions] = useRecoilState(questionList);
-  console.log("퀘스쳔리스트쪽", questions);
+
+  const fetchQuestions = useCallback(async () => {
+    await axios({
+      url: `https://702b-218-147-182-45.jp.ngrok.io/api/questions/1`,
+      headers: {
+        "ngrok-skip-browser-warning": "111",
+      },
+      method: 'GET',
+    }).then(res => console.log(res.data))
+
+  }, []);
+
+  useEffect(() => {
+    fetchQuestions();
+  }, [fetchQuestions]);
+  
 
   return (
     <S.QuestionListContainer>

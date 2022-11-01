@@ -6,7 +6,7 @@ import UserComponents from "../components/Users/UserComponent";
 
 
 const UsersContainer = styled.section`
-  width: 1100px;
+  width: 1300px;
   padding: 24px;
   > h1{
     font-size: 27px;
