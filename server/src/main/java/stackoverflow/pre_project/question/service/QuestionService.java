@@ -41,9 +41,7 @@ public class QuestionService {
         question.getQuestionTags().stream()
                 .forEach(questionTag -> {
                     Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    log.info("find tag name = {}", tag.getName());
                     tag.addQuestionTag(questionTag);
-                    log.info("-------------------------");
                 });
 
         Question savedQuestion = questionRepository.save(question);

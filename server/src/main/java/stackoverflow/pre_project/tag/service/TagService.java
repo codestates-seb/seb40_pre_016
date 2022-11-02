@@ -19,7 +19,6 @@ public class TagService {
 
     @Transactional
     public Tag createTag(String tagName) {
-        log.info("generate new tag = {}", tagName);
         Tag tag = Tag.builder()
                 .name(tagName)
                 .build();
