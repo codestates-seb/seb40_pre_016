@@ -1,11 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png'
+import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style'
 
 const UserPage = ({ userName, createDay }) => {
-
+    // const { response, loading, error } = useAxios({
+    //     method: 'GET',
+    //     url: 'api/questions',
+    //     headers: {
+    //       "ngrok-skip-browser-warning": "69420",
+    //     },
+    //   })
     userName = '홍길동'
     createDay = '5'
     return (
@@ -30,15 +37,9 @@ const UserPage = ({ userName, createDay }) => {
                 </S.ButtonWarp>
             </S.UserNameCard>
             <S.ProfileTab>
-                <S.ProfileBtn>Profile</S.ProfileBtn>
-                <S.AboutTab>
-                    <S.AboutHead>About</S.AboutHead>
-                    <S.AboutCompo>
-                        <S.AboutP>
-                            Your about me section is currently blank. Would you<br /> like to add one? <Link to='/'>Add Profile</Link>
-                        </S.AboutP>
-                    </S.AboutCompo>
-                </S.AboutTab>
+                <S.ProfileBtn><NavLink to='/user/info'>Profile</NavLink></S.ProfileBtn>
+                <S.ProfileBtn><NavLink to='/user/setting'>Setting</NavLink></S.ProfileBtn>
+                <Outlet />
             </S.ProfileTab>
         </S.UserPageContainer>
     );
