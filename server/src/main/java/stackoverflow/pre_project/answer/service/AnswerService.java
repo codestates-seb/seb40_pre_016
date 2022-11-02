@@ -10,6 +10,7 @@ import stackoverflow.pre_project.exception.BusinessLogicException;
 import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.service.QuestionService;
+import stackoverflow.pre_project.user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -37,15 +38,23 @@ public class AnswerService {
 
     public Answer updateAnswer(Long answerId, Answer answer) {
         Answer findAnswer = findVerifiedAnswer(answerId);
-        findAnswer.setContent(answer.getContent());
 
+        if (findAnswer.getUser().getId() != answer.getUser().getId()) {
+            throw new RuntimeException();
+        }
+
+        findAnswer.setContent(answer.getContent());
         findAnswer.setModifiedAt(LocalDateTime.now());
 
         return findAnswer;
     }
 
-    public void delete(Long answerId) {
+    public void delete(Long answerId, User user) {
         Answer answer = findVerifiedAnswer(answerId);
+
+        if (answer.getUser().getId() != user.getId()) {
+            throw new RuntimeException();
+        }
 
         answerRepository.delete(answer);
     }

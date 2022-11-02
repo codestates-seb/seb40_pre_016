@@ -50,7 +50,13 @@ public class QuestionService {
     }
 
     public Question updateQuestion(Long questionId, Question question) {
+
         Question findQuestion = findVerifiedQuestion(questionId);
+
+        if (findQuestion.getUser().getId() != question.getUser().getId()) {
+            throw new RuntimeException();
+        }
+
         List<QuestionTag> questionTags = findQuestion.getQuestionTags();
 
         List<String> oldTagNames = questionTags.stream()
@@ -95,12 +101,16 @@ public class QuestionService {
         return questionRepository.findAll(pageable);
     }
 
-    public Page<Question> findQuestionsByUser(int page, User user) {
-        return questionRepository.findAllByUser(user, PageRequest.of(page, 10, Sort.by("createdAt").descending()));
+    public Page<Question> findQuestionsByUser(User user, Pageable pageable) {
+        return questionRepository.findAllByUser(user, pageable);
     }
 
-    public void deleteQuestion(Long questionId) {
+    public void deleteQuestion(Long questionId, User user) {
         Question question = findVerifiedQuestion(questionId);
+
+        if (question.getUser().getId() != user.getId()) {
+            throw new RuntimeException();
+        }
 
         if (question.getAnswers().size() > 0) {
             throw new RuntimeException();

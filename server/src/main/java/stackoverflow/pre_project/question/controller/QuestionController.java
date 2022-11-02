@@ -45,8 +45,11 @@ public class QuestionController {
 
     @PatchMapping("/{question-id}")
     public void patchQuestion(@PathVariable("question-id") Long questionId,
+                              @AuthenticationPrincipal CustomUserDetails customUserDetails,
                               @RequestBody QuestionDto.Request request,
                               HttpServletResponse response) throws IOException {
+        request.setUser(customUserDetails.getUser());
+
         Question question = mapper.questionRequestToQuestion(request);
         Question updateQuestion = questionService.updateQuestion(questionId, question);
 
@@ -73,8 +76,10 @@ public class QuestionController {
 
     @DeleteMapping("/{question-id}")
     public void deleteQuestion(@PathVariable("question-id") Long questionId,
+                               @AuthenticationPrincipal CustomUserDetails customUserDetails,
                                HttpServletResponse response) throws IOException {
-        questionService.deleteQuestion(questionId);
+
+        questionService.deleteQuestion(questionId, customUserDetails.getUser());
 
         response.sendRedirect("/api/questions");
     }
