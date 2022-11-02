@@ -3,9 +3,11 @@ package stackoverflow.pre_project.question.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import stackoverflow.pre_project.answer.dto.AnswerDto;
 import stackoverflow.pre_project.comment.dto.CommentDto;
 import stackoverflow.pre_project.user.dto.UserDto;
+import stackoverflow.pre_project.user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +20,9 @@ public class QuestionDto {
         private String title;
         private String content;
         private List<String> tagNames;
+
+        @Setter
+        private User user;
     }
 
     @AllArgsConstructor

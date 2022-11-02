@@ -8,7 +8,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import stackoverflow.pre_project.config.auth.CustomUserDetails;
 import stackoverflow.pre_project.dto.MultiResponseDto;
 import stackoverflow.pre_project.question.dto.QuestionDto;
 import stackoverflow.pre_project.question.entity.Question;
@@ -31,7 +33,9 @@ public class QuestionController {
 
     @PostMapping
     public void postQuestion(@RequestBody QuestionDto.Request request,
+                             @AuthenticationPrincipal CustomUserDetails customUserDetails,
                              HttpServletResponse response) throws IOException {
+        request.setUser(customUserDetails.getUser());
         Question question = mapper.questionRequestToQuestion(request);
         Question createdQuestion = questionService.createQuestion(question);
 
@@ -72,6 +76,6 @@ public class QuestionController {
                                HttpServletResponse response) throws IOException {
         questionService.deleteQuestion(questionId);
 
-        response.sendRedirect("/api/questions?page=1&sortBy=createdAt&desc=true");
+        response.sendRedirect("/api/questions");
     }
 }

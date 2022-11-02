@@ -1,11 +1,9 @@
 package stackoverflow.pre_project.answer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import stackoverflow.pre_project.comment.dto.CommentDto;
 import stackoverflow.pre_project.user.dto.UserDto;
+import stackoverflow.pre_project.user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +16,9 @@ public class AnswerDto {
     @AllArgsConstructor
     public static class Request {
         private String content;
+
+        @Setter
+        private User user;
     }
 
     @AllArgsConstructor

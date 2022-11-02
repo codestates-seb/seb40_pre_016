@@ -29,13 +29,14 @@ public interface QuestionMapper {
         Question question = Question.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
+                .user(request.getUser())
                 .build();
 
         request.getTagNames().stream()
                 .forEach(tagName -> {
                     Tag tag = Tag.builder().name(tagName).build();
                     QuestionTag questionTag = QuestionTag.builder().question(question).tag(tag).build();
-                    question.getQuestionTags().add(questionTag);
+                    question.addQuestionTag(questionTag);
                 });
         return question;
     }
