@@ -19,18 +19,23 @@ public class QuestionTag {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "question_id")
-    @Setter
     private Question question;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "tag_id")
-    @Setter
     private Tag tag;
 
     public void addQuestion(Question question) {
         this.question = question;
-        if (!this.question.getQuestionTags().contains(this)) {
-            this.question.getQuestionTags().add(this);
+        if (!question.getQuestionTags().contains(this)) {
+            question.addQuestionTag(this);
+        }
+    }
+
+    public void addTag(Tag tag) {
+        this.tag = tag;
+        if (!tag.getQuestionTags().contains(this)) {
+            tag.addQuestionTag(this);
         }
     }
 }

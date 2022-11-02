@@ -41,8 +41,7 @@ public class QuestionService {
         question.getQuestionTags().stream()
                 .forEach(questionTag -> {
                     Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    tag.setQuestionCount(tag.getQuestionCount() + 1);
-                    questionTag.setTag(tag);
+                    tag.addQuestionTag(questionTag);
                 });
 
         Question savedQuestion = questionRepository.save(question);
@@ -53,27 +52,30 @@ public class QuestionService {
     public Question updateQuestion(Long questionId, Question question) {
         Question findQuestion = findVerifiedQuestion(questionId);
         List<QuestionTag> questionTags = findQuestion.getQuestionTags();
-        List<Tag> tags = questionTags.stream().map(questionTag -> questionTag.getTag()).collect(Collectors.toList());
 
-        questionTags.stream().filter(questionTag -> !question.getQuestionTags().contains(questionTag))
+        List<String> oldTagNames = questionTags.stream()
+                .map(questionTag -> questionTag.getTag().getName())
+                .collect(Collectors.toList());
+
+        List<String> newTagNames = question.getQuestionTags().stream()
+                .map(questionTag -> questionTag.getTag().getName())
+                .collect(Collectors.toList());
+
+        questionTags.stream()
+                .filter(questionTag -> !newTagNames.contains(questionTag.getTag().getName()))
                 .forEach(questionTag -> {
-                    Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    tag.setQuestionCount(tag.getQuestionCount() - 1);
+                    Tag tag = questionTag.getTag();
+                    tag.deleteQuestionTag(questionTag);
+                    if (tag.getQuestionCount() == 0) tagService.deleteTag(tag.getId());
                 });
-
-        questionTags.removeIf(questionTag -> !question.getQuestionTags().contains(questionTag));
-
-        tags.stream()
-                .filter(tag -> tag.getQuestionCount()==0)
-                .forEach(tag -> tagService.deleteTag(tag.getId()));
+        questionTags.removeIf(questionTag -> !newTagNames.contains(questionTag.getTag().getName()));
 
         question.getQuestionTags().stream()
-                .filter(questionTag -> !questionTags.contains(questionTag))
+                .filter(questionTag -> !oldTagNames.contains(questionTag.getTag().getName()))
                 .forEach(questionTag -> {
                     Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    tag.setQuestionCount(tag.getQuestionCount() + 1);
-                    questionTag.setTag(tag);
-                    findQuestion.addQuestionTag(questionTag);
+                    questionTag.addTag(tag);
+                    questionTag.addQuestion(findQuestion);
                 });
 
         findQuestion.setTitle(question.getTitle());
@@ -99,22 +101,18 @@ public class QuestionService {
 
     public void deleteQuestion(Long questionId) {
         Question question = findVerifiedQuestion(questionId);
-        List<QuestionTag> questionTags = question.getQuestionTags();
-        List<Tag> tags = questionTags.stream().map(questionTag -> questionTag.getTag()).collect(Collectors.toList());
-
-        questionTags.stream()
-                .forEach(questionTag -> {
-                    Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    tag.setQuestionCount(tag.getQuestionCount() - 1);
-                });
-
-        tags.stream()
-                .filter(tag -> tag.getQuestionCount()==0)
-                .forEach(tag -> tagService.deleteTag(tag.getId()));
 
         if (question.getAnswers().size() > 0) {
             throw new RuntimeException();
         }
+
+        List<QuestionTag> questionTags = question.getQuestionTags();
+        questionTags.stream()
+                .forEach(questionTag -> {
+                    Tag tag = questionTag.getTag();
+                    tag.deleteQuestionTag(questionTag);
+                    if (tag.getQuestionCount() == 0) tagService.deleteTag(tag.getId());
+                });
 
         questionRepository.delete(question);
     }
