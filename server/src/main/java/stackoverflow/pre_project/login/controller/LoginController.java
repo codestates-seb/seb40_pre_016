@@ -1,11 +1,11 @@
 package stackoverflow.pre_project.login.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import stackoverflow.pre_project.login.dto.SignupDto;
 import stackoverflow.pre_project.login.service.LoginService;
 import stackoverflow.pre_project.user.entity.User;
@@ -18,20 +18,10 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    @GetMapping("/auth/login")
-    public String login(){
-        return "auth/login";
-    }
-
-    @GetMapping("/auth/signup")
-    public String signup(){
-        return "auth/signup";
-    }
-
     @PostMapping("/auth/signup")
-    public String signup(@Valid SignupDto signupDto, BindingResult bindingResult){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
         User user = signupDto.toEntity();
         loginService.signup(user);
-        return "auth/login";
     }
 }

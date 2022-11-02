@@ -28,7 +28,7 @@ public class Oauth2DetailsService extends DefaultOAuth2UserService{
         String email = (String) userInfo.get("email");
         String password = new BCryptPasswordEncoder().encode(UUID.randomUUID().toString());
 
-        User userEntity = userRepository.findByUsername(username);
+        User userEntity = userRepository.findByEmail(username);
 
         if(userEntity == null){
             User user = User.builder()
