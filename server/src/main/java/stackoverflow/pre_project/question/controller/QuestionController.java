@@ -74,6 +74,28 @@ public class QuestionController {
         return new ResponseEntity(MultiResponseDto.of(responses, pageQuestions), HttpStatus.OK);
     }
 
+    @GetMapping("/users/{user_id}")
+    public ResponseEntity getQuestionsByUser(@PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+                                             @PathVariable("user_id") Long userId) {
+
+        Page<Question> pageQuestions = questionService.findQuestionsByUser(userId, pageable);
+        List<Question> questions = pageQuestions.getContent();
+        List<QuestionDto.Response> responses = mapper.questionsToQuestionResponseDtos(questions);
+
+        return new ResponseEntity(MultiResponseDto.of(responses, pageQuestions), HttpStatus.OK);
+    }
+
+    @GetMapping("/tags/{tagName}")
+    public ResponseEntity getQuestionsByTag(@PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+                                            @PathVariable String tagName) {
+
+        Page<Question> pageQuestions = questionService.findQuestionsByTag(tagName, pageable);
+        List<Question> questions = pageQuestions.getContent();
+        List<QuestionDto.Response> responses = mapper.questionsToQuestionResponseDtos(questions);
+
+        return new ResponseEntity(MultiResponseDto.of(responses, pageQuestions), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{question-id}")
     public void deleteQuestion(@PathVariable("question-id") Long questionId,
                                @AuthenticationPrincipal CustomUserDetails customUserDetails,

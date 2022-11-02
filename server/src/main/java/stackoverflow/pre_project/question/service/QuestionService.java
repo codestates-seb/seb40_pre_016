@@ -2,10 +2,7 @@ package stackoverflow.pre_project.question.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stackoverflow.pre_project.answer.repository.AnswerRepository;
@@ -19,6 +16,7 @@ import stackoverflow.pre_project.tag.service.TagService;
 import stackoverflow.pre_project.user.entity.User;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -101,8 +99,20 @@ public class QuestionService {
         return questionRepository.findAll(pageable);
     }
 
-    public Page<Question> findQuestionsByUser(User user, Pageable pageable) {
-        return questionRepository.findAllByUser(user, pageable);
+    public Page<Question> findQuestionsByUser(Long userId, Pageable pageable) {
+        return questionRepository.findAllByUser_Id(userId, pageable);
+    }
+
+    public Page<Question> findQuestionsByTag(String tagName, Pageable pageable) {
+        Tag tag = tagService.findVerifiedTag(tagName);
+
+        if (tag == null) {
+            return new PageImpl<>(new LinkedList<>(), pageable, 0);
+        }
+
+        return new PageImpl<>(tag.getQuestionTags().stream()
+                .map(questionTag -> questionTag.getQuestion())
+                .collect(Collectors.toList()), pageable, tag.getQuestionCount());
     }
 
     public void deleteQuestion(Long questionId, User user) {
