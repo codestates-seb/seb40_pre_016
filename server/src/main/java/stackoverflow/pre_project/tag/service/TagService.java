@@ -19,15 +19,18 @@ public class TagService {
 
     @Transactional
     public Tag createTag(String tagName) {
+        log.info("generate new tag = {}", tagName);
         Tag tag = Tag.builder()
                 .name(tagName)
                 .build();
+
         tagRepository.save(tag);
 
         return tag;
     }
 
     public Tag findTag(String tagName) {
+        log.info("start find tag = {}", tagName);
         return tagRepository.findByName(tagName).orElseGet(() -> createTag(tagName));
     }
 

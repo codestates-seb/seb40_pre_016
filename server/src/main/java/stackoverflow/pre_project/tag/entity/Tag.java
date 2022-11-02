@@ -23,7 +23,7 @@ public class Tag {
 
     private int questionCount = 0;
 
-    @OneToMany(mappedBy = "tag", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "tag", orphanRemoval = true)
     private final List<QuestionTag> questionTags = new LinkedList<>();
 
     public void addQuestionTag(QuestionTag questionTag) {
