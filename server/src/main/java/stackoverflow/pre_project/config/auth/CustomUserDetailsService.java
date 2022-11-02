@@ -22,5 +22,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (userEntity == null)
             return null;
         return new CustomUserDetails(userEntity);
+
     }
 }
