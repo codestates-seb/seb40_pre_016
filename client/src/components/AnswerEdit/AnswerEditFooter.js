@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { editQuestionState } from '../../atoms/atom';
+import { useAxios } from '../../util/useAxios';
 
 const AnswerEditFooterContainer = styled.div`
   margin-top: 20px;
@@ -44,8 +45,30 @@ const AnswerEditFooterContainer = styled.div`
 
 const AnswerEditFooter = () => {
   const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
+  let postData = Object.assign({}, editQuestion);
+  const { response, loading, error, clickFetchFunc } = useAxios(
+    {
+      method: 'POST',
+      url: 'tasks.json',
+      headers: {
+        'Content-Type': `application/json`,
+      },
+      data: JSON.stringify(postData),
+    },
+    false
+  );
+
   const saveEditHandler = () => {
     //수정된 질문 fetch 요청
+    clickFetchFunc({
+      method: 'PATCH',
+      // url: 'tasks.json',
+      url: '/api/questions/1',
+      headers: {
+        'Content-Type': `application/json`,
+      },
+      data: postData,
+    });
     console.log('수정 요청 완료');
   };
 

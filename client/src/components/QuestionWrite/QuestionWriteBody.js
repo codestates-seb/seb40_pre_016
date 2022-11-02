@@ -14,30 +14,27 @@ const QuestionWriteBody = () => {
     setNewQuestion({ ...newQuestion, title: e.target.value });
   };
 
-  // const tagsHandler = (e) => {
-  //   setTagInput(e.target.value)
-  // };
-
   const tagsAddHandler = (e) => {
     if (e.key === 'Enter') {
-      const tempArr = newQuestion.tags.slice();
+      const tempArr = newQuestion.tagNames.slice();
       const tempTag = {
         id: tagId.current,
         content: e.target.value,
       };
+
       tagId.current++;
       tempArr.push(tempTag);
-      setNewQuestion({ ...newQuestion, tags: tempArr });
+      setNewQuestion({ ...newQuestion, tagNames: tempArr });
       // setTagInput('');
       tagInputContent.current.value = '';
     }
   };
 
   const tagsDelHandler = (idx) => {
-    const tempArr = newQuestion.tags.slice().filter((tag) => {
+    const tempArr = newQuestion.tagNames.slice().filter((tag) => {
       return tag.id !== idx;
     });
-    setNewQuestion({ ...newQuestion, tags: tempArr });
+    setNewQuestion({ ...newQuestion, tagNames: tempArr });
   };
 
   return (
@@ -67,7 +64,7 @@ const QuestionWriteBody = () => {
         <p>Add up to 5 tags to describe what your question is about</p>
         <div className='tagInput-container'>
           <ol>
-            {newQuestion.tags.map((tag) => {
+            {newQuestion.tagNames.map((tag) => {
               return (
                 <li key={tag.id}>
                   <div className='tag-container'>

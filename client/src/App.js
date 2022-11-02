@@ -15,10 +15,9 @@ import Footer from './components/Common/Footer';
 import QuestionEdit from './pages/QuestionEdit';
 import AnswerEdit from './pages/AnswerEdit';
 
-import UserPage from './components/auth/UserPage'
+import UserPage from './components/auth/UserPage';
 import Tags from './pages/Tags';
-import Users from './pages/Users'
-
+import Users from './pages/Users';
 
 function App() {
   return (
@@ -36,11 +35,10 @@ function App() {
             <Route path='/answeredit' element={<AnswerEdit />} />
 
             <Route element={<AuthLayout />}>
-              <Route path="/user" element={<UserPage />} />
+              <Route path='/user' element={<UserPage />} />
             </Route>
             <Route path='/tags' element={<Tags />} />
             <Route path='/users' element={<Users />} />
-
           </Route>
           <Route path='/askquestion' element={<QuestionWrite />} />
           <Route path='/' element={<AuthContainer />}>
@@ -48,12 +46,8 @@ function App() {
             <Route path='/logout' element={<Logout />} />
             <Route path='/signup' element={<SignUp />} />
           </Route>
-
-
         </Routes>
         <Footer />
-
-
       </BrowserRouter>
     </>
   );

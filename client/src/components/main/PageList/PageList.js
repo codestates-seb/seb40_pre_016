@@ -1,19 +1,19 @@
 import * as S from '../../../style/main/PageList.style';
 import PageButton from '../Button/PageButton';
 import { useRecoilState } from 'recoil';
-import { pageBtnIdx } from '../../../atoms/atom';
+import { pageBtnIdx, totalPageNum } from '../../../atoms/atom';
 
 const PageList = () => {
   const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
+  const [totalPage, setTotalPage] = useRecoilState(totalPageNum);
 
   const btnCheckHandler = (idx) => {
     setCurrentButton(idx);
     console.log(currentButton);
   };
 
-  const listCount = 5;
   const listCountArr = [];
-  for (let i = 1; i <= listCount; i++) {
+  for (let i = 1; i <= totalPage; i++) {
     listCountArr.push(i);
   }
 
