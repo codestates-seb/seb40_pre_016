@@ -22,7 +22,6 @@ public class Oauth2DetailsService extends DefaultOAuth2UserService{
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException{
-
         OAuth2User oAuth2User = super.loadUser(userRequest);
         Map<String, Object> userInfo = oAuth2User.getAttributes();
         String username = "google_" + userInfo.get("id");

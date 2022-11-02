@@ -8,5 +8,4 @@ import stackoverflow.pre_project.user.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String username);
-
 }
