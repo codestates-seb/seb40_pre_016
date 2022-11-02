@@ -18,6 +18,9 @@ import AnswerEdit from './pages/AnswerEdit';
 import UserPage from './components/auth/UserPage'
 import Tags from './pages/Tags';
 import Users from './pages/Users'
+import UserInfo from './components/auth/UserInfo';
+import UserSetting from './components/auth/UserSetting';
+import TagLayout from './components/Tags/TagLayout';
 
 
 function App() {
@@ -32,13 +35,18 @@ function App() {
             <Route path='/' element={<Main />} />
             <Route path='question/:questionId' element={<Question />} />
 
-            <Route path='/questionedit' element={<QuestionEdit />} />
+            <Route path='/question/:questionId/edit' element={<QuestionEdit />} />
             <Route path='/answeredit' element={<AnswerEdit />} />
 
             <Route element={<AuthLayout />}>
-              <Route path="/user" element={<UserPage />} />
+              <Route path="/user" element={<UserPage />}>
+                <Route path='/user/info' element={<UserInfo />} />
+                <Route path='/user/setting' element={<UserSetting />} />
+              </Route>
             </Route>
-            <Route path='/tags' element={<Tags />} />
+            <Route path='/tags' element={<TagLayout />} >
+              <Route path='/tags/:tagspage' element={<Tags />} />
+            </Route>
             <Route path='/users' element={<Users />} />
 
           </Route>
