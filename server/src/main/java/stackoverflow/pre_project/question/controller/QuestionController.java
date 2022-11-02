@@ -62,7 +62,7 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity getQuestions(@PageableDefault(page = 0, size = 30, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable) {
+    public ResponseEntity getQuestions(@PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
 
         Page<Question> pageQuestions = questionService.findQuestions(pageable);
         List<Question> questions = pageQuestions.getContent();

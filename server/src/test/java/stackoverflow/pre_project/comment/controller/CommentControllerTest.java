@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import stackoverflow.pre_project.comment.dto.CommentDto;
@@ -21,7 +19,10 @@ import stackoverflow.pre_project.comment.entity.CommentType;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
 import stackoverflow.pre_project.comment.service.CommentService;
 import stackoverflow.pre_project.config.SecurityTestConfig;
+import stackoverflow.pre_project.config.TestUserDetailService;
+import stackoverflow.pre_project.user.entity.User;
 import stackoverflow.pre_project.util.Reflection;
+import stackoverflow.pre_project.util.TestConstant;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -35,7 +36,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = CommentController.class)
-@WithMockUser
+@WithUserDetails("test")
+@Import({SecurityTestConfig.class, TestUserDetailService.class})
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class CommentControllerTest implements Reflection {
@@ -66,7 +68,7 @@ class CommentControllerTest implements Reflection {
                 .content(content)
                 .build();
 
-        given(commentService.createComment(CommentType.QUESTION, questionId, content, null))
+        given(commentService.createComment(CommentType.QUESTION, questionId, content, TestConstant.USER))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -115,7 +117,7 @@ class CommentControllerTest implements Reflection {
                 .content(content)
                 .build();
 
-        given(commentService.createComment(CommentType.ANSWER, answerId, content, null))
+        given(commentService.createComment(CommentType.ANSWER, answerId, content, TestConstant.USER))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -164,7 +166,7 @@ class CommentControllerTest implements Reflection {
                 .content(content)
                 .build();
 
-        given(commentService.updateComment(commentId, content, null))
+        given(commentService.updateComment(commentId, content, TestConstant.USER))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
