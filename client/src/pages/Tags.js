@@ -12,19 +12,15 @@ import { pagesizeCount, tagNoneMessage } from "../atoms/atom";
 
 const Tags = () => {
   const size = useRecoilValue(pagesizeCount);
-
-  let location = useLocation();
-  let prevPath = '';
-
   const message = useRecoilValue(tagNoneMessage)
+
+
   let params = useParams()
-  console.log(params.tagspage)
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/tags?page=${params.tagspage - 1}&size=${size}`,
   })
 
-  response && console.log(response.data)
 
   return (
     <S.TagSection>
@@ -40,6 +36,8 @@ const Tags = () => {
                 message.length !== 0 ? <p>{message}</p> : response.data.map(el => <TagComponent key={el.tagId} name={el.name} count={el.questionCount} />)
               }
             </>
+
+
         }
       </S.TagsContainer>
     </S.TagSection>

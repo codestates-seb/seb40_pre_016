@@ -7,13 +7,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 const PageList = ({ location }) => {
-  console.log(location)
   const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
-
-  const btnCheckHandler = (idx) => {
-    setCurrentButton(idx);
-    console.log(currentButton);
-  };
 
   //pagenation 카운트
   const [listCount, setListCount] = useRecoilState(pagenationCount);
@@ -21,7 +15,6 @@ const PageList = ({ location }) => {
   const [SizeCount, setSizeCount] = useRecoilState(pagesizeCount)
   const [message, setMessage] = useRecoilState(tagNoneMessage)
 
-  const parmas = useParams()
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/tags`,
@@ -37,6 +30,7 @@ const PageList = ({ location }) => {
   }
   useEffect(() => {
     if (response) {
+      //현재 있는 데이터가 기본 설정 데이터보다 작을 경우
       if (response.data.length < SizeCount) {
         setSizeCount(response.data.length)
       }
@@ -51,8 +45,7 @@ const PageList = ({ location }) => {
     navigate(`/tags/${idx + 1}`)
     window.location.reload()
   }
-  // console.log(response)
-  // console.log(pagesizeCount)
+
   const listCountArr = [];
   for (let i = 1; i <= listCount; i++) {
     listCountArr.push(i);
