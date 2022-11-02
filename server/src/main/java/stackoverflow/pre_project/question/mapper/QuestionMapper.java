@@ -29,6 +29,7 @@ public interface QuestionMapper {
         Question question = Question.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
+                .user(request.getUser())
                 .build();
 
         request.getTagNames().stream()
