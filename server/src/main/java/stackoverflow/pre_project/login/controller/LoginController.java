@@ -35,4 +35,5 @@ public class LoginController {
         User user = signupDto.toEntity();
         loginService.signup(user);
     }
+
 }
