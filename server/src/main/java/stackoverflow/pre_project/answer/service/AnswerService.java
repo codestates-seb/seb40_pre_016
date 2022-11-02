@@ -11,6 +11,7 @@ import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.service.QuestionService;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,9 @@ public class AnswerService {
     private final QuestionService questionService;
 
     public Answer createAnswer(Long questionId, Answer answer) {
+        answer.setCreatedAt(LocalDateTime.now());
+        answer.setModifiedAt(answer.getCreatedAt());
+
         Question question = questionService.findVerifiedQuestion(questionId);
 
         answer.addQuestion(question);
@@ -34,6 +38,8 @@ public class AnswerService {
     public Answer updateAnswer(Long answerId, Answer answer) {
         Answer findAnswer = findVerifiedAnswer(answerId);
         findAnswer.setContent(answer.getContent());
+
+        findAnswer.setModifiedAt(LocalDateTime.now());
 
         return findAnswer;
     }
