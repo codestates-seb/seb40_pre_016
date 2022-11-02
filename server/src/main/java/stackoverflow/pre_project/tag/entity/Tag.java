@@ -1,6 +1,7 @@
 package stackoverflow.pre_project.tag.entity;
 
 import lombok.*;
+import stackoverflow.pre_project.audit.Auditable;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -11,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Entity
-public class Tag {
+public class Tag extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
