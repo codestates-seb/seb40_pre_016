@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://early-masks-kneel-113-52-194-59.loca.lt/';
+axios.defaults.baseURL = 'https://plenty-streets-hammer-113-52-194-59.loca.lt/';
 // axios.defaults.baseURL = 'https://react-http-459a2-default-rtdb.firebaseio.com';
 export const useAxios = (axiosParams, auto = true) => {
   const [response, setResponse] = useState(undefined);
@@ -17,7 +17,7 @@ export const useAxios = (axiosParams, auto = true) => {
       setLoading(false);
     }
   };
-  console.log(axiosParams.url);
+
   const clickFetchFunc = (config) => {
     fetchData(config);
   };
