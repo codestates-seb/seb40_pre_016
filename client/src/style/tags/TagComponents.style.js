@@ -27,7 +27,7 @@ export const QCRTag = styled.section`
 `;
 
 export const TagSection = styled.section`
-  width: 1300px;
+  width: 100%;
   padding: 24px;
   > h1{
     font-size: 27px;
@@ -45,8 +45,8 @@ export const TagSection = styled.section`
 `;
 
 export const TagsContainer = styled.section`
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 10px;
     gap: 10px;
 `
