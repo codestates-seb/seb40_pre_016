@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 
 public class CommentDto {
 
@@ -20,6 +21,8 @@ public class CommentDto {
     @Builder
     public static class Response {
         private Long commentId;
+        private Long userId;
         private String content;
+        private LocalDateTime createdAt;
     }
 }
