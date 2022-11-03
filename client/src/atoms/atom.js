@@ -72,24 +72,7 @@ export const editAnswerState = atom({
   },
 });
 
-export const followQ = atom({
-  key: 'followQ',
-  default: false
-})
-
-
 export const editorFocus = atom({
   key: 'editorFocus',
   default: 0,
 })
-
-export const answerFocus = atom({
-  key: 'answerFocus',
-  default: 0,
-})
-
-
-export const answer = atom({
-  key: 'content',
-  default: '',
-});

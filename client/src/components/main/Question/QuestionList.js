@@ -8,24 +8,6 @@ import axios from "axios";
 
 const QuestionList = ({ questionLists }) => {
 
-
-  // import { useAxios } from 'axioshook';
-
-  // const App = () => {
-  //     const { response, loading, error } = useAxios({
-  //         method: 'POST',
-  //         url: '/posts',
-  //         headers: { // no need to stringify
-  //           accept: '*/*'
-  //         },
-  //         data: {  // no need to stringify
-  //             userId: 1,
-  //             id: 19392,
-  //             title: 'title',
-  //             body: 'Sample text',
-  //         },
-  //     });
-
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: 'api/questions',
@@ -33,9 +15,9 @@ const QuestionList = ({ questionLists }) => {
       "ngrok-skip-browser-warning": "69420",
     },
   })
-  console.log(loading)
-  console.log(error)
-  console.log(response)
+  // console.log(loading)
+  // console.log(error)
+  // console.log(response)
 
   const [questions, setQuestions] = useRecoilState(questionList);
 

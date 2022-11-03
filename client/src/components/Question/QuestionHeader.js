@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import * as S from "../../style/question/QuestionHeader.style";
 
-function QuestionHeader() {
+function QuestionHeader({title, createdAt, modifiedAt, view}) {
+
   return (
     <>
       <S.QHeader>
-        <h1>안녕하세요 제목이에오</h1>
+        <h1>{title}</h1>
         <Link to={'/askquestion'}>
           <button>Ask Question</button>
         </Link>
@@ -13,15 +14,15 @@ function QuestionHeader() {
       <S.QHeaderr>
         <div>
           <span>Asked</span>
-          <strong>21 hours ago</strong>
+          <strong>{createdAt}</strong>
         </div>
         <div>
           <span>Modified</span>
-          <strong>21 hours ago</strong>
+          <strong>{modifiedAt}</strong>
         </div>
         <div>
           <span>Viewed</span>
-          <strong>500</strong>
+          <strong>{view}</strong>
         </div>
       </S.QHeaderr>
     </>

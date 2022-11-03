@@ -1,55 +1,85 @@
 import * as S from '../../style/question/QuestionCompo.style';
 import polygon from '../../assets/img/polygon.png';
-import user from '../../assets/img/user.png';
+import userImg from '../../assets/img/user.png';
 import { useRecoilState } from 'recoil';
-import { followQ } from '../../atoms/atom';
+import { followQ } from '../../atoms/questionATom';
 import Comment from './Comment';
-import { useParams } from 'react-router-dom';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css'
+import {Viewer} from '@toast-ui/react-editor'
+import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
 
-
-function QuestionCompo() {
+function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment}) {
   const [follow, isFollow] = useRecoilState(followQ)
-  const onClick = () => {
-    isFollow(!follow)
+  const [clickUp, setClickUp] = useState(false)
+  const [clickDown, setClickDown] = useState(false)
+  const onClick = () => {isFollow(!follow)}
+
+  const voteUpClick = () => {
+    if(clickDown === true){ // -1 후 클릭인 경우 => 취소
+      setClickDown(false)
+      // const { response, loading, error } = useAxios({
+      //   method: 'POST',
+      //   url: `/questions/${questionId}/vote/3`,
+      // })
+    }
+    // 값 1 올리기
+    setClickUp(true)
+    setClickDown(false)
+    // const { response, loading, error } = useAxios({
+      //   method: 'POST',
+      //   url: `/questions/${questionId}/vote/1`,
+      // })
   }
 
-  //axios 로 해당하는 id 에 값만 상세페이지 노출
+  const voteDownClick = () => { 
+    if(clickUp === true){ // +1 후 클릭인 경우 => 취소
+      setClickUp(false)
+      // const { response, loading, error } = useAxios({
+      //   method: 'POST',
+      //   url: `/questions/${questionId}/vote/3`,
+      // })
+    }
+    setClickDown(true)
+    setClickUp(false)
+    // 값 1 내리기
+    // const { response, loading, error } = useAxios({
+      //   method: 'POST',
+      //   url: `/questions/${questionId}/vote/2`,
+      // })
+  }
+  
+  const [addComment, setAddComment] = useState(false)
+  const [commentValue, setCommentValue] = useState('')
+  const onClickk = () =>{
+    setAddComment(true)
+  }
+  const onBlur = () =>{
+    setAddComment(false)
+  }
+  const onChange = (e) => {
+    setCommentValue(e.target.value)
+  }
+  const onSubmit = (event) => {
+    // commentValue 보내기
+    setAddComment(false);
+    event.preventDefault();
+  }
 
-  const params = useParams()
-
-  const { response, loading, error } = useAxios({
-    method: 'GET',
-    url: `api/questions/${params.questionId}`,
-    headers: {
-      "ngrok-skip-browser-warning": "69420",
-    },
-  })
-  console.log(response)
   return (
     <S.QContent>
       <S.QContentLeft>
-        <img alt="Polygon" src={polygon} />
-        <div>0</div>
-        <img alt="Polygon" src={polygon} />
+        <img onClick={voteUpClick} alt="Polygon" src={polygon} />
+        <div>{vote}</div>
+        <img onClick={voteDownClick} alt="Polygon" src={polygon} />
       </S.QContentLeft>
       <S.QContentRight>
-        <div>221030 오늘도 화이팅 !!</div>
-        <br />
-        <div>TO DO</div>
-        <br />
-        <br />
-        <div>기능 with API</div>
-        <br />
-        <br />
-        <div>READ</div>
-        <div>CREATE</div>
-        <div>DELETE</div>
-        <div>UPDATE</div>
-        <br />
-        <br />
+        <Viewer initialValue={content} />
         <S.QCRTag>
-          <span>JavaScript</span>
+          {tag.map((el)=> 
+            <span key={el}>{el}</span>
+          )}
+          
         </S.QCRTag>
         <S.QCREdit>
           <S.QCRELeft>
@@ -59,15 +89,20 @@ function QuestionCompo() {
             {follow ? <button onClick={onClick}>Following</button> : <button onClick={onClick}>Follow</button>}
           </S.QCRELeft>
           <S.QCRERight>
-            <span>21 years ago</span>
+            <span>{createdAt}</span>
             <div>
-              <img src={user} alt="얼굴"></img>
-              <span>ID</span>
+              <img src={userImg} alt="얼굴"></img>
+              <span>{user.username}</span>
             </div>
           </S.QCRERight>
         </S.QCREdit>
-        <Comment />
-        <S.QCRComment>Add a Comment</S.QCRComment>
+        {comment.length === 0 ? null : 
+          comment.map((el) => (
+            <Comment commentId={el.commentId} userId={el.userId} content={el.content} createdAt={el.createdAt} />
+          ))
+        }
+        <S.QCRComment><button onClick={onClickk}>Add a Comment</button></S.QCRComment>
+        {addComment ? <form onSubmit={onSubmit}><input onChange={onChange} onBlur={onBlur} /></form> : null}
       </S.QContentRight>
     </S.QContent>
   );
