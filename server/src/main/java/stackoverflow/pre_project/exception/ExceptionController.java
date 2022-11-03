@@ -13,6 +13,14 @@ import javax.validation.ConstraintViolationException;
 public class ExceptionController {
 
     @ExceptionHandler
+    public ResponseEntity<ErrorResponse> exception(Exception exception) {
+        log.warn("400 " + exception.getMessage());
+        return ResponseEntity
+                .status(400)
+                .body(ErrorResponse.of(exception));
+    }
+
+    @ExceptionHandler
     public ResponseEntity<ErrorResponse> businessLogicException(BusinessLogicException exception) {
         log.warn(exception.getExceptionCode().getStatus() + " " + exception.getMessage());
         return ResponseEntity

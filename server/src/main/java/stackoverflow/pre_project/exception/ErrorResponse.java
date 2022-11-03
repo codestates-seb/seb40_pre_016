@@ -13,6 +13,13 @@ public class ErrorResponse {
     private int code;
     private String message;
 
+    static ErrorResponse of(Exception exception) {
+        return new ErrorResponse(
+                400,
+                exception.getMessage());
+    }
+
+
     static ErrorResponse of(BusinessLogicException exception) {
         return new ErrorResponse(
                 exception.getExceptionCode().getStatus(),
