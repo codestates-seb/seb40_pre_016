@@ -134,13 +134,25 @@ export const CommentSection = styled.div`
       font-size: 13px;
       color: rgba(0,0,0,0.45);;
     }
+
+    > button {
+      margin-left: 5px;
+      border: none;
+      background-color: white;
+      cursor: pointer;
+    }
   }
   `
 
 export const QCRComment = styled.section`
   margin-top: 20px;
   margin-left: 8px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.3);
   margin-bottom: 10px;
+  > button {
+    border: none;
+    background-color: white;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
 `;

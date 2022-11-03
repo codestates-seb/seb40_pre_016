@@ -3,9 +3,10 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { answer, answerFocus } from '../../atoms/atom';
+import { answer, answerFocus } from '../../atoms/questionATom';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useAxios } from '../../util/useAxios';
 
 const ErrorBox = styled.div`
   margin-top: 15px;
@@ -24,6 +25,7 @@ function YourAnswer() {
     const data = editorRef.current.getInstance().getHTML();
     if(data.length > 30) {setSubError('')}
     isAnswerContent(data)
+    console.log(data)
   }
 
   const onSubmit = (event) => {
@@ -33,6 +35,11 @@ function YourAnswer() {
       return setSubError('Body must be at least 30 characters.')
     }
     console.log(`제출값은` + answerContent)
+    // const { response, loading, error } = useAxios({
+    //   method: 'POST',
+    //   url: `api/questions/${params.questionId}`,
+    // })
+
     setSubError("")
   }
 

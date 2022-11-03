@@ -42,11 +42,12 @@ export const QContentRight = styled.section`
 `;
 
 export const QCRTag = styled.section`
-  margin: 20px 2px;
-  padding: 5px 6px;
+  padding-top: 10px;
+  padding-bottom: 15px;
   border-radius: 10px;
 
   > span {
+    margin-right: 7px;
     border-radius: 3px;
     background-color: #D0E3F1;
     color: #39739D;
@@ -127,7 +128,13 @@ export const CommentSection = styled.div`
   
   export const QCRComment = styled.section`
     margin-top: 10px;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;
+
+    > button {
+      border: none;
+      background-color: white;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
   `;
