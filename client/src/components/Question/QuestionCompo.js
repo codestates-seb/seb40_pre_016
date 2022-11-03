@@ -9,7 +9,7 @@ import { Viewer } from '@toast-ui/react-editor';
 import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function QuestionCompo({
   questionId,
@@ -107,7 +107,9 @@ function QuestionCompo({
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <button>Edit</button>
+            <Link to={`/question/${params.questionId}/edit`}>
+              <button>Edit</button>
+            </Link>
             <button>Delete</button>
             {follow ? (
               <button onClick={onClick}>Following</button>

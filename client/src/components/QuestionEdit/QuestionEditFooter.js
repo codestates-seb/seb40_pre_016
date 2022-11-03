@@ -71,6 +71,7 @@ const QuestionEditFooter = () => {
   const saveEditHandler = () => {
     //수정된 질문 fetch 요청
     makeNewTagsArray();
+
     clickFetchFunc({
       method: 'PATCH',
       // url: 'tasks.json',
@@ -78,6 +79,7 @@ const QuestionEditFooter = () => {
       headers: {
         'Content-Type': `application/json`,
       },
+      withCredentials: false,
       data: postData,
     });
 

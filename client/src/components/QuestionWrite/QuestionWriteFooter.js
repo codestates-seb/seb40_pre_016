@@ -35,6 +35,7 @@ const QuestionWriteFooter = () => {
       headers: {
         'Content-Type': `application/json`,
       },
+      withCredentials: true,
       data: postData,
     });
 

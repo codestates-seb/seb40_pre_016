@@ -34,7 +34,7 @@ const QuestionList = ({ questionLists }) => {
   return (
     <S.QuestionListContainer>
       <ul>
-        {!loading
+        {!loading && response
           ? response.data.map((el) => {
               return (
                 <li key={el.questionId}>
@@ -43,6 +43,7 @@ const QuestionList = ({ questionLists }) => {
               );
             })
           : null}
+        {error ? error.message : null}
       </ul>
     </S.QuestionListContainer>
   );

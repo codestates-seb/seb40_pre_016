@@ -28,7 +28,7 @@ export const isLoginState = atom({
 
 export const loginsubmitList = atom({
   key: 'loginsubmitList',
-  default: { email: '', password: '' },
+  default: { username: '', password: '' },
 });
 
 export const signupSubmitList = atom({
@@ -90,4 +90,22 @@ export const editAnswerState = atom({
 export const editorFocus = atom({
   key: 'editorFocus',
   default: 0,
+});
+
+//pagenation count
+export const pagenationCount = atom({
+  key: 'pagenationCount',
+  default: 5,
+});
+export const pagesizeCount = atom({
+  key: 'pagesizeCount',
+  default: 2,
+});
+export const tagNoneMessage = atom({
+  key: 'tagNoneMessage',
+  default: '',
+});
+export const pageLocation = atom({
+  key: 'pageLocation',
+  default: 'main',
 });
