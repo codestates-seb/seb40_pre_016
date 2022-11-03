@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import AnswerEditEditor from './AnswerEditEditor';
 import AnswerEditFooter from './AnswerEditFooter';
+import { useRecoilState } from 'recoil';
+import { editAnswerState } from '../../atoms/atom';
 
 const AnswerEditBodyContainer = styled.div`
   display: flex;

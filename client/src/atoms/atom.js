@@ -83,9 +83,7 @@ export const editQuestionState = atom({
 export const editAnswerState = atom({
   key: 'editAnswerState',
   default: {
-    title: '',
     content: ' ',
-    tagNames: [],
   },
 });
 

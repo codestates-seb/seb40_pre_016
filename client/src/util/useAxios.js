@@ -17,7 +17,7 @@ export const useAxios = (axiosParams, auto = true) => {
       setLoading(false);
     }
   };
-
+  console.log(axiosParams.url);
   const clickFetchFunc = (config) => {
     fetchData(config);
   };
