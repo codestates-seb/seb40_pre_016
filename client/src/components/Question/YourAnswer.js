@@ -7,6 +7,7 @@ import { answer, answerFocus } from '../../atoms/questionATom';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useAxios } from '../../util/useAxios';
+import axios from 'axios';
 
 const ErrorBox = styled.div`
   margin-top: 15px;
@@ -15,7 +16,7 @@ const ErrorBox = styled.div`
   border: none;
 `
 
-function YourAnswer() {
+function YourAnswer( {questionId} ) {
   const editorRef = useRef();
   const [check, isCheck] = useRecoilState(answerFocus);
   const [answerContent, isAnswerContent] = useRecoilState(answer);
@@ -34,23 +35,16 @@ function YourAnswer() {
       isCheck(2)
       return setSubError('Body must be at least 30 characters.')
     }
-    console.log(`제출값은` + answerContent)
-    // const { response, loading, error } = useAxios({
-    //   method: 'POST',
-    //   url: `api/questions/${params.questionId}`,
-    // })
-
+    axios.post(`/api/questions/${questionId}/answers`, {content: answerContent})
     setSubError("")
   }
 
   const onFocus = () => {
     isCheck(1)
-    // isCheck(true)
   }
 
   const onBlur = () => {
     isCheck(0)
-    // isCheck(false)
   }
 
   return (

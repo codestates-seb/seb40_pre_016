@@ -1,6 +1,4 @@
 import { atom } from 'recoil';
-import DUMMYDATA from '../components/main/Question/dummyData';
-
 import { recoilPersist } from 'recoil-persist';
 const { persistAtom } = recoilPersist();
 

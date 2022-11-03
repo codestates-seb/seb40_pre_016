@@ -63,6 +63,14 @@ export const QCREdit = styled.section`
 `;
 
 export const QCRELeft = styled.section`
+  > a  > button {
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    background-color: white;
+    border: none;
+  }
+
   > button {
     margin-right: 10px;
     color: rgba(0, 0, 0, 0.6);
