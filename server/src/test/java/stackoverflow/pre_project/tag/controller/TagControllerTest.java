@@ -30,6 +30,8 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {TagController.class, TagMapper.class},
@@ -86,6 +88,11 @@ class TagControllerTest {
                         "/tag/getTags",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
+                        requestParameters(
+                                parameterWithName("page").description("페이지"),
+                                parameterWithName("size").description("사이즈"),
+                                parameterWithName("sort").description("정렬 기준")
+                        ),
                         responseFields(
                                 fieldWithPath("data").type(JsonFieldType.ARRAY).description("태그"),
                                 fieldWithPath("data[].tagId").type(JsonFieldType.NUMBER).description("태그 식별자"),
