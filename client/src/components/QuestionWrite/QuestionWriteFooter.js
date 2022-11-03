@@ -35,6 +35,7 @@ const QuestionWriteFooter = () => {
       headers: {
         'Content-Type': `application/json`,
       },
+      withCredentials: true,
       data: postData,
     });
 
@@ -48,7 +49,7 @@ const QuestionWriteFooter = () => {
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
     response && console.log('질문 등록 요청 응답은', response);
-    response && navigate(`/question/${response.questionId}`);
+    response && navigate(`/questions/${response.questionId}`);
   }, [response]);
 
   return (

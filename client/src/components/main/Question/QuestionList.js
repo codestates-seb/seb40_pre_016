@@ -17,6 +17,7 @@ const QuestionList = ({ questionLists }) => {
       method: 'GET',
       // url: 'api/questions',
       url: `/api/questions?page=0&size=10&sort=${currentBtn}`,
+      withCredentials: true,
     };
   }, [currentBtn]);
 
@@ -34,7 +35,7 @@ const QuestionList = ({ questionLists }) => {
   return (
     <S.QuestionListContainer>
       <ul>
-        {!loading
+        {!loading && response
           ? response.data.map((el) => {
               return (
                 <li key={el.questionId}>
@@ -43,6 +44,7 @@ const QuestionList = ({ questionLists }) => {
               );
             })
           : null}
+        {error ? error.message : null}
       </ul>
     </S.QuestionListContainer>
   );

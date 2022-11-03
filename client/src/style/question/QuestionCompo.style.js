@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 // QuestionCompo
 export const QContent = styled.section`
@@ -49,8 +49,8 @@ export const QCRTag = styled.section`
   > span {
     margin-right: 7px;
     border-radius: 3px;
-    background-color: #D0E3F1;
-    color: #39739D;
+    background-color: #d0e3f1;
+    color: #39739d;
     font-size: 12px;
     padding: 4.8px 6px;
   }
@@ -63,7 +63,7 @@ export const QCREdit = styled.section`
 `;
 
 export const QCRELeft = styled.section`
-  > a  > button {
+  > a > button {
     margin-right: 10px;
     color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
@@ -110,39 +110,38 @@ export const QCRERight = styled.section`
   }
 `;
 
-
 export const CommentSection = styled.div`
-  border-top: 1px solid rgba(0,0,0,0.15);
-  border-bottom: 1px solid rgba(0,0,0,0.15);
-  
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
   > div {
     padding: 15px 0px 15px 10px;
     font-size: 13px;
-    > div{
+    > div {
       display: inline;
-      > a{
+      > a {
         text-decoration: none;
         color: #0c62ed;
       }
     }
-    
+
     > span {
       margin-left: 5px;
       font-size: 13px;
-      color: rgba(0,0,0,0.45);;
+      color: rgba(0, 0, 0, 0.45);
     }
   }
-  `
-  
-  export const QCRComment = styled.section`
-    margin-top: 10px;
-    margin-bottom: 10px;
+`;
 
-    > button {
-      border: none;
-      background-color: white;
-      font-size: 12px;
-      color: rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-    }
-  `;
+export const QCRComment = styled.section`
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  > button {
+    border: none;
+    background-color: white;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+`;

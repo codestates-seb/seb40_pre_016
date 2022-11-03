@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { editQuestionState } from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const QuestionEditFooterContainer = styled.div`
@@ -71,6 +71,7 @@ const QuestionEditFooter = () => {
   const saveEditHandler = () => {
     //수정된 질문 fetch 요청
     makeNewTagsArray();
+
     clickFetchFunc({
       method: 'PATCH',
       // url: 'tasks.json',
@@ -78,6 +79,7 @@ const QuestionEditFooter = () => {
       headers: {
         'Content-Type': `application/json`,
       },
+      withCredentials: true,
       data: postData,
     });
 
@@ -88,12 +90,15 @@ const QuestionEditFooter = () => {
     });
     console.log('수정 후 question', postData);
     console.log('수정 요청 완료');
+
+    navigate(`/questions/${params.questionId}`);
   };
+  const params = useParams();
 
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
     response && console.log(response);
-    response && navigate(`/question/${response.questionId}`);
+    // response && navigate(`/questions/${params.questionId}`);
   }, [response]);
   console.log('질문 수정 요청 응답은', response);
   return (

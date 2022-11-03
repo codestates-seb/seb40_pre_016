@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://great-mangos-bow-113-52-194-59.loca.lt/';
+// axios.defaults.withCredentials = true;
 
 export const useAxios = (axiosParams, auto = true) => {
   const [response, setResponse] = useState(undefined);
@@ -20,7 +21,6 @@ export const useAxios = (axiosParams, auto = true) => {
   const clickFetchFunc = (config) => {
     fetchData(config);
   };
-
 
   useEffect(() => {
     if (auto) {
