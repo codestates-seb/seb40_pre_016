@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
 import * as S from './../../style/auth/UserPage.style';
+import UserInfo from './UserInfo';
 
 const UserPage = ({ userName, createDay }) => {
   userName = '홍길동';
@@ -43,16 +44,9 @@ const UserPage = ({ userName, createDay }) => {
         </S.ButtonWarp>
       </S.UserNameCard>
       <S.ProfileTab>
-        <S.ProfileBtn>Profile</S.ProfileBtn>
-        <S.AboutTab>
-          <S.AboutHead>About</S.AboutHead>
-          <S.AboutCompo>
-            <S.AboutP>
-              Your about me section is currently blank. Would you
-              <br /> like to add one? <Link to='/'>Add Profile</Link>
-            </S.AboutP>
-          </S.AboutCompo>
-        </S.AboutTab>
+        <S.ProfileBtn><NavLink to='/user/profile'>Profile</NavLink></S.ProfileBtn>
+        <S.ProfileBtn><NavLink to='/user/setting'>Settng</NavLink></S.ProfileBtn>
+        <Outlet />
       </S.ProfileTab>
     </S.UserPageContainer>
   );

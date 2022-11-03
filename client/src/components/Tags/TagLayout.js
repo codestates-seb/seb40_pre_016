@@ -10,7 +10,7 @@ const TagLayout = () => {
     return (
         <TagLayoutContainer>
             <Outlet />
-            <PageList location={'tags'} child={'data'} />
+            <PageList location={'tags'} />
         </TagLayoutContainer>
     );
 };

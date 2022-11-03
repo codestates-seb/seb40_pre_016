@@ -23,8 +23,10 @@ import UserInfo from './components/auth/UserInfo';
 import UserSetting from './components/auth/UserSetting';
 import TagLayout from './components/Tags/TagLayout';
 import UserLayout from './components/auth/UserLayout';
+import MainLayout from './components/main/MainLayout';
 
 function App() {
+
   return (
     <>
       {/* <QuestionEdit /> */}
@@ -33,7 +35,10 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route path='/' element={<Main />} />
+
+            <Route path='/main' element={<MainLayout />} >
+              <Route path='/main/:mainpage' element={<Main />} />
+            </Route>
 
             <Route path='/questions/:questionId' element={<Question />} />
 
@@ -45,7 +50,7 @@ function App() {
 
             <Route element={<AuthLayout />}>
               <Route path='/user' element={<UserPage />}>
-                <Route path='/user/info' element={<UserInfo />} />
+                <Route path='/user/profile' element={<UserInfo />} />
                 <Route path='/user/setting' element={<UserSetting />} />
               </Route>
             </Route>

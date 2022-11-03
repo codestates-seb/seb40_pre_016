@@ -1,22 +1,27 @@
 import React, { useCallback, useEffect } from 'react';
 import * as S from '../../../style/main/QuestionList.style';
 import Question from './Question';
-import { useRecoilState } from 'recoil';
-import { questionList, filterBtnIdx, totalPageNum } from '../../../atoms/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { questionList, filterBtnIdx, totalPageNum, pagesizeCount, tagNoneMessage } from '../../../atoms/atom';
 import { useAxios } from '../../../util/useAxios';
 import axios from 'axios';
 import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 
 const QuestionList = ({ questionLists }) => {
   const [questions, setQuestions] = useRecoilState(questionList);
   const [currentBtn, setCurrentButton] = useRecoilState(filterBtnIdx);
   const [totalPage, setTotalPage] = useRecoilState(totalPageNum);
+  const size = useRecoilValue(pagesizeCount);
+  const message = useRecoilValue(tagNoneMessage)
+  let params = useParams()
 
+  console.log(params.mainpage)
   const config = useMemo(() => {
     return {
       method: 'GET',
       // url: 'api/questions',
-      url: `/api/questions?page=0&size=10&sort=${currentBtn}`,
+      url: `/api/questions?page=${params.mainpage - 1}&size=${size}&sort=${currentBtn}`,
       withCredentials: true,
     };
   }, [currentBtn]);
@@ -37,12 +42,12 @@ const QuestionList = ({ questionLists }) => {
       <ul>
         {!loading && response
           ? response.data.map((el) => {
-              return (
-                <li key={el.questionId}>
-                  <Question question={el} />
-                </li>
-              );
-            })
+            return (
+              <li key={el.questionId}>
+                <Question question={el} />
+              </li>
+            );
+          })
           : null}
         {error ? error.message : null}
       </ul>

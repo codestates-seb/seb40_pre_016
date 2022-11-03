@@ -93,11 +93,11 @@ export const editorFocus = atom({
 //pagenation count
 export const pagenationCount = atom({
   key: 'pagenationCount',
-  default: 5,
+  default: 1,
 });
 export const pagesizeCount = atom({
   key: 'pagesizeCount',
-  default: 2,
+  default: 12,
 });
 export const tagNoneMessage = atom({
   key: 'tagNoneMessage',

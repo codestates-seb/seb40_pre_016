@@ -10,12 +10,16 @@ import { questionList } from '../atoms/atom';
 import QuestionRightSidebar from '../components/Question/RightSideBar';
 
 const MainStyeld = styled.div`
+width: calc(100% - 300px);
   padding: 24px;
 `;
+const DisplayFlex = styled.div`
 
+display: flex;
+`
 const Main = () => {
   return (
-    <>
+    <DisplayFlex>
       <MainStyeld>
         <AskQuestion />
         <Filter></Filter>
@@ -23,7 +27,7 @@ const Main = () => {
         {/* <PageList /> */}
       </MainStyeld>
       <QuestionRightSidebar />
-    </>
+    </DisplayFlex>
   );
 };
 

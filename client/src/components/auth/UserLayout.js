@@ -9,7 +9,7 @@ const UserLayout = () => {
     return (
         <UserLayoutContainer>
             <Outlet />
-            <PageList location={'users'} child={'content'} />
+            <PageList location={'users'} />
         </UserLayoutContainer>
     );
 };

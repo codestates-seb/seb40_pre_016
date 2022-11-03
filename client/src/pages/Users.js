@@ -10,7 +10,7 @@ import { useAxios } from "../util/useAxios";
 
 
 const UsersContainer = styled.section`
-  width: calc(1400px - 170px);
+  width: 100%;
   padding: 24px;
   > h1{
     font-size: 27px;
@@ -19,8 +19,8 @@ const UsersContainer = styled.section`
 `;
 
 const UserContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
 `
@@ -34,7 +34,7 @@ const Users = () => {
     method: 'GET',
     url: `api/users?page=${params.userspage - 1}&size=${size}`,
   })
-  response && console.log(response.content)
+  response && console.log(response.data)
 
   return (
     <UsersContainer>
@@ -45,7 +45,7 @@ const Users = () => {
           loading ? null :
             <>
               {
-                message.length !== 0 ? <p>{message}</p> : response.content.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} />)
+                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} />)
               }
             </>
         }
