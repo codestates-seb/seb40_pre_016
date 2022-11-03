@@ -14,11 +14,22 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/auth")
 public class LoginController {
 
     private final LoginService loginService;
 
-    @PostMapping("/auth/signup")
+    @GetMapping("/login")
+    public String login(){
+        return "/login";
+    }
+
+    @GetMapping("/signup")
+    public String signup(){
+        return "/signup";
+    }
+
+    @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public void signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
         User user = signupDto.toEntity();
