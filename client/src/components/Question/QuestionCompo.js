@@ -9,7 +9,7 @@ import { Viewer } from '@toast-ui/react-editor';
 import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
 import { useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function QuestionCompo({
   questionId,
@@ -74,11 +74,14 @@ function QuestionCompo({
   const onChange = (e) => {
     setCommentValue(e.target.value);
   };
-  const onSubmit = (event) => {
-    // commentValue 보내기
-    setAddComment(false);
-    event.preventDefault();
-  };
+  // const onSubmit = (event) => {
+  //   // commentValue 보내기
+  //   axios.post(`/api/questions/${questionId}/comments`, {
+  //     content: commentValue,
+  //   });
+  //   setAddComment(false);
+  //   event.preventDefault();
+  // };
 
   const params = useParams();
 
@@ -107,9 +110,7 @@ function QuestionCompo({
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <Link to={`/questions/${params.questionId}/edit`}>
-              <button>Edit</button>
-            </Link>
+            <button>Edit</button>
             <button>Delete</button>
             {follow ? (
               <button onClick={onClick}>Following</button>
@@ -139,7 +140,8 @@ function QuestionCompo({
           <button onClick={onClickk}>Add a Comment</button>
         </S.QCRComment>
         {addComment ? (
-          <form onSubmit={onSubmit}>
+          // <form onSubmit={onSubmit}>
+          <form>
             <input onChange={onChange} onBlur={onBlur} />
           </form>
         ) : null}

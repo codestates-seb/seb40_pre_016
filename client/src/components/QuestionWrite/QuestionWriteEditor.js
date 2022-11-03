@@ -14,7 +14,7 @@ function QuestionWriteEditor() {
 
   const contentHandler = () => {
     // const data = editorRef.current.getInstance().getHTML();
-    const data = editorRef.current.getInstance().getMarkdown();
+    const data = editorRef.current.getInstance().getHTML();
     console.log(data);
     if (data.length < 30) {
       console.log('nope');

@@ -58,8 +58,11 @@ function Question() {
                 user={data.user}
                 comment={data.comments}
               />
-              <QCommentCompo answers={data.answers} comment={data.comments} />
-              <YourAnswer />
+              <QCommentCompo
+                questionId={data.questionId}
+                answers={data.answers}
+              />
+              <YourAnswer questionId={data.questionId} />
             </QContentContainer>
             <QuestionRightSidebar />
           </QContents>

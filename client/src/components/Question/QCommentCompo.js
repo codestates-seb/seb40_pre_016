@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as S from '../../style/question/QCommentCompo.style';
 import Answer from './Answer';
 
-function QCommentCompo({answers}) {
+function QCommentCompo({ questionId, answers}) {
   const [filterValue, setFilterValue] = useState(1)
   const showValue = (e) => {
     if(e.target.value === 1){
@@ -31,7 +31,7 @@ function QCommentCompo({answers}) {
       </S.QCHeader>
       {/* {filterValue === 1 ? "hi" : "hello"} */}
       {answers.map((el) => (
-        <Answer key={el.answerId} vote={el.voteCount} content={el.content} user={el.user.username} modifiedAt={el.modifiedAt} comment={el.comments} />
+        <Answer key={el.answerId} questionId={questionId} vote={el.voteCount} content={el.content} user={el.user.username} modifiedAt={el.modifiedAt} comment={el.comments} />
       ))}
     
     </S.QComment>
