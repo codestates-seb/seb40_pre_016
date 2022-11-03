@@ -59,6 +59,7 @@ public class AnswerService {
         answerRepository.delete(answer);
     }
 
+    @Transactional(readOnly = true)
     private Answer findVerifiedAnswer(Long answerId) {
         Optional<Answer> answer = answerRepository.findById(answerId);
         Answer findAnswer = answer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));

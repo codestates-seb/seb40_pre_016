@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class QuestionService {
 
@@ -31,22 +31,20 @@ public class QuestionService {
     private final AnswerRepository answerRepository;
     private final TagService tagService;
 
+    @Transactional
     public Question createQuestion(Question question) {
 
         question.setCreatedAt(LocalDateTime.now());
         question.setModifiedAt(question.getCreatedAt());
 
-        question.getQuestionTags().stream()
-                .forEach(questionTag -> {
-                    Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    tag.addQuestionTag(questionTag);
-                });
+        setTags(question);
 
         Question savedQuestion = questionRepository.save(question);
 
         return savedQuestion;
     }
 
+    @Transactional
     public Question updateQuestion(Long questionId, Question question) {
 
         Question findQuestion = findVerifiedQuestion(questionId);
@@ -56,31 +54,11 @@ public class QuestionService {
         }
 
         List<QuestionTag> questionTags = findQuestion.getQuestionTags();
+        List<String> oldTagNames = getTagNames(questionTags);
+        List<String> newTagNames = getTagNames(question.getQuestionTags());
 
-        List<String> oldTagNames = questionTags.stream()
-                .map(questionTag -> questionTag.getTag().getName())
-                .collect(Collectors.toList());
-
-        List<String> newTagNames = question.getQuestionTags().stream()
-                .map(questionTag -> questionTag.getTag().getName())
-                .collect(Collectors.toList());
-
-        questionTags.stream()
-                .filter(questionTag -> !newTagNames.contains(questionTag.getTag().getName()))
-                .forEach(questionTag -> {
-                    Tag tag = questionTag.getTag();
-                    tag.deleteQuestionTag(questionTag);
-                    if (tag.getQuestionCount() == 0) tagService.deleteTag(tag.getId());
-                });
-        questionTags.removeIf(questionTag -> !newTagNames.contains(questionTag.getTag().getName()));
-
-        question.getQuestionTags().stream()
-                .filter(questionTag -> !oldTagNames.contains(questionTag.getTag().getName()))
-                .forEach(questionTag -> {
-                    Tag tag = tagService.findTag(questionTag.getTag().getName());
-                    questionTag.addTag(tag);
-                    questionTag.addQuestion(findQuestion);
-                });
+        deleteOldTags(questionTags, newTagNames);
+        addNewTags(question, findQuestion, oldTagNames);
 
         findQuestion.setTitle(question.getTitle());
         findQuestion.setContent(question.getContent());
@@ -115,6 +93,7 @@ public class QuestionService {
                 .collect(Collectors.toList()), pageable, tag.getQuestionCount());
     }
 
+    @Transactional
     public void deleteQuestion(Long questionId, User user) {
         Question question = findVerifiedQuestion(questionId);
 
@@ -142,5 +121,41 @@ public class QuestionService {
         Question findQuestion = question.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 
         return findQuestion;
+    }
+
+    private void setTags(Question question) {
+        question.getQuestionTags().stream()
+                .forEach(questionTag -> {
+                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+                    tag.addQuestionTag(questionTag);
+                });
+    }
+
+    private List<String> getTagNames(List<QuestionTag> questionTags) {
+        List<String> oldTagNames = questionTags.stream()
+                .map(questionTag -> questionTag.getTag().getName())
+                .collect(Collectors.toList());
+        return oldTagNames;
+    }
+
+    private void addNewTags(Question question, Question findQuestion, List<String> oldTagNames) {
+        question.getQuestionTags().stream()
+                .filter(questionTag -> !oldTagNames.contains(questionTag.getTag().getName()))
+                .forEach(questionTag -> {
+                    Tag tag = tagService.findTag(questionTag.getTag().getName());
+                    questionTag.addTag(tag);
+                    questionTag.addQuestion(findQuestion);
+                });
+    }
+
+    private void deleteOldTags(List<QuestionTag> questionTags, List<String> newTagNames) {
+        questionTags.stream()
+                .filter(questionTag -> !newTagNames.contains(questionTag.getTag().getName()))
+                .forEach(questionTag -> {
+                    Tag tag = questionTag.getTag();
+                    tag.deleteQuestionTag(questionTag);
+                    if (tag.getQuestionCount() == 0) tagService.deleteTag(tag.getId());
+                });
+        questionTags.removeIf(questionTag -> !newTagNames.contains(questionTag.getTag().getName()));
     }
 }
