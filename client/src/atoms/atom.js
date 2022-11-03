@@ -28,7 +28,7 @@ export const isLoginState = atom({
 
 export const loginsubmitList = atom({
   key: 'loginsubmitList',
-  default: { username: '', password: '' },
+  default: { email: '', password: '' },
 });
 
 export const signupSubmitList = atom({

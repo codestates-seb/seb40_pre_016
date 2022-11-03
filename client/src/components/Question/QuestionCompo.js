@@ -107,7 +107,7 @@ function QuestionCompo({
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <Link to={`/question/${params.questionId}/edit`}>
+            <Link to={`/questions/${params.questionId}/edit`}>
               <button>Edit</button>
             </Link>
             <button>Delete</button>

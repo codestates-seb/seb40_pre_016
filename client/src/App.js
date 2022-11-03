@@ -34,10 +34,10 @@ function App() {
           <Route path='/' element={<Layout />}>
             <Route path='/' element={<Main />} />
 
-            <Route path='/question/:questionId' element={<Question />} />
+            <Route path='/questions/:questionId' element={<Question />} />
 
             <Route
-              path='/question/:questionId/edit'
+              path='/questions/:questionId/edit'
               element={<QuestionEdit />}
             />
             <Route path='/answeredit' element={<AnswerEdit />} />

@@ -5,6 +5,7 @@ import * as S from '../../style/login/LoginBox.style';
 import InputBox from './InputBox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAxios } from '../../util/useAxios';
+import axios from 'axios';
 
 const LoginBox = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
@@ -32,7 +33,7 @@ const LoginBox = () => {
     const loginData = { ...loginList };
 
     if (e.target.name === 'Email') {
-      loginData.username = e.target.value;
+      loginData.email = e.target.value;
     } else if (e.target.name === 'Password') {
       loginData.password = e.target.value;
     }
@@ -80,13 +81,13 @@ const LoginBox = () => {
     // Cookies.set("id", "id");
 
     //state 를 저장해두고 로그인 시 이전에 선택한 path state로 이동
-    // if (login) {
-    //   if (state) {
-    //     navigate(state);
-    //   } else {
-    //     navigate('/');
-    //   }
-    // }
+    if (login) {
+      if (state) {
+        navigate(state);
+      } else {
+        navigate('/');
+      }
+    }
   };
 
   useEffect(() => {

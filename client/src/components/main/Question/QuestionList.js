@@ -17,6 +17,7 @@ const QuestionList = ({ questionLists }) => {
       method: 'GET',
       // url: 'api/questions',
       url: `/api/questions?page=0&size=10&sort=${currentBtn}`,
+      withCredentials: true,
     };
   }, [currentBtn]);
 
