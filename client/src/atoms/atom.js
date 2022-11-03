@@ -87,7 +87,7 @@ export const editAnswerState = atom({
   },
 });
 
-
 export const editorFocus = atom({
   key: 'editorFocus',
   default: 0,
+});
