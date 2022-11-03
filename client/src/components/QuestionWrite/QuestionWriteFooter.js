@@ -2,7 +2,7 @@ import { QuestionWriteFooterContainer } from '../../style/QuestionWrite/Question
 import { newQuestionState } from '../../atoms/atom';
 import { useRecoilState } from 'recoil';
 import { useAxios } from '../../util/useAxios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 const QuestionWriteFooter = () => {
   const [newQuestion, setNewQuestion] = useRecoilState(newQuestionState);
@@ -48,8 +48,7 @@ const QuestionWriteFooter = () => {
 
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
-    response && console.log('질문 등록 요청 응답은', response);
-    response && navigate(`/questions/${response.questionId}`);
+    response && navigate(`/questions/${response + ''}`);
   }, [response]);
 
   return (

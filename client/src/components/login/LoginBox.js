@@ -81,13 +81,13 @@ const LoginBox = () => {
     // Cookies.set("id", "id");
 
     //state 를 저장해두고 로그인 시 이전에 선택한 path state로 이동
-    if (login) {
-      if (state) {
-        navigate(state);
-      } else {
-        navigate('/');
-      }
-    }
+    // if (login) {
+    //   if (state) {
+    //     navigate(state);
+    //   } else {
+    //     navigate('/');
+    //   }
+    // }
   };
 
   useEffect(() => {

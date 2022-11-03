@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 function QuestionCompo({
   questionId,
   content,
@@ -110,7 +110,9 @@ function QuestionCompo({
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <button>Edit</button>
+            <Link to={`/questions/${params.questionId}/edit`}>
+              <button>Edit</button>
+            </Link>
             <button>Delete</button>
             {follow ? (
               <button onClick={onClick}>Following</button>
