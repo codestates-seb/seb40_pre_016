@@ -1,12 +1,22 @@
 import { atom } from 'recoil';
-import DUMMYDATA from '../components/main/Question/dummyData';
-
 import { recoilPersist } from 'recoil-persist';
 const { persistAtom } = recoilPersist();
 
 export const questionList = atom({
-  key: 'questinList',
-  default: DUMMYDATA,
+  key: 'questionList',
+  default: {
+    answers: [],
+    comments: [],
+    content: '',
+    createdAt: '',
+    modifiedAt: '',
+    questionId: '',
+    tagNames: [],
+    title: '',
+    user: '',
+    viewCount: '',
+    voteCount: '',
+  },
 });
 
 export const isLoginState = atom({
@@ -32,11 +42,16 @@ export const signupSubmitList = atom({
 
 export const filterBtnIdx = atom({
   key: 'filterBtnIdx',
-  default: 0,
+  default: 'createdAt',
 });
 
 export const pageBtnIdx = atom({
   key: 'pageBtnIdx',
+  default: 0,
+});
+
+export const totalPageNum = atom({
+  key: 'totalPageNum',
   default: 0,
 });
 
@@ -50,7 +65,7 @@ export const newQuestionState = atom({
   default: {
     title: '',
     content: ' ',
-    tags: [],
+    tagNames: [],
   },
 });
 
@@ -59,58 +74,36 @@ export const editQuestionState = atom({
   default: {
     title: '',
     content: ' ',
-    tags: [],
+    tagNames: [],
   },
 });
 
 export const editAnswerState = atom({
   key: 'editAnswerState',
   default: {
-    title: '',
     content: ' ',
-    tags: [],
   },
 });
-
-export const followQ = atom({
-  key: 'followQ',
-  default: false
-})
-
 
 export const editorFocus = atom({
   key: 'editorFocus',
   default: 0,
-})
-
-export const answerFocus = atom({
-  key: 'answerFocus',
-  default: 0,
-})
-
-
-export const answer = atom({
-  key: 'content',
-  default: '',
 });
 
-//pagenation count 
+//pagenation count
 export const pagenationCount = atom({
   key: 'pagenationCount',
-  default: 5
-})
-
+  default: 5,
+});
 export const pagesizeCount = atom({
   key: 'pagesizeCount',
-  default: 2
-})
-
+  default: 2,
+});
 export const tagNoneMessage = atom({
   key: 'tagNoneMessage',
-  default: ''
-})
-
+  default: '',
+});
 export const pageLocation = atom({
   key: 'pageLocation',
-  default: 'main'
-})
+  default: 'main',
+});

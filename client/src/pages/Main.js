@@ -18,9 +18,9 @@ const Main = () => {
     <>
       <MainStyeld>
         <AskQuestion />
-        <Filter />
+        <Filter></Filter>
         <QuestionList />
-        <PageList></PageList>
+        {/* <PageList /> */}
       </MainStyeld>
       <QuestionRightSidebar />
     </>

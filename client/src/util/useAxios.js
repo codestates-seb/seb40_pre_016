@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://great-mangos-bow-113-52-194-59.loca.lt/';
+// axios.defaults.withCredentials = true;
 
-export const useAxios = (axiosParams) => {
+export const useAxios = (axiosParams, auto = true) => {
     const [response, setResponse] = useState(undefined);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
-
     const fetchData = async (params) => {
         try {
             const result = await axios.request(params);
@@ -18,10 +18,16 @@ export const useAxios = (axiosParams) => {
             setLoading(false);
         }
     };
+    const clickFetchFunc = (config) => {
+        fetchData(config);
+    };
 
     useEffect(() => {
-        fetchData(axiosParams);
+        if (auto) {
+            fetchData(axiosParams);
+        } else {
+        }
     }, []); // execute once only
 
-    return { response, error, loading };
+    return { response, error, loading, clickFetchFunc };
 };

@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { editQuestionState } from '../../atoms/atom';
+import { useAxios } from '../../util/useAxios';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const QuestionEditFooterContainer = styled.div`
   /* padding-top: 20px; */
@@ -44,11 +47,60 @@ const QuestionEditFooterContainer = styled.div`
 
 const QuestionEditFooter = () => {
   const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
-  const saveEditHandler = () => {
-    //수정된 질문 fetch 요청
-    console.log('수정 요청 완료');
+  let postData = Object.assign({}, editQuestion);
+  const navigate = useNavigate();
+  const { response, loading, error, clickFetchFunc } = useAxios(
+    {
+      method: 'POST',
+      url: 'tasks.json',
+      headers: {
+        'Content-Type': `application/json`,
+      },
+      data: JSON.stringify(postData),
+    },
+    false
+  );
+
+  const makeNewTagsArray = () => {
+    let tempArr = postData.tagNames.map((el) => {
+      return el.content;
+    });
+    postData = { ...postData, tagNames: tempArr };
   };
 
+  const saveEditHandler = () => {
+    //수정된 질문 fetch 요청
+    makeNewTagsArray();
+
+    clickFetchFunc({
+      method: 'PATCH',
+      // url: 'tasks.json',
+      url: '/api/questions/1',
+      headers: {
+        'Content-Type': `application/json`,
+      },
+      withCredentials: true,
+      data: postData,
+    });
+
+    setEditQuestion({
+      title: '',
+      content: ' ',
+      tagNames: [],
+    });
+    console.log('수정 후 question', postData);
+    console.log('수정 요청 완료');
+
+    navigate(`/questions/${params.questionId}`);
+  };
+  const params = useParams();
+
+  useEffect(() => {
+    //새 질문의 id값으로 페이지 이동
+    response && console.log(response);
+    // response && navigate(`/questions/${params.questionId}`);
+  }, [response]);
+  console.log('질문 수정 요청 응답은', response);
   return (
     <QuestionEditFooterContainer>
       <button onClick={saveEditHandler} className='saveEdit'>

@@ -3,9 +3,11 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { answer, answerFocus } from '../../atoms/atom';
+import { answer, answerFocus } from '../../atoms/questionATom';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useAxios } from '../../util/useAxios';
+import axios from 'axios';
 
 const ErrorBox = styled.div`
   margin-top: 15px;
@@ -14,7 +16,7 @@ const ErrorBox = styled.div`
   border: none;
 `
 
-function YourAnswer() {
+function YourAnswer( {questionId} ) {
   const editorRef = useRef();
   const [check, isCheck] = useRecoilState(answerFocus);
   const [answerContent, isAnswerContent] = useRecoilState(answer);
@@ -24,6 +26,7 @@ function YourAnswer() {
     const data = editorRef.current.getInstance().getHTML();
     if(data.length > 30) {setSubError('')}
     isAnswerContent(data)
+    console.log(data)
   }
 
   const onSubmit = (event) => {
@@ -32,18 +35,16 @@ function YourAnswer() {
       isCheck(2)
       return setSubError('Body must be at least 30 characters.')
     }
-    console.log(`제출값은` + answerContent)
+    axios.post(`/api/questions/${questionId}/answers`, {content: answerContent})
     setSubError("")
   }
 
   const onFocus = () => {
     isCheck(1)
-    // isCheck(true)
   }
 
   const onBlur = () => {
     isCheck(0)
-    // isCheck(false)
   }
 
   return (

@@ -13,6 +13,7 @@ function QuestionWriteEditor() {
   const [check, isCheck] = useRecoilState(editorFocus);
 
   const contentHandler = () => {
+    // const data = editorRef.current.getInstance().getHTML();
     const data = editorRef.current.getInstance().getHTML();
     console.log(data);
     if (data.length < 30) {
@@ -22,12 +23,12 @@ function QuestionWriteEditor() {
   };
 
   const onFocus = () => {
-    isCheck(1)
-  }
+    isCheck(1);
+  };
 
   const onBlur = () => {
-    isCheck(0)
-  }
+    isCheck(0);
+  };
 
   return (
     <>
