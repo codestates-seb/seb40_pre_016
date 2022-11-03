@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import stackoverflow.pre_project.exception.BusinessLogicException;
+import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.exception.ex.BusinessApiException;
 import stackoverflow.pre_project.exception.ex.BusinessException;
 import stackoverflow.pre_project.exception.ex.BusinessValidationApiException;
@@ -24,7 +26,7 @@ public class UserService {
     public UserProfileDto profile(long id, long userId){//id는 본인, userId는 방문할페이지id
         UserProfileDto dto = new UserProfileDto();
         User Entity = userRepository.findById(userId).orElseThrow(() ->{
-            throw new BusinessException("해당 유저를 찾을 수 없습니다.");});
+            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);});
         dto.setOwnerState(id == userId);
         dto.setUser(Entity);
         return dto;
@@ -33,10 +35,10 @@ public class UserService {
     @Transactional
     public User update(long id, User user, long userId){
         if(id != userId){
-            throw new BusinessApiException("접근 방식이 잘못되었습니다.");
+            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
         }
         User userEntity = userRepository.findById(id).orElseThrow(() ->{
-            throw new BusinessValidationApiException("해당 유저를 찾을 수 없습니다.");});
+            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);});
         userEntity.setUsername(user.getUsername());
         String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
