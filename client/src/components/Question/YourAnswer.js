@@ -30,13 +30,20 @@ function YourAnswer( {questionId} ) {
   }
 
   const onSubmit = (event) => {
-    event.preventDefault();
-    if(answerContent.length < 30){
+    if(answerContent.length < 30){  //조건 30자 넘어야됨
       isCheck(2)
-      return setSubError('Body must be at least 30 characters.')
+      setSubError('Body must be at least 30 characters.')
+      // event.preventDefault();
     }
-    axios.post(`/api/questions/${questionId}/answers`, {content: answerContent})
-    setSubError("")
+    console.log("제출")
+    axios.post(
+      `/api/questions/${questionId}/answers`, {
+        content: answerContent,
+      },
+      {headers:{
+        'Content-Type': `application/json`,
+      },
+      withCredentials: true});
   }
 
   const onFocus = () => {
@@ -66,7 +73,7 @@ function YourAnswer( {questionId} ) {
           />
           </S.EditorBox>
           {subError !== "" ? <ErrorBox>{subError}</ErrorBox>: null}
-        <button>Post Your Answer</button>
+        <button type={"submit"}>Post Your Answer</button>
       </form>
     </S.QYourAnswer>
   );

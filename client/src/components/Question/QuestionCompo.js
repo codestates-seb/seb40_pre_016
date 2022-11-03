@@ -7,10 +7,9 @@ import Comment from './Comment';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Viewer } from '@toast-ui/react-editor';
 import { useState } from 'react';
-import { useAxios } from '../../util/useAxios';
-import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 function QuestionCompo({
   questionId,
   content,
@@ -23,6 +22,9 @@ function QuestionCompo({
   const [follow, isFollow] = useRecoilState(followQ);
   const [clickUp, setClickUp] = useState(false);
   const [clickDown, setClickDown] = useState(false);
+  const [addComment, setAddComment] = useState(false);
+  const [commentValue, setCommentValue] = useState('');
+
   const onClick = () => {
     isFollow(!follow);
   };
@@ -63,8 +65,6 @@ function QuestionCompo({
     // })
   };
 
-  const [addComment, setAddComment] = useState(false);
-  const [commentValue, setCommentValue] = useState('');
   const onClickk = () => {
     setAddComment(true);
   };
@@ -74,24 +74,17 @@ function QuestionCompo({
   const onChange = (e) => {
     setCommentValue(e.target.value);
   };
-  // const onSubmit = (event) => {
-  //   // commentValue 보내기
-  //   axios.post(`/api/questions/${questionId}/comments`, {
-  //     content: commentValue,
-  //   });
-  //   setAddComment(false);
-  //   event.preventDefault();
-  // };
 
-  const params = useParams();
-
-  const config = useMemo(() => {
-    return {
-      method: 'GET',
-      url: `api/questions/${params.questionId}`,
-    };
-  }, [params.questionId]);
-  const { response, loading, error } = useAxios(config);
+  const onSubmit = () => {
+    // commentValue 보내기
+    axios.post(`/api/questions/${questionId}/comments`, {
+      content: commentValue,
+    }, {headers: {
+      'Content-Type': `application/json`,
+    },
+    withCredentials: true});
+    setAddComment(false);
+  };
 
   return (
     <S.QContent>
@@ -110,7 +103,7 @@ function QuestionCompo({
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <Link to={`/questions/${params.questionId}/edit`}>
+            <Link to={`/questions/${questionId}/edit`}>
               <button>Edit</button>
             </Link>
             <button>Delete</button>
@@ -142,8 +135,7 @@ function QuestionCompo({
           <button onClick={onClickk}>Add a Comment</button>
         </S.QCRComment>
         {addComment ? (
-          // <form onSubmit={onSubmit}>
-          <form>
+          <form onSubmit={onSubmit}>
             <input onChange={onChange} onBlur={onBlur} />
           </form>
         ) : null}

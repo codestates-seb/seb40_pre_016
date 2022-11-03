@@ -9,7 +9,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-function Answer ({ questionId, content, vote, user, modifiedAt, comment}) {
+function Answer ({ answerId, content, vote, user, modifiedAt, comment}) {
   const [addComment, setAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
   const onClick = () =>{
@@ -21,11 +21,15 @@ function Answer ({ questionId, content, vote, user, modifiedAt, comment}) {
   const onChange = (e) => {
     setCommentValue(e.target.value)
   }
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     // commentValue 보내기
-    axios.post(`/api/answers/${questionId}/comments`, {content: commentValue})
+    axios.post(`/api/answers/${answerId}/comments`, {
+      content: commentValue,
+    }, {headers: {
+      'Content-Type': `application/json`,
+    },
+    withCredentials: true});
     setAddComment(false);
-    event.preventDefault();
   }
 
     return (

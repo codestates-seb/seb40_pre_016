@@ -10,6 +10,7 @@ import { questionList } from '../atoms/atom';
 import QuestionRightSidebar from '../components/Question/RightSideBar';
 
 const MainStyeld = styled.div`
+  width: calc(1400px - 170px);
   padding: 24px;
 `;
 
