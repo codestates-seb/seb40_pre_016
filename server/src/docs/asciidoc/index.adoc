@@ -86,6 +86,10 @@ include::{snippets}/tag/getTags/http-request.adoc[]
 .http-response
 include::{snippets}/tag/getTags/http-response.adoc[]
 
+.request-parameters
+[caption=]
+include::{snippets}/tag/getTags/request-parameters.adoc[]
+
 .response-fields
 [caption=]
 include::{snippets}/tag/getTags/response-fields.adoc[]
