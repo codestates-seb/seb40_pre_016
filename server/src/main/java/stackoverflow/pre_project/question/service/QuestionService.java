@@ -50,7 +50,7 @@ public class QuestionService {
         Question findQuestion = findVerifiedQuestion(questionId);
 
         if (findQuestion.getUser().getId().equals(question.getUser().getId())) {
-            throw new RuntimeException();
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
 
         List<QuestionTag> questionTags = findQuestion.getQuestionTags();
@@ -98,11 +98,11 @@ public class QuestionService {
         Question question = findVerifiedQuestion(questionId);
 
         if (question.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException();
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
 
         if (question.getAnswers().size() > 0) {
-            throw new RuntimeException();
+            throw new BusinessLogicException(ExceptionCode.DELETION_FORBIDDEN);
         }
 
         List<QuestionTag> questionTags = question.getQuestionTags();

@@ -41,7 +41,7 @@ public class TagService {
     }
 
     public Tag findTagById(Long tagId) {
-        return tagRepository.findById(tagId).orElseThrow(() -> new RuntimeException());
+        return tagRepository.findById(tagId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.TAG_NOT_FOUND));
     }
 
     public Page<Tag> findTags(Pageable pageable) {

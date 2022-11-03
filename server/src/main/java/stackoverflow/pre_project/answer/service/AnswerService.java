@@ -40,7 +40,7 @@ public class AnswerService {
         Answer findAnswer = findVerifiedAnswer(answerId);
 
         if (findAnswer.getUser().getId().equals(answer.getUser().getId())) {
-            throw new RuntimeException();
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
 
         findAnswer.setContent(answer.getContent());
@@ -53,7 +53,7 @@ public class AnswerService {
         Answer answer = findVerifiedAnswer(answerId);
 
         if (answer.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException();
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
 
         answerRepository.delete(answer);
