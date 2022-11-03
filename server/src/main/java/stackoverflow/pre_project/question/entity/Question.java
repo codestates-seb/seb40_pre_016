@@ -71,7 +71,7 @@ public class Question {
         }
     }
 
-    public void addQuestionTag (QuestionTag questionTag) {
+    public void addQuestionTag(QuestionTag questionTag) {
         this.questionTags.add(questionTag);
         if (questionTag.getQuestion() != this) {
             questionTag.addQuestion(this);

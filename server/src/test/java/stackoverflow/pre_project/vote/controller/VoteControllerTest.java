@@ -5,31 +5,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.payload.FieldPathPayloadSubsectionExtractor;
-import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import stackoverflow.pre_project.config.SecurityTestConfig;
+import stackoverflow.pre_project.config.TestUserDetailService;
+import stackoverflow.pre_project.util.TestConstant;
 import stackoverflow.pre_project.vote.service.VoteService;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = VoteController.class)
-@Import(SecurityTestConfig.class)
+@WithUserDetails("test")
+@Import({SecurityTestConfig.class, TestUserDetailService.class})
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class VoteControllerTest {
@@ -45,7 +43,7 @@ class VoteControllerTest {
         Long questionId = 1L;
         int flag = 1;
 
-        given(voteService.questionVote(questionId, flag, null))
+        given(voteService.questionVote(questionId, flag, TestConstant.USER))
                 .willReturn(1);
 
         // when
@@ -72,7 +70,7 @@ class VoteControllerTest {
         Long answerId = 1L;
         int flag = 1;
 
-        given(voteService.answerVote(answerId, flag, null))
+        given(voteService.answerVote(answerId, flag, TestConstant.USER))
                 .willReturn(1);
 
         // when

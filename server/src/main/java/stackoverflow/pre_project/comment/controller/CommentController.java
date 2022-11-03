@@ -3,6 +3,7 @@ package stackoverflow.pre_project.comment.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import stackoverflow.pre_project.comment.dto.CommentDto;
 import stackoverflow.pre_project.comment.entity.Comment;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Positive;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
+@Validated
 public class CommentController {
 
     private final CommentMapper commentMapper;
@@ -44,7 +46,7 @@ public class CommentController {
 
     @PatchMapping("/comments/{comment-id}")
     public CommentDto.Response patchAnswerComment(@PathVariable("comment-id") Long commentId,
-                                                  @RequestBody CommentDto.Request commentDto,
+                                                  @Valid @RequestBody CommentDto.Request commentDto,
                                                   @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         Comment comment = commentService.updateComment(commentId, commentDto.getContent(), customUserDetails.getUser());
         return commentMapper.commentToResponse(comment);

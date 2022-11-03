@@ -18,3 +18,9 @@ logging:
       springframework:
         orm:
           jpa: DEBUG
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true

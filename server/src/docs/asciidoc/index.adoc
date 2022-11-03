@@ -17,7 +17,12 @@ include::{snippets}/comment/post/QuestionComment/http-request.adoc[]
 .http-response
 include::{snippets}/comment/post/QuestionComment/http-response.adoc[]
 
+.path-parameters
+[caption=]
+include::{snippets}/comment/post/QuestionComment/path-parameters.adoc[]
+
 .response-fields
+[caption=]
 include::{snippets}/comment/post/QuestionComment/response-fields.adoc[]
 
 === 답변 댓글 등록
@@ -30,7 +35,12 @@ include::{snippets}/comment/post/AnswerComment/http-request.adoc[]
 .http-response
 include::{snippets}/comment/post/AnswerComment/http-response.adoc[]
 
+.path-parameters
+[caption=]
+include::{snippets}/comment/post/AnswerComment/path-parameters.adoc[]
+
 .response-fields
+[caption=]
 include::{snippets}/comment/post/AnswerComment/response-fields.adoc[]
 
 === 댓글 수정
@@ -43,7 +53,12 @@ include::{snippets}/comment/patch/http-request.adoc[]
 .http-response
 include::{snippets}/comment/patch/http-response.adoc[]
 
+.path-parameters
+[caption=]
+include::{snippets}/comment/patch/path-parameters.adoc[]
+
 .response-fields
+[caption=]
 include::{snippets}/comment/patch/response-fields.adoc[]
 
 === 댓글 삭제
@@ -56,6 +71,10 @@ include::{snippets}/comment/delete/http-request.adoc[]
 .http-response
 include::{snippets}/comment/delete/http-response.adoc[]
 
+.path-parameters
+[caption=]
+include::{snippets}/comment/delete/path-parameters.adoc[]
+
 == 태그
 === 태그 전체 조회
 .curl-request
@@ -67,7 +86,12 @@ include::{snippets}/tag/getTags/http-request.adoc[]
 .http-response
 include::{snippets}/tag/getTags/http-response.adoc[]
 
+.request-parameters
+[caption=]
+include::{snippets}/tag/getTags/request-parameters.adoc[]
+
 .response-fields
+[caption=]
 include::{snippets}/tag/getTags/response-fields.adoc[]
 
 == 투표
@@ -81,6 +105,10 @@ include::{snippets}/vote/postQuestionVote/http-request.adoc[]
 .http-response
 include::{snippets}/vote/postQuestionVote/http-response.adoc[]
 
+.path-parameters
+[caption=]
+include::{snippets}/vote/postQuestionVote/path-parameters.adoc[]
+
 .response-fields
 include::{snippets}/vote/postQuestionVote/response-body.adoc[]
 
@@ -93,6 +121,10 @@ include::{snippets}/vote/postAnswerVote/http-request.adoc[]
 
 .http-response
 include::{snippets}/vote/postAnswerVote/http-response.adoc[]
+
+.path-parameters
+[caption=]
+include::{snippets}/vote/postAnswerVote/path-parameters.adoc[]
 
 .response-body
 include::{snippets}/vote/postAnswerVote/response-body.adoc[]

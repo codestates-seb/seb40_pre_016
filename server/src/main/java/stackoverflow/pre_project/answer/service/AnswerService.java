@@ -10,7 +10,9 @@ import stackoverflow.pre_project.exception.BusinessLogicException;
 import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.service.QuestionService;
+import stackoverflow.pre_project.user.entity.User;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -23,6 +25,9 @@ public class AnswerService {
     private final QuestionService questionService;
 
     public Answer createAnswer(Long questionId, Answer answer) {
+        answer.setCreatedAt(LocalDateTime.now());
+        answer.setModifiedAt(answer.getCreatedAt());
+
         Question question = questionService.findVerifiedQuestion(questionId);
 
         answer.addQuestion(question);
@@ -33,17 +38,28 @@ public class AnswerService {
 
     public Answer updateAnswer(Long answerId, Answer answer) {
         Answer findAnswer = findVerifiedAnswer(answerId);
+
+        if (!findAnswer.getUser().getId().equals(answer.getUser().getId())) {
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
+        }
+
         findAnswer.setContent(answer.getContent());
+        findAnswer.setModifiedAt(LocalDateTime.now());
 
         return findAnswer;
     }
 
-    public void delete(Long answerId) {
+    public void delete(Long answerId, User user) {
         Answer answer = findVerifiedAnswer(answerId);
+
+        if (!answer.getUser().getId().equals(user.getId())) {
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
+        }
 
         answerRepository.delete(answer);
     }
 
+    @Transactional(readOnly = true)
     private Answer findVerifiedAnswer(Long answerId) {
         Optional<Answer> answer = answerRepository.findById(answerId);
         Answer findAnswer = answer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));

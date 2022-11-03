@@ -2,6 +2,7 @@ package stackoverflow.pre_project.comment.entity;
 
 import lombok.*;
 import stackoverflow.pre_project.answer.entity.Answer;
+import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.user.entity.User;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Entity
-public class Comment {
+public class Comment extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
