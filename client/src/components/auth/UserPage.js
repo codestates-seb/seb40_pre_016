@@ -2,12 +2,19 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
+import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style';
 import UserInfo from './UserInfo';
 
 const UserPage = ({ userName, createDay }) => {
-  userName = '홍길동';
-  createDay = '5';
+  // userName = '홍길동';
+  // createDay = '5';
+  let sessionStorage = window.sessionStorage;
+  console.log(sessionStorage)
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/users`,
+  })
   return (
     <S.UserPageContainer>
       <S.UserNameCard>
