@@ -1,4 +1,4 @@
-package stackoverflow.pre_project.login.dto;
+package stackoverflow.pre_project.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
