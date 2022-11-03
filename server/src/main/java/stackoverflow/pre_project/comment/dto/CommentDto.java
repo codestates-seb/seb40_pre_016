@@ -5,14 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 public class CommentDto {
 
     @Getter
     public static class Request {
-        @NotEmpty
+        @NotBlank
         private String content;
     }
 
