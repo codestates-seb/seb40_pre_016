@@ -9,6 +9,7 @@ import {Viewer} from '@toast-ui/react-editor'
 import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
 import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 
 
 function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment}) {
