@@ -1,26 +1,26 @@
 import React, { useCallback, useEffect } from "react";
 import Filter from "../components/Tags/TagsFilter";
-import PageList from "../components/main/PageList/PageList";
 import TagComponent from "../components/Tags/TagComponent";
 import * as S from "../style/tags/TagComponents.style";
 import axios from "axios";
+import { useLocation, useParams } from "react-router-dom";
+import { useAxios } from "../util/useAxios";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { pagesizeCount, tagNoneMessage } from "../atoms/atom";
 
 
 const Tags = () => {
-  const getTags = useCallback(async () => {
-    await axios({
-      url: `tags?page={page}&size={size}`,
-      headers: {
-        "ngrok-skip-browser-warning": "111",
-      },
-      method: 'GET',
-    }).then(res => console.log(res.data))
+  const size = useRecoilValue(pagesizeCount);
+  const message = useRecoilValue(tagNoneMessage)
 
-  }, []);
 
-  useEffect(() => {
-    getTags();
-  }, [getTags]);
+  let params = useParams()
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/tags?page=${params.tagspage - 1}&size=${size}`,
+  })
+
 
   return (
     <S.TagSection>
@@ -29,24 +29,17 @@ const Tags = () => {
       <div className='tagText2'>Using the right tags makes it easier for others to find and answer your question.</div>
       <Filter />
       <S.TagsContainer>
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
-        <TagComponent />
+        {
+          loading ? null :
+            <>
+              {
+                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <TagComponent key={el.tagId} name={el.name} count={el.questionCount} />)
+              }
+            </>
+
+
+        }
       </S.TagsContainer>
-      <PageList></PageList>
     </S.TagSection>
   );
 };

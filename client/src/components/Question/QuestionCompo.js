@@ -8,6 +8,8 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css'
 import {Viewer} from '@toast-ui/react-editor'
 import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
+import { useMemo } from 'react';
+
 
 function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment}) {
   const [follow, isFollow] = useRecoilState(followQ)
@@ -31,6 +33,7 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
       //   url: `/questions/${questionId}/vote/1`,
       // })
   }
+
 
   const voteDownClick = () => { 
     if(clickUp === true){ // +1 후 클릭인 경우 => 취소
@@ -65,6 +68,16 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
     setAddComment(false);
     event.preventDefault();
   }
+  
+    const params = useParams();
+
+  const config = useMemo(() => {
+    return {
+      method: 'GET',
+      url: `api/questions/${params.questionId}`,
+    };
+  }, [params.questionId]);
+  const { response, loading, error } = useAxios(config);
 
   return (
     <S.QContent>
@@ -72,6 +85,7 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
         <img onClick={voteUpClick} alt="Polygon" src={polygon} />
         <div>{vote}</div>
         <img onClick={voteDownClick} alt="Polygon" src={polygon} />
+
       </S.QContentLeft>
       <S.QContentRight>
         <Viewer initialValue={content} />
@@ -86,13 +100,19 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
             <button>Share</button>
             <button>Edit</button>
             <button>Delete</button>
-            {follow ? <button onClick={onClick}>Following</button> : <button onClick={onClick}>Follow</button>}
+            {follow ? (
+              <button onClick={onClick}>Following</button>
+            ) : (
+              <button onClick={onClick}>Follow</button>
+            )}
           </S.QCRELeft>
           <S.QCRERight>
             <span>{createdAt}</span>
             <div>
+
               <img src={userImg} alt="얼굴"></img>
               <span>{user.username}</span>
+
             </div>
           </S.QCRERight>
         </S.QCREdit>

@@ -96,24 +96,24 @@ const QuestionEditBody = () => {
 
   const tagsAddHandler = (e) => {
     if (e.key === 'Enter') {
-      const tempArr = editQuestion.tags.slice();
+      const tempArr = editQuestion.tagNames.slice();
       const tempTag = {
         id: tagId.current,
         content: e.target.value,
       };
       tagId.current++;
       tempArr.push(tempTag);
-      setEditQuestion({ ...editQuestion, tags: tempArr });
+      setEditQuestion({ ...editQuestion, tagNames: tempArr });
       // setTagInput('');
       tagInputContent.current.value = '';
     }
   };
 
   const tagsDelHandler = (idx) => {
-    const tempArr = editQuestion.tags.slice().filter((tag) => {
+    const tempArr = editQuestion.tagNames.slice().filter((tag) => {
       return tag.id !== idx;
     });
-    setEditQuestion({ ...editQuestion, tags: tempArr });
+    setEditQuestion({ ...editQuestion, tagNames: tempArr });
   };
 
   return (
@@ -154,7 +154,7 @@ const QuestionEditBody = () => {
         <p>Add up to 5 tags to describe what your question is about</p>
         <div className='tagInput-container'>
           <ol>
-            {editQuestion.tags.map((tag) => {
+            {editQuestion.tagNames.map((tag) => {
               return (
                 <li key={tag.id}>
                   <div className='tag-container'>

@@ -1,9 +1,8 @@
 import styled from "styled-components"
 
 export const UserPageContainer = styled.div`
-width: 1300px;
+width: 800px;
 padding: 24px;
-height: calc(100vh - 372px);
 `
 export const UserNameCard = styled.div`
 width: 100%;
@@ -72,11 +71,27 @@ export const ProfileTab = styled.div`
 width: 100%;
 `
 export const ProfileBtn = styled.button`
-background: var(--theme-primary-color);
-    color: white;
-    border: none;
+& .active {
+    background: var(--theme-primary-color);
+    color: white; 
+}
+& :hover{
+    background-color: var(--black-050);
+}
+& a {
+    display: block;
     border-radius: 20px;
     padding: 6px 12px;
+    text-decoration: none;
+}
+& .active:hover {
+    background: var(--theme-primary-color);
+    color: white;
+}
+    transition: 0.3s;
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
 `
 export const AboutTab = styled.div`
@@ -94,6 +109,13 @@ border: 1px solid var(--black-100);
 border-radius: 5px;
 margin-top: 15px;
 `
+
+export const AboutDataCompo = styled.div`
+padding: 12px 0px;
+
+border-radius: 5px;
+margin-top: 15px;
+`
 export const AboutP = styled.p`
 font-size: 13px;
 color: var(--black-500);
@@ -102,5 +124,19 @@ line-height: 1.5;
 & a {
     color: var(--blue-500);
     text-decoration: none;
+}
+`
+
+export const Title = styled.p`
+font-size: 20px;
+margin-bottom: 12px;
+`
+
+export const InputName = styled.input`
+height: 40px; width: 100%;
+margin-bottom: 28px;
+padding: 8px 10px;
+::placeholder {
+    color: var(--black-100);
 }
 `
