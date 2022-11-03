@@ -27,7 +27,7 @@ export const useAxios = (axiosParams, auto = true) => {
       fetchData(axiosParams);
     } else {
     }
-  }, [axiosParams]); // execute once only
+  }, []); // execute once only
 
   return { response, error, loading, clickFetchFunc };
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
 import * as S from './../../style/auth/UserPage.style';

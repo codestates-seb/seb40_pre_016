@@ -106,3 +106,24 @@ export const answer = atom({
   key: 'content',
   default: '',
 });
+
+//pagenation count 
+export const pagenationCount = atom({
+  key: 'pagenationCount',
+  default: 5
+})
+
+export const pagesizeCount = atom({
+  key: 'pagesizeCount',
+  default: 2
+})
+
+export const tagNoneMessage = atom({
+  key: 'tagNoneMessage',
+  default: ''
+})
+
+export const pageLocation = atom({
+  key: 'pageLocation',
+  default: 'main'
+})

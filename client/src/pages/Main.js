@@ -20,7 +20,7 @@ const Main = () => {
         <AskQuestion />
         <Filter></Filter>
         <QuestionList />
-        <PageList />
+        {/* <PageList /> */}
       </MainStyeld>
       <QuestionRightSidebar />
     </>
