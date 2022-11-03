@@ -39,7 +39,7 @@ public class AnswerService {
     public Answer updateAnswer(Long answerId, Answer answer) {
         Answer findAnswer = findVerifiedAnswer(answerId);
 
-        if (findAnswer.getUser().getId() != answer.getUser().getId()) {
+        if (findAnswer.getUser().getId().equals(answer.getUser().getId())) {
             throw new RuntimeException();
         }
 
@@ -52,7 +52,7 @@ public class AnswerService {
     public void delete(Long answerId, User user) {
         Answer answer = findVerifiedAnswer(answerId);
 
-        if (answer.getUser().getId() != user.getId()) {
+        if (answer.getUser().getId().equals(user.getId())) {
             throw new RuntimeException();
         }
 
