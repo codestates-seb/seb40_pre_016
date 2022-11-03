@@ -91,14 +91,13 @@ const QuestionEditFooter = () => {
     console.log('수정 후 question', postData);
     console.log('수정 요청 완료');
 
-    navigate(`/questions/${params.questionId}`);
+    // navigate(`/questions/${params.questionId}`);
   };
   const params = useParams();
 
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
-    response && console.log(response);
-    // response && navigate(`/questions/${params.questionId}`);
+    response && navigate(`/questions/${response + ''}`);
   }, [response]);
   console.log('질문 수정 요청 응답은', response);
   return (
