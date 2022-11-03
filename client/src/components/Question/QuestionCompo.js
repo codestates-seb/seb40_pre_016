@@ -7,7 +7,7 @@ import Comment from './Comment';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Viewer } from '@toast-ui/react-editor';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function QuestionCompo({
@@ -75,16 +75,23 @@ function QuestionCompo({
     setCommentValue(e.target.value);
   };
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
     // commentValue 보내기
     axios.post(`/api/questions/${questionId}/comments`, {
       content: commentValue,
     }, {headers: {
       'Content-Type': `application/json`,
     },
-    withCredentials: true});
+    withCredentials: true}).then((res) => {if(res){window.location.reload()}})
     setAddComment(false);
   };
+  const navigate = useNavigate()
+
+  const delBtn = () => {
+    axios.delete(
+      `/api/questions/${questionId}`, 
+      {withCredentials: true}).then(navigate('/'))
+    }
 
   return (
     <S.QContent>
@@ -106,7 +113,7 @@ function QuestionCompo({
             <Link to={`/questions/${questionId}/edit`}>
               <button>Edit</button>
             </Link>
-            <button>Delete</button>
+            <button onClick={delBtn}>Delete</button>
             {follow ? (
               <button onClick={onClick}>Following</button>
             ) : (

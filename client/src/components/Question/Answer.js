@@ -8,7 +8,6 @@ import { timeCal } from '../../pages/Question';
 import { useState } from 'react';
 import axios from 'axios';
 
-
 function Answer ({ answerId, content, vote, user, modifiedAt, comment}) {
   const [addComment, setAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
@@ -28,9 +27,16 @@ function Answer ({ answerId, content, vote, user, modifiedAt, comment}) {
     }, {headers: {
       'Content-Type': `application/json`,
     },
-    withCredentials: true});
+    withCredentials: true}).then((res) => {if(res){window.location.reload()}})
     setAddComment(false);
   }
+  const delBtn = (event) => {
+    console.log("hi")
+    axios.delete(
+      `/api/answers/${answerId}`, 
+      {withCredentials: true}).then(event.preventDefault()).then((res) => {if(res){window.location.reload()}})
+    }
+
 
     return (
         <S.QContent>
@@ -45,7 +51,7 @@ function Answer ({ answerId, content, vote, user, modifiedAt, comment}) {
             <S.QCRELeft>
               <button>Share</button>
               <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={delBtn}>Delete</button>
             </S.QCRELeft>
             <S.QCRERight>
               <span>{timeCal(modifiedAt)}</span>
