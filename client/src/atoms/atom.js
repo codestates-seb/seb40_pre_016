@@ -22,6 +22,7 @@ export const questionList = atom({
 export const isLoginState = atom({
   key: 'isLoginState',
   default: false,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const loginsubmitList = atom({
