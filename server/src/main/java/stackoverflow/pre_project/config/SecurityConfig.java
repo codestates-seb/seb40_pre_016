@@ -17,6 +17,8 @@ import stackoverflow.pre_project.config.oauth.Oauth2DetailsService;
 
 import java.util.List;
 
+import static org.springframework.http.HttpMethod.GET;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -25,17 +27,17 @@ public class SecurityConfig {
     private final Oauth2DetailsService oauth2DetailsService;
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.httpBasic().disable()
                 .csrf()
                 .disable()
@@ -45,9 +47,10 @@ public class SecurityConfig {
                 .disable()
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/", "/user/**", "/api/**", "/question/**", "/comment/**", "/answer/**", "/users/**").authenticated()
+                .antMatchers(GET, "/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
                 .anyRequest()
-                .permitAll()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/auth/login")
@@ -55,9 +58,19 @@ public class SecurityConfig {
                 .successHandler((req, res, auth) -> res.setStatus(HttpStatus.NO_CONTENT.value()))
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/auth/login")
+                .logoutUrl("/auth/logout")
+                .logoutSuccessHandler((req, res, auth) -> res.setStatus(HttpStatus.NO_CONTENT.value()))
                 .deleteCookies("JSESSIONID", "remember-me")
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler((req, res, adh) -> {
+                    res.setStatus(403);
+                    res.getWriter().write("Access denied");
+                })
+                .authenticationEntryPoint((req, res, ae) -> {
+                    res.setStatus(401);
+                    res.getWriter().write("Unauthorized");
+                })
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint()
@@ -75,7 +88,7 @@ public class SecurityConfig {
         configuration.addAllowedOrigin("http://localhost:3000");
         configuration.addAllowedOrigin("http://localhost:80");
         configuration.addAllowedOrigin("http://localhost");
-        configuration.setAllowedMethods(List.of("GET","POST","DELETE","PATCH","OPTION","PUT"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "PATCH", "OPTION", "PUT"));
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
