@@ -36,8 +36,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
 
-            <Route path='/main' element={<MainLayout />} >
-              <Route path='/main/:mainpage' element={<Main />} />
+            <Route path='/questions' element={<MainLayout />} >
+              <Route path='/questions/page=:mainpage' element={<Main />} />
             </Route>
 
             <Route path='/questions/:questionId' element={<Question />} />
@@ -56,10 +56,10 @@ function App() {
             </Route>
 
             <Route path='/tags' element={<TagLayout />}>
-              <Route path='/tags/:tagspage' element={<Tags />} />
+              <Route path='/tags/page=:tagspage' element={<Tags />} />
             </Route>
             <Route path='/users' element={<UserLayout />}>
-              <Route path='/users/:userspage' element={<Users />} />
+              <Route path='/users/page=:userspage' element={<Users />} />
             </Route>
 
 

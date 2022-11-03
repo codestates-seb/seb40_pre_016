@@ -13,6 +13,8 @@ import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 const PageList = ({ location, child }) => {
+
+
   const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
   console.log('로케이션', location);
   //pagenation 카운트
@@ -22,6 +24,7 @@ const PageList = ({ location, child }) => {
   const [message, setMessage] = useRecoilState(tagNoneMessage);
 
   console.log(location)
+
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/${location}`,
@@ -49,7 +52,7 @@ const PageList = ({ location, child }) => {
   //navi 새로고침문제 해결
   const navigate = useNavigate()
   const goPage = (idx, location, e) => {
-    navigate(`/${location}/${idx + 1}`)
+    navigate(`/${location}/page=${idx + 1}`)
     window.location.reload()
   }
 
@@ -72,7 +75,7 @@ const PageList = ({ location, child }) => {
               <NavLink
                 width='30px'
                 onClick={(e) => goPage(idx, location, e)}
-                to={`/${location}/${idx + 1}`}
+                to={`/${location}/page=${idx + 1}`}
               >
                 {el}
               </NavLink>

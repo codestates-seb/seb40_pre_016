@@ -97,7 +97,7 @@ export const pagenationCount = atom({
 });
 export const pagesizeCount = atom({
   key: 'pagesizeCount',
-  default: 12,
+  default: 10,
 });
 export const tagNoneMessage = atom({
   key: 'tagNoneMessage',
