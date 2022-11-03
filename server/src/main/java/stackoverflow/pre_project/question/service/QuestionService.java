@@ -49,7 +49,7 @@ public class QuestionService {
 
         Question findQuestion = findVerifiedQuestion(questionId);
 
-        if (findQuestion.getUser().getId().equals(question.getUser().getId())) {
+        if (!findQuestion.getUser().getId().equals(question.getUser().getId())) {
             throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
 
@@ -97,7 +97,7 @@ public class QuestionService {
     public void deleteQuestion(Long questionId, User user) {
         Question question = findVerifiedQuestion(questionId);
 
-        if (question.getUser().getId().equals(user.getId())) {
+        if (!question.getUser().getId().equals(user.getId())) {
             throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
 
