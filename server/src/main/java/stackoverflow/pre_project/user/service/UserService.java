@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stackoverflow.pre_project.exception.BusinessLogicException;
 import stackoverflow.pre_project.exception.ExceptionCode;
-import stackoverflow.pre_project.exception.ex.BusinessApiException;
-import stackoverflow.pre_project.exception.ex.BusinessException;
-import stackoverflow.pre_project.exception.ex.BusinessValidationApiException;
 import stackoverflow.pre_project.user.dto.UserProfileDto;
 import stackoverflow.pre_project.user.entity.User;
 import stackoverflow.pre_project.user.repository.UserRepository;
@@ -23,22 +20,24 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
-    public UserProfileDto profile(long id, long userId){//id는 본인, userId는 방문할페이지id
+    public UserProfileDto profile(long id, long userId) {//id는 본인, userId는 방문할페이지id
         UserProfileDto dto = new UserProfileDto();
-        User Entity = userRepository.findById(userId).orElseThrow(() ->{
-            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);});
+        User Entity = userRepository.findById(userId).orElseThrow(() -> {
+            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
+        });
         dto.setOwnerState(id == userId);
         dto.setUser(Entity);
         return dto;
     }
 
     @Transactional
-    public User update(long id, User user, long userId){
-        if(id != userId){
+    public User update(long id, User user, long userId) {
+        if (id != userId) {
             throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
         }
-        User userEntity = userRepository.findById(id).orElseThrow(() ->{
-            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);});
+        User userEntity = userRepository.findById(id).orElseThrow(() -> {
+            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
+        });
         userEntity.setUsername(user.getUsername());
         String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
