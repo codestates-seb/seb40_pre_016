@@ -32,19 +32,18 @@ public class QuestionController {
     private final QuestionMapper mapper;
 
     @PostMapping
-    public void postQuestion(@RequestBody QuestionDto.Request request,
+    public String postQuestion(@RequestBody QuestionDto.Request request,
                              @AuthenticationPrincipal CustomUserDetails customUserDetails,
                              HttpServletResponse response) throws IOException {
         request.setUser(customUserDetails.getUser());
         Question question = mapper.questionRequestToQuestion(request);
         Question createdQuestion = questionService.createQuestion(question);
 
-        Long questionId = createdQuestion.getId();
-        response.sendRedirect("/api/questions/" + questionId);
+        return String.valueOf(createdQuestion.getId());
     }
 
     @PatchMapping("/{question-id}")
-    public void patchQuestion(@PathVariable("question-id") Long questionId,
+    public String patchQuestion(@PathVariable("question-id") Long questionId,
                               @AuthenticationPrincipal CustomUserDetails customUserDetails,
                               @RequestBody QuestionDto.Request request,
                               HttpServletResponse response) throws IOException {
@@ -53,7 +52,7 @@ public class QuestionController {
         Question question = mapper.questionRequestToQuestion(request);
         Question updateQuestion = questionService.updateQuestion(questionId, question);
 
-        response.sendRedirect("/api/questions/" + questionId);
+        return String.valueOf(questionId);
     }
 
     @GetMapping("/{question-id}")
