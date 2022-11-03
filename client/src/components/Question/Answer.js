@@ -6,9 +6,10 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css'
 import {Viewer} from '@toast-ui/react-editor'
 import { timeCal } from '../../pages/Question';
 import { useState } from 'react';
+import axios from 'axios';
 
 
-function Answer ({content, vote, user, modifiedAt, comment}) {
+function Answer ({ questionId, content, vote, user, modifiedAt, comment}) {
   const [addComment, setAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
   const onClick = () =>{
@@ -22,6 +23,7 @@ function Answer ({content, vote, user, modifiedAt, comment}) {
   }
   const onSubmit = (event) => {
     // commentValue 보내기
+    axios.post(`/api/answers/${questionId}/comments`, {content: commentValue})
     setAddComment(false);
     event.preventDefault();
   }
@@ -53,8 +55,9 @@ function Answer ({content, vote, user, modifiedAt, comment}) {
           comment.map((el) => (
             <Comment commentId={el.commentId} userId={el.userId} content={el.content} createdAt={el.createdAt} />
           ))
-        }          <S.QCRComment><button onClick={onClick}>Add a Comment</button></S.QCRComment>
-          {addComment ? <form onSubmit={onSubmit}><input onChange={onChange} onBlur={onBlur} /></form> : null}
+        }
+          <S.QCRComment><button onClick={onClick}>Add a Comment</button></S.QCRComment>
+            {addComment ? <form onSubmit={onSubmit}><input onChange={onChange} onBlur={onBlur} /></form> : null}
         </S.QContentRight>
       </S.QContent>
     )

@@ -44,8 +44,8 @@ function Question() {
       <QContents>
         <QContentContainer>
           <QuestionCompo questionId={data.questionId} content={data.content} tag={data.tagNames} vote={data.voteCount} createdAt={timeCal(data.createdAt)} user={data.user} comment={data.comments}/>
-          <QCommentCompo answers={data.answers} comment={data.comments}/>
-          <YourAnswer />
+          <QCommentCompo questionId={data.questionId} answers={data.answers} />
+          <YourAnswer questionId={data.questionId} />
         </QContentContainer>
         <QuestionRightSidebar />
       </QContents>

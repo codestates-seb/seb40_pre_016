@@ -9,7 +9,8 @@ import {Viewer} from '@toast-ui/react-editor'
 import { useState } from 'react';
 import { useAxios } from '../../util/useAxios';
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment}) {
@@ -17,6 +18,7 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
   const [clickUp, setClickUp] = useState(false)
   const [clickDown, setClickDown] = useState(false)
   const onClick = () => {isFollow(!follow)}
+  const navigate = useNavigate();
 
   const voteUpClick = () => {
     if(clickDown === true){ // -1 후 클릭인 경우 => 취소
@@ -66,20 +68,16 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
   }
   const onSubmit = (event) => {
     // commentValue 보내기
+    axios.post(`/api/questions/${questionId}/comments`, {content: commentValue})
     setAddComment(false);
     event.preventDefault();
   }
   
-    const params = useParams();
-
-  const config = useMemo(() => {
-    return {
-      method: 'GET',
-      url: `api/questions/${params.questionId}`,
-    };
-  }, [params.questionId]);
-  const { response, loading, error } = useAxios(config);
-
+  const delClick = () => {
+    axios.delete(`/api/questions/${questionId}`)
+    navigate('/')
+  }
+  
   return (
     <S.QContent>
       <S.QContentLeft>
@@ -99,8 +97,10 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <button>Edit</button>
-            <button>Delete</button>
+            <Link to={`/question/${questionId}/edit`}>
+              <button>Edit</button>
+            </Link>
+            <button onClick={delClick}>Delete</button>
             {follow ? (
               <button onClick={onClick}>Following</button>
             ) : (
@@ -110,10 +110,8 @@ function QuestionCompo({questionId, content, tag, vote, createdAt, user, comment
           <S.QCRERight>
             <span>{createdAt}</span>
             <div>
-
               <img src={userImg} alt="얼굴"></img>
               <span>{user.username}</span>
-
             </div>
           </S.QCRERight>
         </S.QCREdit>
