@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
@@ -6,12 +6,12 @@ import QuestionWriteEditor from '../QuestionWrite/QuestionWriteEditor';
 import QuestionEditFooter from './QuestionEditFooter';
 import { editQuestionState } from '../../atoms/atom';
 import QuestionEditEditor from './QuestionEditEditor';
-
+import { useParams } from 'react-router-dom';
+import { useAxios } from '../../util/useAxios';
 const QuestionEditBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-
   padding: 20px;
   flex-basis: 800px;
   background-color: white;
@@ -21,30 +21,25 @@ const QuestionEditBodyContainer = styled.div`
     margin-bottom: 6px;
     font-weight: 550;
   }
-
   & p {
     color: hsl(210, 8%, 35%);
     font-size: 13px;
     margin-bottom: 7px;
   }
-
   & input {
     width: 100%;
     margin-bottom: 10px;
     padding: 8px 10px;
   }
-
   & .tagInput-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-
     > ol {
       display: flex;
     }
   }
-
   & .tag-container {
     display: flex;
     color: #39739d;
@@ -54,7 +49,6 @@ const QuestionEditBodyContainer = styled.div`
     gap: 5px;
     border-radius: 3px;
   }
-
   & .tag-name {
     display: flex;
     justify-content: center;
@@ -63,18 +57,15 @@ const QuestionEditBodyContainer = styled.div`
     font-size: 12px;
     white-space: nowrap;
   }
-
   & .tagInput-button {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 10px;
-
     color: #39739d;
     background-color: #e1ecf4;
     border: none;
   }
-
   & .tag-input {
     margin-bottom: 0px;
   }
@@ -83,16 +74,41 @@ const QuestionEditBodyContainer = styled.div`
 const QuestionEditBody = () => {
   const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
   // const [tagInput, setTagInput] = useState('');
+
   const tagInputContent = useRef();
   let tagId = useRef(0);
+
+  const params = useParams();
+  console.log(params);
+
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/questions/${params.questionId}`,
+  });
+
+  useEffect(() => {
+    let newTagNames = [];
+    if (response) {
+      for (let i = 0; i < response.tagNames.length; i++) {
+        const newTagForm = {
+          id: tagId.current,
+          content: response.tagNames[i],
+        };
+        newTagNames.push(newTagForm);
+        tagId.current++;
+      }
+    }
+    response &&
+      setEditQuestion({
+        title: response.title,
+        content: response.content,
+        tagNames: newTagNames,
+      });
+  }, [response]);
 
   const titleHandler = (e) => {
     setEditQuestion({ ...editQuestion, title: e.target.value });
   };
-
-  // const tagsHandler = (e) => {
-  //   setTagInput(e.target.value)
-  // };
 
   const tagsAddHandler = (e) => {
     if (e.key === 'Enter') {
