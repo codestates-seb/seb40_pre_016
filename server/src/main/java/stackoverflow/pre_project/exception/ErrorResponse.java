@@ -3,6 +3,7 @@ package stackoverflow.pre_project.exception;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -22,5 +23,11 @@ public class ErrorResponse {
         return new ErrorResponse(
                 400,
                 exception.getMessage());
+    }
+
+    static ErrorResponse of(MethodArgumentNotValidException exception) {
+        return new ErrorResponse(
+                400,
+                exception.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 }
