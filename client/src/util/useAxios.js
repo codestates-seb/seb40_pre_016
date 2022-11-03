@@ -19,6 +19,7 @@ export const useAxios = (axiosParams, auto = true) => {
     }
   };
   const clickFetchFunc = (config) => {
+    console.log('axios 실행됨');
     fetchData(config);
   };
 

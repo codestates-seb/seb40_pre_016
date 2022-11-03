@@ -54,7 +54,6 @@ const SignUpBox = () => {
     signupData.checked = e.target.checked;
     setsignupList(signupData);
   };
-  console.log(signupList);
 
   const handleSignupSubmit = () => {
     //이메일 유효성
@@ -112,13 +111,13 @@ const SignUpBox = () => {
     ) {
       //전송
       submit = true;
-      setsignupList({
-        displayName: '',
-        email: '',
-        password: '',
-        captcha: '',
-        checked: false,
-      });
+      // setsignupList({
+      //   displayName: '',
+      //   email: '',
+      //   password: '',
+      //   captcha: '',
+      //   checked: false,
+      // });
     } else {
       submit = false;
     }
@@ -132,6 +131,7 @@ const SignUpBox = () => {
 
   useEffect(() => {
     isSubmit && console.log('회원가입 요청 완료');
+    isSubmit && console.log('제출한 내용은', signupList);
     isSubmit &&
       clickFetchFunc({
         method: 'POST',
@@ -147,15 +147,14 @@ const SignUpBox = () => {
           password: signupList.password,
         },
       });
-    // setIsSubmit(false);
-    response && console.log('회원가입 응답은', response);
+    setIsSubmit(false);
   }, [isSubmit]);
-
+  console.log('제출후 issumit은', isSubmit);
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
     response && console.log('회원가입 응답은', response);
-    response && navigate(`/`);
-  }, [response]);
+    error && navigate(`/`);
+  }, [error]);
 
   const SITE_KEY = process.env.REACT_APP_RECAPCHA_SITEKEY;
   return (
