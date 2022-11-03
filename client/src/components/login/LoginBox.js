@@ -85,7 +85,7 @@ const LoginBox = () => {
       if (state) {
         navigate(state);
       } else {
-        navigate('/');
+        navigate('/questions/page=1');
       }
     }
   };
