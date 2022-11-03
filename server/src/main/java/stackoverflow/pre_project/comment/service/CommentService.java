@@ -60,7 +60,7 @@ public class CommentService {
     }
 
     private void verifyUserAndComment(User user, Comment comment) {
-        if (!comment.getUser().equals(user)) {
+        if (!comment.getUser().getId().equals(user.getId())) {
             throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
     }
