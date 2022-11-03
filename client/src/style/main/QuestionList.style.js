@@ -1,3 +1,5 @@
 import styled from 'styled-components';
 
-export const QuestionListContainer = styled.div``;
+export const QuestionListContainer = styled.div`
+  width: 100%;
+`;

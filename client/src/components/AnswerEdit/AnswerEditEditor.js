@@ -11,7 +11,7 @@ function AnswerEditEditor() {
 
   const contentHandler = () => {
     const data = editorRef.current.getInstance().getHTML();
-    console.log(data);
+    console.log('댓글수정내용', data);
     if (data.length < 30) {
       console.log('nope');
     }

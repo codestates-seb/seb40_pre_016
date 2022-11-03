@@ -7,37 +7,33 @@ import { filterBtnIdx } from '../../../atoms/atom';
 
 const Filter = () => {
   const [currentBtn, setCurrentButton] = useRecoilState(filterBtnIdx);
-  const [questions, setQuestions] = useRecoilState(questionList);
-  const filteredQuestions = questions.slice();
-  const buttonNameList = [
-    'Newest',
-    'Active',
-    'Bountied',
-    'Unanswered',
-    'Votes',
-  ];
+  // const [questions, setQuestions] = useRecoilState(questionList);
+  // const filteredQuestions = questions.slice();
 
-  const btnCheckHandler = (idx) => {
-    setCurrentButton(idx);
-    sortHandler(idx);
-  };
+  const buttonNameList = ['createdAt', 'voteCount'];
 
-  const sortHandler = (idx) => {
-    if (idx === 0) {
-      filteredQuestions.sort((a, b) => {
-        if (+a.userTime > +b.userTime) return -1;
-        if (+a.userTime < +b.userTime) return 1;
-        if (+a.userTime === +b.userTime) return 0;
-      });
-    } else if (idx === 4) {
-      filteredQuestions.sort((a, b) => {
-        if (+a.votes > +b.votes) return -1;
-        if (+a.votes < +b.votes) return 1;
-        if (+a.votes === +b.votes) return 0;
-      });
-    }
-    setQuestions(filteredQuestions);
-  };
+  // const btnCheckHandler = (e, idx) => {
+  //   setCurrentButton(e.target.value);
+  //   // sortHandler(idx);
+  //   console.log(e.target.value);
+  // };
+
+  // const sortHandler = (idx) => {
+  //   if (idx === 0) {
+  //     filteredQuestions.sort((a, b) => {
+  //       if (+a.userTime > +b.userTime) return -1;
+  //       if (+a.userTime < +b.userTime) return 1;
+  //       if (+a.userTime === +b.userTime) return 0;
+  //     });
+  //   } else if (idx === 4) {
+  //     filteredQuestions.sort((a, b) => {
+  //       if (+a.votes > +b.votes) return -1;
+  //       if (+a.votes < +b.votes) return 1;
+  //       if (+a.votes === +b.votes) return 0;
+  //     });
+  //   }
+  //   setQuestions(filteredQuestions);
+  // };
 
   return (
     <S.FilterContainer>
@@ -48,8 +44,9 @@ const Filter = () => {
         {buttonNameList.map((el, idx) => (
           <SelectButton
             key={idx}
-            onClick={() => btnCheckHandler(idx)}
-            className={`default${currentBtn === idx ? ' clicked' : ''}`}
+            value={el}
+            // onClick={(e) => btnCheckHandler(e, idx)}
+            // className={`default${currentBtn === idx ? ' clicked' : ''}`}
           >
             {el}
           </SelectButton>

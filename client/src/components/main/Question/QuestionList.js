@@ -1,55 +1,48 @@
-import React, { useCallback, useEffect } from "react";
-import * as S from "../../../style/main/QuestionList.style";
-import Question from "./Question";
-import { useRecoilState } from "recoil";
-import { questionList } from "../../../atoms/atom";
-import { useAxios } from "../../../util/useAxios";
-import axios from "axios";
+import React, { useCallback, useEffect } from 'react';
+import * as S from '../../../style/main/QuestionList.style';
+import Question from './Question';
+import { useRecoilState } from 'recoil';
+import { questionList, filterBtnIdx, totalPageNum } from '../../../atoms/atom';
+import { useAxios } from '../../../util/useAxios';
+import axios from 'axios';
+import { useMemo } from 'react';
 
 const QuestionList = ({ questionLists }) => {
-
-
-  // import { useAxios } from 'axioshook';
-
-  // const App = () => {
-  //     const { response, loading, error } = useAxios({
-  //         method: 'POST',
-  //         url: '/posts',
-  //         headers: { // no need to stringify
-  //           accept: '*/*'
-  //         },
-  //         data: {  // no need to stringify
-  //             userId: 1,
-  //             id: 19392,
-  //             title: 'title',
-  //             body: 'Sample text',
-  //         },
-  //     });
-
-  const { response, loading, error } = useAxios({
-    method: 'GET',
-    url: 'api/questions',
-    headers: {
-      "ngrok-skip-browser-warning": "69420",
-    },
-  })
-  console.log(loading)
-  console.log(error)
-  console.log(response)
-
   const [questions, setQuestions] = useRecoilState(questionList);
+  const [currentBtn, setCurrentButton] = useRecoilState(filterBtnIdx);
+  const [totalPage, setTotalPage] = useRecoilState(totalPageNum);
 
+  const config = useMemo(() => {
+    return {
+      method: 'GET',
+      // url: 'api/questions',
+      url: `/api/questions?page=0&size=10&sort=${currentBtn}`,
+    };
+  }, [currentBtn]);
 
+  const { response, loading, error } = useAxios(config);
+
+  // console.log('질문리스트컴포넌트에서 필터버튼 이름', currentBtn);
+  response && console.log('메인페이지 응답은', response);
+  useEffect(() => {
+    response && setTotalPage(response.pageInfo.totalPages);
+  }, [response]);
+
+  // 한페이지에 20개 들어가면 글이 101개
+  //   5페이지하고 한개남음 총 6페이지
+  //   올림처리( 총갯수 / 한페이지에 나오는갯수)
   return (
     <S.QuestionListContainer>
       <ul>
-        {questions.map((el, idx) => {
-          return (
-            <li key={idx}>
-              <Question question={el} />
-            </li>
-          );
-        })}
+        {!loading
+          ? response.data.map((el) => {
+              return (
+                <li key={el.questionId}>
+                  <Question question={el} />
+                </li>
+              );
+            })
+          : null}
       </ul>
     </S.QuestionListContainer>
   );
