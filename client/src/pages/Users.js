@@ -49,6 +49,7 @@ const Users = () => {
               }
             </>
         }
+        {error ? error.message : null}
       </UserContainer>
     </UsersContainer>
   );
