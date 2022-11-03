@@ -8,11 +8,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import stackoverflow.pre_project.config.auth.CustomUserDetails;
 import stackoverflow.pre_project.config.oauth.Oauth2DetailsService;
 
 import java.util.List;
@@ -55,7 +57,15 @@ public class SecurityConfig {
                 .formLogin()
                 .loginProcessingUrl("/auth/login")
                 .usernameParameter("email")
-                .successHandler((req, res, auth) -> res.setStatus(HttpStatus.NO_CONTENT.value()))
+                .successHandler((req, res, auth) -> {
+                    res.setStatus(200);
+                    CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                    res.getWriter().write(String.valueOf(userDetails.getUser().getId()));
+                })
+                .failureHandler((req, res, adh) -> {
+                    res.setStatus(400);
+                    res.getWriter().write("Wrong email or password");
+                })
                 .and()
                 .logout()
                 .logoutUrl("/auth/logout")
