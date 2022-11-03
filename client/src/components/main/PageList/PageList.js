@@ -6,7 +6,7 @@ import { useAxios } from '../../../util/useAxios';
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
-const PageList = ({ location }) => {
+const PageList = ({ location, child }) => {
   const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
 
   //pagenation 카운트
@@ -15,14 +15,17 @@ const PageList = ({ location }) => {
   const [SizeCount, setSizeCount] = useRecoilState(pagesizeCount)
   const [message, setMessage] = useRecoilState(tagNoneMessage)
 
+  console.log(location)
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/tags`,
+    url: `api/${location}`,
   })
+
+  response && console.log(response)
   if (response) {
     //response 없을경우
-    if (response.data.length === 0) {
-      setMessage('no Tags')
+    if (response[child].length === 0) {
+      setMessage(`no ${location}`)
       setListCount(1)
     }
 
@@ -31,18 +34,20 @@ const PageList = ({ location }) => {
   useEffect(() => {
     if (response) {
       //현재 있는 데이터가 기본 설정 데이터보다 작을 경우
-      if (response.data.length < SizeCount) {
-        setSizeCount(response.data.length)
+
+      console.log(location, 'data length', response)
+      if (response[child].length < SizeCount) {
+        setSizeCount(response[child].length)
       }
-      setListCount(Math.ceil(response.data.length / SizeCount))
+      setListCount(Math.ceil(response[child].length / SizeCount))
     }
   }, [response])
 
   //navi 새로고침문제 해결
   const navigate = useNavigate()
-  const goPage = (idx, e) => {
+  const goPage = (idx, location, e) => {
 
-    navigate(`/tags/${idx + 1}`)
+    navigate(`/${location}/${idx + 1}`)
     window.location.reload()
   }
 
@@ -63,7 +68,7 @@ const PageList = ({ location }) => {
 
               className={`default${currentButton === idx ? ' clicked' : ''}`}
             >
-              <NavLink width='30px' onClick={(e) => goPage(idx, e)} to={`/tags/${idx + 1}`} >
+              <NavLink width='30px' onClick={(e) => goPage(idx, location, e)} to={`/${location}/${idx + 1}`} >
                 {el}
               </NavLink>
             </PageButton>

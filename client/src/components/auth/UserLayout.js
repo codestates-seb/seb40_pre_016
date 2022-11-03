@@ -2,17 +2,16 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import PageList from '../main/PageList/PageList';
-
-const TagLayoutContainer = styled.div`
+const UserLayoutContainer = styled.div`
 width: 100%;
 `
-const TagLayout = () => {
+const UserLayout = () => {
     return (
-        <TagLayoutContainer>
+        <UserLayoutContainer>
             <Outlet />
-            <PageList location={'tags'} child={'data'} />
-        </TagLayoutContainer>
+            <PageList location={'users'} child={'content'} />
+        </UserLayoutContainer>
     );
 };
 
-export default TagLayout;
+export default UserLayout;

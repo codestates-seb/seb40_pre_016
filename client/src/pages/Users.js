@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import Filter from "../components/Users/UsersFilter";
 import PageList from "../components/main/PageList/PageList";
 import UserComponents from "../components/Users/UserComponent";
+import { useRecoilValue } from "recoil";
+import { pagesizeCount, tagNoneMessage } from "../atoms/atom";
+import { useParams } from "react-router-dom";
+import { useAxios } from "../util/useAxios";
 
 
 const UsersContainer = styled.section`
@@ -22,27 +26,30 @@ const UserContainer = styled.section`
 `
 
 const Users = () => {
+  const message = useRecoilValue(tagNoneMessage)
+  const size = useRecoilValue(pagesizeCount);
 
+  let params = useParams()
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/users?page=${params.userspage - 1}&size=${size}`,
+  })
+  response && console.log(response.content)
 
   return (
     <UsersContainer>
       <h1>Users</h1>
       <Filter />
       <UserContainer>
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
-        <UserComponents />
+        {
+          loading ? null :
+            <>
+              {
+                message.length !== 0 ? <p>{message}</p> : response.content.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} />)
+              }
+            </>
+        }
       </UserContainer>
-      <PageList></PageList>
     </UsersContainer>
   );
 };

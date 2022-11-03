@@ -21,6 +21,7 @@ import Users from './pages/Users'
 import UserInfo from './components/auth/UserInfo';
 import UserSetting from './components/auth/UserSetting';
 import TagLayout from './components/Tags/TagLayout';
+import UserLayout from './components/auth/UserLayout';
 
 
 function App() {
@@ -47,7 +48,10 @@ function App() {
             <Route path='/tags' element={<TagLayout />} >
               <Route path='/tags/:tagspage' element={<Tags />} />
             </Route>
-            <Route path='/users' element={<Users />} />
+            <Route path='/users' element={<UserLayout />}>
+              <Route path='/users/:userspage' element={<Users />} />
+            </Route>
+
 
           </Route>
           <Route path='/askquestion' element={<QuestionWrite />} />

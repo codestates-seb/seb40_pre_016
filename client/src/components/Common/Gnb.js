@@ -29,7 +29,7 @@ const Gnb = () => {
                         </Link>
                     </S.AList>
                     <S.AList >
-                        <Link to='/users' onClick={() => setIsTabOn('Users')} className={isTabOn === 'Users' ? 'select' : null}>
+                        <Link to='/users/1' onClick={() => setIsTabOn('Users')} className={isTabOn === 'Users' ? 'select' : null}>
                             <span>
                                 Users
                             </span>
