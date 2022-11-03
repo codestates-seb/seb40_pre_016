@@ -67,6 +67,7 @@ public class QuestionService {
         return findQuestion;
     }
 
+    @Transactional
     public Question findQuestion(Long questionId) {
         Question findQuestion = findVerifiedQuestion(questionId);
         findQuestion.setViewCount(findQuestion.getViewCount() + 1);
