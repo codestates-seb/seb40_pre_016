@@ -6,8 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import stackoverflow.pre_project.exception.BusinessLogicException;
+import stackoverflow.pre_project.exception.ExceptionCode;
 import stackoverflow.pre_project.tag.entity.Tag;
 import stackoverflow.pre_project.tag.repository.TagRepository;
+
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,19 +26,22 @@ public class TagService {
         Tag tag = Tag.builder()
                 .name(tagName)
                 .build();
-
         tagRepository.save(tag);
 
         return tag;
     }
 
+    @Transactional
     public Tag findTag(String tagName) {
-        log.info("start find tag = {}", tagName);
         return tagRepository.findByName(tagName).orElseGet(() -> createTag(tagName));
     }
 
+    public Tag findVerifiedTag(String tagName) {
+        return tagRepository.findByName(tagName).orElse(null);
+    }
+
     public Tag findTagById(Long tagId) {
-        return tagRepository.findById(tagId).orElseThrow(() -> new RuntimeException());
+        return tagRepository.findById(tagId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.TAG_NOT_FOUND));
     }
 
     public Page<Tag> findTags(Pageable pageable) {

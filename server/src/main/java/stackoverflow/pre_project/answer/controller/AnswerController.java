@@ -34,7 +34,9 @@ public class AnswerController {
 
     @PatchMapping("answers/{answer-id}")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") Long answerId,
-                                      @RequestBody AnswerDto.Request request) {
+                                      @RequestBody AnswerDto.Request request,
+                                      @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        request.setUser(customUserDetails.getUser());
         Answer answer = mapper.answerRequestToAnswer(request);
 
         Answer updateAnswer = answerService.updateAnswer(answerId, answer);
@@ -44,8 +46,9 @@ public class AnswerController {
     }
 
     @DeleteMapping("answers/{answer-id}")
-    public ResponseEntity deleteAnswer(@PathVariable("answer-id") Long answerId) {
-        answerService.delete(answerId);
+    public ResponseEntity deleteAnswer(@PathVariable("answer-id") Long answerId,
+                                       @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        answerService.delete(answerId, customUserDetails.getUser());
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
