@@ -18,7 +18,7 @@ const Tags = () => {
   let params = useParams()
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/tags?page=${params.tagspage - 1}&size=${size}`,
+    url: `api/tags?page=${params.tagspage - 1}&size=${size.tags}`,
   })
 
 

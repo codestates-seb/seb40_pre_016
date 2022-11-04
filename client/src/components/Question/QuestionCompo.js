@@ -24,6 +24,9 @@ function QuestionCompo({
   const [addComment, setAddComment] = useState(false);
   const [commentValue, setCommentValue] = useState('');
 
+  //sort
+  // comment
+
   const onClick = () => {
     isFollow(!follow);
   };
@@ -32,30 +35,64 @@ function QuestionCompo({
     if (voteVal === 0 || voteVal === 2) {
       // 취소
       setVoteVal(1);
-      axios.post(`/api/questions/${questionId}/vote/3`, {data: {}},
-      {withCredentials: true}).then((res) => {if(res){window.location.reload()}})
+      axios
+        .post(
+          `/api/questions/${questionId}/vote/3`,
+          { data: {} },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          if (res) {
+            window.location.reload();
+          }
+        });
     }
     // 값 1 올리기
     setVoteVal(2);
-    axios.post(`/api/questions/${questionId}/vote/1`, {data: {}},
-    {withCredentials: true}).then((res) => {if(res){window.location.reload()}})
-
+    axios
+      .post(
+        `/api/questions/${questionId}/vote/1`,
+        { data: {} },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res) {
+          window.location.reload();
+        }
+      });
   };
 
   const voteDownClick = (event) => {
     if (voteVal === 0 || voteVal === 2) {
       // 취소
       setVoteVal(1);
-      axios.post(`/api/questions/${questionId}/vote/3`, {data: {}},
-      {withCredentials: true}).then((res) => {if(res){window.location.reload()}})
+      axios
+        .post(
+          `/api/questions/${questionId}/vote/3`,
+          { data: {} },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          if (res) {
+            window.location.reload();
+          }
+        });
     }
     setVoteVal(0);
     // 값 1 내리기
-    axios.post(`/api/questions/${questionId}/vote/2`, {data: {}},
-    {withCredentials: true}).then((res) => {if(res){window.location.reload()}})
-
+    axios
+      .post(
+        `/api/questions/${questionId}/vote/2`,
+        { data: {} },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res) {
+          window.location.reload();
+        }
+      });
   };
-  console.log(voteVal)
+  console.log(voteVal);
 
   const onClickk = () => {
     setAddComment(true);
@@ -69,21 +106,33 @@ function QuestionCompo({
 
   const onSubmit = (event) => {
     // commentValue 보내기
-    axios.post(`/api/questions/${questionId}/comments`, {
-      content: commentValue,
-    }, {headers: {
-      'Content-Type': `application/json`,
-    },
-    withCredentials: true}).then((res) => {if(res){window.location.reload()}})
+    axios
+      .post(
+        `/api/questions/${questionId}/comments`,
+        {
+          content: commentValue,
+        },
+        {
+          headers: {
+            'Content-Type': `application/json`,
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res) {
+          window.location.reload();
+        }
+      });
     setAddComment(false);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const delBtn = () => {
-    axios.delete(
-      `/api/questions/${questionId}`, 
-      {withCredentials: true}).then(navigate('/'))
-    }
+    axios
+      .delete(`/api/questions/${questionId}`, { withCredentials: true })
+      .then(navigate('/questions/page=1'));
+  };
 
   return (
     <S.QContent>

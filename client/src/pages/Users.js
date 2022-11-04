@@ -32,7 +32,7 @@ const Users = () => {
   let params = useParams()
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/users?page=${params.userspage - 1}&size=${size}`,
+    url: `api/users?page=${params.userspage - 1}&size=${size.users}`,
   })
   response && console.log(response.data)
 

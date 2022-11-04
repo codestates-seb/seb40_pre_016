@@ -26,9 +26,8 @@ const QuestionList = ({ questionLists }) => {
   const config = useMemo(() => {
     return {
       method: 'GET',
-      url: `/api/questions?page=${params.mainpage - 1}&size=${size}&sort=${
-        currentBtn + ',DESC'
-      }`,
+      url: `/api/questions?page=${params.mainpage - 1}&size=${size.questions}&sort=${currentBtn + ',DESC'
+        }`,
       withCredentials: true,
     };
   }, [currentBtn]);
@@ -49,12 +48,12 @@ const QuestionList = ({ questionLists }) => {
       <ul>
         {response
           ? response.data.map((el) => {
-              return (
-                <li key={el.questionId}>
-                  <Question question={el} />
-                </li>
-              );
-            })
+            return (
+              <li key={el.questionId}>
+                <Question question={el} />
+              </li>
+            );
+          })
           : null}
         {error ? error.message : null}
       </ul>

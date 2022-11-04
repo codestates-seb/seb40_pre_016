@@ -4,20 +4,64 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { answer, answerFocus } from '../../atoms/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { answer, answerFocus, loginIdstorige, setuserEditstate } from '../../atoms/atom';
+import { useAxios } from '../../util/useAxios';
+import { useNavigate } from 'react-router-dom';
 
 const UserSetting = () => {
     const editorRef = useRef();
     const [subError, setSubError] = useState("");
+    const loginId = useRecoilValue(loginIdstorige);
+    const navigator = useNavigate()
+
+    const [userEditData, setUserEditData] = useRecoilState(setuserEditstate)
     // const [check, isCheck] = useRecoilState(answerFocus);
     // console.log(answerContent, subError)
     // const [answerContent, isAnswerContent] = useRecoilState(answer);
-    const onChange = () => {
+    const { response, loading, error, clickFetchFunc } = useAxios(
+        {
+
+        },
+        false
+    );
+    response && console.log('patch response', response)
+
+    console.log('유저데이터 ', userEditData)
+    const onChange = (e) => {
         const data = editorRef.current.getInstance().getHTML();
         if (data.length > 30) { setSubError('') }
         // isAnswerContent(data)
+        setUserEditData({
+            ...userEditData, message: data
+        })
         console.log(data)
+    }
+
+    const changeUserData = (e) => {
+        setUserEditData({
+            ...userEditData, userName: e.target.value
+        })
+    }
+
+    const saveEditHandler = () => {
+
+        clickFetchFunc({
+            method: 'PATCH',
+            // url: 'tasks.json',
+            url: `/api/users/${loginId}`,
+            headers: {
+                'Content-Type': `application/json`,
+            },
+            withCredentials: true,
+            data: {
+                "username": userEditData.userName,
+                "message": userEditData.message
+            },
+        });
+        // navigator('/user/profile')
+
+        console.log('유저데이터', userEditData)
     }
 
 
@@ -26,11 +70,11 @@ const UserSetting = () => {
             <S.AboutHead>Edit your profile</S.AboutHead>
             <S.AboutCompo>
                 <S.Title>Display Name</S.Title>
-                <S.InputName type='text' name='displayName' placeholder='닉네임을 입력해주세요' />
+                <S.InputName type='text' value={userEditData.userName} onChange={changeUserData} name='displayName' placeholder='닉네임을 입력해주세요' />
                 <S.Title>About</S.Title>
                 <Editor
-                    initialValue=' '
-                    placeholder='Write Your Answers'
+                    initialValue={userEditData.message}
+                    placeholder='Write Your About'
                     previewStyle='tab' // 미리보기 스타일 지정
                     height='300px' // 에디터 창 높이
                     initialEditType='markdown'
@@ -40,7 +84,7 @@ const UserSetting = () => {
                     // onBlur={onBlur}
                     autofocus={false}
                 />
-                <S.Button className='logout submit'>Submit</S.Button>
+                <S.Button onClick={saveEditHandler} className='logout submit'>Submit</S.Button>
             </S.AboutCompo>
         </S.AboutTab>
     );
