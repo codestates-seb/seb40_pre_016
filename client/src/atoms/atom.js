@@ -25,6 +25,16 @@ export const isLoginState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const loginIdstorige = atom({
+  key: 'loginIdstorige',
+  default: '',
+})
+
+export const loginSubmitErrormessage = atom({
+  key: 'loginSubmitErrormessage',
+  default: false,
+})
+
 export const loginsubmitList = atom({
   key: 'loginsubmitList',
   default: { email: '', password: '' },
@@ -94,11 +104,11 @@ export const editorFocus = atom({
 //pagenation count
 export const pagenationCount = atom({
   key: 'pagenationCount',
-  default: 5,
+  default: 1,
 });
 export const pagesizeCount = atom({
   key: 'pagesizeCount',
-  default: 2,
+  default: 10,
 });
 export const tagNoneMessage = atom({
   key: 'tagNoneMessage',
@@ -108,3 +118,4 @@ export const pageLocation = atom({
   key: 'pageLocation',
   default: 'main',
 });
+

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { loginsubmitList, isLoginState } from '../../atoms/atom';
+import {
+  loginsubmitList,
+  isLoginState,
+  loginIdstorige,
+  loginSubmitErrormessage,
+} from '../../atoms/atom';
 import { useRecoilState } from 'recoil';
 import * as S from '../../style/login/LoginBox.style';
 import InputBox from './InputBox';
@@ -12,6 +17,10 @@ const LoginBox = () => {
   const [isEmailOk, setIsEmailOk] = useState(true);
   const [isPasswordOk, setIsPasswordOk] = useState(true);
   const [loginList, setloginList] = useRecoilState(loginsubmitList);
+  const [loginId, setLoginId] = useRecoilState(loginIdstorige);
+  const [errorMessage, setErrorMessage] = useRecoilState(
+    loginSubmitErrormessage
+  );
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -65,17 +74,16 @@ const LoginBox = () => {
       console.log('password 실패');
     }
     setIsPasswordOk(isPasswordCheck);
-    if (isPasswordCheck && isPasswordCheck) {
+    if (isPasswordCheck && isEmailCheck) {
       submit = true;
-      login = true;
 
       //   setloginList({ email: '', password: '' });
     } else {
       submit = false;
-      login = false;
     }
+
     setIsSubmit(submit);
-    setIsLogin(login);
+
     //navigate
     // Cookies.set("id", "id");
 
@@ -104,15 +112,34 @@ const LoginBox = () => {
       });
   }, [isSubmit]);
 
-  useEffect(() => {
-    //새 질문의 id값으로 페이지 이동
-    response && console.log('회원가입 응답은', response);
-    response && navigate(-1);
-  }, [response]);
+  // <<<<<<< HEAD
+  //   useEffect(() => {
+  //     //새 질문의 id값으로 페이지 이동
+  //     response && console.log('회원가입 응답은', response);
+  //     response && navigate(-1);
+  //   }, [response]);
 
-  console.log('로그인 요청 후 응답은', response);
-  error && console.log('로그인 요청 후 에러는', error);
-  console.log('issubmit은', isSubmit);
+  //   console.log('로그인 요청 후 응답은', response);
+  //   error && console.log('로그인 요청 후 에러는', error);
+  //   console.log('issubmit은', isSubmit);
+  // =======
+
+  useEffect(() => {
+    if (response) {
+      setLoginId(response);
+      console.log(response);
+      // setErrorMessage(false)
+      setIsLogin(true);
+    }
+    if (error) {
+      // window.location.reload()
+      setErrorMessage(true);
+      console.log('에러메시지', error.message);
+    }
+  }, [response, error]);
+
+  // console.log('로그인 요청 후 응답은', response, error);
+  // console.log('issubmit은', isSubmit);
 
   return (
     <S.Box>
@@ -130,7 +157,7 @@ const LoginBox = () => {
         CheckAlert={'Password must be at least 8 characters.'}
         inputType='password'
       />
-
+      {errorMessage ? <S.Alert>Pleses check email and password</S.Alert> : null}
       <S.SubmitBtn onClick={handleLoginSubmit}>Log in</S.SubmitBtn>
     </S.Box>
   );

@@ -2,19 +2,34 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
-import { isLoginState } from '../../atoms/atom';
+// <<<<<<< HEAD
+// import { isLoginState } from '../../atoms/atom';
+// import * as S from './../../style/auth/UserPage.style';
+// import { useRecoilState } from 'recoil';
+// import { useNavigate } from 'react-router-dom';
+// const UserPage = ({ userName, createDay }) => {
+//   userName = '홍길동';
+//   createDay = '5';
+//   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+//   const navigate = useNavigate();
+//   const logoutHandler = () => {
+//     setIsLogin(false);
+//     navigate(-1);
+//   };
+// =======
+import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style';
-import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
+import UserInfo from './UserInfo';
+
 const UserPage = ({ userName, createDay }) => {
-  userName = '홍길동';
-  createDay = '5';
-  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
-  const navigate = useNavigate();
-  const logoutHandler = () => {
-    setIsLogin(false);
-    navigate(-1);
-  };
+  // userName = '홍길동';
+  // createDay = '5';
+  let sessionStorage = window.sessionStorage;
+  console.log(sessionStorage);
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/users`,
+  });
   return (
     <S.UserPageContainer>
       <S.UserNameCard>
@@ -47,22 +62,18 @@ const UserPage = ({ userName, createDay }) => {
             </svg>
             Edit profile
           </S.Button>
-          <S.Button onClick={logoutHandler} className='logout'>
-            Log out
-          </S.Button>
+          {/* <S.Button onClick={logoutHandler} className='logout'> */}
+          <S.Button className='logout'>Log out</S.Button>
         </S.ButtonWarp>
       </S.UserNameCard>
       <S.ProfileTab>
-        <S.ProfileBtn>Profile</S.ProfileBtn>
-        <S.AboutTab>
-          <S.AboutHead>About</S.AboutHead>
-          <S.AboutCompo>
-            <S.AboutP>
-              Your about me section is currently blank. Would you
-              <br /> like to add one? <Link to='/'>Add Profile</Link>
-            </S.AboutP>
-          </S.AboutCompo>
-        </S.AboutTab>
+        <S.ProfileBtn>
+          <NavLink to='/user/profile'>Profile</NavLink>
+        </S.ProfileBtn>
+        <S.ProfileBtn>
+          <NavLink to='/user/setting'>Settng</NavLink>
+        </S.ProfileBtn>
+        <Outlet />
       </S.ProfileTab>
     </S.UserPageContainer>
   );

@@ -25,7 +25,7 @@ const Question = ({ question }) => {
 
       <S.ContentContainer>
         <S.Title>
-          <Link to={`questions/${question.questionId}`}>{question.title}</Link>
+          <Link to={`/questions/${question.questionId}`}>{question.title}</Link>
         </S.Title>
 
         <S.Content>{question.content}</S.Content>

@@ -22,6 +22,24 @@ export const useAxios = (axiosParams, auto = true) => {
     console.log('axios 실행됨');
     fetchData(config);
   };
+  // =======
+  //     const [response, setResponse] = useState(undefined);
+  //     const [error, setError] = useState('');
+  //     const [loading, setLoading] = useState(true);
+  //     const fetchData = async (params) => {
+  //         try {
+  //             const result = await axios.request(params);
+  //             setResponse(result.data);
+  //         } catch (error) {
+  //             setError(error);
+  //         } finally {
+  //             setLoading(false);
+  //         }
+  //     };
+  //     const clickFetchFunc = (config) => {
+  //         fetchData(config);
+  //     };
+  // >>>>>>> 43cd93fe0136431d32659e5276de98f4c67d5e32
 
   useEffect(() => {
     if (auto) {

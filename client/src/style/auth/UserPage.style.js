@@ -65,6 +65,11 @@ padding: 9px;
     border: none;
     margin-left: 5px;
 }
+&.submit {
+    text-align: right;
+    margin-left: auto;
+    margin-top: 10px;
+}
 `
 
 export const ProfileTab = styled.div`
@@ -83,6 +88,7 @@ export const ProfileBtn = styled.button`
     border-radius: 20px;
     padding: 6px 12px;
     text-decoration: none;
+    margin-right: 5px;
 }
 & .active:hover {
     background: var(--theme-primary-color);
