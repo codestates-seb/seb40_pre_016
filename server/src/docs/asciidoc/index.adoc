@@ -6,6 +6,173 @@
 :source-highlighter: prettify
 
 ***
+== 질문
+=== 질문 등록
+.curl-request
+include::{snippets}/question/post/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/post/http-request.adoc[]
+
+.request-fields
+include::{snippets}/question/post/request-fields.adoc[]
+
+.http-response
+include::{snippets}/question/post/http-response.adoc[]
+
+===질문 수정
+.curl-request
+include::{snippets}/question/patch/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/patch/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/question/patch/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/question/patch/request-fields.adoc[]
+
+.http-response
+include::{snippets}/question/patch/http-response.adoc[]
+
+===질문 조회
+.curl-request
+include::{snippets}/question/get/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/get/http-request.adoc[]
+
+.http-response
+include::{snippets}/question/get/http-response.adoc[]
+
+.path-parameters
+include::{snippets}/question/get/path-parameters.adoc[]
+
+.response-fields
+include::{snippets}/question/get/response-fields.adoc[]
+
+===전체 질문 조회
+.curl-request
+include::{snippets}/question/get/all/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/get/all/http-request.adoc[]
+
+.request-parameters
+include::{snippets}/question/get/all/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/question/get/all/http-response.adoc[]
+
+.response-fields
+include::{snippets}/question/get/all/response-fields.adoc[]
+
+===유저 질문 조회
+.curl-request
+include::{snippets}/question/get/allByUser/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/get/allByUser/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/question/get/allByUser/path-parameters.adoc[]
+
+.request-parameters
+include::{snippets}/question/get/allByUser/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/question/get/allByUser/http-response.adoc[]
+
+.response-fields
+include::{snippets}/question/get/allByUser/response-fields.adoc[]
+
+===태그 질문 조회
+.curl-request
+include::{snippets}/question/get/allByTag/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/get/allByTag/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/question/get/allByTag/path-parameters.adoc[]
+
+.request-parameters
+include::{snippets}/question/get/allByTag/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/question/get/allByTag/http-response.adoc[]
+
+.response-fields
+include::{snippets}/question/get/allByTag/response-fields.adoc[]
+
+== 질문 삭제
+.curl-request
+include::{snippets}/question/delete/curl-request.adoc[]
+
+.http-request
+include::{snippets}/question/delete/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/question/delete/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/question/delete/http-response.adoc[]
+
+== 답변
+=== 답변 등록
+.curl-request
+include::{snippets}/answer/post/curl-request.adoc[]
+
+.http-request
+include::{snippets}/answer/post/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/answer/post/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/answer/post/request-fields.adoc[]
+
+.http-response
+include::{snippets}/answer/post/http-response.adoc[]
+
+.response-fields
+include::{snippets}/answer/post/response-fields.adoc[]
+
+
+=== 답변 수정
+.curl-request
+include::{snippets}/answer/patch/curl-request.adoc[]
+
+.http-request
+include::{snippets}/answer/patch/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/answer/patch/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/answer/patch/request-fields.adoc[]
+
+.http-response
+include::{snippets}/answer/patch/http-response.adoc[]
+
+.response-fields
+include::{snippets}/answer/patch/response-fields.adoc[]
+
+
+=== 답변 삭제
+.curl-request
+include::{snippets}/answer/delete/curl-request.adoc[]
+
+.http-request
+include::{snippets}/answer/delete/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/answer/delete/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/answer/delete/http-response.adoc[]
+
 == 댓글
 === 질문 댓글 등록
 .curl-request
