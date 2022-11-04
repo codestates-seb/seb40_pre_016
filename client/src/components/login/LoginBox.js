@@ -10,6 +10,7 @@ import * as S from '../../style/login/LoginBox.style';
 import InputBox from './InputBox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAxios } from '../../util/useAxios';
+import axios from 'axios';
 
 const LoginBox = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
@@ -112,18 +113,6 @@ const LoginBox = () => {
       });
   }, [isSubmit]);
 
-  // <<<<<<< HEAD
-  //   useEffect(() => {
-  //     //새 질문의 id값으로 페이지 이동
-  //     response && console.log('회원가입 응답은', response);
-  //     response && navigate(-1);
-  //   }, [response]);
-
-  //   console.log('로그인 요청 후 응답은', response);
-  //   error && console.log('로그인 요청 후 에러는', error);
-  //   console.log('issubmit은', isSubmit);
-  // =======
-
   useEffect(() => {
     if (response) {
       setLoginId(response);
@@ -132,11 +121,14 @@ const LoginBox = () => {
       setIsLogin(true);
     }
     if (error) {
+      setIsSubmit(false);
       // window.location.reload()
       setErrorMessage(true);
       console.log('에러메시지', error.message);
     }
   }, [response, error]);
+
+  isLogin && navigate(-1);
 
   // console.log('로그인 요청 후 응답은', response, error);
   // console.log('issubmit은', isSubmit);

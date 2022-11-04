@@ -26,7 +26,6 @@ import UserLayout from './components/auth/UserLayout';
 import MainLayout from './components/main/MainLayout';
 
 function App() {
-
   return (
     <>
       {/* <QuestionEdit /> */}
@@ -35,8 +34,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Layout />}>
-
-            <Route path='/questions' element={<MainLayout />} >
+            <Route path='/questions' element={<MainLayout />}>
               <Route path='/questions/page=:mainpage' element={<Main />} />
             </Route>
 
@@ -64,8 +62,6 @@ function App() {
             <Route path='/users' element={<UserLayout />}>
               <Route path='/users/page=:userspage' element={<Users />} />
             </Route>
-
-
           </Route>
 
           <Route path='/askquestion' element={<QuestionWrite />} />
