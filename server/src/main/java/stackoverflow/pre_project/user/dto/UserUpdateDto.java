@@ -28,5 +28,6 @@ public class UserUpdateDto {
                 .email(email)
                 .message(message)
                 .build();
+
     }
 }
