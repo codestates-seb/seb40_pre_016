@@ -18,7 +18,7 @@ import stackoverflow.pre_project.user.service.UserService;
 import stackoverflow.pre_project.user.dto.UserDto;
 import stackoverflow.pre_project.user.entity.User;
 import stackoverflow.pre_project.user.mapper.UserMapper;
-
+import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
