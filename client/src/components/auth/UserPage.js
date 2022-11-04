@@ -2,14 +2,20 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
+import { isLoginState } from '../../atoms/atom';
 import * as S from './../../style/auth/UserPage.style';
-
+import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 const UserPage = ({ userName, createDay }) => {
   userName = '홍길동';
   createDay = '5';
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const navigate = useNavigate();
   const logoutHandler = () => {
-    localStorage.setItem('recoil-persist', { isLoginState: false });
-    window.location.reload();
+    setIsLogin(false);
+    navigate(-1);
+    // localStorage.setItem('recoil-persist', { isLoginState: false });
+    // window.location.reload();
   };
   return (
     <S.UserPageContainer>
