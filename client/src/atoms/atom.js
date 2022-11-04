@@ -28,6 +28,7 @@ export const isLoginState = atom({
 export const loginIdstorige = atom({
   key: 'loginIdstorige',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 })
 
 export const loginSubmitErrormessage = atom({

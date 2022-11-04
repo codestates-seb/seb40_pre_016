@@ -118,7 +118,7 @@ const LoginBox = () => {
       setLoginId(response);
       console.log(response);
       // setErrorMessage(false)
-      setIsLogin(true);
+      setIsLogin(true)
     }
     if (error) {
       setIsSubmit(false);
@@ -129,6 +129,8 @@ const LoginBox = () => {
   }, [response, error]);
 
   isLogin && navigate(-1);
+
+  isLogin && navigate(-1)
 
   // console.log('로그인 요청 후 응답은', response, error);
   // console.log('issubmit은', isSubmit);
