@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import stackoverflow.pre_project.config.auth.CustomUserDetails;
 import stackoverflow.pre_project.dto.MultiResponseDto;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
+@Validated
 public class UserApiController {
 
     private final UserMapper userMapper;
