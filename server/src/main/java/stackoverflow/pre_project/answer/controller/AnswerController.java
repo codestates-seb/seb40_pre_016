@@ -11,6 +11,9 @@ import stackoverflow.pre_project.answer.mapper.AnswerMapper;
 import stackoverflow.pre_project.answer.service.AnswerService;
 import stackoverflow.pre_project.config.auth.CustomUserDetails;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -20,8 +23,8 @@ public class AnswerController {
     private final AnswerMapper mapper;
 
     @PostMapping("/questions/{question-id}/answers")
-    public ResponseEntity postAnswer(@PathVariable("question-id") Long questionId,
-                                     @RequestBody AnswerDto.Request request,
+    public ResponseEntity postAnswer(@PathVariable("question-id")@Positive Long questionId,
+                                     @RequestBody@Valid AnswerDto.Request request,
                                      @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         request.setUser(customUserDetails.getUser());
         Answer answer = mapper.answerRequestToAnswer(request);
@@ -33,8 +36,8 @@ public class AnswerController {
     }
 
     @PatchMapping("answers/{answer-id}")
-    public ResponseEntity patchAnswer(@PathVariable("answer-id") Long answerId,
-                                      @RequestBody AnswerDto.Request request,
+    public ResponseEntity patchAnswer(@PathVariable("answer-id")@Positive Long answerId,
+                                      @RequestBody@Valid AnswerDto.Request request,
                                       @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         request.setUser(customUserDetails.getUser());
         Answer answer = mapper.answerRequestToAnswer(request);
@@ -46,7 +49,7 @@ public class AnswerController {
     }
 
     @DeleteMapping("answers/{answer-id}")
-    public ResponseEntity deleteAnswer(@PathVariable("answer-id") Long answerId,
+    public ResponseEntity deleteAnswer(@PathVariable("answer-id")@Positive Long answerId,
                                        @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         answerService.delete(answerId, customUserDetails.getUser());
 

@@ -17,6 +17,8 @@ import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.mapper.QuestionMapper;
 import stackoverflow.pre_project.question.service.QuestionService;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -30,7 +32,7 @@ public class QuestionController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public String postQuestion(@RequestBody QuestionDto.Request request,
+    public String postQuestion(@RequestBody@Valid QuestionDto.Request request,
                                @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         request.setUser(customUserDetails.getUser());
         Question question = mapper.questionRequestToQuestion(request);
@@ -40,9 +42,9 @@ public class QuestionController {
     }
 
     @PatchMapping("/{question-id}")
-    public String patchQuestion(@PathVariable("question-id") Long questionId,
+    public String patchQuestion(@PathVariable("question-id")@Positive Long questionId,
                                 @AuthenticationPrincipal CustomUserDetails customUserDetails,
-                                @RequestBody QuestionDto.Request request) {
+                                @RequestBody@Valid QuestionDto.Request request) {
         request.setUser(customUserDetails.getUser());
 
         Question question = mapper.questionRequestToQuestion(request);
@@ -52,7 +54,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") Long questionId) {
+    public ResponseEntity getQuestion(@PathVariable("question-id")@Positive Long questionId) {
         Question question = questionService.findQuestion(questionId);
         QuestionDto.Response response = mapper.questionToQuestionResponse(question);
 
@@ -71,7 +73,7 @@ public class QuestionController {
 
     @GetMapping("/users/{user_id}")
     public ResponseEntity getQuestionsByUser(@PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
-                                             @PathVariable("user_id") Long userId) {
+                                             @PathVariable("user_id")@Positive Long userId) {
 
         Page<Question> pageQuestions = questionService.findQuestionsByUser(userId, pageable);
         List<Question> questions = pageQuestions.getContent();
@@ -93,7 +95,7 @@ public class QuestionController {
 
     @DeleteMapping("/{question-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteQuestion(@PathVariable("question-id") Long questionId,
+    public void deleteQuestion(@PathVariable("question-id")@Positive Long questionId,
                                @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 
         questionService.deleteQuestion(questionId, customUserDetails.getUser());

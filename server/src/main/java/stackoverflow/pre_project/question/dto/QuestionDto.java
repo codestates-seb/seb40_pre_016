@@ -9,6 +9,7 @@ import stackoverflow.pre_project.comment.dto.CommentDto;
 import stackoverflow.pre_project.user.dto.UserDto;
 import stackoverflow.pre_project.user.entity.User;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,8 +18,12 @@ public class QuestionDto {
     @Getter
     @Builder
     public static class Request {
+        @NotBlank
         private String title;
+
+        @NotBlank
         private String content;
+
         private List<String> tagNames;
 
         @Setter
