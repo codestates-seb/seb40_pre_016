@@ -81,7 +81,8 @@ class CommentServiceTest {
         Long commentId = 1L;
         Long nonExistId = 2L;
         String content = "수정된 댓글입니다.";
-        User user = User.builder().build();
+        User user = User.builder().id(1L).build();
+        User differentUser = User.builder().id(2L).build();
         Comment comment = Comment.builder().user(user).build();
 
         given(commentRepository.findById(commentId))
@@ -96,6 +97,8 @@ class CommentServiceTest {
         assertThat(updatedComment.getContent()).isEqualTo(content);
         assertThrows(BusinessLogicException.class,
                 () -> commentService.updateComment(nonExistId, content, user));
+        assertThrows(BusinessLogicException.class,
+                () -> commentService.updateComment(commentId, content, differentUser));
     }
 
     @Test
@@ -103,7 +106,8 @@ class CommentServiceTest {
         // given
         Long commentId = 1L;
         Long nonExistId = 2L;
-        User user = User.builder().build();
+        User user = User.builder().id(1L).build();
+        User differentUser = User.builder().id(2L).build();
         Comment comment = Comment.builder().user(user).build();
 
         given(commentRepository.findById(commentId))
@@ -116,5 +120,7 @@ class CommentServiceTest {
         // then
         assertThrows(BusinessLogicException.class,
                 () -> commentService.deleteComment(nonExistId, user));
+        assertThrows(BusinessLogicException.class,
+                () -> commentService.deleteComment(commentId, differentUser));
     }
 }
