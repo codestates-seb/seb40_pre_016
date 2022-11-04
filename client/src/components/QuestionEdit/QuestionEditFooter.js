@@ -49,6 +49,7 @@ const QuestionEditFooter = () => {
   const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
   let postData = Object.assign({}, editQuestion);
   const navigate = useNavigate();
+  const params = useParams();
   const { response, loading, error, clickFetchFunc } = useAxios(
     {
       method: 'POST',
@@ -60,7 +61,7 @@ const QuestionEditFooter = () => {
     },
     false
   );
-
+  console.log('params', params);
   const makeNewTagsArray = () => {
     let tempArr = postData.tagNames.map((el) => {
       return el.content;
@@ -75,7 +76,7 @@ const QuestionEditFooter = () => {
     clickFetchFunc({
       method: 'PATCH',
       // url: 'tasks.json',
-      url: '/api/questions/1',
+      url: `/api/questions/${params.questionId}`,
       headers: {
         'Content-Type': `application/json`,
       },
@@ -91,7 +92,6 @@ const QuestionEditFooter = () => {
     console.log('수정 후 question', postData);
     console.log('수정 요청 완료');
   };
-  const params = useParams();
 
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동

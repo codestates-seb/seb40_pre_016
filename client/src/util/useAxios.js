@@ -23,8 +23,8 @@ export const useAxios = (axiosParams, auto = true) => {
   };
 
   useEffect(() => {
-    console.log('axios 실행됨');
     if (auto) {
+      console.log('axios 실행됨');
       fetchData(axiosParams);
     } else {
     }

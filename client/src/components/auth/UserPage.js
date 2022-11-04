@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -17,18 +17,45 @@ const UserPage = ({ userName, createDay }) => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
   const navigate = useNavigate();
-  const { response, loading, error } = useAxios({
-    method: 'GET',
-    url: `api/users/${loginId}`,
-    withCredentials: true,
-  });
+  // const { response, loading, error } = useAxios({
+  //   method: 'GET',
+  //   url: `api/users/${loginId}`,
+  //   withCredentials: true,
+  // });
+
+  const { response2, loading2, error2, clickFetchFunc } = useAxios(
+    {
+      method: 'GET',
+      url: `api/users/${loginId}`,
+      withCredentials: true,
+    },
+    false
+  );
 
   const logoutHandler = () => {
+    console.log('로그아웃 버튼 누름');
+    clickFetchFunc({
+      method: 'POST',
+      // url: 'tasks.json',
+      url: '/auth/logout',
+      headers: {
+        'Content-Type': `application/json`,
+      },
+      withCredentials: true,
+      data: { 'user-id': 123 },
+    });
     setIsLogin(false);
     navigate(-1);
-    // localStorage.setItem('recoil-persist', { isLoginState: false });
-    // window.location.reload();
   };
+
+  useEffect(() => {
+    response2 && console.log('로그아웃  응답은', response2);
+    error2 && console.log('로그아웃  에러는', error2);
+    // if (response2) {
+    //   setIsLogin(false);
+    //   navigate(-1);
+    // }
+  }, [response2, error2]);
   console.log('유저 아이디', loginId);
   // response && console.log('리스폰스', response, response.user)
   // error && console.log('에러', error.message, error)
