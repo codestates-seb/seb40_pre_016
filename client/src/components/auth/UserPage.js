@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
 // <<<<<<< HEAD
-// import { isLoginState } from '../../atoms/atom';
+// import { isLoginState, loginIdstorige } from '../../atoms/atom';
 // import * as S from './../../style/auth/UserPage.style';
 // import { useRecoilState } from 'recoil';
 // import { useNavigate } from 'react-router-dom';
@@ -24,12 +24,16 @@ import UserInfo from './UserInfo';
 const UserPage = ({ userName, createDay }) => {
   // userName = '홍길동';
   // createDay = '5';
+
   let sessionStorage = window.sessionStorage;
   console.log(sessionStorage);
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/users`,
+    url: `api/users/1`,
+    withCredentials: true,
   });
+  error && console.log('에러', error);
+  response && console.log('리스폰스', response);
   return (
     <S.UserPageContainer>
       <S.UserNameCard>

@@ -26,7 +26,6 @@ const QuestionList = ({ questionLists }) => {
   const config = useMemo(() => {
     return {
       method: 'GET',
-      // url: 'api/questions',
       url: `/api/questions?page=${params.mainpage - 1}&size=${size}&sort=${
         currentBtn + ',DESC'
       }`,
@@ -36,7 +35,7 @@ const QuestionList = ({ questionLists }) => {
 
   const { response, loading, error } = useAxios(config);
 
-  // console.log('질문리스트컴포넌트에서 필터버튼 이름', currentBtn);
+  console.log('질문리스트컴포넌트에서 필터버튼 이름', currentBtn);
   response && console.log('메인페이지 응답은', response);
   useEffect(() => {
     response && setTotalPage(response.pageInfo.totalPages);
@@ -48,7 +47,7 @@ const QuestionList = ({ questionLists }) => {
   return (
     <S.QuestionListContainer>
       <ul>
-        {!loading && response
+        {response
           ? response.data.map((el) => {
               return (
                 <li key={el.questionId}>
