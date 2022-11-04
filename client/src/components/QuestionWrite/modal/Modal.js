@@ -5,7 +5,7 @@ import { modalState } from '../../../atoms/atom';
 
 const Modal = () => {
   const [isOpen, setIsopen] = useRecoilState(modalState);
-  // setIsopen(true);
+
   const modalHandler = () => {
     setIsopen(false);
   };

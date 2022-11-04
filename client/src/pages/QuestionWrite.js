@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { modalState } from '../atoms/atom';
 import Modal from '../components/QuestionWrite/modal/Modal';
 import { useRecoilState } from 'recoil';
@@ -10,7 +10,9 @@ import { QuestionWriteContainer } from '../style/QuestionWrite/QuestionWrite.sty
 
 const QuestionWrite = () => {
   const [isOpen, setIsopen] = useRecoilState(modalState);
-
+  useEffect(() => {
+    setIsopen(true);
+  }, []);
   return (
     <>
       {isOpen ? <Modal /> : ''}
