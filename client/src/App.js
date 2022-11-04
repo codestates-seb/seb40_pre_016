@@ -40,7 +40,10 @@ function App() {
               path='/questions/:questionId/edit'
               element={<QuestionEdit />}
             />
-            <Route path='/answeredit' element={<AnswerEdit />} />
+            <Route
+              path='/questions/:questionId/answeredit/:answerId'
+              element={<AnswerEdit />}
+            />
 
             <Route element={<AuthLayout />}>
               <Route path='/user' element={<UserPage />}>
