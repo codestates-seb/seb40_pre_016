@@ -31,7 +31,7 @@ width: 100%;
 transition: background-color 0.4s ease 0s;
 cursor: pointer;
 }
-& a.select {
+& a.active {
     background-color: var(--black-050);
     border-right: 3px solid var(--orange-400);
 }

@@ -39,6 +39,7 @@ const Tags = () => {
 
 
         }
+        {error ? error.message : null}
       </S.TagsContainer>
     </S.TagSection>
   );

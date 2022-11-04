@@ -40,6 +40,7 @@ const UserSetting = () => {
                     // onBlur={onBlur}
                     autofocus={false}
                 />
+                <S.Button className='logout submit'>Submit</S.Button>
             </S.AboutCompo>
         </S.AboutTab>
     );

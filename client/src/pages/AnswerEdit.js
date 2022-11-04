@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import QuestionEditBody from '../components/QuestionEdit/QuestionEditBody';
 import QuestionEditSidebar from '../components/QuestionEdit/QuestionEditSidebar';
 import AnswerEditBody from '../components/AnswerEdit/AnswerEditBody';
+import { questionData } from '../atoms/questionATom';
+import { useRecoilState } from 'recoil';
 
 const AnswerEditStyled = styled.div`
   /* background-color: #f1f2f3; */
@@ -38,6 +40,8 @@ const AnswerEditStyled = styled.div`
 `;
 
 const AnswerEdit = () => {
+  const [data, setData] = useRecoilState(questionData);
+  console.log('datatatad는', data);
   return (
     <AnswerEditStyled>
       <div className='body-sidebar-container'>

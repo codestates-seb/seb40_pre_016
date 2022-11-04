@@ -23,14 +23,14 @@ const User = styled.section`
 `
 
 
-const UserComponents = () => {
+const UserComponents = ({ username, email, createdAt }) => {
 
     return (
         <>
             <User>
-                <a href="user_id">User_id</a>
-                <div>Email</div>
-                <div>CreatedAt</div>
+                <a href="user_id">{username}</a>
+                <div>{email}</div>
+                <div>{createdAt}</div>
             </User>
         </>
     )
