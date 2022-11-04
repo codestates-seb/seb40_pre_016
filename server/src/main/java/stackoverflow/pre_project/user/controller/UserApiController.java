@@ -1,4 +1,4 @@
-package stackoverflow.pre_project.apiController;
+package stackoverflow.pre_project.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,6 +20,7 @@ import stackoverflow.pre_project.user.entity.User;
 import stackoverflow.pre_project.user.mapper.UserMapper;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,13 +33,13 @@ public class UserApiController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> select(@AuthenticationPrincipal CustomUserDetails customUserDetails, @PathVariable long id){
+    public ResponseEntity<?> select(@AuthenticationPrincipal CustomUserDetails customUserDetails, @PathVariable @Positive long id){
         UserProfileDto userProfileDto = userService.profile(customUserDetails.getUser().getId(), id);
         return new ResponseEntity<>(userProfileDto, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable long id, @Valid UserUpdateDto userUpdateDto,
+    public ResponseEntity<?> update(@PathVariable @Positive long id, @Valid UserUpdateDto userUpdateDto,
                                     BindingResult bindingResult, @AuthenticationPrincipal CustomUserDetails customUserDetails){
         User userEntity = userService.update(customUserDetails.getUser().getId(), userUpdateDto.toEntity(), id);
         customUserDetails.setUser(userEntity);
@@ -46,8 +47,7 @@ public class UserApiController {
     }
 
     @GetMapping
-    public MultiResponseDto<UserDto.Response> userLists(@AuthenticationPrincipal CustomUserDetails customUserDetails,
-                                                        @PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) { //
+    public MultiResponseDto<UserDto.Response> userLists(@PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) { //
         Page<User> pages = userService.pageList(pageable);
         return MultiResponseDto.of(pages.stream()
                 .map(userMapper::userToUserResponse)
