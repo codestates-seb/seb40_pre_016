@@ -1,16 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { setuserEditstate } from '../../atoms/atom';
 import * as S from './../../style/auth/UserPage.style'
 
-const UserInfo = () => {
-    const data = 'dfafdadfadfadfaef'
+const UserInfo = ({ aboutMe }) => {
+    const [userEditData, setUserEditData] = useRecoilState(setuserEditstate)
+    console.log('info페이지 어바웃미', userEditData.message)
     return (
         <S.AboutTab>
             <S.AboutHead>About</S.AboutHead>
 
-            {data ?
+            {userEditData.message !== ' ' ?
                 <S.AboutDataCompo>
-                    {data}
+                    {userEditData.message}
                 </S.AboutDataCompo>
                 :
                 <S.AboutCompo>
