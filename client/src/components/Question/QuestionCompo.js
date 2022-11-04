@@ -27,6 +27,9 @@ function QuestionCompo({
   const loginState = useRecoilValue(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
 
+  //sort
+  // comment
+
   const onClick = () => {
     isFollow(!follow);
   };
@@ -113,7 +116,9 @@ function QuestionCompo({
         },
         {
           headers: {
-            "Content-Type": `application/json`,
+
+            'Content-Type': `application/json`,
+
           },
           withCredentials: true,
         }
@@ -130,9 +135,9 @@ function QuestionCompo({
   const delBtn = () => {
     axios
       .delete(`/api/questions/${questionId}`, { withCredentials: true })
-      .then(navigate("/"));
+      .then(navigate('/questions/page=1'));
   };
-  console.log(loginId, user.userId)
+
 
   return (
     <S.QContent>

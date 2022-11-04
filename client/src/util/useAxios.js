@@ -19,13 +19,12 @@ export const useAxios = (axiosParams, auto = true) => {
     }
   };
   const clickFetchFunc = (config) => {
-    console.log('axios 실행됨');
     fetchData(config);
   };
 
-
   useEffect(() => {
     if (auto) {
+      console.log('axios 실행됨');
       fetchData(axiosParams);
     } else {
     }
