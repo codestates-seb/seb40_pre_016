@@ -121,14 +121,17 @@ const LoginBox = () => {
       // setErrorMessage(false)
       setIsLogin(true);
 
+
     }
     if (error) {
-
+      setIsSubmit(false)
       // window.location.reload()
       setErrorMessage(true)
       console.log('에러메시지', error.message)
     }
   }, [response, error])
+
+  isLogin && navigate(-1)
 
   // console.log('로그인 요청 후 응답은', response, error);
   // console.log('issubmit은', isSubmit);
