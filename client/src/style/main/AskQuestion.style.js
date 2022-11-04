@@ -13,9 +13,10 @@ export const AskQuestionContainer = styled.div`
     flex-grow: 1;
   }
 
-  div {
+  button {
     width: 103px;
     height: 38px;
+    border: none;
     background-color: #0a95ff;
     color: white;
     display: flex;

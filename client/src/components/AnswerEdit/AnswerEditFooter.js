@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { editQuestionState, editAnswerState } from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const AnswerEditFooterContainer = styled.div`
   margin-top: 20px;
   /* padding-bottom: 50px; */
@@ -48,6 +48,8 @@ const AnswerEditFooter = () => {
   const [editAnswer, setEditAnswer] = useRecoilState(editAnswerState);
   let postData = Object.assign({}, editAnswer);
   const navigate = useNavigate();
+  const params = useParams();
+  console.log('footer에서 params', editAnswer);
   const { response, loading, error, clickFetchFunc } = useAxios(
     {
       method: 'POST',
@@ -55,25 +57,24 @@ const AnswerEditFooter = () => {
       headers: {
         'Content-Type': `application/json`,
       },
-      data: JSON.stringify(postData),
+      data: JSON.stringify(' '),
     },
     false
   );
+  console.log('editAnswer는', editAnswer);
 
   const saveEditHandler = () => {
     //수정된 댓글 fetch 요청
-    console.log('포스트데이터는', postData);
+
     clickFetchFunc({
       method: 'PATCH',
       // url: 'tasks.json',
-      url: `/comments/1`, //코멘트 아이디 넣어야함
+      url: `/api/answers/${params.answerId}`, //코멘트 아이디 넣어야함
       headers: {
         'Content-Type': `application/json`,
       },
-      data: postData,
-    });
-    setEditAnswer({
-      content: ' ',
+      withCredentials: true,
+      data: editAnswer,
     });
   };
 
@@ -81,10 +82,10 @@ const AnswerEditFooter = () => {
 
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
-    response && console.log(response);
-    response && navigate(`/question/1`);
+    response && console.log('응답은', response);
+    response && navigate(-1);
   }, [response]);
-  console.log('답변댓글 수정 요청 응답은', response);
+
   return (
     <AnswerEditFooterContainer>
       <button onClick={saveEditHandler} className='saveEdit'>

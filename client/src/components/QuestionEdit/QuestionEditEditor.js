@@ -4,7 +4,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { editQuestionState } from '../../atoms/atom';
-import { useAxios } from '../../util/useAxios';
+
 function QuestionEditEditor({ title }) {
   const editorRef = useRef();
   const [editQuestion, setEditQuestion] = useRecoilState(editQuestionState);
@@ -30,7 +30,7 @@ function QuestionEditEditor({ title }) {
     <>
       <div>
         <Editor
-          initialValue={title}
+          initialValue={editQuestion.content}
           initialEditType='markdown'
           // placeholder='Write Your Answers'
           previewStyle='tab' // 미리보기 스타일 지정

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { loginsubmitList, isLoginState, loginIdstorige, loginSubmitErrormessage } from '../../atoms/atom';
+import {
+  loginsubmitList,
+  isLoginState,
+  loginIdstorige,
+  loginSubmitErrormessage,
+} from '../../atoms/atom';
 import { useRecoilState } from 'recoil';
 import * as S from '../../style/login/LoginBox.style';
 import InputBox from './InputBox';
@@ -13,11 +18,10 @@ const LoginBox = () => {
   const [isEmailOk, setIsEmailOk] = useState(true);
   const [isPasswordOk, setIsPasswordOk] = useState(true);
   const [loginList, setloginList] = useRecoilState(loginsubmitList);
-  const [loginId, setLoginId] = useRecoilState(loginIdstorige)
-  const [errorMessage, setErrorMessage] = useRecoilState(loginSubmitErrormessage)
-
-
-
+  const [loginId, setLoginId] = useRecoilState(loginIdstorige);
+  const [errorMessage, setErrorMessage] = useRecoilState(
+    loginSubmitErrormessage
+  );
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -81,7 +85,6 @@ const LoginBox = () => {
 
     setIsSubmit(submit);
 
-
     //navigate
     // Cookies.set("id", "id");
 
@@ -94,7 +97,6 @@ const LoginBox = () => {
     //   }
     // }
   };
-
 
   useEffect(() => {
     isSubmit && console.log('로그인 요청 완료');
@@ -109,27 +111,24 @@ const LoginBox = () => {
         withCredentials: true,
         data: loginList,
       });
-
-
   }, [isSubmit]);
-
 
   useEffect(() => {
     if (response) {
-      setLoginId(response)
-      console.log(response)
+      setLoginId(response);
+      console.log(response);
       // setErrorMessage(false)
-      setIsLogin(true);
-
-
+      setIsLogin(true)
     }
     if (error) {
-      setIsSubmit(false)
+      setIsSubmit(false);
       // window.location.reload()
-      setErrorMessage(true)
-      console.log('에러메시지', error.message)
+      setErrorMessage(true);
+      console.log('에러메시지', error.message);
     }
-  }, [response, error])
+  }, [response, error]);
+
+  isLogin && navigate(-1);
 
   isLogin && navigate(-1)
 

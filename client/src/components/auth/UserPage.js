@@ -11,6 +11,7 @@ import UserInfo from './UserInfo';
 const UserPage = ({ userName, createDay }) => {
   // userName = '홍길동';
   // createDay = '5';
+
   const loginId = useRecoilValue(loginIdstorige)
   const { response, loading, error } = useAxios({
     method: 'GET',
@@ -53,12 +54,17 @@ const UserPage = ({ userName, createDay }) => {
             </svg>
             Edit profile
           </S.Button>
+          {/* <S.Button onClick={logoutHandler} className='logout'> */}
           <S.Button className='logout'>Log out</S.Button>
         </S.ButtonWarp>
       </S.UserNameCard>
       <S.ProfileTab>
-        <S.ProfileBtn><NavLink to='/user/profile'>Profile</NavLink></S.ProfileBtn>
-        <S.ProfileBtn><NavLink to='/user/setting'>Settng</NavLink></S.ProfileBtn>
+        <S.ProfileBtn>
+          <NavLink to='/user/profile'>Profile</NavLink>
+        </S.ProfileBtn>
+        <S.ProfileBtn>
+          <NavLink to='/user/setting'>Settng</NavLink>
+        </S.ProfileBtn>
         <Outlet />
       </S.ProfileTab>
     </S.UserPageContainer>
