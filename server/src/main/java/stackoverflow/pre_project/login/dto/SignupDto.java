@@ -18,7 +18,7 @@ public class SignupDto {
     @Size(min = 3, max = 20)
     private String username;
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 20)
     private String password;
     @Email
     private String email;
