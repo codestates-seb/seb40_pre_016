@@ -29,6 +29,7 @@ public class QuestionController {
     private final QuestionMapper mapper;
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public String postQuestion(@RequestBody QuestionDto.Request request,
                                @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         request.setUser(customUserDetails.getUser());
@@ -91,6 +92,7 @@ public class QuestionController {
     }
 
     @DeleteMapping("/{question-id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteQuestion(@PathVariable("question-id") Long questionId,
                                @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 
