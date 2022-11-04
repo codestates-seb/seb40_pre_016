@@ -7,6 +7,10 @@ import * as S from './../../style/auth/UserPage.style';
 const UserPage = ({ userName, createDay }) => {
   userName = '홍길동';
   createDay = '5';
+  const logoutHandler = () => {
+    localStorage.setItem('recoil-persist', { isLoginState: false });
+    window.location.reload();
+  };
   return (
     <S.UserPageContainer>
       <S.UserNameCard>
@@ -39,7 +43,9 @@ const UserPage = ({ userName, createDay }) => {
             </svg>
             Edit profile
           </S.Button>
-          <S.Button className='logout'>Log out</S.Button>
+          <S.Button onClick={logoutHandler} className='logout'>
+            Log out
+          </S.Button>
         </S.ButtonWarp>
       </S.UserNameCard>
       <S.ProfileTab>
