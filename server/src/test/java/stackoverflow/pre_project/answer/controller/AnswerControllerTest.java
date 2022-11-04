@@ -92,7 +92,7 @@ class AnswerControllerTest {
         actions
                 .andExpect(status().isCreated())
                 .andDo(document(
-                        "post_answer",
+                        "answer/post",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(parameterWithName("question-id").description("질문 식별자")),
@@ -150,7 +150,7 @@ class AnswerControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                                "patch_answer",
+                                "answer/patch",
                                 preprocessRequest(prettyPrint()),
                                 preprocessResponse(prettyPrint()),
                                 pathParameters(parameterWithName("answer-id").description("답변 식별자")),
@@ -181,7 +181,7 @@ class AnswerControllerTest {
         actions
                 .andExpect(status().isNoContent())
                 .andDo(document(
-                        "delete_answer",
+                        "answer/delete",
                         pathParameters(parameterWithName("answer-id").description("답변 식별자"))
                         )
                 );

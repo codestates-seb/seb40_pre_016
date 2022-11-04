@@ -80,7 +80,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isCreated())
                 .andDo(document(
-                        "post_question",
+                        "question/post",
                         preprocessRequest(prettyPrint()),
                         relaxedRequestFields(
                                 List.of(
@@ -119,7 +119,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                                "patch_question",
+                                "question/patch",
                                 preprocessRequest(prettyPrint()),
                                 pathParameters(
                                         parameterWithName("question-id").description("질문 식별자")
@@ -172,7 +172,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                                "get_question",
+                                "question/get",
                                 preprocessRequest(prettyPrint()),
                                 pathParameters(
                                         parameterWithName("question-id").description("질문 식별자")
@@ -223,7 +223,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                        "get_questions",
+                        "question/get/all",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         requestParameters(
@@ -274,7 +274,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                        "get_questions_by_user",
+                        "question/get/allByUser",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(parameterWithName("user-id").description("유저 식별자")),
@@ -326,7 +326,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                        "get_questions_by_tag",
+                        "question/get/allByTag",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(parameterWithName("tagName").description("태그")),
@@ -362,7 +362,7 @@ class QuestionControllerTest {
         actions
                 .andExpect(status().isNoContent())
                 .andDo(document(
-                        "delete_question",
+                        "question/delete",
                         pathParameters(parameterWithName("question-id").description("질문 식별자"))
                         )
                 );
