@@ -1,5 +1,6 @@
 package stackoverflow.pre_project.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import stackoverflow.pre_project.answer.entity.Answer;
@@ -37,14 +38,15 @@ public class User extends Auditable {
 
     private String role;
 
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnore()
     @OneToMany(mappedBy = "user")
     private final List<Answer> answers = new ArrayList<>();
 
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnore()
     @OneToMany(mappedBy = "user")
     private final List<Question> questions = new ArrayList<>();
 
+    @JsonIgnore()
     @OneToMany(mappedBy = "user")
     private final List<Comment> comments = new ArrayList<>();
 
