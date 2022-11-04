@@ -3,6 +3,7 @@ import img from '../../../assets/img/userAvatar.jpeg';
 import * as S from '../../../style/main/Question.style';
 import TagButton from '../Button/TagButtion';
 import { Link } from 'react-router-dom';
+import { timeCal } from '../../../pages/Question';
 
 const Question = ({ question }) => {
   //axios 로 받아온 id
@@ -37,7 +38,9 @@ const Question = ({ question }) => {
             <img src={img} alt='userImg' />
             <div className='userName'>{question.user.username}</div>
             {/* <div className='askCount'>{question.askCount}</div> */}
-            <div className='userTime'>{question.createdAt} min ago</div>
+            <div className='userTime'>
+              {timeCal(question.createdAt)} min ago
+            </div>
           </S.UserInfoContainer>
         </S.FooterContainer>
       </S.ContentContainer>

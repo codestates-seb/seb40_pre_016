@@ -14,44 +14,62 @@ const ErrorBox = styled.div`
   font-size: 13px;
   color: red;
   border: none;
-`
+`;
 
-function YourAnswer( {questionId} ) {
+function YourAnswer({ questionId }) {
   const editorRef = useRef();
   const [check, isCheck] = useRecoilState(answerFocus);
   const [answerContent, isAnswerContent] = useRecoilState(answer);
-  const [subError, setSubError] = useState("");
+  const [subError, setSubError] = useState('');
 
   const onChange = () => {
     const data = editorRef.current.getInstance().getHTML();
-    if(data.length > 30) {setSubError('')}
-    isAnswerContent(data)
-    console.log(data)
-  }
+    if (data.length > 30) {
+      setSubError('');
+    }
+    isAnswerContent(data);
+    console.log(data);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if(answerContent.length < 30){
-      isCheck(2)
-      return setSubError('Body must be at least 30 characters.')
-    }
-    axios.post(`/api/questions/${questionId}/answers`, {content: answerContent})
-    setSubError("")
-  }
+    // if (answerContent.length < 30) {
+    //   //조건 30자 넘어야됨
+    //   isCheck(2);
+    //   setSubError('Body must be at least 30 characters.');
+    // }
+    console.log('제출');
+    console.log('질문아이디는', questionId);
+
+    axios
+      .post(
+        `/api/questions/${questionId}/answers`,
+        {
+          content: answerContent,
+        },
+        {
+          headers: {
+            'Content-Type': `application/json`,
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => console.log('응답은', res));
+  };
 
   const onFocus = () => {
-    isCheck(1)
-  }
+    isCheck(1);
+  };
 
   const onBlur = () => {
-    isCheck(0)
-  }
+    isCheck(0);
+  };
 
   return (
-    <S.QYourAnswer >
+    <S.QYourAnswer>
       <form onSubmit={onSubmit}>
         <h3>Your Answer</h3>
-          <S.EditorBox check={check}>
+        <S.EditorBox check={check}>
           <Editor
             initialValue=' '
             placeholder='Write Your Answers'
@@ -64,8 +82,8 @@ function YourAnswer( {questionId} ) {
             onBlur={onBlur}
             autofocus={false}
           />
-          </S.EditorBox>
-          {subError !== "" ? <ErrorBox>{subError}</ErrorBox>: null}
+        </S.EditorBox>
+        {subError !== '' ? <ErrorBox>{subError}</ErrorBox> : null}
         <button>Post Your Answer</button>
       </form>
     </S.QYourAnswer>
