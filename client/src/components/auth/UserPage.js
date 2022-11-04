@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
+import { loginIdstorige } from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style';
 import UserInfo from './UserInfo';
@@ -9,12 +11,16 @@ import UserInfo from './UserInfo';
 const UserPage = ({ userName, createDay }) => {
   // userName = '홍길동';
   // createDay = '5';
-  let sessionStorage = window.sessionStorage;
-  console.log(sessionStorage)
+  const loginId = useRecoilValue(loginIdstorige)
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/users`,
+    url: `api/users/${loginId}`,
+    withCredentials: true,
   })
+
+  console.log('유저 아이디', loginId)
+  // response && console.log('리스폰스', response, response.user)
+  // error && console.log('에러', error.message, error)
   return (
     <S.UserPageContainer>
       <S.UserNameCard>
