@@ -164,34 +164,35 @@ class QuestionControllerTest {
 
         // when
         ResultActions actions = mockMvc.perform(
-                get("/api/questions/{question-id}", questionId)
-                        .accept(MediaType.APPLICATION_JSON)
+                                get("/api/questions/{question-id}", questionId)
+                                        .accept(MediaType.APPLICATION_JSON)
         );
 
         // then
         actions
                 .andExpect(status().isOk())
                 .andDo(document(
-                                "question/get",
-                                preprocessRequest(prettyPrint()),
-                                pathParameters(
-                                        parameterWithName("question-id").description("질문 식별자")
-                                ),
-                                relaxedResponseFields(
-                                        List.of(
-                                                fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
-                                                fieldWithPath("title").type(JsonFieldType.STRING).description("질문 제목"),
-                                                fieldWithPath("content").type(JsonFieldType.STRING).description("질문 내용"),
-                                                fieldWithPath("createdAt").type(JsonFieldType.STRING).description("질문 등록 시각"),
-                                                fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("질문 수정 시각"),
-                                                fieldWithPath("voteCount").type(JsonFieldType.NUMBER).description("추천수"),
-                                                fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회수"),
-                                                fieldWithPath("user").type(JsonFieldType.OBJECT).description("유저 정보"),
-                                                fieldWithPath("tagNames").type(JsonFieldType.ARRAY).description("태그 리스트"),
-                                                fieldWithPath("answers").type(JsonFieldType.ARRAY).description("답변 리스트"),
-                                                fieldWithPath("comments").type(JsonFieldType.ARRAY).description("댓글 리스트")
-                                        )
+                        "question/get",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("question-id").description("질문 식별자")
+                        ),
+                        relaxedResponseFields(
+                                List.of(
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
+                                        fieldWithPath("title").type(JsonFieldType.STRING).description("질문 제목"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("질문 내용"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("질문 등록 시각"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("질문 수정 시각"),
+                                        fieldWithPath("voteCount").type(JsonFieldType.NUMBER).description("추천수"),
+                                        fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회수"),
+                                        fieldWithPath("user").type(JsonFieldType.OBJECT).description("유저 정보"),
+                                        fieldWithPath("tagNames").type(JsonFieldType.ARRAY).description("태그 리스트"),
+                                        fieldWithPath("answers").type(JsonFieldType.ARRAY).description("답변 리스트"),
+                                        fieldWithPath("comments").type(JsonFieldType.ARRAY).description("댓글 리스트")
                                 )
+                        )
                         )
                 );
     }
