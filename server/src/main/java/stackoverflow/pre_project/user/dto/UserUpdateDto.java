@@ -14,7 +14,7 @@ public class UserUpdateDto {
     @Size(min = 3, max = 20)
     public String username;
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 20)
     public String password;
     @Email
     @NotBlank
