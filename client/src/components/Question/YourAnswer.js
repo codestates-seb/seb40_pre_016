@@ -24,37 +24,40 @@ function YourAnswer({ questionId }) {
 
   const onChange = () => {
     const data = editorRef.current.getInstance().getHTML();
+
     if (data.length > 30) {
       setSubError('');
     }
     isAnswerContent(data);
-    console.log(data);
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
-    // if (answerContent.length < 30) {
-    //   //조건 30자 넘어야됨
-    //   isCheck(2);
-    //   setSubError('Body must be at least 30 characters.');
-    // }
-    console.log('제출');
-    console.log('질문아이디는', questionId);
-
-    axios
-      .post(
-        `/api/questions/${questionId}/answers`,
-        {
-          content: answerContent,
-        },
-        {
-          headers: {
-            'Content-Type': `application/json`,
+    if (answerContent.length < 30) {
+      //조건 30자 넘어야됨
+      isCheck(2);
+      setSubError('Body must be at least 30 characters.');
+      event.preventDefault();
+    } else {
+      axios
+        .post(
+          `/api/questions/${questionId}/answers`,
+          {
+            content: answerContent,
           },
-          withCredentials: true,
-        }
-      )
-      .then((res) => console.log('응답은', res));
+          {
+            headers: {
+              'Content-Type': `application/json`,
+            },
+            withCredentials: true,
+          }
+        )
+        .then(event.preventDefault())
+        .then((res) => {
+          if (res) {
+            window.location.reload();
+          }
+        });
+    }
   };
 
   const onFocus = () => {
@@ -84,7 +87,7 @@ function YourAnswer({ questionId }) {
           />
         </S.EditorBox>
         {subError !== '' ? <ErrorBox>{subError}</ErrorBox> : null}
-        <button>Post Your Answer</button>
+        <button type={'submit'}>Post Your Answer</button>
       </form>
     </S.QYourAnswer>
   );
