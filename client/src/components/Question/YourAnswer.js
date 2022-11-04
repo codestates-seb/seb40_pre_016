@@ -2,12 +2,13 @@ import * as S from '../../style/question/YourAnswer.style';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { answer, answerFocus } from '../../atoms/questionATom';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useAxios } from '../../util/useAxios';
 import axios from 'axios';
+import { isLoginState } from '../../atoms/atom';
 
 const ErrorBox = styled.div`
   margin-top: 15px;
@@ -21,9 +22,14 @@ function YourAnswer({ questionId }) {
   const [check, isCheck] = useRecoilState(answerFocus);
   const [answerContent, isAnswerContent] = useRecoilState(answer);
   const [subError, setSubError] = useState('');
+  const loginState = useRecoilValue(isLoginState);
 
   const onChange = () => {
     const data = editorRef.current.getInstance().getHTML();
+    if(!loginState){
+      setSubError('Login First !!!')
+      isCheck(2)
+    }
 
     if (data.length > 30) {
       setSubError('');
@@ -32,6 +38,11 @@ function YourAnswer({ questionId }) {
   };
 
   const onSubmit = (event) => {
+    if(!loginState){
+      isCheck(2)
+      setSubError('Login First !!!!!!')
+      event.preventDefault();
+    }
     if (answerContent.length < 30) {
       //조건 30자 넘어야됨
       isCheck(2);
