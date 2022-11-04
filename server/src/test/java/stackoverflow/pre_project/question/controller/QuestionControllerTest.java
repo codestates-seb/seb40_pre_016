@@ -24,6 +24,7 @@ import stackoverflow.pre_project.question.dto.QuestionDto;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.mapper.QuestionMapper;
 import stackoverflow.pre_project.question.service.QuestionService;
+import stackoverflow.pre_project.user.dto.UserDto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -63,8 +64,6 @@ class QuestionControllerTest {
                         .tagNames(List.of("java", "python", "c++"))
                         .build();
         String content = objectMapper.writeValueAsString(request);
-
-
 
         given(mapper.questionRequestToQuestion(Mockito.any(QuestionDto.Request.class))).willReturn(Question.builder().build());
         given(questionService.createQuestion(Mockito.any(Question.class))).willReturn(Question.builder().id(1L).build());
@@ -123,13 +122,13 @@ class QuestionControllerTest {
                                 "patch_question",
                                 preprocessRequest(prettyPrint()),
                                 pathParameters(
-                                        parameterWithName("question-id").description("질문 id")
+                                        parameterWithName("question-id").description("질문 식별자")
                                 ),
                                 relaxedRequestFields(
                                         List.of(
                                                 fieldWithPath("title").type(JsonFieldType.STRING).description("수정된 질문 제목"),
                                                 fieldWithPath("content").type(JsonFieldType.STRING).description("수정된 질문 내용"),
-                                                fieldWithPath("tagNames").description("수정된 태그 리스트")
+                                                fieldWithPath("tagNames").type(JsonFieldType.ARRAY).description("수정된 태그 리스트")
                                         )
                                 )
                         )
@@ -150,7 +149,11 @@ class QuestionControllerTest {
                         .modifiedAt(LocalDateTime.now())
                         .voteCount(3)
                         .viewCount(15)
-                        .user(null)
+                        .user(UserDto.Response.builder()
+                                .userId(1L)
+                                .username("user")
+                                .email("test@test.com")
+                                .build())
                         .tagNames(List.of("java", "python", "c++"))
                         .answers(new ArrayList<>())
                         .comments(new ArrayList<>())
@@ -172,21 +175,21 @@ class QuestionControllerTest {
                                 "get_question",
                                 preprocessRequest(prettyPrint()),
                                 pathParameters(
-                                        parameterWithName("question-id").description("질문 id")
+                                        parameterWithName("question-id").description("질문 식별자")
                                 ),
-                                responseFields(
+                                relaxedResponseFields(
                                         List.of(
-                                                fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 id"),
+                                                fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                                 fieldWithPath("title").type(JsonFieldType.STRING).description("질문 제목"),
                                                 fieldWithPath("content").type(JsonFieldType.STRING).description("질문 내용"),
                                                 fieldWithPath("createdAt").type(JsonFieldType.STRING).description("질문 등록 시각"),
                                                 fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("질문 수정 시각"),
                                                 fieldWithPath("voteCount").type(JsonFieldType.NUMBER).description("추천수"),
                                                 fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회수"),
-                                                fieldWithPath("user").description("유저 정보"),
-                                                fieldWithPath("tagNames").description("태그 리스트"),
-                                                fieldWithPath("answers").description("답변 리스트"),
-                                                fieldWithPath("comments").description("댓글 리스트")
+                                                fieldWithPath("user").type(JsonFieldType.OBJECT).description("유저 정보"),
+                                                fieldWithPath("tagNames").type(JsonFieldType.ARRAY).description("태그 리스트"),
+                                                fieldWithPath("answers").type(JsonFieldType.ARRAY).description("답변 리스트"),
+                                                fieldWithPath("comments").type(JsonFieldType.ARRAY).description("댓글 리스트")
                                         )
                                 )
                         )
@@ -230,7 +233,7 @@ class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("data").description("질문 리스트"),
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("질문 리스트"),
                                         fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                         fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("페이지"),
                                         fieldWithPath("pageInfo.size").type(JsonFieldType.NUMBER).description("페이지 사이즈"),
@@ -274,7 +277,7 @@ class QuestionControllerTest {
                         "get_questions_by_user",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
-                        pathParameters(parameterWithName("user-id").description("유저 id")),
+                        pathParameters(parameterWithName("user-id").description("유저 식별자")),
                         requestParameters(
                                 parameterWithName("page").description("페이지"),
                                 parameterWithName("size").description("페이지 사이즈"),
@@ -282,7 +285,7 @@ class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("data").description("질문 리스트"),
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("질문 리스트"),
                                         fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                         fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("페이지"),
                                         fieldWithPath("pageInfo.size").type(JsonFieldType.NUMBER).description("페이지 사이즈"),
@@ -334,7 +337,7 @@ class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("data").description("질문 리스트"),
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("질문 리스트"),
                                         fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                         fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("페이지"),
                                         fieldWithPath("pageInfo.size").type(JsonFieldType.NUMBER).description("페이지 사이즈"),
@@ -360,9 +363,8 @@ class QuestionControllerTest {
                 .andExpect(status().isNoContent())
                 .andDo(document(
                         "delete_question",
-                        pathParameters(parameterWithName("question-id").description("질문 id"))
+                        pathParameters(parameterWithName("question-id").description("질문 식별자"))
                         )
-
                 );
     }
 }
