@@ -14,8 +14,6 @@ const UserPage = ({ userName, createDay }) => {
   const logoutHandler = () => {
     setIsLogin(false);
     navigate(-1);
-    // localStorage.setItem('recoil-persist', { isLoginState: false });
-    // window.location.reload();
   };
   return (
     <S.UserPageContainer>
