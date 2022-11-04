@@ -76,7 +76,9 @@ function Answer({
           <S.QCRELeft>
             <button>Share</button>
             <Link to={`/questions/${questionId}/answeredit/${answerId}`}>
+              <button>
               Edit
+              </button>
             </Link>
             <button onClick={delBtn}>Delete</button>
           </S.QCRELeft>

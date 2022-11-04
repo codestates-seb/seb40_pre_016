@@ -81,6 +81,13 @@ export const QCRELeft = styled.section`
     background-color: white;
     border: none;
   }
+  > a > button {
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    background-color: white;
+    border: none;
+  }
 `;
 
 export const QCRERight = styled.section`
@@ -115,15 +122,17 @@ export const QCRERight = styled.section`
 `;
 
 export const CommentSection = styled.div`
-  border-top: 1px solid rgba(0,0,0,0.15);
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-top: 1px solid rgba(0,0,0,0.10);
+  border-bottom: 1px solid rgba(0,0,0,0.10);
   
   > div {
-    padding: 15px 0px 15px 10px;
+    padding: 3px 0px 3px 10px;
     font-size: 13px;
     > div{
+      margin-left: 5px;
       display: inline;
       > a{
+        margin-left: 5px;
         text-decoration: none;
         color: #0c62ed;
       }

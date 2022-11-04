@@ -27,6 +27,7 @@ export const QCRTag = styled.section`
 `;
 
 export const TagSection = styled.section`
+  min-height: 566px;
   padding: 24px;
   > h1{
     font-size: 27px;
