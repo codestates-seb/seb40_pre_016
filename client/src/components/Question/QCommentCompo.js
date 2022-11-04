@@ -31,7 +31,7 @@ function QCommentCompo({ questionId, answers}) {
       </S.QCHeader>
       {/* {filterValue === 1 ? "hi" : "hello"} */}
       {answers.map((el) => (
-        <Answer key={el.answerId} questionId={questionId} vote={el.voteCount} content={el.content} user={el.user.username} modifiedAt={el.modifiedAt} comment={el.comments} />
+        <Answer key={el.answerId} answerId={el.answerId} vote={el.voteCount} content={el.content} user={el.user.username} modifiedAt={el.modifiedAt} comment={el.comments} />
       ))}
     
     </S.QComment>
