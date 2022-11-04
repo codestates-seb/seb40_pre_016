@@ -17,9 +17,6 @@ import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.mapper.QuestionMapper;
 import stackoverflow.pre_project.question.service.QuestionService;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Positive;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -33,8 +30,7 @@ public class QuestionController {
 
     @PostMapping
     public String postQuestion(@RequestBody QuestionDto.Request request,
-                             @AuthenticationPrincipal CustomUserDetails customUserDetails,
-                             HttpServletResponse response) throws IOException {
+                               @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         request.setUser(customUserDetails.getUser());
         Question question = mapper.questionRequestToQuestion(request);
         Question createdQuestion = questionService.createQuestion(question);
@@ -44,9 +40,8 @@ public class QuestionController {
 
     @PatchMapping("/{question-id}")
     public String patchQuestion(@PathVariable("question-id") Long questionId,
-                              @AuthenticationPrincipal CustomUserDetails customUserDetails,
-                              @RequestBody QuestionDto.Request request,
-                              HttpServletResponse response) throws IOException {
+                                @AuthenticationPrincipal CustomUserDetails customUserDetails,
+                                @RequestBody QuestionDto.Request request) {
         request.setUser(customUserDetails.getUser());
 
         Question question = mapper.questionRequestToQuestion(request);
@@ -97,11 +92,8 @@ public class QuestionController {
 
     @DeleteMapping("/{question-id}")
     public void deleteQuestion(@PathVariable("question-id") Long questionId,
-                               @AuthenticationPrincipal CustomUserDetails customUserDetails,
-                               HttpServletResponse response) throws IOException {
+                               @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 
         questionService.deleteQuestion(questionId, customUserDetails.getUser());
-
-        response.sendRedirect("/api/questions");
     }
 }

@@ -2,10 +2,7 @@ package stackoverflow.pre_project.answer.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
-import stackoverflow.pre_project.audit.Auditable;
 import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.user.entity.User;

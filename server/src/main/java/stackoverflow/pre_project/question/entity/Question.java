@@ -1,7 +1,6 @@
 package stackoverflow.pre_project.question.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import stackoverflow.pre_project.answer.entity.Answer;
