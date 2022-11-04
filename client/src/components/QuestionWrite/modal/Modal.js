@@ -37,8 +37,12 @@ const Modal = () => {
           <p className='last_p'>You’ll find more tips in the sidebar.</p>
         </div>
         <footer>
-          <button className='startWriting'>Start Writing</button>
-          <button className='dontShow'>Don't show me this again</button>
+          <button onClick={modalHandler} className='startWriting'>
+            Start Writing
+          </button>
+          <button onClick={modalHandler} className='dontShow'>
+            Don't show me this again
+          </button>
         </footer>
       </S.ModalContainer>
     </S.ModalSelect>

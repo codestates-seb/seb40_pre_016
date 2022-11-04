@@ -5,9 +5,9 @@ import { filterBtnIdx } from '../../../atoms/atom';
 
 const SelectButton = ({ children, value }) => {
   const [currentBtn, setCurrentButton] = useRecoilState(filterBtnIdx);
+
   const btnCheckHandler = (e, idx) => {
     setCurrentButton(e.target.value);
-    // sortHandler(idx);
     console.log(e.target.value);
   };
 
