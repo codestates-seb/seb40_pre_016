@@ -29,12 +29,12 @@ export const loginIdstorige = atom({
   key: 'loginIdstorige',
   default: '',
   effects_UNSTABLE: [persistAtom],
-})
+});
 
 export const loginSubmitErrormessage = atom({
   key: 'loginSubmitErrormessage',
   default: false,
-})
+});
 
 export const loginsubmitList = atom({
   key: 'loginsubmitList',
@@ -119,4 +119,3 @@ export const pageLocation = atom({
   key: 'pageLocation',
   default: 'main',
 });
-
