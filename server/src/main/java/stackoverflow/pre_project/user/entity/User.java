@@ -31,6 +31,7 @@ public class User extends Auditable {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -38,15 +39,15 @@ public class User extends Auditable {
 
     private String role;
 
-    @JsonIgnore()
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private final List<Answer> answers = new ArrayList<>();
 
-    @JsonIgnore()
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private final List<Question> questions = new ArrayList<>();
 
-    @JsonIgnore()
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private final List<Comment> comments = new ArrayList<>();
 
