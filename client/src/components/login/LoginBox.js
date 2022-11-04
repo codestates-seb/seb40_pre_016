@@ -110,7 +110,8 @@ const LoginBox = () => {
     response && navigate(-1);
   }, [response]);
 
-  console.log('로그인 요청 후 응답은', response, error);
+  console.log('로그인 요청 후 응답은', response);
+  error && console.log('로그인 요청 후 에러는', error);
   console.log('issubmit은', isSubmit);
 
   return (
