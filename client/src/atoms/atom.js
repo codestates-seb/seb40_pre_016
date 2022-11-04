@@ -105,11 +105,19 @@ export const editorFocus = atom({
 //pagenation count
 export const pagenationCount = atom({
   key: 'pagenationCount',
-  default: 1,
+  default: {
+    tags: 1,
+    questions: 1,
+    users: 1,
+  },
 });
 export const pagesizeCount = atom({
   key: 'pagesizeCount',
-  default: 10,
+  default: {
+    tags: 2,
+    questions: 4,
+    users: 2,
+  },
 });
 export const tagNoneMessage = atom({
   key: 'tagNoneMessage',
@@ -118,4 +126,9 @@ export const tagNoneMessage = atom({
 export const pageLocation = atom({
   key: 'pageLocation',
   default: 'main',
+});
+
+export const setuserEditstate = atom({
+  key: 'setuserEditstate',
+  default: {},
 });

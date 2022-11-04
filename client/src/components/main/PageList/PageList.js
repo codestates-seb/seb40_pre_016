@@ -27,27 +27,40 @@ const PageList = ({ location, child }) => {
 
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/${location}`,
+    url: `api/${location}?page=0&size=1`,
   })
 
-  response && console.log('로케이션, 리스폰스', location, response.data)
+  response && console.log('로케이션, 리스폰스', location, response.pageInfo.totalElements)
   if (response) {
     //response 없을경우
-    if (response.data.length === 0) {
+    if (response.pageInfo.totalElements === 0) {
       setMessage(`no ${location}`)
-      setListCount(1)
+      setListCount({
+        [location]: 1
+      })
     }
 
   }
   useEffect(() => {
     if (response) {
       //현재 있는 데이터가 기본 설정 데이터보다 작을 경우
-      if (response.data.length < SizeCount) {
-        setSizeCount(response.data.length)
+      if (response.pageInfo.totalElements < SizeCount[`${location}`]) {
+        setSizeCount({
+          ...SizeCount, [location]: response.pageInfo.totalElements
+        })
+        setListCount({ [location]: 1 })
+      } else {
+        setListCount({
+          ...listCount, [location]: Math.ceil(response.pageInfo.totalElements / SizeCount[`${location}`])
+        })
       }
-      setListCount(Math.ceil(response.data.length / SizeCount))
+
+      console.log('계산~~~~', Math.ceil(response.pageInfo.totalElements / SizeCount[`${location}`]), '각', response.pageInfo.totalElements, '각', SizeCount[`${location}`])
+      console.log(listCount)
     }
+
   }, [response]);
+  console.log(listCount)
 
   //navi 새로고침문제 해결
   const navigate = useNavigate()
@@ -57,9 +70,10 @@ const PageList = ({ location, child }) => {
   }
 
   const listCountArr = [];
-  for (let i = 1; i <= listCount; i++) {
+  for (let i = 1; i <= listCount[`${location}`]; i++) {
     listCountArr.push(i);
   }
+
 
   return (
     <S.PageListContainerStyled>
