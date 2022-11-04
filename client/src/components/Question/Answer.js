@@ -11,15 +11,19 @@ import axios from 'axios';
 function Answer ({ answerId, content, vote, user, modifiedAt, comment}) {
   const [addComment, setAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
+  
   const onClick = () =>{
     setAddComment(true)
   }
+
   const onBlur = () =>{
     setAddComment(false)
   }
+
   const onChange = (e) => {
     setCommentValue(e.target.value)
   }
+
   const onSubmit = () => {
     // commentValue 보내기
     axios.post(`/api/answers/${answerId}/comments`, {
@@ -30,6 +34,7 @@ function Answer ({ answerId, content, vote, user, modifiedAt, comment}) {
     withCredentials: true}).then((res) => {if(res){window.location.reload()}})
     setAddComment(false);
   }
+
   const delBtn = (event) => {
     console.log("hi")
     axios.delete(
