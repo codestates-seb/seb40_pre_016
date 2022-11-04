@@ -45,7 +45,7 @@ public class CommentController {
     }
 
     @PatchMapping("/comments/{comment-id}")
-    public CommentDto.Response patchAnswerComment(@PathVariable("comment-id") Long commentId,
+    public CommentDto.Response patchAnswerComment(@Positive @PathVariable("comment-id") Long commentId,
                                                   @Valid @RequestBody CommentDto.Request commentDto,
                                                   @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         Comment comment = commentService.updateComment(commentId, commentDto.getContent(), customUserDetails.getUser());
@@ -54,7 +54,7 @@ public class CommentController {
 
     @DeleteMapping("/comments/{comment-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnswerComment(@PathVariable("comment-id") Long commentId,
+    public void deleteAnswerComment(@Positive @PathVariable("comment-id") Long commentId,
                                     @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         commentService.deleteComment(commentId, customUserDetails.getUser());
     }

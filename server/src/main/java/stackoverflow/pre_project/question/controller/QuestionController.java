@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import stackoverflow.pre_project.config.auth.CustomUserDetails;
 import stackoverflow.pre_project.dto.MultiResponseDto;
@@ -25,6 +26,7 @@ import java.util.List;
 @RequestMapping("/api/questions")
 @Slf4j
 @RequiredArgsConstructor
+@Validated
 public class QuestionController {
 
     private final QuestionService questionService;
