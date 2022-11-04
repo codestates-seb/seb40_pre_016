@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
+@Validated
 public class UserApiController {
 
     private final UserMapper userMapper;
