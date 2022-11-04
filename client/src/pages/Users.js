@@ -10,6 +10,7 @@ import { useAxios } from "../util/useAxios";
 
 
 const UsersContainer = styled.section`
+  min-height: 566px;
   width: 100%;
   padding: 24px;
   > h1{

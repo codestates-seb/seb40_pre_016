@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { loginIdstorige } from '../../atoms/atom';
 import { timeCal } from '../../pages/Question';
 import * as S from '../../style/question/QCommentCompo.style';
 
 function Comment({ commentId, userId, content, createdAt }) {
   const [check, setCheck] = useState(false);
   const [changeComment, setChangeComment] = useState('');
+  const loginId = useRecoilValue(loginIdstorige);
+
   const delBtn = (event) => {
     axios
       .delete(`/api/comments/${commentId}`, { withCredentials: true })
@@ -54,6 +58,8 @@ function Comment({ commentId, userId, content, createdAt }) {
 
   return (
     <S.CommentSection>
+      {loginId === userId ?
+      <>
       <div>
         {content}
         <div>
@@ -73,6 +79,15 @@ function Comment({ commentId, userId, content, createdAt }) {
           />
         </form>
       ) : null}
+      </> : 
+      <div>
+      {content}
+      <div>
+        -<a href='none'>{userId}</a>
+      </div>
+      <span>{timeCal(createdAt)}</span>
+    </div>
+      }
     </S.CommentSection>
   );
 }

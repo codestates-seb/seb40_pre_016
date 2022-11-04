@@ -1,14 +1,15 @@
-import * as S from '../../style/question/QuestionCompo.style';
-import polygon from '../../assets/img/polygon.png';
-import userImg from '../../assets/img/user.png';
-import { useRecoilState } from 'recoil';
-import { followQ, voteValue } from '../../atoms/questionATom';
-import Comment from './Comment';
-import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import { Viewer } from '@toast-ui/react-editor';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import * as S from "../../style/question/QuestionCompo.style";
+import polygon from "../../assets/img/polygon.png";
+import userImg from "../../assets/img/user.png";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { followQ, voteValue } from "../../atoms/questionATom";
+import Comment from "./Comment";
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
+import { Viewer } from "@toast-ui/react-editor";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { isLoginState, loginIdstorige } from "../../atoms/atom";
 
 function QuestionCompo({
   questionId,
@@ -22,7 +23,9 @@ function QuestionCompo({
   const [follow, isFollow] = useRecoilState(followQ);
   const [voteVal, setVoteVal] = useRecoilState(voteValue);
   const [addComment, setAddComment] = useState(false);
-  const [commentValue, setCommentValue] = useState('');
+  const [commentValue, setCommentValue] = useState("");
+  const loginState = useRecoilValue(isLoginState);
+  const loginId = useRecoilValue(loginIdstorige);
 
   //sort
   // comment
@@ -92,7 +95,6 @@ function QuestionCompo({
         }
       });
   };
-  console.log(voteVal);
 
   const onClickk = () => {
     setAddComment(true);
@@ -114,7 +116,9 @@ function QuestionCompo({
         },
         {
           headers: {
+
             'Content-Type': `application/json`,
+
           },
           withCredentials: true,
         }
@@ -134,13 +138,23 @@ function QuestionCompo({
       .then(navigate('/questions/page=1'));
   };
 
+
   return (
     <S.QContent>
-      <S.QContentLeft>
-        <img onClick={voteUpClick} alt='Polygon' src={polygon} />
-        <div>{vote}</div>
-        <img onClick={voteDownClick} alt='Polygon' src={polygon} />
-      </S.QContentLeft>
+      {loginState ? (
+        <S.QContentLeft>
+          <img onClick={voteUpClick} alt="Polygon" src={polygon} />
+          <div>{vote}</div>
+          <img onClick={voteDownClick} alt="Polygon" src={polygon} />
+        </S.QContentLeft>
+      ) : (
+        <S.QContentLeft>
+          <img alt="Polygon" src={polygon} />
+          <div>{vote}</div>
+          <img alt="Polygon" src={polygon} />
+        </S.QContentLeft>
+      )}
+
       <S.QContentRight>
         <Viewer initialValue={content} />
         <S.QCRTag>
@@ -151,10 +165,16 @@ function QuestionCompo({
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
-            <Link to={`/questions/${questionId}/edit`}>
-              <button>Edit</button>
-            </Link>
-            <button onClick={delBtn}>Delete</button>
+
+            {loginId === user.userId ? (
+              <>
+                <Link to={`/questions/${questionId}/edit`}>
+                  <button>Edit</button>
+                </Link>
+                <button onClick={delBtn}>Delete</button>
+              </>
+            ) : null}
+
             {follow ? (
               <button onClick={onClick}>Following</button>
             ) : (
@@ -164,7 +184,7 @@ function QuestionCompo({
           <S.QCRERight>
             <span>{createdAt}</span>
             <div>
-              <img src={userImg} alt='얼굴'></img>
+              <img src={userImg} alt="얼굴"></img>
               <span>{user.username}</span>
             </div>
           </S.QCRERight>

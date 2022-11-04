@@ -11,6 +11,7 @@ import QuestionRightSidebar from '../components/Question/RightSideBar';
 
 const MainStyeld = styled.div`
   width: calc(100% - 300px);
+  min-height: 566px;
   padding: 24px;
 `;
 const DisplayFlex = styled.div`

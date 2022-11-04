@@ -13,9 +13,8 @@ function QCommentCompo({ questionId, answers }) {
       answers.sort((a, b) => a.createdAt - b.createdAt);
       setFilterValue(2);
     }
-    console.log(answers);
   };
-  console.log('answer 안에 뭐지', questionId);
+
   return (
     <S.QComment>
       <S.QCHeader>
@@ -43,6 +42,7 @@ function QCommentCompo({ questionId, answers }) {
           user={el.user.username}
           modifiedAt={el.modifiedAt}
           comment={el.comments}
+          userId={el.userId}
         />
       ))}
     </S.QComment>
