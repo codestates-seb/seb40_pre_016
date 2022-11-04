@@ -3,10 +3,15 @@ import styled from "styled-components"
 export const Box = styled.div`
 border-radius: 7px;
 background-color: white;
-height: 260px;
+height: auto;
     padding: 24px;
     margin: 24px 0px;
     box-shadow: rgb(0 0 0 / 5%) 0px 10px 24px, rgb(0 0 0 / 5%) 0px 20px 48px, rgb(0 0 0 / 10%) 0px 1px 4px;
+`
+export const Alert = styled.p`
+font-size: 11px;
+color: var(--warning-color);
+margin-bottom: 5px;
 `
 
 export const InputWrap = styled.div`
