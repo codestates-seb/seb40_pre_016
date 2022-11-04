@@ -1,4 +1,6 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+const {persistAtom} = recoilPersist()
 
 export const followQ = atom({
   key: "followQ",
@@ -30,4 +32,10 @@ export const questionData = atom({
         answers: [{}],
         comments: [{}],
     }
+})
+
+export const voteValue = atom({
+  key: "vote",
+  default: 1,
+  effects_UNSTABLE: [persistAtom]
 })
