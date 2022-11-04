@@ -17,13 +17,17 @@ const UserPage = ({ userName, createDay }) => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
   const navigate = useNavigate();
-  // const { response, loading, error } = useAxios({
-  //   method: 'GET',
-  //   url: `api/users/${loginId}`,
-  //   withCredentials: true,
-  // });
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/users/${loginId}`,
+    withCredentials: true,
+  });
 
-  const { response2, loading2, error2, clickFetchFunc } = useAxios(
+  const {
+    response: response2,
+    error: error2,
+    clickFetchFunc,
+  } = useAxios(
     {
       method: 'GET',
       url: `api/users/${loginId}`,
@@ -36,7 +40,6 @@ const UserPage = ({ userName, createDay }) => {
     console.log('로그아웃 버튼 누름');
     clickFetchFunc({
       method: 'POST',
-      // url: 'tasks.json',
       url: '/auth/logout',
       headers: {
         'Content-Type': `application/json`,
@@ -45,18 +48,23 @@ const UserPage = ({ userName, createDay }) => {
       data: { 'user-id': 123 },
     });
     setIsLogin(false);
-    navigate(-1);
   };
 
   useEffect(() => {
+    response && console.log('로그인후  응답은', response);
+    error && console.log('로그인후  에러는', error);
     response2 && console.log('로그아웃  응답은', response2);
     error2 && console.log('로그아웃  에러는', error2);
-    // if (response2) {
-    //   setIsLogin(false);
-    //   navigate(-1);
-    // }
-  }, [response2, error2]);
-  console.log('유저 아이디', loginId);
+    if (response) {
+      setIsLogin(true);
+      navigate(-1);
+    }
+    if (response2) {
+      setIsLogin(false);
+      navigate(-1);
+    }
+  }, [response, error, response2, error2]);
+  // console.log('유저 아이디', loginId);
   // response && console.log('리스폰스', response, response.user)
   // error && console.log('에러', error.message, error)
   return (
@@ -91,7 +99,7 @@ const UserPage = ({ userName, createDay }) => {
             </svg>
             Edit profile
           </S.Button>
-          {/* <S.Button onClick={logoutHandler} className='logout'> */}
+
           <S.Button onClick={logoutHandler} className='logout'>
             Log out
           </S.Button>
