@@ -31,7 +31,7 @@ const Question = ({ question }) => {
 
           <S.UserInfoContainer>
             <img src={img} alt='userImg' />
-            <Link className='aTag' to={`user/${question.user.userId}/profile`}>
+            <Link className='aTag' to={`/users/${question.user.userId}/profile`}>
             <div className='userName'>{question.user.username}</div>
             </Link>
             {/* <div className='askCount'>{question.askCount}</div> */}
