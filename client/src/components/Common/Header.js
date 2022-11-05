@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { loadAuthPage, isLoginState, loginIdstorige } from './../../atoms/atom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { isLoginState, loginIdstorige } from './../../atoms/atom';
 import * as S from './../../style/common/Header.style';
-
 import userImage from './../../assets/img/user_porfile.png';
 import SearchHint from './SearchHint';
 
@@ -12,7 +11,6 @@ const Header = () => {
     let [isSearchClicked, setIsSearchClicked] = useState(false);
     const loginId = useRecoilValue(loginIdstorige);
 
-    console.log('로그인 아이디 ', loginId)
     const navigate = useNavigate();
     const handleClickButton = () => {
         setIsSearchClicked(false);

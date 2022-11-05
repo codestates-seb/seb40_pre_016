@@ -30,7 +30,6 @@ function Comment({ commentId, userId, content, createdAt }) {
   };
   const onChange = (e) => {
     setChangeComment(e.target.value);
-    console.log(changeComment);
   };
 
   const onSubmit = () => {

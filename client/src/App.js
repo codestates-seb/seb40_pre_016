@@ -49,11 +49,10 @@ function App() {
               element={<AnswerEdit />}
             />
 
-            <Route element={<AuthLayout />}>
-              <Route path='/users/:userId' element={<UserPage />}>
-                <Route path='/users/:userId/profile' element={<UserInfo />} />
-                <Route path='/users/:userId/setting' element={<UserSetting />} />
-              </Route>
+
+            <Route path='/users/:userId' element={<UserPage />}>
+              <Route path='/users/:userId/profile' element={<UserInfo />} />
+              <Route path='/users/:userId/setting' element={<UserSetting />} />
             </Route>
 
             <Route path='/tags' element={<TagLayout />}>

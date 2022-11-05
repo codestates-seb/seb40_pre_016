@@ -34,7 +34,6 @@ const SignUpBox = () => {
     signupData.captcha = value;
     setsignupList(signupData);
   }
-  console.log(signupList);
 
   const onChangeSignupForm = (e) => {
     const signupData = { ...signupList };
@@ -63,11 +62,9 @@ const SignUpBox = () => {
       //성공
       isEmailCheck = true;
 
-      console.log('email 성공');
     } else {
       //살패
       isEmailCheck = false;
-      console.log('email 실패');
     }
     setIsEmailOk(isEmailCheck);
 
@@ -75,22 +72,18 @@ const SignUpBox = () => {
       //성공
       isPasswordCheck = true;
 
-      console.log('password 성공');
     } else {
       //실패
       isPasswordCheck = false;
-      console.log('password 실패');
     }
     setIsPasswordOk(isPasswordCheck);
 
     if (signupList.displayName.length > 1) {
       //성공
       isDisplayCheck = true;
-      console.log('displayName 성공');
     } else {
       //실패
       isDisplayCheck = false;
-      console.log('displayName 실패');
     }
     setIsDisplayNameOk(isDisplayCheck);
 
@@ -99,7 +92,6 @@ const SignUpBox = () => {
       isCheckedCheck = true;
     } else {
       isCheckedCheck = false;
-      console.log(ischeckedOK);
     }
 
     if (
@@ -111,31 +103,17 @@ const SignUpBox = () => {
     ) {
       //전송
       submit = true;
-      // setsignupList({
-      //   displayName: '',
-      //   email: '',
-      //   password: '',
-      //   captcha: '',
-      //   checked: false,
-      // });
     } else {
       submit = false;
     }
     setIsSubmit(submit);
 
-    // if (submit) {
-    //   console.log('실행');
-    //   navigate('/');
-    // }
   };
 
   useEffect(() => {
-    isSubmit && console.log('회원가입 요청 완료');
-    isSubmit && console.log('제출한 내용은', signupList);
     isSubmit &&
       clickFetchFunc({
         method: 'POST',
-        // url: 'tasks.json', //파이어 베이스 사용
         url: '/auth/signup',
         headers: {
           'Content-Type': `application/x-www-form-urlencoded`,
@@ -149,10 +127,8 @@ const SignUpBox = () => {
       });
     setIsSubmit(false);
   }, [isSubmit]);
-  console.log('제출후 issumit은', isSubmit);
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
-    response && console.log('회원가입 응답은', response);
     error && navigate(`/`);
   }, [error]);
 

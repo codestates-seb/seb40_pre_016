@@ -49,7 +49,6 @@ const AnswerEditFooter = () => {
   let postData = Object.assign({}, editAnswer);
   const navigate = useNavigate();
   const params = useParams();
-  console.log('footer에서 params', editAnswer);
   const { response, loading, error, clickFetchFunc } = useAxios(
     {
       method: 'POST',
@@ -61,7 +60,6 @@ const AnswerEditFooter = () => {
     },
     false
   );
-  console.log('editAnswer는', editAnswer);
 
   const saveEditHandler = () => {
     //수정된 댓글 fetch 요청
@@ -78,11 +76,9 @@ const AnswerEditFooter = () => {
     });
   };
 
-  console.log('수정 요청 완료');
 
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
-    response && console.log('응답은', response);
     response && navigate(-1);
   }, [response]);
 
