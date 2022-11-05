@@ -1,27 +1,22 @@
 import React from 'react';
 import * as S from '../../../style/main/Filter.style';
 import SelectButton from '../Button/SelectButton';
-import { useRecoilState } from 'recoil';
-import { questionList } from '../../../atoms/atom';
-import { filterBtnIdx } from '../../../atoms/atom';
-
+import { useAxios } from '../../../util/useAxios';
 const Filter = () => {
-  // const [currentBtn, setCurrentButton] = useRecoilState(filterBtnIdx);
   const buttonNameList = ['createdAt', 'voteCount'];
+  const { response, loading, error } = useAxios({
+    method: 'GET',
+    url: `api/questions?page=0&size=1`,
+  });
 
   return (
     <S.FilterContainer>
       <h1>
-        <p>23,143,715 questions</p>
+        <p>{response && response.pageInfo.totalElements} questions</p>
       </h1>
       <div>
         {buttonNameList.map((el, idx) => (
-          <SelectButton
-            key={idx}
-            value={el}
-            // onClick={(e) => btnCheckHandler(e, idx)}
-            // className={`default${currentBtn === idx ? ' clicked' : ''}`}
-          >
+          <SelectButton key={idx} value={el}>
             {el}
           </SelectButton>
         ))}

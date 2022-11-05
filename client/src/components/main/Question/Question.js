@@ -7,7 +7,6 @@ import { timeCal } from '../../../pages/Question';
 import { Viewer } from '@toast-ui/react-editor';
 
 const Question = ({ question }) => {
-  console.log(question.user.userId)
 
   return (
     <S.QuestionContainer>

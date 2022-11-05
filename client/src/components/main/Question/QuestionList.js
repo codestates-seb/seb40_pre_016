@@ -31,7 +31,6 @@ const QuestionList = ({ questionLists }) => {
     };
   }, [currentBtn]);
 
-
   const { response, loading, error } = useAxios(config);
 
   useEffect(() => {
