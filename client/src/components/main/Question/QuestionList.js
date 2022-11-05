@@ -22,7 +22,6 @@ const QuestionList = ({ questionLists }) => {
   const message = useRecoilValue(tagNoneMessage);
   let params = useParams();
 
-  console.log(params.mainpage);
   const config = useMemo(() => {
     return {
       method: 'GET',
@@ -34,8 +33,6 @@ const QuestionList = ({ questionLists }) => {
 
   const { response, loading, error } = useAxios(config);
 
-  console.log('질문리스트컴포넌트에서 필터버튼 이름', currentBtn);
-  response && console.log('메인페이지 응답은', response);
   useEffect(() => {
     response && setTotalPage(response.pageInfo.totalPages);
   }, [response]);

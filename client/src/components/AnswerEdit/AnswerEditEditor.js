@@ -11,7 +11,6 @@ function AnswerEditEditor() {
   const editorRef = useRef();
   const [editAnswer, setEditAnswer] = useRecoilState(editAnswerState);
   const params = useParams();
-  console.log('현재 답변아이디는', params.answerId);
   //에디터에 초기값 설정
   let currentAnswer = [];
   currentAnswer = data.answers.filter((el) => {
@@ -21,9 +20,7 @@ function AnswerEditEditor() {
 
   const contentHandler = () => {
     const data = editorRef.current.getInstance().getHTML();
-    console.log('댓글수정내용', data);
     if (data.length < 30) {
-      console.log('nope');
     }
     setEditAnswer({ ...editAnswer, content: data });
   };

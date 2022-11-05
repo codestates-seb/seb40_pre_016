@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { loadAuthPage, isLoginState } from './../../atoms/atom';
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from './../../atoms/atom';
 import * as S from './../../style/common/Header.style';
-
 import userImage from './../../assets/img/user_porfile.png';
 import SearchHint from './SearchHint';
 

@@ -15,9 +15,7 @@ function QuestionWriteEditor() {
   const contentHandler = () => {
     // const data = editorRef.current.getInstance().getHTML();
     const data = editorRef.current.getInstance().getHTML();
-    console.log(data);
     if (data.length < 30) {
-      console.log('nope');
     }
     setNewQuestion({ ...newQuestion, content: data });
   };

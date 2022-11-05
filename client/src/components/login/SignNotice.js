@@ -24,7 +24,6 @@ const SignNotice = () => {
                     <S.P>Earn reputation and badges</S.P>
                 </S.List>
             </S.ListWrap>
-
         </S.NoticeWarp>
     );
 };

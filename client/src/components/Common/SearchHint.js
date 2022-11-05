@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import * as S from '../../style/common/SearchHint.style';
 
 const SearchHint = ({ handleClickButton }) => {
