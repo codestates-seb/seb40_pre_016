@@ -3,6 +3,8 @@ import styled from "styled-components"
 export const UserPageContainer = styled.div`
 width: 800px;
 padding: 24px;
+min-height: 855px;
+
 `
 export const UserNameCard = styled.div`
 width: 100%;
