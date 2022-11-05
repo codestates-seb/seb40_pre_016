@@ -24,7 +24,6 @@ const LoginBox = () => {
   );
 
   const navigate = useNavigate();
-  const { state } = useLocation();
 
   const { response, loading, error, clickFetchFunc } = useAxios(
     {

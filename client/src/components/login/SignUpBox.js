@@ -15,8 +15,8 @@ const SignUpBox = () => {
   const [isPasswordOk, setIsPasswordOk] = useState(true);
   const [ischeckedOK, setIsCheckedOK] = useState(true);
 
+  // navigate('/login', { state: pathname });
   const navigate = useNavigate();
-
   const { response, loading, error, clickFetchFunc } = useAxios(
     {
       method: 'POST',
@@ -123,6 +123,10 @@ const SignUpBox = () => {
           password: signupList.password,
         },
       });
+    // if(isSubmit){
+
+    // }
+    console.log('히스토리객체는', navigate);
     isSubmit && navigate(-1);
     setIsSubmit(false);
   }, [isSubmit]);
