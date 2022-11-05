@@ -63,7 +63,9 @@ function App() {
             </Route>
           </Route>
 
-          <Route path='/askquestion' element={<QuestionWrite />} />
+          <Route element={<AuthLayout />}>
+            <Route path='/askquestion' element={<QuestionWrite />} />
+          </Route>
           <Route path='/' element={<AuthContainer />}>
             <Route path='/login' element={<Login />} />
             <Route path='/logout' element={<Logout />} />
