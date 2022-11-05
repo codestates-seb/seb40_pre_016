@@ -10,7 +10,6 @@ import { useRecoilState } from 'recoil';
 import { questionData } from '../atoms/questionATom';
 
 const Qcontainer = styled.section`
-  width: 1300px;
   padding-left: 20px;
 `;
 
