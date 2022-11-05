@@ -31,8 +31,6 @@ const QuestionList = ({ questionLists }) => {
     };
   }, [currentBtn]);
 
-  console.log(`/api/questions?page=${params.mainpage - 1}&size=${size.questions}&sort=${currentBtn + ',DESC'
-    }`)
   const { response, loading, error } = useAxios(config);
 
   useEffect(() => {

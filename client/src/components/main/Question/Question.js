@@ -7,7 +7,6 @@ import { timeCal } from '../../../pages/Question';
 import { Viewer } from '@toast-ui/react-editor';
 
 const Question = ({ question }) => {
-  console.log(question.user.userId)
 
   return (
     <S.QuestionContainer>
@@ -36,7 +35,7 @@ const Question = ({ question }) => {
             </Link>
             {/* <div className='askCount'>{question.askCount}</div> */}
             <div className='userTime'>
-              {timeCal(question.createdAt)} min ago
+              {timeCal(question.createdAt)}
             </div>
           </S.UserInfoContainer>
         </S.FooterContainer>
