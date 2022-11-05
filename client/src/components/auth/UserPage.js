@@ -50,6 +50,7 @@ const UserPage = () => {
     withCredentials: true,
   });
   let userName, createDay, message;
+  console.log(response)
   useEffect(() => {
     if (response) {
       createDay = timeCal(response.createdAt);
