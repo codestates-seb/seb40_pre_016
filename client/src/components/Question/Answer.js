@@ -8,8 +8,9 @@ import { timeCal } from '../../pages/Question';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoginState, loginIdstorige } from '../../atoms/atom';
+import { voteAnswerValue } from '../../atoms/questionATom';
 
 function Answer({
   questionId,
@@ -23,8 +24,10 @@ function Answer({
 }) {
   const [addComment, setAddComment] = useState(false);
   const [commentValue, setCommentValue] = useState('');
-  const loginState = useRecoilValue(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
+  const loginState = useRecoilValue(isLoginState);
+  const [voteVal, setVoteVal] = useRecoilState(voteAnswerValue);
+
 
   const onClick = () => {
     setAddComment(true);
@@ -68,20 +71,93 @@ function Answer({
       });
   };
 
+  const voteUpClick = (event) => {
+    if (voteVal === 2) {
+      // 취소
+      
+      axios
+        .post(
+          `/api/answers/${answerId}/vote/3`,
+          { data: {} },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          if (res) {
+            setVoteVal(1);
+            window.location.reload();
+          }
+        });
+    }
+    // 값 1 올리기
+    
+    axios
+      .post(
+        `/api/answers/${answerId}/vote/1`,
+        { data: {} },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res) {
+          setVoteVal(2);
+          window.location.reload();
+        }
+      });
+  };
+
+  const voteDownClick = (event) => {
+    if (voteVal === 0) {
+      // 취소
+      axios
+        .post(
+          `/api/answers/${answerId}/vote/3`,
+          { data: {} },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          if (res) {
+            setVoteVal(1);
+            window.location.reload();
+          }
+        });
+    }
+    // 값 1 내리기
+    axios
+      .post(
+        `/api/answers/${answerId}/vote/2`,
+        { data: {} },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res) {
+          setVoteVal(0);
+          window.location.reload();
+        }
+      });
+  };
+
   return (
     <S.QContent>
-      <S.QContentLeft>
-        <img alt='Polygon' src={polygon} />
-        <div>{vote}</div>
-        <img alt='Polygon' src={polygon} />
-      </S.QContentLeft>
+      {loginState ? (
+        <S.QContentLeft>
+          <img onClick={voteUpClick} alt="Polygon" src={polygon} />
+          <div>{vote}</div>
+          <img onClick={voteDownClick} alt="Polygon" src={polygon} />
+        </S.QContentLeft>
+      ) : (
+        <S.QContentLeft>
+          <img alt="Polygon" src={polygon} />
+          <div>{vote}</div>
+          <img alt="Polygon" src={polygon} />
+        </S.QContentLeft>
+      )}
+      
       <S.QContentRight>
         <Viewer initialValue={content} />
         <S.QCREdit>
           <S.QCRELeft>
             <button>Share</button>
 
-            {loginId === userId?
+            {loginId === userId.userId?
             <>
             <Link to={`/questions/${questionId}/answeredit/${answerId}`}>
               <button>
