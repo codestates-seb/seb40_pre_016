@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { pagesizeCount, tagNoneMessage } from '../atoms/atom';
 import { useParams } from 'react-router-dom';
 import { useAxios } from '../util/useAxios';
+import { timeCal } from './Question';
 
 const UsersContainer = styled.section`
   min-height: 566px;
@@ -45,7 +46,7 @@ const Users = () => {
           loading ? null :
             <>
               {
-                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} userId={el.userId} />)
+                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={timeCal(el.createdAt)} userId={el.userId} />)
               }
             </>
         }
