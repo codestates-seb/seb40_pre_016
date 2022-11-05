@@ -41,7 +41,6 @@ const AnswerEditStyled = styled.div`
 
 const AnswerEdit = () => {
   const [data, setData] = useRecoilState(questionData);
-  console.log('datatatad는', data);
   return (
     <AnswerEditStyled>
       <div className='body-sidebar-container'>

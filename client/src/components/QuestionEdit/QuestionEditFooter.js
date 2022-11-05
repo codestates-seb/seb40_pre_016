@@ -61,7 +61,6 @@ const QuestionEditFooter = () => {
     },
     false
   );
-  console.log('params', params);
   const makeNewTagsArray = () => {
     let tempArr = postData.tagNames.map((el) => {
       return el.content;
@@ -89,8 +88,6 @@ const QuestionEditFooter = () => {
       content: ' ',
       tagNames: [],
     });
-    console.log('수정 후 question', postData);
-    console.log('수정 요청 완료');
   };
 
   useEffect(() => {

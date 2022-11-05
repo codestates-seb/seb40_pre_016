@@ -6,13 +6,6 @@ import { Link } from 'react-router-dom';
 import { timeCal } from '../../../pages/Question';
 
 const Question = ({ question }) => {
-  //axios 로 받아온 id
-  // console.log('question은', Array.isArray(question.tagNames));
-  // const date = new Date();
-  // const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  // console.log(minutes);
-  // console.log('Date.toString(): ' + date.toString());
 
   return (
     <S.QuestionContainer>

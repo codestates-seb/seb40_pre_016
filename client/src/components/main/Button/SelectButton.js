@@ -8,7 +8,6 @@ const SelectButton = ({ children, value }) => {
 
   const btnCheckHandler = (e, idx) => {
     setCurrentButton(e.target.value);
-    console.log(e.target.value);
   };
 
   return (

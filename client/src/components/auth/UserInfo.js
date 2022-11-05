@@ -6,7 +6,6 @@ import * as S from './../../style/auth/UserPage.style'
 
 const UserInfo = ({ aboutMe }) => {
     const [userEditData, setUserEditData] = useRecoilState(setuserEditstate)
-    console.log('info페이지 어바웃미', userEditData.message)
     return (
         <S.AboutTab>
             <S.AboutHead>About</S.AboutHead>

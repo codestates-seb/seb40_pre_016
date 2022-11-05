@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
 import { loginIdstorige, setuserEditstate } from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style';
-import UserInfo from './UserInfo';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { isLoginState } from '../../atoms/atom';
 import { useRecoilState } from 'recoil';
 import { timeCal } from '../../pages/Question';
 
 const UserPage = () => {
-  // userName = '홍길동';
-  // createDay = '5';
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
   const navigate = useNavigate();
@@ -33,7 +28,6 @@ const UserPage = () => {
       createDay = timeCal(response.user.createdAt);
       userName = response.user.username;
       message = response.user.message ? response.user.message : ' ';
-      console.log('userpage usernam. aboutme', userName, message);
       setUserEditData({
         userName,
         message,
@@ -56,7 +50,6 @@ const UserPage = () => {
   );
 
   const logoutHandler = () => {
-    console.log('로그아웃 버튼 누름');
     clickFetchFunc({
       method: 'POST',
       url: '/auth/logout',
@@ -70,10 +63,6 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    response && console.log('로그인후  응답은', response);
-    error && console.log('로그인후  에러는', error);
-    response2 && console.log('로그아웃  응답은', response2);
-    error2 && console.log('로그아웃  에러는', error2);
     if (response) {
       setIsLogin(true);
       // navigate(-1);
@@ -83,9 +72,6 @@ const UserPage = () => {
       navigate(-1);
     }
   }, [response, error, response2, error2]);
-  // console.log('유저 아이디', loginId);
-  // response && console.log('리스폰스', response, response.user)
-  // error && console.log('에러', error.message, error)
   return (
     <S.UserPageContainer>
       {response ? (

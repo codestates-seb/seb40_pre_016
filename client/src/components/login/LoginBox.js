@@ -48,7 +48,6 @@ const LoginBox = () => {
     }
     setloginList(loginData);
   };
-  console.log('입력한 아이디 비밀번호는', loginList);
   const handleLoginSubmit = () => {
     let isPasswordCheck, isEmailCheck, login, submit;
     //이메일 유효성
@@ -56,11 +55,9 @@ const LoginBox = () => {
     if (exptext.test(loginList.email) === true) {
       //성공
       isEmailCheck = true;
-      console.log('email 성공');
     } else {
       //살패
       isEmailCheck = false;
-      console.log('email 실패');
     }
 
     setIsEmailOk(isEmailCheck);
@@ -68,38 +65,22 @@ const LoginBox = () => {
     if (loginList.password.length > 3) {
       //성공
       isPasswordCheck = true;
-      console.log('password 성공');
     } else {
       //실패
       isPasswordCheck = false;
-      console.log('password 실패');
     }
     setIsPasswordOk(isPasswordCheck);
     if (isPasswordCheck && isEmailCheck) {
       submit = true;
 
-      //   setloginList({ email: '', password: '' });
     } else {
       submit = false;
     }
 
     setIsSubmit(submit);
-
-    //navigate
-    // Cookies.set("id", "id");
-
-    //state 를 저장해두고 로그인 시 이전에 선택한 path state로 이동
-    // if (login) {
-    //   if (state) {
-    //     navigate(state);
-    //   } else {
-    //     navigate('/');
-    //   }
-    // }
   };
 
   useEffect(() => {
-    isSubmit && console.log('로그인 요청 완료');
     isSubmit &&
       clickFetchFunc({
         method: 'POST',
@@ -116,7 +97,6 @@ const LoginBox = () => {
   useEffect(() => {
     if (response) {
       setLoginId(response);
-      console.log(response);
       // setErrorMessage(false)
       setIsLogin(true);
     }
@@ -124,14 +104,10 @@ const LoginBox = () => {
       setIsSubmit(false);
       // window.location.reload()
       setErrorMessage(true);
-      console.log('에러메시지', error.message);
     }
   }, [response, error]);
 
   isLogin && navigate(-1);
-
-  // console.log('로그인 요청 후 응답은', response, error);
-  // console.log('issubmit은', isSubmit);
 
   return (
     <S.Box>
