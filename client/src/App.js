@@ -49,7 +49,6 @@ function App() {
               element={<AnswerEdit />}
             />
 
-
             <Route path='/users/:userId' element={<UserPage />}>
               <Route path='/users/:userId/profile' element={<UserInfo />} />
               <Route path='/users/:userId/setting' element={<UserSetting />} />
@@ -65,6 +64,7 @@ function App() {
           </Route>
 
           <Route path='/askquestion' element={<QuestionWrite />} />
+
           <Route path='/' element={<AuthContainer />}>
             <Route path='/login' element={<Login />} />
             <Route path='/logout' element={<Logout />} />

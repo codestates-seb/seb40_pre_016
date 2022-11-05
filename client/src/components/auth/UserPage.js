@@ -56,10 +56,9 @@ const UserPage = () => {
   let userName, createDay, message;
   useEffect(() => {
     if (response) {
-      createDay = timeCal(response.user.createdAt);
-      userName = response.user.username;
-      message = response.user.message ? response.user.message : ' ';
-
+      createDay = timeCal(response.createdAt);
+      userName = response.username;
+      message = response.message ? response.message : ' ';
       setUserEditData({
         userName,
         message,
