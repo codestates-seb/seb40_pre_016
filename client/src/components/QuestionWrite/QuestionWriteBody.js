@@ -16,17 +16,28 @@ const QuestionWriteBody = () => {
 
   const tagsAddHandler = (e) => {
     if (e.key === 'Enter') {
-      const tempArr = newQuestion.tagNames.slice();
-      const tempTag = {
-        id: tagId.current,
-        content: e.target.value,
-      };
+      const currentInputTag = e.target.value; //현재 입력된 태그
+      const newTagNames = newQuestion.tagNames.slice();
 
-      tagId.current++;
-      tempArr.push(tempTag);
-      setNewQuestion({ ...newQuestion, tagNames: tempArr });
-      // setTagInput('');
-      tagInputContent.current.value = '';
+      let tempArr = [];
+
+      tempArr = newQuestion.tagNames.slice().map((el) => {
+        return el.content;
+      });
+
+      if (!tempArr.includes(currentInputTag)) {
+        const tempTag = {
+          id: tagId.current,
+          content: currentInputTag,
+        };
+
+        tagId.current++;
+        newTagNames.push(tempTag);
+        setNewQuestion({ ...newQuestion, tagNames: newTagNames });
+        tagInputContent.current.value = '';
+      } else {
+        tagInputContent.current.value = '';
+      }
     }
   };
 

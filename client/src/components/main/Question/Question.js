@@ -4,7 +4,6 @@ import * as S from '../../../style/main/Question.style';
 import TagButton from '../Button/TagButtion';
 import { Link } from 'react-router-dom';
 import { timeCal } from '../../../pages/Question';
-import { Viewer } from '@toast-ui/react-editor';
 
 const Question = ({ question }) => {
   return (
@@ -20,8 +19,8 @@ const Question = ({ question }) => {
         <S.Title>
           <Link to={`/questions/${question.questionId}`}>{question.title}</Link>
         </S.Title>
-        <S.Content>  <Viewer initialValue={question.content} /></S.Content>
-        {/*{question.content}</S.Content> */}
+
+        <S.Content>{question.content}</S.Content>
         <S.FooterContainer>
           {question.tagNames.map((el, idx) => (
             <TagButton key={idx}>{el}</TagButton>
@@ -29,13 +28,15 @@ const Question = ({ question }) => {
 
           <S.UserInfoContainer>
             <img src={img} alt='userImg' />
-            <Link className='aTag' to={`/users/${question.user.userId}/profile`}>
+
+            <Link
+              className='aTag'
+              to={`/users/${question.user.userId}/profile`}
+            >
               <div className='userName'>{question.user.username}</div>
             </Link>
             {/* <div className='askCount'>{question.askCount}</div> */}
-            <div className='userTime'>
-              {timeCal(question.createdAt)}
-            </div>
+            <div className='userTime'>{timeCal(question.createdAt)}</div>
           </S.UserInfoContainer>
         </S.FooterContainer>
       </S.ContentContainer>
