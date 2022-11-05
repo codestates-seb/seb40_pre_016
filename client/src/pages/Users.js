@@ -36,8 +36,7 @@ const Users = () => {
     url: `api/users?page=${params.userspage - 1}&size=${size.users}`,
 
   });
-  response && console.log('유저페이지 리스폰스', response)
-  response && console.log('유저페이지 사이즈 유저', message)
+
   return (
     <UsersContainer>
       <h1>Users</h1>
