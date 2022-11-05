@@ -69,7 +69,10 @@ public class SecurityConfig {
                 .and()
                 .logout()
                 .logoutUrl("/auth/logout")
-                .logoutSuccessHandler((req, res, auth) -> res.setStatus(HttpStatus.NO_CONTENT.value()))
+                .logoutSuccessHandler((req, res, auth) -> {
+                    res.setStatus(200);
+                    res.getWriter().write("true");
+                })
                 .deleteCookies("JSESSIONID", "remember-me")
                 .and()
                 .exceptionHandling()
