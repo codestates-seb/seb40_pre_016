@@ -138,7 +138,6 @@ function QuestionCompo({
       .then(navigate('/questions/page=1'));
   };
 
-
   return (
     <S.QContent>
       {loginState ? (
@@ -199,6 +198,7 @@ function QuestionCompo({
               userId={el.userId}
               content={el.content}
               createdAt={el.createdAt}
+              userName={el.username}
             />
           ))}
         <S.QCRComment>

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { loginIdstorige } from '../../atoms/atom';
 import { timeCal } from '../../pages/Question';
 import * as S from '../../style/question/QCommentCompo.style';
 
-function Comment({ commentId, userId, content, createdAt }) {
+function Comment({ commentId, userId, content, createdAt, userName }) {
   const [check, setCheck] = useState(false);
   const [changeComment, setChangeComment] = useState('');
   const loginId = useRecoilValue(loginIdstorige);
@@ -62,7 +63,8 @@ function Comment({ commentId, userId, content, createdAt }) {
       <div>
         {content}
         <div>
-          -<a href='none'>{userId}</a>
+          -
+          <Link to={`/users/${userId}/profile`}><span>{userName}</span></Link>
         </div>
         <span>{timeCal(createdAt)}</span>
         <button onClick={showEdit}>Edit</button>
@@ -82,7 +84,8 @@ function Comment({ commentId, userId, content, createdAt }) {
       <div>
       {content}
       <div>
-        -<a href='none'>{userId}</a>
+        -
+        <Link to={`/users/${userId}/profile`}><span>{userName}</span></Link>
       </div>
       <span>{timeCal(createdAt)}</span>
     </div>
