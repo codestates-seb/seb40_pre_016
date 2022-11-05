@@ -33,7 +33,7 @@ const Tags = () => {
           loading ? null :
             <>
               {
-                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <TagComponent key={el.tagId} name={el.name} count={el.questionCount} />)
+                message.tags ? <p>{message.tags}</p> : response.data.map(el => <TagComponent key={el.tagId} name={el.name} count={el.questionCount} />)
               }
             </>
 

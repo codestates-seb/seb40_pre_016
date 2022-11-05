@@ -42,15 +42,27 @@ export const Views = styled.div``;
 export const ContentContainer = styled.div`
   flex-shrink: 1;
   flex-grow: 1;
+  width: calc(100% - 120px);
 `;
 
 export const Title = styled.div`
   font-size: 17px;
-
+  width: 100%;
+  height: 17px;
+  /* display: inline-block; */
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   margin-bottom: 5px;
   & a {
+    width: 100%;
     text-decoration: none;
     color: #0a95ff;
+    height: 17px;
+  /* display: inline-block; */
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
