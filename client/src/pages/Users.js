@@ -35,7 +35,8 @@ const Users = () => {
     url: `api/users?page=${params.userspage - 1}&size=${size.users}`,
 
   });
-
+  response && console.log('유저페이지 리스폰스', response)
+  response && console.log('유저페이지 사이즈 유저', message)
   return (
     <UsersContainer>
       <h1>Users</h1>
@@ -45,7 +46,7 @@ const Users = () => {
           loading ? null :
             <>
               {
-                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} userId={el.userId} />)
+                message.user ? <p>{message.users}</p> : response.data.map(el => <UserComponents key={el.userId} username={el.username} email={el.email} createdAt={el.createdAt} userId={el.userId} />)
               }
             </>
         }

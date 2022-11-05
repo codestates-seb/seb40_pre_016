@@ -121,7 +121,7 @@ export const pagesizeCount = atom({
 });
 export const tagNoneMessage = atom({
   key: 'tagNoneMessage',
-  default: '',
+  default: {},
 });
 export const pageLocation = atom({
   key: 'pageLocation',

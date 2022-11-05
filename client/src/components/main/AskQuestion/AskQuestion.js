@@ -7,11 +7,10 @@ import { useRecoilState } from 'recoil';
 
 const AskQuestion = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
-  const moveTo = isLogin ? '/askquestion' : '/login';
   return (
     <S.AskQuestionContainer>
       <h1>All Questions</h1>
-      <Link to={moveTo}>
+      <Link to={'/askquestion'}>
         <AskButton>Ask Question</AskButton>
       </Link>
     </S.AskQuestionContainer>
