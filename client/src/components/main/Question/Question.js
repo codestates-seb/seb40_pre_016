@@ -32,11 +32,11 @@ const Question = ({ question }) => {
           <S.UserInfoContainer>
             <img src={img} alt='userImg' />
             <Link className='aTag' to={`/users/${question.user.userId}/profile`}>
-            <div className='userName'>{question.user.username}</div>
+              <div className='userName'>{question.user.username}</div>
             </Link>
             {/* <div className='askCount'>{question.askCount}</div> */}
             <div className='userTime'>
-              {timeCal(question.createdAt)} min ago
+              {timeCal(question.createdAt)}
             </div>
           </S.UserInfoContainer>
         </S.FooterContainer>

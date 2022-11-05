@@ -7,7 +7,6 @@ import * as S from './../../style/auth/UserPage.style'
 
 const UserInfo = () => {
     const [userPrevData, setUserPrevData] = useRecoilState(UserPrevData)
-    console.log('info페이지 어바웃미', userPrevData.message)
     const params = useParams()
     const isLogin = isRecoilValue(isLoginState);
     const loginId = useRecoilValue(loginIdstorige);

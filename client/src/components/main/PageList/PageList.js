@@ -61,11 +61,6 @@ const PageList = ({ location, child }) => {
   }, [response, SizeCount])
 
 
-  if (response) {
-    console.log(message)
-    console.log(SizeCount)
-    console.log(listCount)
-  }
 
   //navi 새로고침문제 해결
   const navigate = useNavigate()
