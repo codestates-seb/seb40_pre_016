@@ -33,6 +33,11 @@ const Header = () => {
     }, [myHintRef]);
 
 
+    const LinkuserPage = () => {
+        navigate(`/users/${loginId}/profile`)
+        window.location.reload()
+    }
+
 
     return (
         <S.HeaderContainer>
@@ -189,7 +194,7 @@ const Header = () => {
                     </S.SearchBtn>
                 </S.SearchBtnWarp>
                 <S.IsLoginWarp className={isLogin ? null : 'none'}>
-                    <Link to={`/users/${loginId}/profile`}>
+                    <Link onClick={LinkuserPage}>
                         <S.UserProfile>
                             <img src={userImage} alt='uerimg' />{' '}
                         </S.UserProfile>

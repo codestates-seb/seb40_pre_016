@@ -125,7 +125,7 @@ const LoginBox = () => {
         CheckAlert={'Password must be at least 8 characters.'}
         inputType='password'
       />
-      {errorMessage ? <S.Alert>Pleses check email and password</S.Alert> : null}
+      {error ? <S.Alert>Pleses check email and password</S.Alert> : null}
       <S.SubmitBtn onClick={handleLoginSubmit}>Log in</S.SubmitBtn>
     </S.Box>
   );

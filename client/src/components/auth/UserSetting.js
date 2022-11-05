@@ -50,17 +50,22 @@ const UserSetting = () => {
                 "message": userEditData.message
             },
         });
-        navigator('/user/profile')
-        window.location.reload()
+
 
     }
-
+    if (response && !loading) {
+        navigator(`/users/${loginId}/profile`)
+        window.location.reload()
+    }
     return (
         <S.AboutTab>
             <S.AboutHead>Edit your profile</S.AboutHead>
             <S.AboutCompo>
                 <S.Title>Display Name</S.Title>
                 <S.InputName type='text' value={userEditData.userName} onChange={changeUserData} name='displayName' placeholder='닉네임을 입력해주세요' />
+                {
+                    error ? <p>3자 이상 20자 이내로 작성해주세요</p> : null
+                }
                 <S.Title>About</S.Title>
                 <Editor
                     initialValue={userEditData.message}
