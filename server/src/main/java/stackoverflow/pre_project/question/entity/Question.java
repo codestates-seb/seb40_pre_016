@@ -25,9 +25,12 @@ public class Question {
     @Column(name = "question_id")
     private Long id;
 
+    @Setter
     @Column(nullable = false)
     private String title;
 
+    @Setter
+    @Lob
     @Column(nullable = false)
     private String content;
 
@@ -36,19 +39,6 @@ public class Question {
 
     @Setter
     private int viewCount = 0;
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
-    }
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

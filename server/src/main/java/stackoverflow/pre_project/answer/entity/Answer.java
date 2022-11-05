@@ -24,6 +24,7 @@ public class Answer {
     @Column(name = "answer_id")
     private Long id;
 
+    @Lob
     @Column(nullable = false)
     private String content;
 
@@ -41,7 +42,7 @@ public class Answer {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "answer")
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private final List<Comment> comments = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
