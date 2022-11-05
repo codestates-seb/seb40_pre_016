@@ -50,9 +50,9 @@ function App() {
             />
 
             <Route element={<AuthLayout />}>
-              <Route path='/user' element={<UserPage />}>
-                <Route path='/user/profile' element={<UserInfo />} />
-                <Route path='/user/setting' element={<UserSetting />} />
+              <Route path='/users/:userId' element={<UserPage />}>
+                <Route path='/users/:userId/profile' element={<UserInfo />} />
+                <Route path='/users/:userId/setting' element={<UserSetting />} />
               </Route>
             </Route>
 

@@ -4,7 +4,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import UserImgLink from '../../assets/img/user_porfile.png';
-import { loginIdstorige, setuserEditstate } from '../../atoms/atom';
+import { loginIdstorige, setuserEditstate, UserPrevData } from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style';
 import UserInfo from './UserInfo';
@@ -13,18 +13,44 @@ import { isLoginState } from '../../atoms/atom';
 import { useRecoilState } from 'recoil';
 import { timeCal } from '../../pages/Question';
 
+const Button = styled.button`
+background-color: transparent;
+border:none;
+color: var(--black-500);
+& a {
+  cursor: pointer;
+background-color: transparent;
+border: 1px solid var(--black-300);
+color: var(--black-500);
+display: flex;
+align-items: center;
+font-size: 13px;
+border-radius: 3px;
+padding: 9px;
+text-decoration: none;
+}
+& svg {
+  margin-right: 5px;
+}
+`
 const UserPage = () => {
   // userName = '홍길동';
   // createDay = '5';
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
   const navigate = useNavigate();
+  const params = useParams()
 
   const [userEditData, setUserEditData] = useRecoilState(setuserEditstate);
-
+  const [userPrevData, setUserPrevData] = useRecoilState(UserPrevData)
+  useEffect(() => {
+    if (params.userId === undefined) {
+      navigate('/login')
+    }
+  }, [])
   const { response, loading, error } = useAxios({
     method: 'GET',
-    url: `api/users/${loginId}`,
+    url: `api/users/${params.userId}`,
     withCredentials: true,
   });
   let userName, createDay, message;
@@ -39,8 +65,16 @@ const UserPage = () => {
         message,
         createDay,
       });
+      setUserPrevData({
+        userName,
+        message,
+      })
     }
   }, [response]);
+
+  if (error) {
+    setIsLogin(false)
+  }
 
   const {
     response: response2,
@@ -86,6 +120,12 @@ const UserPage = () => {
   // console.log('유저 아이디', loginId);
   // response && console.log('리스폰스', response, response.user)
   // error && console.log('에러', error.message, error)
+
+  response && console.log('isLogin은', isLogin)
+  response && console.log('params.userId는', params.userId)
+  response && console.log('loginId 는', loginId)
+  response && console.log('loginId === params.userId', loginId === params.userId)
+
   return (
     <S.UserPageContainer>
       {response ? (
@@ -106,38 +146,59 @@ const UserPage = () => {
               Member for {userEditData.createDay}
             </S.SignDay>
           </S.UserNameWrap>
-          <S.ButtonWarp>
-            <S.Button>
-              <svg
-                aria-hidden='true'
-                className='svg-icon iconPencil'
-                width='18'
-                height='18'
-                viewBox='0 0 18 18'
-              >
-                <path d='m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z'></path>
-              </svg>
-              Edit profile
-            </S.Button>
-            {/* <S.Button onClick={logoutHandler} className='logout'> */}
-            <S.Button onClick={logoutHandler} className='logout'>
-              Log out
-            </S.Button>
-          </S.ButtonWarp>
+          {
+            isLogin && params.userId == loginId ?
+              <S.ButtonWarp>
+                <Button ><Link to={`/users/${loginId}/profile`}>
+                  <svg
+                    aria-hidden='true'
+                    className='svg-icon iconPencil'
+                    width='18'
+                    height='18'
+                    viewBox='0 0 18 18'
+                  >
+                    <path d='m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z'></path>
+                  </svg>
+                  Edit profile
+                </Link>
+
+                </Button>
+                {/* <S.Button onClick={logoutHandler} className='logout'> */}
+                <S.Button onClick={logoutHandler} className='logout'>
+                  Log out
+                </S.Button>
+              </S.ButtonWarp>
+              :
+              null
+          }
+
         </S.UserNameCard>
       ) : (
         error.message
       )}
 
-      <S.ProfileTab>
-        <S.ProfileBtn>
-          <NavLink to='/user/profile'>Profile</NavLink>
-        </S.ProfileBtn>
-        <S.ProfileBtn>
-          <NavLink to='/user/setting'>Settng</NavLink>
-        </S.ProfileBtn>
-        <Outlet />
-      </S.ProfileTab>
+      {
+        isLogin && params.userId == loginId ?
+          <S.ProfileTab>
+            <S.ProfileBtn>
+              <NavLink to={`/users/${params.userId}/profile`}>Profile</NavLink>
+            </S.ProfileBtn>
+            <S.ProfileBtn>
+              <NavLink to={`/users/${params.userId}/setting`}>Settng</NavLink>
+            </S.ProfileBtn>
+            <Outlet />
+          </S.ProfileTab>
+
+          :
+          <S.ProfileTab>
+            <S.ProfileBtn>
+              <NavLink>Profile</NavLink>
+            </S.ProfileBtn>
+            <Outlet />
+          </S.ProfileTab>
+      }
+
+
     </S.UserPageContainer>
   );
 };

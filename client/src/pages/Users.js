@@ -35,7 +35,6 @@ const Users = () => {
     method: 'GET',
     url: `api/users?page=${params.userspage - 1}&size=${size.users}`,
   })
-  response && console.log(response.data)
 
   return (
     <UsersContainer>
@@ -46,7 +45,7 @@ const Users = () => {
           loading ? null :
             <>
               {
-                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} />)
+                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} userId={el.userId} />)
               }
             </>
         }
