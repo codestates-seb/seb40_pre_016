@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { pagesizeCount, tagNoneMessage } from '../atoms/atom';
 import { useParams } from 'react-router-dom';
 import { useAxios } from '../util/useAxios';
+import { timeCal } from './Question';
 
 const UsersContainer = styled.section`
   min-height: 566px;
