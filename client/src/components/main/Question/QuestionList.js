@@ -31,6 +31,8 @@ const QuestionList = ({ questionLists }) => {
     };
   }, [currentBtn]);
 
+  console.log(`/api/questions?page=${params.mainpage - 1}&size=${size.questions}&sort=${currentBtn + ',DESC'
+    }`)
   const { response, loading, error } = useAxios(config);
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const QuestionList = ({ questionLists }) => {
     <S.QuestionListContainer>
       <ul>
         {response
-          ? response.data.map((el) => {
+          ? message.questions ? <p>{message.questions}</p> : response.data.map((el) => {
             return (
               <li key={el.questionId}>
                 <Question question={el} />
