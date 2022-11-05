@@ -37,24 +37,27 @@ const Button = styled.button`
 `;
 const UserPage = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
-  const loginId = useRecoilValue(loginIdstorige);
+  const [loginId, setLoginID] = useRecoilState(loginIdstorige);
   const navigate = useNavigate();
   const params = useParams();
 
   const [userEditData, setUserEditData] = useRecoilState(setuserEditstate);
   const [userPrevData, setUserPrevData] = useRecoilState(UserPrevData);
+
   useEffect(() => {
     if (params.userId === undefined) {
       navigate('/login');
     }
   }, []);
+
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/users/${params.userId}`,
     withCredentials: true,
   });
   let userName, createDay, message;
-  console.log(response)
+  console.log(response);
+
   useEffect(() => {
     if (response) {
       createDay = timeCal(response.createdAt);
@@ -71,7 +74,6 @@ const UserPage = () => {
       });
     }
   }, [response]);
-
 
   if (error) {
     setIsLogin(false);
@@ -91,6 +93,7 @@ const UserPage = () => {
   );
 
   const logoutHandler = () => {
+    //logout
     clickFetchFunc({
       method: 'POST',
       url: '/auth/logout',
@@ -100,7 +103,9 @@ const UserPage = () => {
       withCredentials: true,
       data: { 'user-id': 123 },
     });
+
     setIsLogin(false);
+    setLoginID('');
   };
 
   useEffect(() => {
