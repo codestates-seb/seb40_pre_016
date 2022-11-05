@@ -39,9 +39,3 @@ export const voteValue = atom({
   default: 1,
   effects_UNSTABLE: [persistAtom]
 })
-
-export const voteAnswerValue = atom({
-  key: "voteAnswerValue",
-  default: 1,
-  effects_UNSTABLE: [persistAtom]
-})

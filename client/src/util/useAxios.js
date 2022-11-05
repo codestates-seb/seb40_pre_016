@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://tangy-badgers-enter-113-52-194-59.loca.lt/';
+axios.defaults.baseURL = 'https://cyan-months-taste-113-52-194-59.loca.lt/';
 // axios.defaults.withCredentials = true;
 
 export const useAxios = (axiosParams, auto = true) => {

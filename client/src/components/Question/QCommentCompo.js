@@ -42,7 +42,7 @@ function QCommentCompo({ questionId, answers }) {
           user={el.user.username}
           modifiedAt={el.modifiedAt}
           comment={el.comments}
-          userId={el.user}
+          userId={el.userId}
         />
       ))}
     </S.QComment>

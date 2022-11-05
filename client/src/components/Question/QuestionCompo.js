@@ -33,11 +33,11 @@ function QuestionCompo({
   const onClick = () => {
     isFollow(!follow);
   };
-console.log(voteVal)
+
   const voteUpClick = (event) => {
-    if (voteVal === 2) {
+    if (voteVal === 0 || voteVal === 2) {
       // 취소
-      
+      setVoteVal(1);
       axios
         .post(
           `/api/questions/${questionId}/vote/3`,
@@ -46,13 +46,12 @@ console.log(voteVal)
         )
         .then((res) => {
           if (res) {
-            setVoteVal(1);
             window.location.reload();
           }
         });
     }
     // 값 1 올리기
-    
+    setVoteVal(2);
     axios
       .post(
         `/api/questions/${questionId}/vote/1`,
@@ -61,15 +60,15 @@ console.log(voteVal)
       )
       .then((res) => {
         if (res) {
-          setVoteVal(2);
           window.location.reload();
         }
       });
   };
 
   const voteDownClick = (event) => {
-    if (voteVal === 0) {
+    if (voteVal === 0 || voteVal === 2) {
       // 취소
+      setVoteVal(1);
       axios
         .post(
           `/api/questions/${questionId}/vote/3`,
@@ -78,11 +77,11 @@ console.log(voteVal)
         )
         .then((res) => {
           if (res) {
-            setVoteVal(1);
             window.location.reload();
           }
         });
     }
+    setVoteVal(0);
     // 값 1 내리기
     axios
       .post(
@@ -92,7 +91,6 @@ console.log(voteVal)
       )
       .then((res) => {
         if (res) {
-          setVoteVal(0);
           window.location.reload();
         }
       });
@@ -118,7 +116,9 @@ console.log(voteVal)
         },
         {
           headers: {
+
             'Content-Type': `application/json`,
+
           },
           withCredentials: true,
         }
