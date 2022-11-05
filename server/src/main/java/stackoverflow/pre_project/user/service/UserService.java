@@ -20,30 +20,31 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
-    public UserProfileDto profile(long id, long userId) {//id는 본인, userId는 방문할페이지id
-        UserProfileDto dto = new UserProfileDto();
-        User Entity = userRepository.findById(userId).orElseThrow(() -> {
-            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
-        });
-        dto.setOwnerState(id == userId);
-        dto.setUser(Entity);
-        return dto;
+    public User profile(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.USER_NOT_FOUND)
+        );
     }
 
     @Transactional
     public User update(long id, User user, long userId) {
         if (id != userId) {
-            throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
+            throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
         }
         User userEntity = userRepository.findById(id).orElseThrow(() -> {
             throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
         });
-        userEntity.setUsername(user.getUsername());
-        String rawPassword = user.getPassword();
-        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+        if (user.getUsername() != null) {
+            userEntity.setUsername(user.getUsername());
+        }
+//        String rawPassword = user.getPassword();
+//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 
-        userEntity.setPassword(encPassword);
-        userEntity.setMessage(user.getMessage());
+//        userEntity.setPassword(encPassword);
+        if (user.getMessage() != null) {
+            userEntity.setMessage(user.getMessage());
+        }
+
         return userEntity;
     }
 

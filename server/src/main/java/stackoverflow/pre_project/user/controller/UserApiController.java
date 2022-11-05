@@ -34,16 +34,17 @@ public class UserApiController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> select(@AuthenticationPrincipal CustomUserDetails customUserDetails, @PathVariable @Positive long id){
-        UserProfileDto userProfileDto = userService.profile(customUserDetails.getUser().getId(), id);
-        return new ResponseEntity<>(userProfileDto, HttpStatus.OK);
+    public ResponseEntity<?> select(@Positive @PathVariable long id){
+        User user = userService.profile(id);
+        UserDto.Response response = userMapper.userToUserResponse(user);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable @Positive long id, @Valid UserUpdateDto userUpdateDto,
-                                    BindingResult bindingResult, @AuthenticationPrincipal CustomUserDetails customUserDetails){
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> update(@Positive @PathVariable long id,
+                                    @Valid @RequestBody UserUpdateDto userUpdateDto,
+                                    @AuthenticationPrincipal CustomUserDetails customUserDetails){
         User userEntity = userService.update(customUserDetails.getUser().getId(), userUpdateDto.toEntity(), id);
-        customUserDetails.setUser(userEntity);
         return new ResponseEntity<>(userEntity, HttpStatus.OK);
     }
 
