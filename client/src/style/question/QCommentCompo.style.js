@@ -114,8 +114,11 @@ export const QCRERight = styled.section`
     width: 20px;
     right: 20px;
   }
+  > div > a {
+    text-decoration: none;
+  }
 
-  > div > span {
+  > div > a > span {
     margin-left: 15px;
     color: #39739d;
   }
@@ -134,7 +137,10 @@ export const CommentSection = styled.div`
       > a{
         margin-left: 5px;
         text-decoration: none;
-        color: #0c62ed;
+        >span {
+          color: #0c62ed;
+
+        } 
       }
     }
     

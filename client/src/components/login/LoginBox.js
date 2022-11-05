@@ -24,7 +24,6 @@ const LoginBox = () => {
   );
 
   const navigate = useNavigate();
-  const { state } = useLocation();
 
   const { response, loading, error, clickFetchFunc } = useAxios(
     {
@@ -48,6 +47,7 @@ const LoginBox = () => {
     }
     setloginList(loginData);
   };
+
   const handleLoginSubmit = () => {
     let isPasswordCheck, isEmailCheck, login, submit;
     //이메일 유효성
@@ -73,11 +73,18 @@ const LoginBox = () => {
     if (isPasswordCheck && isEmailCheck) {
       submit = true;
 
+      //   setloginList({ email: '', password: '' });
     } else {
       submit = false;
     }
 
     setIsSubmit(submit);
+  };
+
+  const enterDownHandler = (e) => {
+    if (e.key === 'Enter') {
+      setIsSubmit(true);
+    }
   };
 
   useEffect(() => {
@@ -92,11 +99,13 @@ const LoginBox = () => {
         withCredentials: true,
         data: loginList,
       });
+    setIsSubmit(false);
   }, [isSubmit]);
 
   useEffect(() => {
     if (response) {
       setLoginId(response);
+
       // setErrorMessage(false)
       setIsLogin(true);
     }
@@ -119,6 +128,7 @@ const LoginBox = () => {
         inputType='text'
       />
       <InputBox
+        onKeyPress={enterDownHandler}
         onChangeLoginForm={onChangeLoginForm}
         isSubmit={isPasswordOk}
         inputName={'Password'}

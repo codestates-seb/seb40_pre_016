@@ -24,6 +24,7 @@ import UserSetting from './components/auth/UserSetting';
 import TagLayout from './components/Tags/TagLayout';
 import UserLayout from './components/auth/UserLayout';
 import MainLayout from './components/main/MainLayout';
+import LoginAuthLayout from './components/auth/LoginAuthLayout';
 
 function App() {
   return (
@@ -70,9 +71,11 @@ function App() {
           </Route>
 
           <Route path='/' element={<AuthContainer />}>
-            <Route path='/login' element={<Login />} />
+            <Route element={<LoginAuthLayout />}>
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<SignUp />} />
+            </Route>
             <Route path='/logout' element={<Logout />} />
-            <Route path='/signup' element={<SignUp />} />
           </Route>
         </Routes>
         <Footer />

@@ -40,7 +40,7 @@ function Question() {
       ) : (
         <>
           <QuestionHeader
-            title={data.title}
+            titlee={data.title}
             createdAt={timeCal(data.createdAt)}
             modifiedAt={timeCal(data.modifiedAt)}
             view={data.viewCount}

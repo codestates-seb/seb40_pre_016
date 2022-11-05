@@ -1,58 +1,77 @@
 import React from 'react';
-import * as S from './../../style/auth/UserPage.style'
+import * as S from './../../style/auth/UserPage.style';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { answer, answerFocus, loginIdstorige, setuserEditstate } from '../../atoms/atom';
+import {
+    answer,
+    answerFocus,
+    loginIdstorige,
+    setuserEditstate,
+} from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
 import { useNavigate } from 'react-router-dom';
 
 const UserSetting = () => {
     const editorRef = useRef();
-    const [subError, setSubError] = useState("");
+    const [subError, setSubError] = useState('');
     const loginId = useRecoilValue(loginIdstorige);
-    const navigator = useNavigate()
+    const navigator = useNavigate();
 
-    const [userEditData, setUserEditData] = useRecoilState(setuserEditstate)
-    const { response, loading, error, clickFetchFunc } = useAxios(
-        {},
-        false
-    );
+    const [userEditData, setUserEditData] = useRecoilState(setuserEditstate);
+    const { response, loading, error, clickFetchFunc } = useAxios({}, false);
 
     const onChange = (e) => {
-        const data = editorRef.current.getInstance().getMarkdown();
-        if (data.length > 30) { setSubError('') }
+        const data = editorRef.current.getInstance().getHTML();
+        if (data.length > 30) {
+            setSubError('');
+        }
         // isAnswerContent(data)
         setUserEditData({
-            ...userEditData, message: data
-        })
-    }
+            ...userEditData,
+            message: data,
+        });
+    };
 
     const changeUserData = (e) => {
         setUserEditData({
-            ...userEditData, userName: e.target.value
-        })
-    }
+            ...userEditData,
+            userName: e.target.value,
+        });
+    };
+
+    clickFetchFunc({
+        method: 'PATCH',
+        url: `/api/users/${loginId}`,
+        headers: {
+            'Content-Type': `application/json`,
+        },
+        withCredentials: true,
+        data: {
+            "username": userEditData.userName,
+            "message": userEditData.message
+        },
+    });
+
 
     const saveEditHandler = () => {
-
         clickFetchFunc({
             method: 'PATCH',
+            // url: 'tasks.json',
             url: `/api/users/${loginId}`,
             headers: {
                 'Content-Type': `application/json`,
             },
             withCredentials: true,
             data: {
-                "username": userEditData.userName,
-                "message": userEditData.message
+                username: userEditData.userName,
+                message: userEditData.message,
             },
         });
-
-
-    }
+        // navigator('/user/profile')
+    };
     if (response && !loading) {
         navigator(`/users/${loginId}/profile`)
         window.location.reload()
@@ -83,6 +102,7 @@ const UserSetting = () => {
             </S.AboutCompo>
         </S.AboutTab>
     );
+
 };
 
 export default UserSetting;

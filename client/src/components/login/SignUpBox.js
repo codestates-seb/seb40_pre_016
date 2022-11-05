@@ -15,8 +15,8 @@ const SignUpBox = () => {
   const [isPasswordOk, setIsPasswordOk] = useState(true);
   const [ischeckedOK, setIsCheckedOK] = useState(true);
 
+  // navigate('/login', { state: pathname });
   const navigate = useNavigate();
-
   const { response, loading, error, clickFetchFunc } = useAxios(
     {
       method: 'POST',
@@ -61,7 +61,6 @@ const SignUpBox = () => {
     if (exptext.test(signupList.email) === true) {
       //성공
       isEmailCheck = true;
-
     } else {
       //살패
       isEmailCheck = false;
@@ -71,7 +70,6 @@ const SignUpBox = () => {
     if (signupList.password.length > 3) {
       //성공
       isPasswordCheck = true;
-
     } else {
       //실패
       isPasswordCheck = false;
@@ -107,13 +105,13 @@ const SignUpBox = () => {
       submit = false;
     }
     setIsSubmit(submit);
-
   };
 
   useEffect(() => {
     isSubmit &&
       clickFetchFunc({
         method: 'POST',
+        // url: 'tasks.json', //파이어 베이스 사용
         url: '/auth/signup',
         headers: {
           'Content-Type': `application/x-www-form-urlencoded`,
@@ -125,12 +123,19 @@ const SignUpBox = () => {
           password: signupList.password,
         },
       });
+    // if(isSubmit){
+
+    // }
+    console.log('히스토리객체는', navigate);
+    isSubmit && navigate(-1);
     setIsSubmit(false);
   }, [isSubmit]);
+
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
     error && navigate(`/questions/page=1`);
   }, [error]);
+
 
   const SITE_KEY = process.env.REACT_APP_RECAPCHA_SITEKEY;
   return (
