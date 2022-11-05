@@ -33,6 +33,7 @@ const Users = () => {
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/users?page=${params.userspage - 1}&size=${size.users}`,
+
   });
 
   return (
@@ -40,22 +41,14 @@ const Users = () => {
       <h1>Users</h1>
       <Filter />
       <UserContainer>
-        {loading ? null : (
-          <>
-            {message.length !== 0 ? (
-              <p>{message}</p>
-            ) : (
-              response.data.map((el) => (
-                <UserComponents
-                  key={el.id}
-                  username={el.username}
-                  email={el.email}
-                  createdAt={el.createdAt}
-                />
-              ))
-            )}
-          </>
-        )}
+        {
+          loading ? null :
+            <>
+              {
+                message.length !== 0 ? <p>{message}</p> : response.data.map(el => <UserComponents key={el.id} username={el.username} email={el.email} createdAt={el.createdAt} userId={el.userId} />)
+              }
+            </>
+        }
         {error ? error.message : null}
       </UserContainer>
     </UsersContainer>

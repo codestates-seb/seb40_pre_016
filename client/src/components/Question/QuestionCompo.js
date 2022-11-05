@@ -192,13 +192,13 @@ function QuestionCompo({
         {comment.length === 0
           ? null
           : comment.map((el) => (
-              <Comment
-                commentId={el.commentId}
-                userId={el.userId}
-                content={el.content}
-                createdAt={el.createdAt}
-              />
-            ))}
+            <Comment
+              commentId={el.commentId}
+              userId={el.userId}
+              content={el.content}
+              createdAt={el.createdAt}
+            />
+          ))}
         <S.QCRComment>
           <button onClick={onClickk}>Add a Comment</button>
         </S.QCRComment>

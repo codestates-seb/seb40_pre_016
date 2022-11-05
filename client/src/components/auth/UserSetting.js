@@ -22,7 +22,7 @@ const UserSetting = () => {
     );
 
     const onChange = (e) => {
-        const data = editorRef.current.getInstance().getHTML();
+        const data = editorRef.current.getInstance().getMarkdown();
         if (data.length > 30) { setSubError('') }
         // isAnswerContent(data)
         setUserEditData({
@@ -50,6 +50,9 @@ const UserSetting = () => {
                 "message": userEditData.message
             },
         });
+        navigator('/user/profile')
+        window.location.reload()
+
     }
 
     return (
