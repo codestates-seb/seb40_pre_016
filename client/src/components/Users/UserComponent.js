@@ -1,3 +1,4 @@
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const User = styled.section`
@@ -9,28 +10,35 @@ const User = styled.section`
     justify-content: space-around;
     padding-left: 10px;
     border: 1px solid rgba(0,0,0,0.15);
+    & a{
+        color: #0A95FF;
+        text-decoration: none;
+    }
 
-    > a {
+    & p {
         font-size: 20px;
         color: #0A95FF;
         text-decoration: none;
     }
     
-    > div {
+    & div {
         font-size: 12px;
         color: rgba(0,0,0,0.5);
     }
 `
 
 
-const UserComponents = ({ username, email, createdAt }) => {
+const UserComponents = ({ userId, username, email, createdAt }) => {
 
+    let prarams = useParams()
     return (
         <>
             <User>
-                <a href="user_id">{username}</a>
-                <div>{email}</div>
-                <div>{createdAt}</div>
+                <Link to={`/users/${userId}/profile`}>
+                    <p>{username}</p>
+                    <div>{email}</div>
+                    <div>{createdAt}</div>
+                </Link>
             </User>
         </>
     )

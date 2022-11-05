@@ -58,6 +58,9 @@ export const Content = styled.div`
   font-size: 13px;
   color: #3b4045;
   margin-bottom: 8px;
+  & p {
+    margin: 0;
+  }
 `;
 
 export const FooterContainer = styled.div`

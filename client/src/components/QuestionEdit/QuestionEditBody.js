@@ -79,7 +79,6 @@ const QuestionEditBody = () => {
   let tagId = useRef(0);
 
   const params = useParams();
-  console.log(params);
 
   const { response, loading, error } = useAxios({
     method: 'GET',

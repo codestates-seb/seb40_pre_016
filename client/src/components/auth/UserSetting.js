@@ -16,26 +16,18 @@ const UserSetting = () => {
     const navigator = useNavigate()
 
     const [userEditData, setUserEditData] = useRecoilState(setuserEditstate)
-    // const [check, isCheck] = useRecoilState(answerFocus);
-    // console.log(answerContent, subError)
-    // const [answerContent, isAnswerContent] = useRecoilState(answer);
     const { response, loading, error, clickFetchFunc } = useAxios(
-        {
-
-        },
+        {},
         false
     );
-    response && console.log('patch response', response)
 
-    console.log('유저데이터 ', userEditData)
     const onChange = (e) => {
-        const data = editorRef.current.getInstance().getHTML();
+        const data = editorRef.current.getInstance().getMarkdown();
         if (data.length > 30) { setSubError('') }
         // isAnswerContent(data)
         setUserEditData({
             ...userEditData, message: data
         })
-        console.log(data)
     }
 
     const changeUserData = (e) => {
@@ -48,7 +40,6 @@ const UserSetting = () => {
 
         clickFetchFunc({
             method: 'PATCH',
-            // url: 'tasks.json',
             url: `/api/users/${loginId}`,
             headers: {
                 'Content-Type': `application/json`,
@@ -59,11 +50,10 @@ const UserSetting = () => {
                 "message": userEditData.message
             },
         });
-        // navigator('/user/profile')
+        navigator('/user/profile')
+        window.location.reload()
 
-        console.log('유저데이터', userEditData)
     }
-
 
     return (
         <S.AboutTab>

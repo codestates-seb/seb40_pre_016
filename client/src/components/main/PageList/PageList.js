@@ -16,21 +16,18 @@ const PageList = ({ location, child }) => {
 
 
   const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
-  console.log('로케이션', location);
   //pagenation 카운트
   const [listCount, setListCount] = useRecoilState(pagenationCount);
   //한페이지에 들어갈 tag 개수
   const [SizeCount, setSizeCount] = useRecoilState(pagesizeCount);
   const [message, setMessage] = useRecoilState(tagNoneMessage);
 
-  console.log(location)
 
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/${location}?page=0&size=1`,
   })
 
-  response && console.log('로케이션, 리스폰스', location, response.pageInfo.totalElements)
   if (response) {
     //response 없을경우
     if (response.pageInfo.totalElements === 0) {
@@ -55,12 +52,9 @@ const PageList = ({ location, child }) => {
         })
       }
 
-      console.log('계산~~~~', Math.ceil(response.pageInfo.totalElements / SizeCount[`${location}`]), '각', response.pageInfo.totalElements, '각', SizeCount[`${location}`])
-      console.log(listCount)
     }
 
   }, [response]);
-  console.log(listCount)
 
   //navi 새로고침문제 해결
   const navigate = useNavigate()

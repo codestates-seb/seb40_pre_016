@@ -114,9 +114,9 @@ export const pagenationCount = atom({
 export const pagesizeCount = atom({
   key: 'pagesizeCount',
   default: {
-    tags: 2,
-    questions: 4,
-    users: 2,
+    tags: 20,
+    questions: 10,
+    users: 10,
   },
 });
 export const tagNoneMessage = atom({
@@ -132,3 +132,8 @@ export const setuserEditstate = atom({
   key: 'setuserEditstate',
   default: {},
 });
+
+export const UserPrevData = atom({
+  key: 'UserPrevData',
+  default: {}
+})

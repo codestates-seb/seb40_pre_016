@@ -4,15 +4,9 @@ import * as S from '../../../style/main/Question.style';
 import TagButton from '../Button/TagButtion';
 import { Link } from 'react-router-dom';
 import { timeCal } from '../../../pages/Question';
+import { Viewer } from '@toast-ui/react-editor';
 
 const Question = ({ question }) => {
-  //axios 로 받아온 id
-  // console.log('question은', Array.isArray(question.tagNames));
-  // const date = new Date();
-  // const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  // console.log(minutes);
-  // console.log('Date.toString(): ' + date.toString());
 
   return (
     <S.QuestionContainer>
@@ -27,8 +21,8 @@ const Question = ({ question }) => {
         <S.Title>
           <Link to={`/questions/${question.questionId}`}>{question.title}</Link>
         </S.Title>
-
-        <S.Content>{question.content}</S.Content>
+        <S.Content>  <Viewer initialValue={question.content} /></S.Content>
+        {/*{question.content}</S.Content> */}
         <S.FooterContainer>
           {question.tagNames.map((el, idx) => (
             <TagButton key={idx}>{el}</TagButton>

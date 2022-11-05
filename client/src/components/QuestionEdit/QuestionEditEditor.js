@@ -11,9 +11,7 @@ function QuestionEditEditor({ title }) {
 
   const contentHandler = () => {
     const data = editorRef.current.getInstance().getHTML();
-    console.log(data);
     if (data.length < 30) {
-      console.log('nope');
     }
     setEditQuestion({ ...editQuestion, content: data });
   };
