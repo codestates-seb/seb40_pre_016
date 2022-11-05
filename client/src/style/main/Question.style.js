@@ -81,8 +81,11 @@ export const UserInfoContainer = styled.div`
     width: 16px;
     height: 16px;
   }
+  > a {
+    text-decoration: none;
+  }
 
-  div {
+  > a > div {
     margin-left: 5px;
   }
 

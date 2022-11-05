@@ -7,6 +7,7 @@ import { timeCal } from '../../../pages/Question';
 import { Viewer } from '@toast-ui/react-editor';
 
 const Question = ({ question }) => {
+  console.log(question.user.userId)
 
   return (
     <S.QuestionContainer>
@@ -30,7 +31,9 @@ const Question = ({ question }) => {
 
           <S.UserInfoContainer>
             <img src={img} alt='userImg' />
+            <Link className='aTag' to={`user/${question.user.userId}/profile`}>
             <div className='userName'>{question.user.username}</div>
+            </Link>
             {/* <div className='askCount'>{question.askCount}</div> */}
             <div className='userTime'>
               {timeCal(question.createdAt)} min ago
