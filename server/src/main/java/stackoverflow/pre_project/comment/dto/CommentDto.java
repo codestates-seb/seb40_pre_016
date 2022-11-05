@@ -22,6 +22,7 @@ public class CommentDto {
     public static class Response {
         private Long commentId;
         private Long userId;
+        private String username;
         private String content;
         private LocalDateTime createdAt;
     }
