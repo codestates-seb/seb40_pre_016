@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import UserImgLink from '../../assets/img/user_porfile.png';
-import { loginIdstorige, setuserEditstate, UserPrevData } from '../../atoms/atom';
+import {
+  loginIdstorige,
+  setuserEditstate,
+  UserPrevData,
+} from '../../atoms/atom';
 import { useAxios } from '../../util/useAxios';
 import * as S from './../../style/auth/UserPage.style';
 import { useNavigate } from 'react-router-dom';
@@ -12,45 +16,48 @@ import { timeCal } from '../../pages/Question';
 import styled from 'styled-components';
 
 const Button = styled.button`
-background-color: transparent;
-border:none;
-color: var(--black-500);
-& a {
-  cursor: pointer;
-background-color: transparent;
-border: 1px solid var(--black-300);
-color: var(--black-500);
-display: flex;
-align-items: center;
-font-size: 13px;
-border-radius: 3px;
-padding: 9px;
-text-decoration: none;
-}
-& svg {
-  margin-right: 5px;
-}
-`
+  background-color: transparent;
+  border: none;
+  color: var(--black-500);
+  & a {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--black-300);
+    color: var(--black-500);
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    border-radius: 3px;
+    padding: 9px;
+    text-decoration: none;
+  }
+  & svg {
+    margin-right: 5px;
+  }
+`;
 const UserPage = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
-  const loginId = useRecoilValue(loginIdstorige);
+  const [loginId, setLoginID] = useRecoilState(loginIdstorige);
   const navigate = useNavigate();
-  const params = useParams()
+  const params = useParams();
 
   const [userEditData, setUserEditData] = useRecoilState(setuserEditstate);
-  const [userPrevData, setUserPrevData] = useRecoilState(UserPrevData)
+  const [userPrevData, setUserPrevData] = useRecoilState(UserPrevData);
+
   useEffect(() => {
     if (params.userId === undefined) {
-      navigate('/login')
+      navigate('/login');
     }
-  }, [])
+  }, []);
+
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/users/${params.userId}`,
     withCredentials: true,
   });
   let userName, createDay, message;
-  console.log(response)
+  console.log(response);
+
   useEffect(() => {
     if (response) {
       createDay = timeCal(response.createdAt);
@@ -64,13 +71,12 @@ const UserPage = () => {
       setUserPrevData({
         userName,
         message,
-      })
+      });
     }
   }, [response]);
 
-
   if (error) {
-    setIsLogin(false)
+    setIsLogin(false);
   }
 
   const {
@@ -87,6 +93,7 @@ const UserPage = () => {
   );
 
   const logoutHandler = () => {
+    //logout
     clickFetchFunc({
       method: 'POST',
       url: '/auth/logout',
@@ -96,7 +103,9 @@ const UserPage = () => {
       withCredentials: true,
       data: { 'user-id': 123 },
     });
+
     setIsLogin(false);
+    setLoginID('');
   };
 
   useEffect(() => {
@@ -129,10 +138,10 @@ const UserPage = () => {
               Member for {userEditData.createDay}
             </S.SignDay>
           </S.UserNameWrap>
-          {
-            isLogin && params.userId == loginId ?
-              <S.ButtonWarp>
-                <Button ><Link to={`/users/${loginId}/profile`}>
+          {isLogin && params.userId == loginId ? (
+            <S.ButtonWarp>
+              <Button>
+                <Link to={`/users/${loginId}/profile`}>
                   <svg
                     aria-hidden='true'
                     className='svg-icon iconPencil'
@@ -144,44 +153,36 @@ const UserPage = () => {
                   </svg>
                   Edit profile
                 </Link>
-
-                </Button>
-                {/* <S.Button onClick={logoutHandler} className='logout'> */}
-                <S.Button onClick={logoutHandler} className='logout'>
-                  Log out
-                </S.Button>
-              </S.ButtonWarp>
-              :
-              null
-          }
-
+              </Button>
+              {/* <S.Button onClick={logoutHandler} className='logout'> */}
+              <S.Button onClick={logoutHandler} className='logout'>
+                Log out
+              </S.Button>
+            </S.ButtonWarp>
+          ) : null}
         </S.UserNameCard>
       ) : (
         error.message
       )}
 
-      {
-        isLogin && params.userId == loginId ?
-          <S.ProfileTab>
-            <S.ProfileBtn>
-              <NavLink to={`/users/${params.userId}/profile`}>Profile</NavLink>
-            </S.ProfileBtn>
-            <S.ProfileBtn>
-              <NavLink to={`/users/${params.userId}/setting`}>Settng</NavLink>
-            </S.ProfileBtn>
-            <Outlet />
-          </S.ProfileTab>
-
-          :
-          <S.ProfileTab>
-            <S.ProfileBtn>
-              <NavLink>Profile</NavLink>
-            </S.ProfileBtn>
-            <Outlet />
-          </S.ProfileTab>
-      }
-
-
+      {isLogin && params.userId == loginId ? (
+        <S.ProfileTab>
+          <S.ProfileBtn>
+            <NavLink to={`/users/${params.userId}/profile`}>Profile</NavLink>
+          </S.ProfileBtn>
+          <S.ProfileBtn>
+            <NavLink to={`/users/${params.userId}/setting`}>Settng</NavLink>
+          </S.ProfileBtn>
+          <Outlet />
+        </S.ProfileTab>
+      ) : (
+        <S.ProfileTab>
+          <S.ProfileBtn>
+            <NavLink>Profile</NavLink>
+          </S.ProfileBtn>
+          <Outlet />
+        </S.ProfileTab>
+      )}
     </S.UserPageContainer>
   );
 };

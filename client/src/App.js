@@ -49,7 +49,6 @@ function App() {
               element={<AnswerEdit />}
             />
 
-
             <Route path='/users/:userId' element={<UserPage />}>
               <Route path='/users/:userId/profile' element={<UserInfo />} />
               <Route path='/users/:userId/setting' element={<UserSetting />} />
@@ -58,6 +57,7 @@ function App() {
             <Route path='/tags' element={<TagLayout />}>
               <Route path='/tags/page=:tagspage' element={<Tags />} />
             </Route>
+
             <Route path='/users' element={<UserLayout />}>
               <Route path='/users/page=:userspage' element={<Users />} />
             </Route>
@@ -66,6 +66,7 @@ function App() {
           <Route element={<AuthLayout />}>
             <Route path='/askquestion' element={<QuestionWrite />} />
           </Route>
+
           <Route path='/' element={<AuthContainer />}>
             <Route path='/login' element={<Login />} />
             <Route path='/logout' element={<Logout />} />
