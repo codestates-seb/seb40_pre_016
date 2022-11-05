@@ -26,15 +26,6 @@ const PageList = ({ location, child }) => {
     url: `api/${location}?page=0&size=1`,
   });
 
-  if (response) {
-    //response 없을경우
-    if (response.pageInfo.totalElements === 0) {
-      setMessage(`no ${location}`);
-      setListCount({
-        [location]: 1,
-      });
-    }
-  }
   useEffect(() => {
     if (response) {
       //현재 있는 데이터가 기본 설정 데이터보다 작을 경우
@@ -54,6 +45,18 @@ const PageList = ({ location, child }) => {
       }
     }
   }, [response]);
+
+  useEffect(() => {
+    if (response) {
+      if (response.pageInfo.totalElements === 0) {
+        setMessage({ ...message, [location]: `no ${location}` });
+        setListCount({
+          ...listCount,
+          [location]: 1,
+        });
+      }
+    }
+  }, [response, SizeCount]);
 
   //navi 새로고침문제 해결
   const navigate = useNavigate();

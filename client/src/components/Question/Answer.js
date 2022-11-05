@@ -99,7 +99,9 @@ function Answer({
             <span>{timeCal(modifiedAt)}</span>
             <div>
               <img src={userIMG} alt='얼굴'></img>
+              <Link to={`/users/${userId}/profile`}>
               <span>{user}</span>
+              </Link>
             </div>
           </S.QCRERight>
         </S.QCREdit>
@@ -111,6 +113,7 @@ function Answer({
                 userId={el.userId}
                 content={el.content}
                 createdAt={el.createdAt}
+                userName={el.username}
               />
             ))}
         <S.QCRComment>

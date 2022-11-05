@@ -11,7 +11,7 @@ const Question = ({ question }) => {
       <S.StatContainer>
         <S.Votes>{`${question.voteCount} votes`}</S.Votes>
         {/* <S.Answers>{`${question.votes} answers`}</S.Answers> */}
-        <S.Answers>answer</S.Answers>
+        <S.Answers>{`${question.answers.length} answer`}</S.Answers>
         <S.Views>{`${question.viewCount} views`}</S.Views>
       </S.StatContainer>
 
@@ -28,7 +28,13 @@ const Question = ({ question }) => {
 
           <S.UserInfoContainer>
             <img src={img} alt='userImg' />
-            <div className='userName'>{question.user.username}</div>
+
+            <Link
+              className='aTag'
+              to={`/users/${question.user.userId}/profile`}
+            >
+              <div className='userName'>{question.user.username}</div>
+            </Link>
             {/* <div className='askCount'>{question.askCount}</div> */}
             <div className='userTime'>{timeCal(question.createdAt)}</div>
           </S.UserInfoContainer>

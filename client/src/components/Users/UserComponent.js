@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { timeCal } from "../../pages/Question";
 
 const User = styled.section`
     border: 1px solid black;
@@ -37,7 +38,7 @@ const UserComponents = ({ userId, username, email, createdAt }) => {
                 <Link to={`/users/${userId}/profile`}>
                     <p>{username}</p>
                     <div>{email}</div>
-                    <div>{createdAt}</div>
+                    <div>{timeCal(createdAt)}</div>
                 </Link>
             </User>
         </>

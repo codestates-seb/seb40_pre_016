@@ -32,7 +32,6 @@ function Question() {
     method: 'GET',
     url: `api/questions/${params.questionId}`,
   });
-  console.log('questiondata는', data);
   setData(response);
 
   return (
@@ -42,7 +41,7 @@ function Question() {
       ) : (
         <>
           <QuestionHeader
-            title={data.title}
+            titlee={data.title}
             createdAt={timeCal(data.createdAt)}
             modifiedAt={timeCal(data.modifiedAt)}
             view={data.viewCount}
