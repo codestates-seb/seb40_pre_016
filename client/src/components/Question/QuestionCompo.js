@@ -33,7 +33,7 @@ function QuestionCompo({
   const onClick = () => {
     isFollow(!follow);
   };
-console.log(voteVal)
+
   const voteUpClick = (event) => {
     if (voteVal === 2) {
       // 취소
