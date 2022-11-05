@@ -103,8 +103,11 @@ export const QCRERight = styled.section`
     width: 20px;
     right: 20px;
   }
+  > div > a {
+    text-decoration: none;
+  }
 
-  > div > span {
+  > div > a > span {
     margin-left: 15px;
     color: #39739d;
   }

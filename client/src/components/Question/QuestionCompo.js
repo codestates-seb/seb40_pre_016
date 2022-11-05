@@ -185,7 +185,9 @@ function QuestionCompo({
             <span>{createdAt}</span>
             <div>
               <img src={userImg} alt="얼굴"></img>
+              <Link to={`/users/${user.userId}/profile`}>
               <span>{user.username}</span>
+              </Link>
             </div>
           </S.QCRERight>
         </S.QCREdit>
