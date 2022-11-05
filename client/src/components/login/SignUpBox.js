@@ -129,7 +129,7 @@ const SignUpBox = () => {
   }, [isSubmit]);
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
-    error && navigate(`/`);
+    error && navigate(`/questions/page=1`);
   }, [error]);
 
   const SITE_KEY = process.env.REACT_APP_RECAPCHA_SITEKEY;
@@ -176,7 +176,7 @@ const SignUpBox = () => {
         </S.LabelWarp>
       </S.CheckBox>
 
-      <S.SubmitBtn onClick={handleSignupSubmit}>Log in</S.SubmitBtn>
+      <S.SubmitBtn onClick={handleSignupSubmit}>Sign up</S.SubmitBtn>
     </S.Box>
   );
 };

@@ -25,7 +25,7 @@ const UserInfo = () => {
                     isLogin && params.userId == loginId ?
                         <S.AboutCompo>
                             <S.AboutP>
-                                Your about me section is currently blank. Would you<br /> like to add one? <Link to='/user/setting'>Add Profile</Link>
+                                Your about me section is currently blank. Would you<br /> like to add one? <Link to={`/users/${loginId}/setting`}>Add Profile</Link>
                             </S.AboutP>
                         </S.AboutCompo>
                         :

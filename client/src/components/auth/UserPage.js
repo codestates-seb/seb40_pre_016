@@ -16,6 +16,7 @@ import { timeCal } from '../../pages/Question';
 import styled from 'styled-components';
 
 const Button = styled.button`
+z-index: 1;
   background-color: transparent;
   border: none;
   color: var(--black-500);
@@ -38,6 +39,8 @@ const Button = styled.button`
 const UserPage = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [loginId, setLoginID] = useRecoilState(loginIdstorige);
+  const [userprevdata, setuserprvedata] = useRecoilState(UserPrevData)
+  const [userdata, setuserdata] = useRecoilState(UserPrevData)
   const navigate = useNavigate();
   const params = useParams();
 
@@ -105,6 +108,8 @@ const UserPage = () => {
 
     setIsLogin(false);
     setLoginID('');
+    setuserdata({})
+    setuserprvedata({})
   };
 
   useEffect(() => {
@@ -113,7 +118,7 @@ const UserPage = () => {
     }
     if (response2) {
       setIsLogin(false);
-      navigate(-1);
+      navigate('/questions/page=1');
     }
   }, [response, error, response2, error2]);
 
@@ -140,7 +145,7 @@ const UserPage = () => {
           {isLogin && params.userId == loginId ? (
             <S.ButtonWarp>
               <Button>
-                <Link to={`/users/${loginId}/profile`}>
+                <Link to={`/users/${loginId}/setting`}>
                   <svg
                     aria-hidden='true'
                     className='svg-icon iconPencil'
@@ -170,7 +175,7 @@ const UserPage = () => {
             <NavLink to={`/users/${params.userId}/profile`}>Profile</NavLink>
           </S.ProfileBtn>
           <S.ProfileBtn>
-            <NavLink to={`/users/${params.userId}/setting`}>Settng</NavLink>
+            <NavLink to={`/users/${params.userId}/setting`}>Setting</NavLink>
           </S.ProfileBtn>
           <Outlet />
         </S.ProfileTab>

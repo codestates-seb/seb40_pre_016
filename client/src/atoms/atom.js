@@ -131,9 +131,11 @@ export const pageLocation = atom({
 export const setuserEditstate = atom({
   key: 'setuserEditstate',
   default: {},
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const UserPrevData = atom({
   key: 'UserPrevData',
-  default: {}
+  default: {},
+  effects_UNSTABLE: [persistAtom],
 })
