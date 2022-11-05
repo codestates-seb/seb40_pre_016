@@ -7,13 +7,12 @@ import { timeCal } from '../../../pages/Question';
 import { Viewer } from '@toast-ui/react-editor';
 
 const Question = ({ question }) => {
-
   return (
     <S.QuestionContainer>
       <S.StatContainer>
         <S.Votes>{`${question.voteCount} votes`}</S.Votes>
         {/* <S.Answers>{`${question.votes} answers`}</S.Answers> */}
-        <S.Answers>answer</S.Answers>
+        <S.Answers>{`${question.answers.length} answer`}</S.Answers>
         <S.Views>{`${question.viewCount} views`}</S.Views>
       </S.StatContainer>
 

@@ -3,13 +3,13 @@ import { useRecoilValue } from 'recoil';
 import { isLoginState } from '../../atoms/atom';
 import * as S from '../../style/question/QuestionHeader.style';
 
-function QuestionHeader({ title, createdAt, modifiedAt, view }) {
+function QuestionHeader({ titlee, createdAt, modifiedAt, view }) {
   const loginState = useRecoilValue(isLoginState);
 
   return (
     <>
       <S.QHeader>
-        <h1>{title}</h1>
+        <h1>{titlee}</h1>
         <Link to={'/askquestion'}>
           <button>Ask Question</button>
         </Link>

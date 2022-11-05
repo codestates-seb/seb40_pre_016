@@ -90,6 +90,10 @@ const QuestionEditFooter = () => {
     });
   };
 
+  const onClick = () =>{
+    navigate(-1)
+  }
+
   useEffect(() => {
     //새 질문의 id값으로 페이지 이동
     response && navigate(`/questions/${response + ''}`);
@@ -99,7 +103,7 @@ const QuestionEditFooter = () => {
       <button onClick={saveEditHandler} className='saveEdit'>
         Save Edits
       </button>
-      <button className='cancel'>Cancel</button>
+      <button onClick={onClick} className='cancel'>Cancel</button>
     </QuestionEditFooterContainer>
   );
 };
