@@ -1,6 +1,6 @@
 import * as S from '../../../style/main/PageList.style';
 import PageButton from '../Button/PageButton';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import {
   pageBtnIdx,
   pageLocation,
@@ -9,76 +9,63 @@ import {
   tagNoneMessage,
 } from '../../../atoms/atom';
 import { useAxios } from '../../../util/useAxios';
-import { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { List } from '../../../style/login/SignNotice.style';
+import { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const PageList = ({ location, child }) => {
-
-
   const [currentButton, setCurrentButton] = useRecoilState(pageBtnIdx);
+
   //pagenation 카운트
   const [listCount, setListCount] = useRecoilState(pagenationCount);
   //한페이지에 들어갈 tag 개수
   const [SizeCount, setSizeCount] = useRecoilState(pagesizeCount);
   const [message, setMessage] = useRecoilState(tagNoneMessage);
 
-
   const { response, loading, error } = useAxios({
     method: 'GET',
     url: `api/${location}?page=0&size=1`,
-  })
+  });
 
-
+  if (response) {
+    //response 없을경우
+    if (response.pageInfo.totalElements === 0) {
+      setMessage(`no ${location}`);
+      setListCount({
+        [location]: 1,
+      });
+    }
+  }
   useEffect(() => {
     if (response) {
-
       //현재 있는 데이터가 기본 설정 데이터보다 작을 경우
       if (response.pageInfo.totalElements < SizeCount[`${location}`]) {
         setSizeCount({
-          ...SizeCount, [location]: response.pageInfo.totalElements
-        })
-        setListCount({ ...listCount, [location]: 1 })
+          ...SizeCount,
+          [location]: response.pageInfo.totalElements,
+        });
+        setListCount({ [location]: 1 });
       } else {
         setListCount({
-          ...listCount, [location]: Math.ceil(response.pageInfo.totalElements / SizeCount[`${location}`])
-        })
+          ...listCount,
+          [location]: Math.ceil(
+            response.pageInfo.totalElements / SizeCount[`${location}`]
+          ),
+        });
       }
-
     }
-
   }, [response]);
 
-  useEffect(() => {
-    if (response) {
-      if (response.pageInfo.totalElements === 0) {
-        setMessage({ ...message, [location]: `no ${location}` })
-        setListCount({
-          ...listCount, [location]: 1
-        })
-      }
-    }
-  }, [response, SizeCount])
-
-
-  if (response) {
-    console.log(message)
-    console.log(SizeCount)
-    console.log(listCount)
-  }
-
   //navi 새로고침문제 해결
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const goPage = (idx, location, e) => {
-    navigate(`/${location}/page=${idx + 1}`)
-    window.location.reload()
-  }
+    navigate(`/${location}/page=${idx + 1}`);
+    window.location.reload();
+  };
 
   const listCountArr = [];
   for (let i = 1; i <= listCount[`${location}`]; i++) {
     listCountArr.push(i);
   }
-
 
   return (
     <S.PageListContainerStyled>
