@@ -68,6 +68,7 @@ class CommentControllerTest implements Reflection {
         CommentDto.Response response = CommentDto.Response.builder()
                 .commentId(1L)
                 .userId(1L)
+                .username("닉네임")
                 .content(content)
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -100,6 +101,7 @@ class CommentControllerTest implements Reflection {
                         responseFields(
                                 fieldWithPath("commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                 fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("유저 닉네임"),
                                 fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"),
                                 fieldWithPath("createdAt").type(JsonFieldType.STRING).description("작성 시간")
                         )
@@ -121,6 +123,7 @@ class CommentControllerTest implements Reflection {
         CommentDto.Response response = CommentDto.Response.builder()
                 .commentId(1L)
                 .userId(1L)
+                .username("닉네임")
                 .content(content)
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -153,6 +156,7 @@ class CommentControllerTest implements Reflection {
                         responseFields(
                                 fieldWithPath("commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                 fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("유저 닉네임"),
                                 fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"),
                                 fieldWithPath("createdAt").type(JsonFieldType.STRING).description("작성 시간")
                         )
@@ -174,6 +178,7 @@ class CommentControllerTest implements Reflection {
         CommentDto.Response response = CommentDto.Response.builder()
                 .commentId(commentId)
                 .userId(1L)
+                .username("닉네임")
                 .content(content)
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -205,6 +210,7 @@ class CommentControllerTest implements Reflection {
                         responseFields(
                                 fieldWithPath("commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                 fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("유저 닉네임"),
                                 fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"),
                                 fieldWithPath("createdAt").type(JsonFieldType.STRING).description("작성 시간")
                         )
