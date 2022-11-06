@@ -34,7 +34,7 @@ public interface QuestionMapper {
 
         request.getTagNames().stream()
                 .forEach(tagName -> {
-                    Tag tag = Tag.builder().name(tagName).build();
+                    Tag tag = Tag.builder().name(tagName.toLowerCase()).build();
                     QuestionTag questionTag = QuestionTag.builder().question(question).tag(tag).build();
                     question.addQuestionTag(questionTag);
                 });
