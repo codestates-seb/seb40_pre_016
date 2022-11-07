@@ -1,6 +1,6 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:mariadb://pre-database.c9eddfrfg6zr.ap-northeast-2.rds.amazonaws.com:3306/pre?characterEncoding=UTF-8&serverTimezone=UTC
+    username: admin
+    password: predatabase
