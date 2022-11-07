@@ -13,7 +13,7 @@ spring:
       client:
         registration:
           google:
-            client-id:
+            client-id: 859689396575-b7sgo7bovmu3a38054irdrtv1l1es9po.apps.googleusercontent.com
   #            client-secret:
 logging:
   level:
