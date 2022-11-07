@@ -86,7 +86,7 @@ http://stackoverflow-clone-frontserver.s3-website.ap-northeast-2.amazonaws.com/q
 `docs` : 문서 수정<br/>
 `style` : 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우<br/>
 `refactor` : 코드 리펙토링<br/>
-`test`: 테스트 코드, 리펙토링 테스트 코드 추가<br/>
+`test` : 테스트 코드, 리펙토링 테스트 코드 추가<br/>
 `chore` : 빌드 업무 수정, 패키지 매니저 수정<br/>
 
 ### main branch
@@ -100,3 +100,38 @@ http://stackoverflow-clone-frontserver.s3-website.ap-northeast-2.amazonaws.com/q
 - `be` branch : fe merge 를 위한 fe main branch
 
 - 외 branch : 개발 `conponents` 별 기능별 제작 및 merge
+
+## PreView
+
+### 메인페이지
+
+![image](https://user-images.githubusercontent.com/57256728/200263273-80dd9551-b9e1-465c-adea-1de81c0d5e88.png)
+
+![image](https://user-images.githubusercontent.com/57256728/200263146-bbdf1f41-5f48-465c-8685-7f9c22ee18ec.png)
+
+### 로그인 & 회원가입 
+
+![image](https://user-images.githubusercontent.com/57256728/200263234-d40b9108-1f2e-418e-8eff-291e91f6a47d.png)
+
+![image](https://user-images.githubusercontent.com/57256728/200263253-b8512ec5-f308-40b7-b377-65d1be504272.png)
+
+### 질문 상세
+
+![image](https://user-images.githubusercontent.com/57256728/200263385-723f598e-f92c-426e-87d1-f50ebe5f67cf.png)
+
+![image](https://user-images.githubusercontent.com/57256728/200263413-d61a1b67-d05b-4615-b48e-5e9746ade818.png)
+
+
+### Tags & Users
+
+![image](https://user-images.githubusercontent.com/57256728/200263559-8ec532c9-e503-4304-bc75-36f2ea2f735c.png)
+
+![image](https://user-images.githubusercontent.com/57256728/200263577-72d17216-c7f8-42d2-9f43-80ed36695cac.png)
+![image](https://user-images.githubusercontent.com/57256728/200263597-bfa179b6-8ec1-48e5-af14-ae594361c043.png)
+
+
+### User(로그인시)
+
+![image](https://user-images.githubusercontent.com/57256728/200263665-8264631f-260b-4bd1-8f6f-6f20fa472fc5.png)
+
+![image](https://user-images.githubusercontent.com/57256728/200263706-c527b6fb-5e82-4bc8-8ccd-483d1b0e1112.png)
