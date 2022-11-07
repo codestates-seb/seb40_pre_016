@@ -20,7 +20,7 @@ include::{snippets}/question/post/request-fields.adoc[]
 .http-response
 include::{snippets}/question/post/http-response.adoc[]
 
-===질문 수정
+=== 질문 수정
 .curl-request
 include::{snippets}/question/patch/curl-request.adoc[]
 
@@ -36,7 +36,7 @@ include::{snippets}/question/patch/request-fields.adoc[]
 .http-response
 include::{snippets}/question/patch/http-response.adoc[]
 
-===질문 조회
+=== 질문 조회
 .curl-request
 include::{snippets}/question/get/curl-request.adoc[]
 
@@ -52,7 +52,7 @@ include::{snippets}/question/get/path-parameters.adoc[]
 .response-fields
 include::{snippets}/question/get/response-fields.adoc[]
 
-===전체 질문 조회
+=== 전체 질문 조회
 .curl-request
 include::{snippets}/question/get/all/curl-request.adoc[]
 
@@ -68,7 +68,7 @@ include::{snippets}/question/get/all/http-response.adoc[]
 .response-fields
 include::{snippets}/question/get/all/response-fields.adoc[]
 
-===유저 질문 조회
+=== 유저 질문 조회
 .curl-request
 include::{snippets}/question/get/allByUser/curl-request.adoc[]
 
@@ -106,7 +106,7 @@ include::{snippets}/question/get/allByTag/http-response.adoc[]
 .response-fields
 include::{snippets}/question/get/allByTag/response-fields.adoc[]
 
-== 질문 삭제
+=== 질문 삭제
 .curl-request
 include::{snippets}/question/delete/curl-request.adoc[]
 
