@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil';
 import { questionData } from '../atoms/questionATom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import { useEffect } from 'react';
 
 const Qcontainer = styled.section`
   padding-left: 20px;
@@ -35,8 +36,9 @@ function Question() {
   });
   
   // const { loading, error, response} = useQuery('questionData', () => axios(`api/questions/${params.questionId}`))
-  
-  setData(response);
+  // useEffect(() => {
+      setData(response);
+  // })
   return (
     <Qcontainer>
       {loading ? (
@@ -44,7 +46,7 @@ function Question() {
       ) : (
         <>
           <QuestionHeader
-            titlee={data.title}
+            title={data.title}
             createdAt={timeCal(data.createdAt)}
             modifiedAt={timeCal(data.modifiedAt)}
             view={data.viewCount}

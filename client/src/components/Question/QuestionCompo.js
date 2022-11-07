@@ -26,9 +26,7 @@ function QuestionCompo({
   const [commentValue, setCommentValue] = useState("");
   const loginState = useRecoilValue(isLoginState);
   const loginId = useRecoilValue(loginIdstorige);
-
-  //sort
-  // comment
+  const navigate = useNavigate();
 
   const onClick = () => {
     isFollow(!follow);
@@ -116,9 +114,7 @@ function QuestionCompo({
         },
         {
           headers: {
-
             'Content-Type': `application/json`,
-
           },
           withCredentials: true,
         }
@@ -130,7 +126,6 @@ function QuestionCompo({
       });
     setAddComment(false);
   };
-  const navigate = useNavigate();
 
   const delBtn = () => {
     axios
