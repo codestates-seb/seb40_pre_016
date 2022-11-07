@@ -14,7 +14,7 @@ http://stackoverflow-clone-frontserver.s3-website.ap-northeast-2.amazonaws.com/q
 | 🦑 류인환  | Back-end  |     https://github.com/Cutaku     |
 | 😄 허진성  | Back-end  |    https://github.com/JEENSUNG    |
 | ❤️‍🔥 류희경  | Front-end |   https://github.com/beals1129    |
-|  🫡 오성환  | Front-end |    https://github.com/tlsrb100    |
+| 🫡 오성환  | Front-end |    https://github.com/tlsrb100    |
 | 🐻 한병주  | Front-end | https://github.com/OneMoreBottlee |
 
 <br/>
