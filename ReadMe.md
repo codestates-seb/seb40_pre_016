@@ -107,7 +107,6 @@ http://stackoverflow-clone-frontserver.s3-website.ap-northeast-2.amazonaws.com/q
 
 ![image](https://user-images.githubusercontent.com/57256728/200263273-80dd9551-b9e1-465c-adea-1de81c0d5e88.png)
 
-![image](https://user-images.githubusercontent.com/57256728/200263146-bbdf1f41-5f48-465c-8685-7f9c22ee18ec.png)
 
 ### 로그인 & 회원가입 
 
@@ -135,3 +134,8 @@ http://stackoverflow-clone-frontserver.s3-website.ap-northeast-2.amazonaws.com/q
 ![image](https://user-images.githubusercontent.com/57256728/200263665-8264631f-260b-4bd1-8f6f-6f20fa472fc5.png)
 
 ![image](https://user-images.githubusercontent.com/57256728/200263706-c527b6fb-5e82-4bc8-8ccd-483d1b0e1112.png)
+
+
+추가 참고 이미지 
+https://www.notion.so/HBJ-s-Life-ef6ec50fc95a41aab2ffe0f6e05a52d9?p=56edd6f729d84eadb8814c794c6b1ab7&pm=c
+https://www.notion.so/HBJ-s-Life-ef6ec50fc95a41aab2ffe0f6e05a52d9?p=b9476bb2cd674d3db56f427f4b4dc64f&pm=c
