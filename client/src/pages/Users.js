@@ -43,12 +43,12 @@ const Users = () => {
       <Filter />
       <UserContainer>
         {
-          loading ? null :
+          response ?
             <>
               {
                 message.user ? <p>{message.users}</p> : response.data.map(el => <UserComponents key={el.userId} username={el.username} email={el.email} createdAt={el.createdAt} userId={el.userId} />)
               }
-            </>
+            </> : null
         }
         {error ? error.message : null}
       </UserContainer>
