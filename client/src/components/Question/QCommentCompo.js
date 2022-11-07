@@ -1,45 +1,50 @@
+import { useState } from 'react';
 import * as S from '../../style/question/QCommentCompo.style';
-import polygon from '../../assets/img/polygon.png';
-import user from '../../assets/img/user.png';
+import Answer from './Answer';
 
-function QCommentCompo() {
+function QCommentCompo({ questionId, answers }) {
+  const [filterValue, setFilterValue] = useState(1);
+  const showValue = (e) => {
+    if (e.target.value === 1) {
+      answers.sort((a, b) => a.voteCount - b.voteCount);
+      setFilterValue(1);
+    }
+    if (e.target.value === 2) {
+      answers.sort((a, b) => a.createdAt - b.createdAt);
+      setFilterValue(2);
+    }
+  };
+
   return (
     <S.QComment>
       <S.QCHeader>
-        <h2>1 Answers</h2>
+        <h2>
+          {answers.length === undefined
+            ? '0 Answers'
+            : `${answers.length} Answers`}
+        </h2>
         <div>
           Sorted by:
-          <select>
-            <option>Highest Score (default)</option>
-            <option>Date Created (newest first)</option>
+          <select onChange={showValue}>
+            <option value={1}>Highest Score (default)</option>
+            <option value={2}>Date Created (newest first)</option>
           </select>
         </div>
       </S.QCHeader>
-      <S.QContent>
-        <S.QContentLeft>
-          <img alt='Polygon' src={polygon} />
-          <div>0</div>
-          <img alt='Polygon' src={polygon} />
-        </S.QContentLeft>
-        <S.QContentRight>
-          <div>여기는 답변입니다</div>
-          <S.QCREdit>
-            <S.QCRELeft>
-              <button>Share</button>
-              <button>Edit</button>
-              <button>Delete</button>
-            </S.QCRELeft>
-            <S.QCRERight>
-              <span>21 years ago</span>
-              <div>
-                <img src={user} alt='얼굴'></img>
-                <span>ID</span>
-              </div>
-            </S.QCRERight>
-          </S.QCREdit>
-          <S.QCRComment>Add a Comment</S.QCRComment>
-        </S.QContentRight>
-      </S.QContent>
+      {/* {filterValue === 1 ? "hi" : "hello"} */}
+      {answers.map((el) => (
+        <Answer
+          key={el.answerId}
+          questionId={questionId}
+          answerId={el.answerId}
+          vote={el.voteCount}
+          content={el.content}
+          user={el.user.username}
+          modifiedAt={el.modifiedAt}
+          comment={el.comments}
+          userId={el.user.userId}
+        />
+      ))}
     </S.QComment>
   );
 }

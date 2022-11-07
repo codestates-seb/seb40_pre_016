@@ -1,10 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PageListContainerStyled = styled.div`
   display: flex;
   padding-bottom: 100px;
   height: 300px;
-  
 `;
 
 export const PageListStyled = styled.div`

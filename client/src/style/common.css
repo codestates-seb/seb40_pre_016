@@ -38,6 +38,7 @@
   --powder-600: hsl(205, 36%, 53%);
   --powder-700: hsl(205, 47%, 42%);
   --orange-400: hsl(27, 90%, 55%);
+  --theme-primary-color: hsl(27, 90%, 55%);
   --warning-color: rgb(208, 57, 62);
   --background-color: hsl(210, 8%, 95%);
 }

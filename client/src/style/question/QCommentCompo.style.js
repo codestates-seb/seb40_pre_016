@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // 답변
 export const QComment = styled.section`
   margin-top: 15px;
-  margin-left: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(0,0,0,0.2);
 `;
@@ -74,7 +73,15 @@ export const QCREdit = styled.section`
 `;
 
 export const QCRELeft = styled.section`
+  margin-top: 10px;
   > button {
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    background-color: white;
+    border: none;
+  }
+  > a > button {
     margin-right: 10px;
     color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
@@ -84,6 +91,7 @@ export const QCRELeft = styled.section`
 `;
 
 export const QCRERight = styled.section`
+  margin-top: 10px;
   margin-right: 10px;
   padding-top: 5px;
   padding-bottom: 10px;
@@ -106,16 +114,60 @@ export const QCRERight = styled.section`
     width: 20px;
     right: 20px;
   }
+  > div > a {
+    text-decoration: none;
+  }
 
-  > div > span {
+  > div > a > span {
     margin-left: 15px;
     color: #39739d;
   }
 `;
 
+export const CommentSection = styled.div`
+  border-top: 1px solid rgba(0,0,0,0.10);
+  border-bottom: 1px solid rgba(0,0,0,0.10);
+  
+  > div {
+    padding: 3px 0px 3px 10px;
+    font-size: 13px;
+    > div{
+      margin-left: 5px;
+      display: inline;
+      > a{
+        margin-left: 5px;
+        text-decoration: none;
+        >span {
+          color: #0c62ed;
+
+        } 
+      }
+    }
+    
+    > span {
+      margin-left: 5px;
+      font-size: 13px;
+      color: rgba(0,0,0,0.45);;
+    }
+
+    > button {
+      margin-left: 5px;
+      border: none;
+      background-color: white;
+      cursor: pointer;
+    }
+  }
+  `
+
 export const QCRComment = styled.section`
+  margin-top: 20px;
   margin-left: 8px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
+  > button {
+    border: none;
+    background-color: white;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
 `;

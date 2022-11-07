@@ -2,52 +2,88 @@ import * as S from '../../style/question/YourAnswer.style';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { answer, answerFocus } from '../../atoms/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { answer, answerFocus } from '../../atoms/questionATom';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useAxios } from '../../util/useAxios';
+import axios from 'axios';
+import { isLoginState } from '../../atoms/atom';
 
 const ErrorBox = styled.div`
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 13px;
   color: red;
   border: none;
-`
+`;
 
-function YourAnswer() {
+function YourAnswer({ questionId }) {
   const editorRef = useRef();
   const [check, isCheck] = useRecoilState(answerFocus);
   const [answerContent, isAnswerContent] = useRecoilState(answer);
-  const [subError, setSubError] = useState("");
+  const [subError, setSubError] = useState('');
+  const loginState = useRecoilValue(isLoginState);
 
   const onChange = () => {
     const data = editorRef.current.getInstance().getHTML();
-    if(data.length > 30) {setSubError('')}
-    isAnswerContent(data)
-  }
+    if(!loginState){
+      setSubError('Login First !!!')
+      isCheck(2)
+    }
+
+    if (data.length > 30) {
+      setSubError('');
+    }
+    isAnswerContent(data);
+  };
 
   const onSubmit = (event) => {
-    event.preventDefault();
-    if(answerContent.length < 30){
-      return setSubError('Body must be at least 30 characters.')
+    if(!loginState){
+      isCheck(2)
+      setSubError('Login First !!!!!!')
+      event.preventDefault();
     }
-    console.log(`제출값은` + answerContent)
-    setSubError("")
-  }
+    if (answerContent.length < 30) {
+      //조건 30자 넘어야됨
+      isCheck(2);
+      setSubError('Body must be at least 30 characters.');
+      event.preventDefault();
+    } else {
+      axios
+        .post(
+          `/api/questions/${questionId}/answers`,
+          {
+            content: answerContent,
+          },
+          {
+            headers: {
+              'Content-Type': `application/json`,
+            },
+            withCredentials: true,
+          }
+        )
+        .then(event.preventDefault())
+        .then((res) => {
+          if (res) {
+            window.location.reload();
+          }
+        });
+    }
+  };
 
   const onFocus = () => {
-    isCheck(true)
-  }
+    isCheck(1);
+  };
 
   const onBlur = () => {
-    isCheck(false)
-  }
+    isCheck(0);
+  };
 
   return (
-    <S.QYourAnswer >
+    <S.QYourAnswer>
       <form onSubmit={onSubmit}>
         <h3>Your Answer</h3>
-          <S.EditorBox check={check}>
+        <S.EditorBox check={check}>
           <Editor
             initialValue=' '
             placeholder='Write Your Answers'
@@ -60,9 +96,9 @@ function YourAnswer() {
             onBlur={onBlur}
             autofocus={false}
           />
-          </S.EditorBox>
-          {subError !== "" ? <ErrorBox>{subError}</ErrorBox>: null}
-        <button>Post Your Answer</button>
+        </S.EditorBox>
+        {subError !== '' ? <ErrorBox>{subError}</ErrorBox> : null}
+        <button type={'submit'}>Post Your Answer</button>
       </form>
     </S.QYourAnswer>
   );

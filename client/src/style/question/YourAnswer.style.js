@@ -6,8 +6,6 @@ export const QYourAnswer = styled.section`
   margin-left: 20px;
   margin-bottom: 70px;
 
-
-
   > form > h3 {
     font-size: 20px;
     font-weight: 500;
@@ -32,12 +30,16 @@ export const QYourAnswer = styled.section`
 
 export const EditorBox = styled.div`
     margin-right: 10px;
-    width: 810px;
-    border: ${(props) => (props.check ? "var(--blue-300) solid 1px" : "none")};
-    outline: ${(props) => (props.check ? "var(--blue-100) solid 4px" : "none")};
+    
+    .toastui-editor-main {
+      
+      border: ${(props) => (props.check !== 0 ? (props.check === 1 ? "var(--blue-300) solid 1px" : "1px solid rgb(222, 79, 84)") : "none")};
+      outline: ${(props) => (props.check !== 0 ? (props.check === 1 ? "var(--blue-100) solid 4px" : "rgb(249, 210, 211) solid 4px") : "none")};
+      
+    }
     .toastui-editor-tooltip {
       > span {
         color: white;
       }
     }
-`
+`  

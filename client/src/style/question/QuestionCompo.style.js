@@ -1,14 +1,12 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 // QuestionCompo
 export const QContent = styled.section`
   margin-top: 15px;
-  margin-left: 20px;
   padding-bottom: 10px;
 
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
 `;
 
 export const QContentLeft = styled.section`
@@ -39,19 +37,20 @@ export const QContentRight = styled.section`
 
   > div {
     margin-top: 10px;
-    margin-left: 8px;
+    padding-left: 8px;
   }
 `;
 
 export const QCRTag = styled.section`
-  margin: 20px 2px;
-  padding: 5px 6px;
+  padding-top: 10px;
+  padding-bottom: 15px;
   border-radius: 10px;
 
   > span {
+    margin-right: 7px;
     border-radius: 3px;
-    background-color: #D0E3F1;
-    color: #39739D;
+    background-color: #d0e3f1;
+    color: #39739d;
     font-size: 12px;
     padding: 4.8px 6px;
   }
@@ -64,6 +63,14 @@ export const QCREdit = styled.section`
 `;
 
 export const QCRELeft = styled.section`
+  > a > button {
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    background-color: white;
+    border: none;
+  }
+
   > button {
     margin-right: 10px;
     color: rgba(0, 0, 0, 0.6);
@@ -96,16 +103,48 @@ export const QCRERight = styled.section`
     width: 20px;
     right: 20px;
   }
+  > div > a {
+    text-decoration: none;
+  }
 
-  > div > span {
+  > div > a > span {
     margin-left: 15px;
     color: #39739d;
   }
 `;
 
+export const CommentSection = styled.div`
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+  > div {
+    padding: 15px 0px 15px 10px;
+    font-size: 13px;
+    > div {
+      display: inline;
+      > a {
+        text-decoration: none;
+        color: #0c62ed;
+      }
+    }
+
+    > span {
+      margin-left: 5px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+`;
+
 export const QCRComment = styled.section`
-  margin-left: 8px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
   margin-bottom: 10px;
+
+  > button {
+    border: none;
+    background-color: white;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
 `;
