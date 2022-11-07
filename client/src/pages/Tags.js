@@ -30,13 +30,13 @@ const Tags = () => {
       <Filter />
       <S.TagsContainer>
         {
-          loading ? null :
+          response ?
             <>
               {
                 message.tags ? <p>{message.tags}</p> : response.data.map(el => <TagComponent key={el.tagId} name={el.name} count={el.questionCount} />)
               }
             </>
-
+            : null
 
         }
         {error ? error.message : null}
