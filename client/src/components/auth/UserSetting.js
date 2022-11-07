@@ -42,18 +42,6 @@ const UserSetting = () => {
         });
     };
 
-    clickFetchFunc({
-        method: 'PATCH',
-        url: `/api/users/${loginId}`,
-        headers: {
-            'Content-Type': `application/json`,
-        },
-        withCredentials: true,
-        data: {
-            "username": userEditData.userName,
-            "message": userEditData.message
-        },
-    });
 
 
     const saveEditHandler = () => {
@@ -71,6 +59,7 @@ const UserSetting = () => {
             },
         });
         // navigator('/user/profile')
+
     };
     if (response && !loading) {
         navigator(`/users/${loginId}/profile`)
