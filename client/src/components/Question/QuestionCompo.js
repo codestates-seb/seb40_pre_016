@@ -135,7 +135,7 @@ function QuestionCompo({
   const delBtn = () => {
     axios
       .delete(`/api/questions/${questionId}`, { withCredentials: true })
-      .then(navigate('/questions/page=1'));
+      .then((res)=> {if(res){navigate('/questions/page=1')}});
   };
 
   return (

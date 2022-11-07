@@ -8,6 +8,8 @@ import { useAxios } from '../util/useAxios';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { questionData } from '../atoms/questionATom';
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 const Qcontainer = styled.section`
   padding-left: 20px;
@@ -31,8 +33,10 @@ function Question() {
     method: 'GET',
     url: `api/questions/${params.questionId}`,
   });
+  
+  // const { loading, error, response} = useQuery('questionData', () => axios(`api/questions/${params.questionId}`))
+  
   setData(response);
-
   return (
     <Qcontainer>
       {loading ? (

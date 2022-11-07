@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://real-poems-create-113-52-194-59.loca.lt/';
+axios.defaults.baseURL = 'https://kkg5.loca.lt/';
 // axios.defaults.withCredentials = true;
 
 export const useAxios = (axiosParams, auto = true) => {
