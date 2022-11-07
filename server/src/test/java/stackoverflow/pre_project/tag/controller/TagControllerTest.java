@@ -85,7 +85,7 @@ class TagControllerTest {
         // then
         actions.andExpect(status().isOk())
                 .andDo(document(
-                        "/tag/getTags",
+                        "tag/getTags",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         requestParameters(
