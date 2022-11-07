@@ -88,7 +88,7 @@ public class QuestionController {
     public ResponseEntity getQuestionsByTag(@PageableDefault(size = 30, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
                                             @PathVariable String tagName) {
 
-        Page<Question> pageQuestions = questionService.findQuestionsByTag(tagName, pageable);
+        Page<Question> pageQuestions = questionService.findQuestionsByTag(tagName.toLowerCase(), pageable);
         List<Question> questions = pageQuestions.getContent();
         List<QuestionDto.Response> responses = mapper.questionsToQuestionResponseDtos(questions);
 
