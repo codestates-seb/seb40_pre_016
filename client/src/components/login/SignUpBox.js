@@ -166,7 +166,7 @@ const SignUpBox = () => {
         letter and 1 number.
       </S.P>
       <S.RecapchaBox>
-        <ReCAPTCHA sitekey={`${SITE_KEY}`} onChange={onChange} />
+        <ReCAPTCHA sitekey={`6LcenrciAAAAABt2VdjbltAnmtp8ZIJNneOiMPWZ`} onChange={onChange} />
       </S.RecapchaBox>
       <S.CheckBox>
         <input
