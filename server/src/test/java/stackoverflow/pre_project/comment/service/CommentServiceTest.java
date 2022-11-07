@@ -15,6 +15,7 @@ import stackoverflow.pre_project.comment.repository.CommentRepository;
 import stackoverflow.pre_project.exception.BusinessLogicException;
 import stackoverflow.pre_project.question.entity.Question;
 import stackoverflow.pre_project.question.repository.QuestionRepository;
+import stackoverflow.pre_project.user.entity.User;
 
 import java.util.Optional;
 
@@ -58,8 +59,8 @@ class CommentServiceTest {
                 .willAnswer(AdditionalAnswers.returnsFirstArg());
 
         // when
-        Comment questionComment = commentService.createComment(CommentType.QUESTION, parentId, content);
-        Comment answerComment = commentService.createComment(CommentType.ANSWER, parentId, content);
+        Comment questionComment = commentService.createComment(CommentType.QUESTION, parentId, content, null);
+        Comment answerComment = commentService.createComment(CommentType.ANSWER, parentId, content, null);
 
         // then
         assertThat(questionComment.getQuestion()).isEqualTo(question);
@@ -69,9 +70,9 @@ class CommentServiceTest {
         assertThat(answerComment.getAnswer()).isEqualTo(answer);
         assertThat(answerComment.getContent()).isEqualTo(content);
         assertThrows(BusinessLogicException.class,
-                () -> commentService.createComment(CommentType.QUESTION, nonExistId, content));
+                () -> commentService.createComment(CommentType.QUESTION, nonExistId, content, null));
         assertThrows(BusinessLogicException.class,
-                () -> commentService.createComment(CommentType.ANSWER, nonExistId, content));
+                () -> commentService.createComment(CommentType.ANSWER, nonExistId, content, null));
     }
 
     @Test
@@ -80,19 +81,24 @@ class CommentServiceTest {
         Long commentId = 1L;
         Long nonExistId = 2L;
         String content = "수정된 댓글입니다.";
-        Comment comment = Comment.builder().build();
+        User user = User.builder().id(1L).build();
+        User differentUser = User.builder().id(2L).build();
+        Comment comment = Comment.builder().user(user).build();
+
         given(commentRepository.findById(commentId))
                 .willReturn(Optional.ofNullable(comment));
         given(commentRepository.findById(nonExistId))
                 .willReturn(Optional.empty());
 
         // when
-        Comment updatedComment = commentService.updateComment(commentId, content);
+        Comment updatedComment = commentService.updateComment(commentId, content, user);
 
         // then
         assertThat(updatedComment.getContent()).isEqualTo(content);
         assertThrows(BusinessLogicException.class,
-                () -> commentService.updateComment(nonExistId, content));
+                () -> commentService.updateComment(nonExistId, content, user));
+        assertThrows(BusinessLogicException.class,
+                () -> commentService.updateComment(commentId, content, differentUser));
     }
 
     @Test
@@ -100,14 +106,21 @@ class CommentServiceTest {
         // given
         Long commentId = 1L;
         Long nonExistId = 2L;
+        User user = User.builder().id(1L).build();
+        User differentUser = User.builder().id(2L).build();
+        Comment comment = Comment.builder().user(user).build();
+
+        given(commentRepository.findById(commentId))
+                .willReturn(Optional.ofNullable(comment));
         doNothing().when(commentRepository).deleteById(commentId);
-        doThrow(EmptyResultDataAccessException.class).when(commentRepository).deleteById(nonExistId);
 
         // when
-        commentService.deleteComment(commentId);
+        commentService.deleteComment(commentId, user);
 
         // then
         assertThrows(BusinessLogicException.class,
-                () -> commentService.deleteComment(nonExistId));
+                () -> commentService.deleteComment(nonExistId, user));
+        assertThrows(BusinessLogicException.class,
+                () -> commentService.deleteComment(commentId, differentUser));
     }
 }

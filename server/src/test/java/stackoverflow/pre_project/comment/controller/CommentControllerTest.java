@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import stackoverflow.pre_project.comment.dto.CommentDto;
@@ -16,7 +18,13 @@ import stackoverflow.pre_project.comment.entity.Comment;
 import stackoverflow.pre_project.comment.entity.CommentType;
 import stackoverflow.pre_project.comment.mapper.CommentMapper;
 import stackoverflow.pre_project.comment.service.CommentService;
+import stackoverflow.pre_project.config.SecurityTestConfig;
+import stackoverflow.pre_project.config.TestUserDetailService;
+import stackoverflow.pre_project.user.entity.User;
 import stackoverflow.pre_project.util.Reflection;
+import stackoverflow.pre_project.util.TestConstant;
+
+import java.time.LocalDateTime;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -30,6 +38,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = CommentController.class)
+@WithUserDetails
+@Import({SecurityTestConfig.class, TestUserDetailService.class})
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class CommentControllerTest implements Reflection {
@@ -57,10 +67,13 @@ class CommentControllerTest implements Reflection {
 
         CommentDto.Response response = CommentDto.Response.builder()
                 .commentId(1L)
+                .userId(1L)
+                .username("닉네임")
                 .content(content)
+                .createdAt(LocalDateTime.now())
                 .build();
 
-        given(commentService.createComment(CommentType.QUESTION, questionId, content))
+        given(commentService.createComment(CommentType.QUESTION, questionId, content, TestConstant.USER))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -87,7 +100,10 @@ class CommentControllerTest implements Reflection {
                         ),
                         responseFields(
                                 fieldWithPath("commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
-                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용")
+                                fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("유저 닉네임"),
+                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                fieldWithPath("createdAt").type(JsonFieldType.STRING).description("작성 시간")
                         )
                 ));
     }
@@ -106,10 +122,13 @@ class CommentControllerTest implements Reflection {
 
         CommentDto.Response response = CommentDto.Response.builder()
                 .commentId(1L)
+                .userId(1L)
+                .username("닉네임")
                 .content(content)
+                .createdAt(LocalDateTime.now())
                 .build();
 
-        given(commentService.createComment(CommentType.ANSWER, answerId, content))
+        given(commentService.createComment(CommentType.ANSWER, answerId, content, TestConstant.USER))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -136,7 +155,10 @@ class CommentControllerTest implements Reflection {
                         ),
                         responseFields(
                                 fieldWithPath("commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
-                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용")
+                                fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("유저 닉네임"),
+                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                fieldWithPath("createdAt").type(JsonFieldType.STRING).description("작성 시간")
                         )
                 ));
     }
@@ -155,10 +177,13 @@ class CommentControllerTest implements Reflection {
 
         CommentDto.Response response = CommentDto.Response.builder()
                 .commentId(commentId)
+                .userId(1L)
+                .username("닉네임")
                 .content(content)
+                .createdAt(LocalDateTime.now())
                 .build();
 
-        given(commentService.updateComment(commentId, content))
+        given(commentService.updateComment(commentId, content, TestConstant.USER))
                 .willReturn(comment);
         given(commentMapper.commentToResponse(comment))
                 .willReturn(response);
@@ -184,7 +209,10 @@ class CommentControllerTest implements Reflection {
                         ),
                         responseFields(
                                 fieldWithPath("commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
-                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용")
+                                fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("유저 닉네임"),
+                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                fieldWithPath("createdAt").type(JsonFieldType.STRING).description("작성 시간")
                         )
                 ));
     }

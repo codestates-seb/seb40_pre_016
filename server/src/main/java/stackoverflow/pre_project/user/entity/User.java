@@ -1,5 +1,7 @@
 package stackoverflow.pre_project.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import stackoverflow.pre_project.answer.entity.Answer;
 import stackoverflow.pre_project.audit.Auditable;
@@ -23,27 +25,45 @@ public class User extends Auditable {
     @Column(name = "user_id")
     private Long id;
 
-    @Setter
     @Column(nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Setter
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
-    @Setter
     private String message;
 
+    private String role;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private final List<Answer> answers = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private final List<Question> questions = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private final List<Comment> comments = new ArrayList<>();
 
+    public void setPassword(String encPassword) {
+        this.password = encPassword;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

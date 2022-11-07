@@ -14,6 +14,6 @@ public class PageInfo {
     private int totalPages;
 
     public static <T> PageInfo of(Page<T> page) {
-        return new PageInfo(page.getNumber() + 1, page.getSize(), page.getTotalElements(), page.getTotalPages());
+        return new PageInfo(page.getNumber(), page.getSize(), page.getTotalElements(), page.getTotalPages());
     }
 }

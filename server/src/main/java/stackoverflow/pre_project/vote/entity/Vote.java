@@ -31,6 +31,7 @@ public class Vote {
     @JoinColumn(name = "answer_id")
     private Answer answer;
 
+    @Setter
     private boolean isUp;
 
 }
