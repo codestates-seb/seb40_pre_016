@@ -448,33 +448,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_질문">1. 질문</a>
 <ul class="sectlevel2">
 <li><a href="#_질문_등록">1.1. 질문 등록</a></li>
+<li><a href="#_질문_수정">1.2. 질문 수정</a></li>
+<li><a href="#_질문_조회">1.3. 질문 조회</a></li>
+<li><a href="#_전체_질문_조회">1.4. 전체 질문 조회</a></li>
+<li><a href="#_유저_질문_조회">1.5. 유저 질문 조회</a></li>
+<li><a href="#_질문_삭제">1.6. 질문 삭제</a></li>
 </ul>
 </li>
-<li><a href="#_질문_삭제">2. 질문 삭제</a></li>
-<li><a href="#_답변">3. 답변</a>
+<li><a href="#_답변">2. 답변</a>
 <ul class="sectlevel2">
-<li><a href="#_답변_등록">3.1. 답변 등록</a></li>
-<li><a href="#_답변_수정">3.2. 답변 수정</a></li>
-<li><a href="#_답변_삭제">3.3. 답변 삭제</a></li>
+<li><a href="#_답변_등록">2.1. 답변 등록</a></li>
+<li><a href="#_답변_수정">2.2. 답변 수정</a></li>
+<li><a href="#_답변_삭제">2.3. 답변 삭제</a></li>
 </ul>
 </li>
-<li><a href="#_댓글">4. 댓글</a>
+<li><a href="#_댓글">3. 댓글</a>
 <ul class="sectlevel2">
-<li><a href="#_질문_댓글_등록">4.1. 질문 댓글 등록</a></li>
-<li><a href="#_답변_댓글_등록">4.2. 답변 댓글 등록</a></li>
-<li><a href="#_댓글_수정">4.3. 댓글 수정</a></li>
-<li><a href="#_댓글_삭제">4.4. 댓글 삭제</a></li>
+<li><a href="#_질문_댓글_등록">3.1. 질문 댓글 등록</a></li>
+<li><a href="#_답변_댓글_등록">3.2. 답변 댓글 등록</a></li>
+<li><a href="#_댓글_수정">3.3. 댓글 수정</a></li>
+<li><a href="#_댓글_삭제">3.4. 댓글 삭제</a></li>
 </ul>
 </li>
-<li><a href="#_태그">5. 태그</a>
+<li><a href="#_태그">4. 태그</a>
 <ul class="sectlevel2">
-<li><a href="#_태그_전체_조회">5.1. 태그 전체 조회</a></li>
+<li><a href="#_태그_전체_조회">4.1. 태그 전체 조회</a></li>
 </ul>
 </li>
-<li><a href="#_투표">6. 투표</a>
+<li><a href="#_투표">5. 투표</a>
 <ul class="sectlevel2">
-<li><a href="#_질문_투표">6.1. 질문 투표</a></li>
-<li><a href="#_답변_투표">6.2. 답변 투표</a></li>
+<li><a href="#_질문_투표">5.1. 질문 투표</a></li>
+<li><a href="#_답변_투표">5.2. 답변 투표</a></li>
 </ul>
 </li>
 </ul>
@@ -570,11 +574,11 @@ X-Frame-Options: DENY
 1</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>===질문 수정
-.curl-request</p>
 </div>
+<div class="sect2">
+<h3 id="_질문_수정">1.2. 질문 수정</h3>
 <div class="listingblock">
+<div class="title">curl-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/api/questions/1' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
@@ -669,11 +673,11 @@ X-Frame-Options: DENY
 1</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>===질문 조회
-.curl-request</p>
 </div>
+<div class="sect2">
+<h3 id="_질문_조회">1.3. 질문 조회</h3>
 <div class="listingblock">
+<div class="title">curl-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/api/questions/1' -i -X GET \
     -H 'Accept: application/json'</code></pre>
@@ -704,8 +708,8 @@ Content-Length: 454
   "questionId" : 1,
   "title" : "질문 제목",
   "content" : "질문 내용",
-  "createdAt" : "2022-11-06T07:46:51.9132072",
-  "modifiedAt" : "2022-11-06T07:46:51.9132072",
+  "createdAt" : "2022-11-07T17:08:50.0223736",
+  "modifiedAt" : "2022-11-07T17:08:50.0223736",
   "voteCount" : 3,
   "viewCount" : 15,
   "user" : {
@@ -812,11 +816,11 @@ Content-Length: 454
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>===전체 질문 조회
-.curl-request</p>
 </div>
+<div class="sect2">
+<h3 id="_전체_질문_조회">1.4. 전체 질문 조회</h3>
 <div class="listingblock">
+<div class="title">curl-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/api/questions?page=0&amp;size=30&amp;sort=createdAt%2CDESC' -i -X GET \
     -H 'Accept: application/json'</code></pre>
@@ -928,11 +932,11 @@ Content-Length: 127
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>===유저 질문 조회
-.curl-request</p>
 </div>
+<div class="sect2">
+<h3 id="_유저_질문_조회">1.5. 유저 질문 조회</h3>
 <div class="listingblock">
+<div class="title">curl-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/api/questions/users/1?page=0&amp;size=30&amp;sort=createdAt%2CDESC' -i -X GET \
     -H 'Accept: application/json'</code></pre>
@@ -1199,11 +1203,8 @@ Content-Length: 127
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_질문_삭제">2. 질문 삭제</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_질문_삭제">1.6. 질문 삭제</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1250,11 +1251,12 @@ X-Frame-Options: DENY</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_답변">3. 답변</h2>
+<h2 id="_답변">2. 답변</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_답변_등록">3.1. 답변 등록</h3>
+<h3 id="_답변_등록">2.1. 답변 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1339,8 +1341,8 @@ Content-Length: 336
 {
   "answerId" : 1,
   "content" : "답변 내용",
-  "createdAt" : "2022-11-06T07:46:47.6739054",
-  "modifiedAt" : "2022-11-06T07:46:47.6739054",
+  "createdAt" : "2022-11-07T17:08:46.6448097",
+  "modifiedAt" : "2022-11-07T17:08:46.6448097",
   "voteCount" : 5,
   "user" : {
     "userId" : 1,
@@ -1407,7 +1409,7 @@ Content-Length: 336
 </table>
 </div>
 <div class="sect2">
-<h3 id="_답변_수정">3.2. 답변 수정</h3>
+<h3 id="_답변_수정">2.2. 답변 수정</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1492,8 +1494,8 @@ Content-Length: 343
 {
   "answerId" : 1,
   "content" : "답변 내용 수정",
-  "createdAt" : "2022-11-06T07:46:47.5459106",
-  "modifiedAt" : "2022-11-06T07:46:47.5459106",
+  "createdAt" : "2022-11-07T17:08:46.5158855",
+  "modifiedAt" : "2022-11-07T17:08:46.5158855",
   "voteCount" : 5,
   "user" : {
     "userId" : 1,
@@ -1560,7 +1562,7 @@ Content-Length: 343
 </table>
 </div>
 <div class="sect2">
-<h3 id="_답변_삭제">3.3. 답변 삭제</h3>
+<h3 id="_답변_삭제">2.3. 답변 삭제</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1609,10 +1611,10 @@ X-Frame-Options: DENY</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_댓글">4. 댓글</h2>
+<h2 id="_댓글">3. 댓글</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_질문_댓글_등록">4.1. 질문 댓글 등록</h3>
+<h3 id="_질문_댓글_등록">3.1. 질문 댓글 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1656,7 +1658,7 @@ Content-Length: 152
   "userId" : 1,
   "username" : "닉네임",
   "content" : "댓글입니다.",
-  "createdAt" : "2022-11-06T07:46:48.9109511"
+  "createdAt" : "2022-11-07T17:08:47.6173372"
 }</code></pre>
 </div>
 </div>
@@ -1723,7 +1725,7 @@ Content-Length: 152
 </table>
 </div>
 <div class="sect2">
-<h3 id="_답변_댓글_등록">4.2. 답변 댓글 등록</h3>
+<h3 id="_답변_댓글_등록">3.2. 답변 댓글 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1767,7 +1769,7 @@ Content-Length: 152
   "userId" : 1,
   "username" : "닉네임",
   "content" : "댓글입니다.",
-  "createdAt" : "2022-11-06T07:46:48.9579465"
+  "createdAt" : "2022-11-07T17:08:47.6683392"
 }</code></pre>
 </div>
 </div>
@@ -1834,7 +1836,7 @@ Content-Length: 152
 </table>
 </div>
 <div class="sect2">
-<h3 id="_댓글_수정">4.3. 댓글 수정</h3>
+<h3 id="_댓글_수정">3.3. 댓글 수정</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1871,14 +1873,14 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 162
+Content-Length: 161
 
 {
   "commentId" : 1,
   "userId" : 1,
   "username" : "닉네임",
   "content" : "수정된 댓글입니다.",
-  "createdAt" : "2022-11-06T07:46:48.7969381"
+  "createdAt" : "2022-11-07T17:08:47.520343"
 }</code></pre>
 </div>
 </div>
@@ -1945,7 +1947,7 @@ Content-Length: 162
 </table>
 </div>
 <div class="sect2">
-<h3 id="_댓글_삭제">4.4. 댓글 삭제</h3>
+<h3 id="_댓글_삭제">3.4. 댓글 삭제</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -1994,10 +1996,10 @@ X-Frame-Options: DENY</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_태그">5. 태그</h2>
+<h2 id="_태그">4. 태그</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_태그_전체_조회">5.1. 태그 전체 조회</h3>
+<h3 id="_태그_전체_조회">4.1. 태그 전체 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -2150,10 +2152,10 @@ Content-Length: 514
 </div>
 </div>
 <div class="sect1">
-<h2 id="_투표">6. 투표</h2>
+<h2 id="_투표">5. 투표</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_질문_투표">6.1. 질문 투표</h3>
+<h3 id="_질문_투표">5.1. 질문 투표</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -2216,7 +2218,7 @@ Content-Length: 1
 </div>
 </div>
 <div class="sect2">
-<h3 id="_답변_투표">6.2. 답변 투표</h3>
+<h3 id="_답변_투표">5.2. 답변 투표</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -2284,7 +2286,7 @@ Content-Length: 1
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2022-11-04 16:08:16 +0900
+Last updated 2022-11-07 17:06:03 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
