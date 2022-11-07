@@ -55,7 +55,7 @@ class VoteControllerTest {
         // then
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(1))
-                .andDo(document("/vote/postQuestionVote",
+                .andDo(document("vote/postQuestionVote",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
@@ -82,7 +82,7 @@ class VoteControllerTest {
         // then
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(1))
-                .andDo(document("/vote/postAnswerVote",
+                .andDo(document("vote/postAnswerVote",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(

@@ -92,7 +92,7 @@ class CommentControllerTest implements Reflection {
                 .andExpect(jsonPath("$.commentId").value(1L))
                 .andExpect(jsonPath("$.content").value(content))
                 .andDo(document(
-                        "/comment/post/QuestionComment",
+                        "comment/post/QuestionComment",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
@@ -147,7 +147,7 @@ class CommentControllerTest implements Reflection {
                 .andExpect(jsonPath("$.commentId").value(1L))
                 .andExpect(jsonPath("$.content").value(content))
                 .andDo(document(
-                        "/comment/post/AnswerComment",
+                        "comment/post/AnswerComment",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
@@ -201,7 +201,7 @@ class CommentControllerTest implements Reflection {
                 .andExpect(jsonPath("$.commentId").value(1L))
                 .andExpect(jsonPath("$.content").value(content))
                 .andDo(document(
-                        "/comment/patch",
+                        "comment/patch",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
